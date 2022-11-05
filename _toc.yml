@@ -1,0 +1,49 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+  - caption: Přednášky
+    numbered: true
+    chapters:
+    - file: "prednaska/01"
+    - file: "prednaska/02"
+    - file: "prednaska/03"
+    - file: "prednaska/04"
+    - file: "prednaska/05"
+    - file: "prednaska/06"
+    - file: "prednaska/07"
+    - file: "prednaska/08"
+    - file: "prednaska/09"
+    - file: "prednaska/10"
+    - file: "prednaska/11"
+    - file: "prednaska/12"
+  - caption: Cvičení
+    numbered: true
+    chapters:
+    - file: "cviceni/cviceni_01.ipynb"  
+    - file: "cviceni/cviceni_02.ipynb"  
+    - file: "cviceni/cviceni_03.ipynb"  
+    - file: "cviceni/cviceni_04.ipynb"  
+    - file: "cviceni/cviceni_05.ipynb"  
+    - file: "cviceni/cviceni_06.ipynb"  
+    - file: "cviceni/cviceni_07.ipynb"  
+    - file: "cviceni/cviceni_08.ipynb"  
+    - file: "cviceni/cviceni_09.ipynb"  
+    - file: "cviceni/cviceni_10.ipynb"  
+    - file: "cviceni/cviceni_11.ipynb"  
+    - file: "cviceni/cviceni_12.ipynb"  
+  - caption: Python snippety
+    chapters:
+    - file: "snippety/python_zakladni_konstrukce.ipynb"
+    - file: "snippety/python_text.ipynb"    
+    - file: "snippety/python_tabulky.ipynb"   
+    - file: "snippety/python_grafy.ipynb"   
+  - caption: Literatura a rejstřík
+    chapters:
+    - file: "literatura.md"
+    - file: genindex    
+
+
+         

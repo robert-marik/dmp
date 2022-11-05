@@ -1,0 +1,163 @@
+{
+    "snippets" : [
+        {
+            "name" : "Import knihoven",
+            "code" : [
+                "import numpy as np",
+                "import matplotlib.pyplot as plt",
+                "import pandas as pd",
+                "# from scipy.integrate import solve_ivp",
+                "# from scipy import optimize"            
+            ]
+        },
+        {
+            "name" : "Graf funkce, NumPy",
+            "code" : [
+                "x = np.linspace(-1,1,100)",
+                "y = np.exp(-x**2)",
+                "",
+                "fig,ax = plt.subplots()",
+                "ax.plot(x,y)",
+                "ax.set(",
+                "    #xlim=(0,None),",
+                "    #ylim=(0,None),",
+                "    title=\"Nadpis grafu\",",
+                "    xlabel=\"Popisek vodorovně\",",
+                "    ylabel=\"Popisek svisle\",",
+                "    #xscale=\"log\", # logaritmicke osy",
+                "    #yscale=\"log\",",
+                ")",
+                "ax.grid()"
+            ]
+        },
+        {"name": "Dva grafy pod sebou, sdílená osa x",
+        "code": [
+                   "# Tabulka funkčních hodnot, aby bylo co kreslit",
+                    "x = np.linspace(-5,5,100)",
+                    "df = pd.DataFrame()",
+                    "df[\"x\"]=x",
+                    "df[\"druhá mocnina\"] = x**2",
+                    "df[\"třetí mocnina\"] = x**3",
+                    "",
+                    "# vykresleni dat do obrazku",
+                    "fig,ax = plt.subplots(2,1,figsize=(8,4),sharex=True) # zalozeni obrazku se dvema soustavami souradnic pod sebou",
+                    "df.plot(x=\"x\",y=\"druhá mocnina\",ax=ax[0], legend=False)# prvni graf",
+                    "df.plot(x=\"x\",y=\"třetí mocnina\",ax=ax[1], legend=False, color=\"C1\")# druhy graf",
+                    "#### Varianta bez DataFrame",
+                    "# ax[0].plot(df[\"x\"],df[\"druhá mocnina\"],label=\"Druhá mocnina\")",
+                    "# ax[1].plot(df[\"x\"],df[\"třetí mocnina\"],label=\"Třetí mocnina\", color=\"C1\")",
+                    "",
+                    "# Dekorace grafu",
+                    "ax[0].grid() # vykresleni mrizky",
+                    "ax[1].grid() # vykresleni mrizky",
+                    "ax[0].set(ylabel=\"Druhá mocnina\")",
+                    "ax[1].set(ylabel=\"Třetí mocnina\")",
+                    "fig.legend([\"Druhá mocnina\",\"Třetí mocnina\"])"        
+                ]},
+	    { "name" : "Řešení rovnice",
+		  "code": [
+		    "from scipy import optimize # Přidat import na začátek dokumentu",
+		    "def f(x):    # Nadefinovat funkci nebo použít lambda funkci",
+		    "    return x**4-3*x-2",
+		    "x1 = optimize.fsolve(f,2)  # Řešení rovnice f(x)=0, začátek hledání v x=2",
+		    "x2 = optimize.fsolve(lambda x: f(x)-5, 2) # Řešení rovnice f(x)=5, začátek hledání v x=2"
+		  ]
+	    },
+        {
+            "name" : "Řešení ODE",
+            "code" : [
+                "pocatecni_podminka = [0.1]",
+                "meze = [0,10]",
+                "def rovnice(t, x, r=1, K=1):",
+                "    return r*x*(1-x/K)",
+                "reseni = solve_ivp(",
+                "                   rovnice,",
+                "                   meze,",
+                "                   pocatecni_podminka,",
+                "                   dense_output=True,",
+                "                   # t_eval=np.linspace(*meze,500), ## zde je možné zadat pole hodnot, kde se mají určit řešení",
+                "                   # max_step=np.Inf, ## defaultní je krok libovolné délky",
+                "                   )",
+                "", 
+                "print(reseni.sol(2.3))  # reseni v case 2.3",
+                "",
+                "t=np.linspace(*meze, 100)  # graf reseni",
+                "fig,ax = plt.subplots(1)",
+                "ax.plot(t,reseni.sol(t)[0])",
+                "ax.set(",
+                "    ylim = (0,None),",
+                "    title = \"Řešení diferenciální rovnice\",",
+                "    xlabel=r\"$t$\",",
+                "    ylabel=r\"$x$\",",
+                ")",
+                "",
+                "df = pd.DataFrame() #tabulka s hodnotami řešení ve více bodech",
+                "moje_t = np.array([3,5,7])",
+                "df[\"t\"] = moje_t",
+                "df[\"x\"] = reseni.sol(moje_t)[0]",
+                "df"
+            ]
+        },
+        {"name" : "DataFrame: vytvoření/načtení",
+	 "code" : [
+"### Snippet obsahuje více variant, jednu ponechejte a ostatní odmažte",
+"###",
+"",
+"### Varianta tabulky z dat",
+"# x = np.linspace(0,1,5)",
+"# data = np.array([x,x**2,x**3])",
+"# df = pd.DataFrame(data.T, columns=[\"x\",\"parabola\",\"kubicka parabola\"])",
+"",
+"### Varianta tabulky tvořené po sloupcích",
+"df = pd.DataFrame()",
+"df[\"x\"] = np.linspace(0,1,5)",
+"df[\"parabola\"] = df.x**2",
+"df[\"kubicka parabola\"] = df.x**3",
+"",
+"### Varianta tabulky načtené z csv souboru,",
+"### Podobné pd.read_excel pro načtení z excelovské tabulky",
+"# zdroj = \"https://raw.githubusercontent.com/robert-marik/dmp/main/data/hudson_bay_lynx_hare.csv\"",
+"# df = pd.read_csv(",
+"#     zdroj,     # jmeno souboru nebo URL",
+"#     sep=\",\",   # nejbeznejsimi oddelovaci jsou carka nebo strednik",
+"#     skiprows=2,# zacatek nekdy obsahuje popisky",
+"#     )",
+"",
+"df"
+		  ]
+	},
+        {
+            "name" : "DataFrame: graf",
+            "code" : [
+                "x = np.linspace(-2,2,100)",
+                "df = pd.DataFrame()",
+                "df[\"x\"] = x",
+                "df[\"exp(-x^2)\"] = np.exp(-x**2)",
+                "df[\"exp(-(3x)^2)\"] = np.exp(-(3*x)**2)",
+                "df[\"3*exp(-x^2)\"] = 3*np.exp(-x**2)",
+		"",
+                "ax = df.plot(",
+                "    x=\"x\",",
+                "    title=\"Efekt lineární transformace na graf\",", 
+                "    grid=True,", 
+                "    figsize=(6,3),",
+                "    xlabel=\"popisek vodorovně\",",
+                "    ylabel=\"popisek svisle\",",
+                "    #legend=False",
+                "    )",
+                "ax.legend(",
+                "    title=\"Legenda\",",
+                "    #bbox_to_anchor=(1.04, 1), # legenda vně obrázku",
+                "    loc=\"upper left\"",
+                "    )"
+            ]
+        },
+        {"name" : "DataFrame: uložení do csv",
+	 "code" : ["df.to_csv(\"file.csv\")"]
+	},
+    {"name" : "Zobrazování čísel: nepoužívat vědeckou notaci",
+     "code" : ["np.set_printoptions(suppress=True)"]
+    }
+    ]
+}
+

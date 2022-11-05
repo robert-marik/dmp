@@ -1,0 +1,27 @@
+div.theorem p.admonition-title {background-color:var(--hint-title-color);} 
+div.theorem {
+  border-color: var(--hint-border-color);
+  background-color: var(--hint-title-color);
+}
+
+div.remark p.admonition-title {background-color:var(--note-title-color);} 
+div.remark {
+  border-color: var(--note-border-color);
+  background-color: var(--note-title-color);
+}
+
+div.definition p.admonition-title {background-color:var(--warning-title-color);} 
+div.definition {
+  border-color: var(--warning-border-color);
+  background-color: var(--warning-title-color);
+}
+
+body {
+  line-height: 1.4;
+}
+
+.margin p {
+  color: gray; 
+  font-size: 80%;
+  line-height: 100%;
+}
