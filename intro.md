@@ -15,6 +15,14 @@ kernelspec:
 
 # Dynamické modely populací
 
+```{code-cell} ipython
+:tags: ["hide-input"]
+from datetime import datetime
+from babel.dates import format_datetime
+now = datetime.now()
+print ("Poslední změna dokumentu: ", format_datetime(now, locale='cs'))
+```
+
 ```{figure} ./pics/lotka-volterra.jpg
 
 Lotkův-Volterrův model dvoudruhové populace dravce a kořisti byl v první polovině dvacátého století jedním z prvních počinů při snaze využít matematické modelování k objasnění přírodních fenoménů spojených s velikostmi populací živočichů.
@@ -124,14 +132,3 @@ Ovládací prvky v horní části stránky umožňují přístup k různým form
 Pokud pracujete na lokálním počítači, máte data pod kontrolou a nikdo jiný je nevidí. Při práci na JupyterHubu na Mendelově univerzitě data může vidět i admin serveru. (Toho budeme využívat při práci na zápočtovém projektu.) Při práci na serverech jako Colab či Binder jdou data přes servery dalších vlastníků a nemáte data plně pod kontrolou. Proto není vhodné pracovat s osobními daty a citlivým obsahem. 
 ```
 
-```{code-cell} ipython
-:tags: ["hide-input"]
-import matplotlib.pyplot as plt
-import numpy as np
-plt.figure(figsize=(6,2))
-k = 6*np.pi
-t = np.linspace(-k,k,300)
-plt.plot(t,np.sin(t)/t)
-plt.grid()
-plt.title("Testovací výpočet, ukázka grafu");
-```
