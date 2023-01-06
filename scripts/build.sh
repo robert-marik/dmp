@@ -1,6 +1,7 @@
 # Build book by sphinx. Jupyterbook does not (probably) work well with double dollas 
 directory=../_build/html
 
+touch ../intro.md
 sphinx-build ../ $directory -b html
 
 
