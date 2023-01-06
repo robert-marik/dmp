@@ -1,0 +1,797 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Dynamické modely populací &#8212; Dynamické modely populací</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Rejstřík" href="genindex.html" />
+    <link rel="search" title="Vyhledávání" href="search.html" />
+    <link rel="next" title="1. Funkce a vlastnosti funkcí" href="prednaska/01.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="cs">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Dynamické modely populací</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Hledat v knize..." aria-label="Hledat v knize..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    Dynamické modely populací
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Přednášky
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="prednaska/01.html">
+   1. Funkce a vlastnosti funkcí
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prednaska/02.html">
+   2. Derivace a integrál
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prednaska/03.html">
+   3. Diferenciální rovnice
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prednaska/04.html">
+   4. Autonomní diferenciální rovnice
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prednaska/05.html">
+   5. Bifurkace
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prednaska/06.html">
+   6. Lineární algebra, matice
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prednaska/07.html">
+   7. Parciální derivace
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prednaska/08.html">
+   8. Autonomní systémy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prednaska/09.html">
+   9. Modely konkurence populací
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prednaska/10.html">
+   10. Modely dravce a kořisti
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prednaska/11.html">
+   11. Diskrétní populační modely
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prednaska/12.html">
+   12. Difuzní rovnice
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Cvičení
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="cviceni/cviceni_01.html">
+   1. První kroky v Pythonu
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cviceni/cviceni_02.html">
+   2. Derivace a modely založené na derivaci
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cviceni/cviceni_03.html">
+   3. Diferenciální rovnice 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cviceni/cviceni_04.html">
+   4. Diferenciální rovnice 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cviceni/cviceni_05.html">
+   5. Diferenciální rovnice 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cviceni/cviceni_06.html">
+   6. LaTeX
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cviceni/cviceni_07.html">
+   7. Maticové modely
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cviceni/cviceni_08.html">
+   8. Levinsův model metapopulací
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cviceni/cviceni_09.html">
+   9. Modely konkurence populací
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cviceni/cviceni_10.html">
+   10. Modely dravce a kořisti
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cviceni/cviceni_11.html">
+   11. Práce na zápočtovém projektu 1/2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cviceni/cviceni_12.html">
+   12. Práce na zápočtovém projektu 2/2
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Python snippety
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="snippety/python_zakladni_konstrukce.html">
+   Základní konstrukce
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="snippety/python_text.html">
+   Text a textové řetězce
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="snippety/python_tabulky.html">
+   Tabulky
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="snippety/python_grafy.html">
+   Obrázky, grafy
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Literatura a rejstřík
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="literatura.html">
+   Literatura
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="genindex.html">
+   Rejstřík
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/robert-marik/dmp/main?urlpath=tree/intro.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://jupyter.mendelu.cz/hub/user-redirect/git-pull?repo=https%3A//github.com/robert-marik/dmp&urlpath=tree/dmp/intro.md&branch=main"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on JupyterHub"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="headerbtn__text-container">JupyterHub</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/robert-marik/dmp/blob/gh-pages/_sources/intro.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/robert-marik/dmp"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/intro.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="_sources/intro.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#o-predmetu">
+   O předmětu
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#co-budeme-delat">
+   Co budeme dělat
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#o-metodach-vyuky">
+   O metodách výuky
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Dynamické modely populací</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#o-predmetu">
+   O předmětu
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#co-budeme-delat">
+   Co budeme dělat
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#o-metodach-vyuky">
+   O metodách výuky
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="dynamicke-modely-populaci">
+<h1>Dynamické modely populací<a class="headerlink" href="#dynamicke-modely-populaci" title="Trvalý odkaz na tento nadpis">#</a></h1>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">babel.dates</span> <span class="kn">import</span> <span class="n">format_datetime</span>
+<span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;Poslední změna dokumentu: &quot;</span><span class="p">,</span> <span class="n">format_datetime</span><span class="p">(</span><span class="n">now</span><span class="p">,</span> <span class="n">locale</span><span class="o">=</span><span class="s1">&#39;cs&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Poslední změna dokumentu:  6. 1. 2023 14:46:15
+</pre></div>
+</div>
+</div>
+</div>
+<figure class="align-default" id="id3">
+<img alt="_images/lotka-volterra.jpg" src="_images/lotka-volterra.jpg" />
+<figcaption>
+<p><span class="caption-number">Obr. 1 </span><span class="caption-text">Lotkův-Volterrův model dvoudruhové populace dravce a kořisti byl v první polovině dvacátého století jedním z prvních počinů při snaze využít matematické modelování k objasnění přírodních fenoménů spojených s velikostmi populací živočichů.</span><a class="headerlink" href="#id3" title="Permalink k tomuto obrázku">#</a></p>
+</figcaption>
+</figure>
+<section id="o-predmetu">
+<h2>O předmětu<a class="headerlink" href="#o-predmetu" title="Trvalý odkaz na tento nadpis">#</a></h2>
+<p>Předmět je přednášen na oboru Myslivost. Obsahuje matematický aparát používaný v
+matematické biologii k popisu vývoje populací, jejich vzájemné interakce a
+schopnosti přežívat.</p>
+<p>Budeme používat matematické postupy a zkoumat matematické modely, ale předmět
+není matematikou. Nemá tedy ambice všechny pojmy definovat přesným způsobem v
+matematice obvyklým. Přesné definice těchto pojmů je snadné najít v literatuře,
+například <span id="id1">[<a class="reference internal" href="literatura.html#id10" title="Z. Došlá and P. Liška. Matematika pro nematematické obory s aplikacemi v přírodních a technických vědách. Grada, 2014. ISBN 9788024753225.">6</a>]</span>.</p>
+</section>
+<section id="co-budeme-delat">
+<h2>Co budeme dělat<a class="headerlink" href="#co-budeme-delat" title="Trvalý odkaz na tento nadpis">#</a></h2>
+<p>V předmětu si představíme základní metody modelování jevů a efektů známých z
+ekologie a populační biologie. Z těchto oblastí máme celou řadu poznatků.</p>
+<ul class="simple">
+<li><p>Populace nerostou neomezeně, ale jenom do nosné kapacity prostředí (Verhulst, 1838).</p></li>
+<li><p>Větší územní celky mají pestřejší druhové složení. (Mac Arthur, Wilson, 1967).</p></li>
+<li><p>Malé populace mohou mít malou nebo zápornou rychlost růstu per capita (Allee, cca 1930–1940).</p></li>
+<li><p>Věkově strukturovaná společenstva konvergují ke stabilní věkové skladbě (Leslie, 1945).</p></li>
+<li><p>Při konkurenci dvou a více druhů dojde za určitých podmínek ke konkurenčnímu
+vyloučení některých druhů (Gause, 1934).</p></li>
+<li><p>Ve fragmentovaném prostředí je nutno chránit i migrační trasy mezi fragmenty a
+také fragmenty, kde se daná populace nenachází (Levins, 1969).</p></li>
+<li><p>V přírodě dochází k oscilacím, například ve společenstvech dravce a kořisti
+(Lotka, Volterra, 1920), u dlouhověkých cikád, při některých chemických
+reakcích (Bělousov, Žabotinski, 1951), při periodickém přemnožování obaleče v
+kanadských lesích (Ludwig, Jones, Holling, 1978).</p></li>
+<li><p>Organismy produkují enzymy a bílkoviny a jejich fungování je závislé na
+rychlosti, s jakou dokáží syntetizovat potřebný enzym a na tom, jak dokáží
+udržet jeho stabilní hladinu. Výhodnější než jednoduchá konstantní produkce
+enzymu je, pokud si organismus vytvoří evolucí taktiku směřující ke zrychlení
+syntézy a zvýšení robustnosti stacionárního stavu, tj. zvýšení odolnosti proti
+narušení rovnováhy (viz <span id="id2">[<a class="reference internal" href="literatura.html#id8" title="U. Alon. An Introduction to Systems Biology: Design Principles of Biological Circuits. Chapman &amp; Hall/CRC Computational Biology Series. CRC Press LLC, 2019. ISBN 9781439837177.">2</a>]</span>).</p></li>
+</ul>
+<p>Ukážeme si, že uvedené efekty nejsou ničím jiným, než nevyhnutelným důsledkem
+principů, podle kterých funguje dané společenství. Matematickým modelováním
+převedeme představy o vztazích v populacích na pozorovatelná data. Zpravidla
+budeme sledovat velikost populace a její vývoj v čase.</p>
+<p>Pokud matematický model vykazuje shodu s pozorovanou skutečností, máme všechny
+důvody domnívat se, že naše představy o principech fungování společenství jsou
+správné a to nám umožní sledovat, jak se situace bude měnit při změně parametrů
+jako jsou změna prostředí nebo lov či sběr členů této populace. Matematika
+umožní levné, snadné, etické a bezpečné experimenty s danou populací.</p>
+</section>
+<section id="o-metodach-vyuky">
+<h2>O metodách výuky<a class="headerlink" href="#o-metodach-vyuky" title="Trvalý odkaz na tento nadpis">#</a></h2>
+<p>Cvičení jsou z výpočetního hlediska zaměřeny na využití jazyka Python. To je
+moderní a perspektivní skriptovací jazyk,  vhodný pro manipulaci s daty a
+přístupný i neprogramátorům.</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><img alt="" src="_images/ovladaci_prvky.png" /></p>
+<p>Ovládací prvky v horní části stránky umožňují přístup k různým formátům textu. Nejdůležitější je raketa, ikona pro otevření textu v nástrojích umožňujících interaktivní práci a spouštění výpočtů.</p>
+</aside>
+<ul class="simple">
+<li><p>Díky Pythonu zpřístupníme možnosti řešení matematických modelů i
+nematematikům. Vyhneme se obtížným výpočtům, kvůli kterým bychom se museli
+naučit používat netriviální matematický aparát, jako jsou derivace a
+integrály.</p></li>
+<li><p>Nebojte se, nebudete programovat. Měli byste pasivně rozumět kódu z přednášek
+a cvičení a umět jej přizpůsobit jinému modelu nebo jiné situaci.</p></li>
+<li><p>Příklady pro <strong>cvičení</strong> jsou zápisníky prostředí Jupyter, ve kterém Python
+budeme spouštět. Je možné otevřít v online prostředí nebo na svém lokálním PC.
+Online možnosti jsou přístupné přes horní lištu pod ikonkou rakety.</p>
+<ul>
+<li><p>JupyterHub je volba, kterou budeme používat během cvičení. Touto volbou se
+vám naklonují materiály do vlastního adresáře a budete moci s touto jejich
+kopií pracovat. Co se přesně stane a jaké jsou možnosti je popsáno v
+dokumentaci k
+<a class="reference external" href="https://tljh.jupyter.org/en/latest/howto/content/nbgitpuller.html">nbgitpuller</a>.
+Budete pracovat na serveru univerzity, abychom měli všichni stejné
+prostředí. Zde se také bude pracovat na zápočtovém projektu. Účet na
+<a class="reference external" href="https://jupyter.mendelu.cz">jupyter.mendelu.cz</a> mají studenti předmětu.
+Login je stejný jako do UIS (například <code class="docutils literal notranslate"><span class="pre">xnovak65</span></code>), přednastavené heslo
+máte v UIS, návod jak heslo najít je na přihlašovací stránce JupyterHubu.</p></li>
+<li><p>Binder založí dočasně server  na službě mybinder.org a umožní Vám
+experimentovat s kódem, spouštět příkazy. Práce je dočasná, pokud po
+ukončení nechcete o práci přijít, musíte si zápisník stáhnout na lokální
+PC. Je možné doinstalovat balíčky, například knihovnu intersect příkazem
+<code class="docutils literal notranslate"><span class="pre">!</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">intersect</span></code> (vykřičník na začátku informuje o tom, že se
+jedná o příkaz operačního systému a ne příkaz jazyka Python).</p></li>
+<li><p>Colab vám po přihlášení ke Google účtu uloží zápisník na Google disk.
+Prostředí je trochu jiné, ale práce je zpravidla svižnější na odezvu.
+Zápisník se ukládá a je možné sledovat změny a ukládat verze. Výsledek
+práce je možno uložit na <a class="reference external" href="https://cs.wikipedia.org/wiki/GitHub">GitHub</a> do
+svého repozitáře nebo jako Gist. Je možné doinstalovat chybějící balíčky
+stejně jako v předchozím bodě pro Binder.</p></li>
+<li><p>Live Code umožní spouštět příklady přímo na stránce, kterou čtete. Volba
+je nejméně svižná, ale použitelná.</p></li>
+<li><p>Offline práce je možná, pokud máte nainstalovaný Python, Jupyter a s tím
+spojený ekosystém. Doporučenou volbou pro nejběžnější operační systémy
+(Linux, Windows) je
+<a class="reference external" href="https://www.anaconda.com/products/distribution">Anaconda</a> a jako editor
+buď Jupyter zápisník v prohlížeči nebo editor <a class="reference external" href="https://code.visualstudio.com/">Visual Studio
+Code</a> a pluginy Python, Pylance, Python
+for VSCode, Jupyter.</p></li>
+</ul>
+</li>
+<li><p><strong>Přednášky</strong> jsou psány jazykem <a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/">MyST</a> a je možné je otevřít v online prostředí, které tento jazyk podporuje. To je v zimě 2022 částečně Binder a JupyterHub z online služeb a Jupyter Notebook jako offline volba. (Nejsou renderovány definice, věty a některá další prostředí, ty se zobrazují jako programový kód.) Vývoj však jde rychle dopředu…</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Varování</p>
+<p>Pokud pracujete na lokálním počítači, máte data pod kontrolou a nikdo jiný je nevidí. Při práci na JupyterHubu na Mendelově univerzitě data může vidět i admin serveru. (Toho budeme využívat při práci na zápočtovém projektu.) Při práci na serverech jako Colab či Binder jdou data přes servery dalších vlastníků a nemáte data plně pod kontrolou. Proto není vhodné pracovat s osobními daty a citlivým obsahem.</p>
+</div>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "robert-marik/dmp",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='right-next' id="next-link" href="prednaska/01.html" title="další page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">další</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Funkce a vlastnosti funkcí</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Robert Mařík<br/>
+  
+    <div class="extra_footer">
+      <p>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+  All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
+</p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

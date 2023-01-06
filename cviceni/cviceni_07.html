@@ -1,0 +1,1511 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>7. Maticové modely &#8212; Dynamické modely populací</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="8. Levinsův model metapopulací" href="cviceni_08.html" />
+    <link rel="prev" title="6. LaTeX" href="cviceni_06.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="cs">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Dynamické modely populací</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Hledat v knize..." aria-label="Hledat v knize..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Dynamické modely populací
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Přednášky
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../prednaska/01.html">
+   1. Funkce a vlastnosti funkcí
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../prednaska/02.html">
+   2. Derivace a integrál
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../prednaska/03.html">
+   3. Diferenciální rovnice
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../prednaska/04.html">
+   4. Autonomní diferenciální rovnice
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../prednaska/05.html">
+   5. Bifurkace
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../prednaska/06.html">
+   6. Lineární algebra, matice
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../prednaska/07.html">
+   7. Parciální derivace
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../prednaska/08.html">
+   8. Autonomní systémy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../prednaska/09.html">
+   9. Modely konkurence populací
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../prednaska/10.html">
+   10. Modely dravce a kořisti
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../prednaska/11.html">
+   11. Diskrétní populační modely
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../prednaska/12.html">
+   12. Difuzní rovnice
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Cvičení
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="cviceni_01.html">
+   1. První kroky v Pythonu
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cviceni_02.html">
+   2. Derivace a modely založené na derivaci
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cviceni_03.html">
+   3. Diferenciální rovnice 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cviceni_04.html">
+   4. Diferenciální rovnice 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cviceni_05.html">
+   5. Diferenciální rovnice 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cviceni_06.html">
+   6. LaTeX
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   7. Maticové modely
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cviceni_08.html">
+   8. Levinsův model metapopulací
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cviceni_09.html">
+   9. Modely konkurence populací
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cviceni_10.html">
+   10. Modely dravce a kořisti
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cviceni_11.html">
+   11. Práce na zápočtovém projektu 1/2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cviceni_12.html">
+   12. Práce na zápočtovém projektu 2/2
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Python snippety
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../snippety/python_zakladni_konstrukce.html">
+   Základní konstrukce
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../snippety/python_text.html">
+   Text a textové řetězce
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../snippety/python_tabulky.html">
+   Tabulky
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../snippety/python_grafy.html">
+   Obrázky, grafy
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Literatura a rejstřík
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../literatura.html">
+   Literatura
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   Rejstřík
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/robert-marik/dmp/main?urlpath=tree/cviceni/cviceni_07.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://jupyter.mendelu.cz/hub/user-redirect/git-pull?repo=https%3A//github.com/robert-marik/dmp&urlpath=tree/dmp/cviceni/cviceni_07.ipynb&branch=main"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on JupyterHub"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="headerbtn__text-container">JupyterHub</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/robert-marik/dmp/blob/main/cviceni/cviceni_07.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/robert-marik/dmp"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/cviceni/cviceni_07.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#leslieho-model">
+   7.1. Leslieho model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parametr-pro-zastaveni-rustu">
+     7.1.1. Parametr pro zastavení růstu
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matice-sensitivity-a-elasticity">
+     7.1.2. Matice sensitivity a elasticity
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-jelena-evropskeho-red-deer-cervus-elaphus">
+   7.2. Model jelena evropského (red deer,
+   <em>
+    Cervus elaphus
+   </em>
+   )
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tropicky-strom">
+   7.3. Tropický strom
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#kareta-obecna-loggerhead-sea-turtle">
+   7.4. Kareta obecná (Loggerhead sea turtle)
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Maticové modely</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#leslieho-model">
+   7.1. Leslieho model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#parametr-pro-zastaveni-rustu">
+     7.1.1. Parametr pro zastavení růstu
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matice-sensitivity-a-elasticity">
+     7.1.2. Matice sensitivity a elasticity
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-jelena-evropskeho-red-deer-cervus-elaphus">
+   7.2. Model jelena evropského (red deer,
+   <em>
+    Cervus elaphus
+   </em>
+   )
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tropicky-strom">
+   7.3. Tropický strom
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#kareta-obecna-loggerhead-sea-turtle">
+   7.4. Kareta obecná (Loggerhead sea turtle)
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="maticove-modely">
+<h1><span class="section-number">7. </span>Maticové modely<a class="headerlink" href="#maticove-modely" title="Trvalý odkaz na tento nadpis">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="c1">#from scipy.integrate import solve_ivp</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Při práci s maticemi musíme dávat pozor, že když proměnnou uložíme do jiné
+proměnné a novou proměnnou poté modifikujeme, modifikuje se i původní objekt. To
+proto, že nevzniká nová matice, ale jenom nový odkaz na matici původní.</p>
+<p>Vyzkoušejte si následující kód.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span> <span class="c1"># vytvoření matice a</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span>  <span class="c1"># uložení do matice b</span>
+<span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">100</span>  <span class="c1"># změna jednoho prvku matice b</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># test jestli se změnila matice a</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="c1"># test jestli se změnila matice b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[   1    2    3 -100]]
+[[   1    2    3 -100]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pokud je výše popsané chování nežádoucí, použijeme <code class="docutils literal notranslate"><span class="pre">copy</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span> <span class="c1"># vytvoření matice a</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>   <span class="c1"># uložení KOPIE do matice b</span>
+<span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">100</span>  <span class="c1"># změna jednoho prvku matice b</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1"># test jestli se změnila matice a</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="c1"># test jestli se změnila matice b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1 2 3 4]]
+[[   1    2    3 -100]]
+</pre></div>
+</div>
+</div>
+</div>
+<section id="leslieho-model">
+<h2><span class="section-number">7.1. </span>Leslieho model<a class="headerlink" href="#leslieho-model" title="Trvalý odkaz na tento nadpis">#</a></h2>
+<p>Nejprve prozkoumáme Lesliseho model populace tuleňů z přednášky.
+Prvotní informace se týká vývoje populace. Rychlou představu soi uděláme z grafu sledujícího vývoj jednotlivých věkových skupin v čase.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span>
+    <span class="mi">0</span><span class="p">,</span> <span class="mf">1.26</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span>
+    <span class="mf">0.614</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span> <span class="mf">0.808</span><span class="p">,</span> <span class="mf">0.808</span>
+<span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">L</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[0.   , 1.26 , 2.   ],
+        [0.614, 0.   , 0.   ],
+        [0.   , 0.808, 0.808]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">12</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">X</span><span class="p">[:,[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">L</span><span class="o">*</span><span class="n">X</span><span class="p">[:,[</span><span class="n">i</span><span class="p">]]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">cas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span> <span class="c1"># časový krok v modelu jsou čtyři roky</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cas</span><span class="p">,</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>     
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+    <span class="p">[</span><span class="s2">&quot;mláďata&quot;</span><span class="p">,</span><span class="s2">&quot;mladí tuleni&quot;</span><span class="p">,</span><span class="s2">&quot;staří tuleni&quot;</span><span class="p">],</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Věková kategorie&quot;</span>
+    <span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="kc">None</span><span class="p">),</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Počet jedinců podle věkových kategorií&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Počet jedinců&quot;</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Čas/rok&quot;</span>
+    <span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/cviceni_07_8_0.png" src="../_images/cviceni_07_8_0.png" />
+</div>
+</div>
+<p>Ověříme, že věková struktura konverguje ke stálému složení populace.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">podil</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">i</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cas</span><span class="p">,</span><span class="n">podil</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="kc">None</span><span class="p">),</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Procentuální zastoupení jedinců podle věkových kategorií&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Procento jedinců&quot;</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Čas/rok&quot;</span>
+    <span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+    <span class="p">[</span><span class="s2">&quot;nejmladší&quot;</span><span class="p">,</span><span class="s2">&quot;prostřední&quot;</span><span class="p">,</span><span class="s2">&quot;nejstarší&quot;</span><span class="p">],</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Věková kategorie&quot;</span>
+    <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/cviceni_07_10_0.png" src="../_images/cviceni_07_10_0.png" />
+</div>
+</div>
+<p>Numerické hodnoty určující procentuální zastoupení jednotlivých věkových skupin získáme z konce simulace.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">podil</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([52.68328969, 21.68662839, 25.63008192])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lesliho matice má (za předpokladu, že alespoň dva po sobě jdoucí koeficienty v prvním řádku matice jsou nenulové) dominantní reálnou vlastní hodnotu. Vektor odpovídající této vlastní hodnotě určuje zastoupení jednotlivých věkových tříd. Tuto informaci můžeme porovnat s již zjištěnou strukturou populace. Obecně mohou být vlastní čísla a vlastní vektory i komplexní.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span><span class="p">,</span><span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Vlastní čísla: &quot;</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Vlastní vektory jsou sloupce matice</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">P</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vlastní čísla:  [-0.34182332+0.35954975j -0.34182332-0.35954975j  1.49164663+0.j        ]
+Vlastní vektory jsou sloupce matice
+ [[ 0.38392628-0.40383611j  0.38392628+0.40383611j  0.84331389+0.j        ]
+ [-0.68962744+0.j         -0.68962744-0.j          0.34712962+0.j        ]
+ [ 0.44144739+0.1380406j   0.44144739-0.1380406j   0.4102715 +0.j        ]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Odfiltrujeme komplexní čísla. Kvůli numerickému zaokrouhlování nemá smysl u komplexních čísel testovat, zda je imaginární část přesně nulová. Namísto toho zvolíme jistý práh, od kterého budeme imaginární část považovat za nulovou.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vh</span><span class="p">,</span><span class="n">vs</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">real</span><span class="p">,</span><span class="n">j</span><span class="o">.</span><span class="n">real</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">P</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">imag</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">1e-2</span> <span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">vs</span> <span class="o">=</span> <span class="n">vs</span><span class="o">.</span><span class="n">A1</span> <span class="c1"># převod na vektor</span>
+<span class="n">vs</span> <span class="o">=</span> <span class="n">vs</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">vs</span><span class="p">)</span> <span class="c1"># normování aby součet komponent byl jedna</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reálná vlastní hodnota/hodnoty je/jsou &quot;</span><span class="p">,</span><span class="n">vh</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Příslušný vlastní směr/směry je/jsou &quot;</span><span class="p">,</span> <span class="n">vs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Reálná vlastní hodnota/hodnoty je/jsou  1.4916466348833584
+Příslušný vlastní směr/směry je/jsou  [0.52683575 0.2168591  0.25630515]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="n">l</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+<span class="n">l</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.4916466348833584
+</pre></div>
+</div>
+</div>
+</div>
+<p>Poznámka: Při porovnávání komplexních čísel používá knihovna NumPy reálnou komponentu. Toto chování vyhovuje u vlastních čísel v případě, kdy víme, že dominantní vlastní hodnota je reálná. Leslieho matice je představitelem takové úlohy, kdy jistotu reálné vlastní hodnoty zpravidla máme.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># U komplexních čísel neexistuje relace uspořádání podle velikosti. </span>
+<span class="c1"># Pro porovnávání se v knihovně NumPy používá reálná část. </span>
+<span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="mi">0</span><span class="o">+</span><span class="mi">300</span><span class="n">j</span><span class="p">,</span> <span class="mi">2</span><span class="o">+</span><span class="mi">0</span><span class="n">j</span><span class="p">,</span> <span class="mi">1</span><span class="o">+</span><span class="mi">4</span><span class="n">j</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2+0j)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="parametr-pro-zastaveni-rustu">
+<h3><span class="section-number">7.1.1. </span>Parametr pro zastavení růstu<a class="headerlink" href="#parametr-pro-zastaveni-rustu" title="Trvalý odkaz na tento nadpis">#</a></h3>
+<p>Budeme hledat, jak je potřeba změnit parametry populace tak, aby se růst populace zastavil. K zastavení vybereme vhodný parametr.  Například parametr ve druhém řádku a prvním sloupci. Tento parametr udává, jaká je pravděpodobnost, že se nejmladší věková kategorie dožije přestupu do starší kategorie. Budeme se tedy snažit lovit nejmladší jedince v populaci. Otázkou je, jak intenzivně musíme lovit, aby se růst populace zastavil.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># musíme vytvořit kopii matice, aby se prvky původní matice neměnily</span>
+<span class="n">L_fix</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="c1"># Potřebujeme, aby největší vlastní číslo bylo rovno jedné. </span>
+<span class="c1"># K tomu nadefinujeme funkci, která nám toto vlastní číslo vypočítá </span>
+<span class="c1"># v závislosti na tom, jak se změní prvek, se kterým manipulujeme. </span>
+<span class="k">def</span> <span class="nf">nejvetsi_vlastni_cislo</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">M</span><span class="p">):</span>
+    <span class="n">M</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+<span class="c1"># Nakonec určíme, pro jakou hodnotu je vlastní číslo rovno jedné.    </span>
+<span class="n">oprava</span> <span class="o">=</span> <span class="n">optimize</span><span class="o">.</span><span class="n">fsolve</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">nejvetsi_vlastni_cislo</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">L_fix</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">L_fix</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[0.        , 1.26      , 2.        ],
+        [0.10334137, 0.        , 0.        ],
+        [0.        , 0.808     , 0.808     ]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Kontrola vlatních čísel. Dominantní vlastní číslo musí mít reálnou část jednotkovou a komplexní část nulovou. Tedy <code class="docutils literal notranslate"><span class="pre">1+0j</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">L_fix</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.096+0.22928993j, -0.096-0.22928993j,  1.   +0.j        ])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Rychlá vizuální kontrola pro ty, co se nechtějí spoléhat na vlastní čísla. Také pomůže pro odhad, jak rychle se věkové složení ustálí.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ini</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="n">k</span><span class="p">])</span>
+<span class="n">model</span><span class="p">[:,[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">ini</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">model</span><span class="p">[:,[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">L_fix</span> <span class="o">*</span> <span class="n">model</span><span class="p">[:,[</span><span class="n">i</span><span class="p">]]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Časový krok&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Velikost populace&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+    <span class="p">[</span><span class="s2">&quot;nejmladší&quot;</span><span class="p">,</span><span class="s2">&quot;prostřední&quot;</span><span class="p">,</span><span class="s2">&quot;nejstarší&quot;</span><span class="p">],</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Věková kategorie&quot;</span>
+    <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Test stacionárnosti populace&quot;</span><span class="p">);</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/cviceni_07_25_0.png" src="../_images/cviceni_07_25_0.png" />
+</div>
+</div>
+</section>
+<section id="matice-sensitivity-a-elasticity">
+<h3><span class="section-number">7.1.2. </span>Matice sensitivity a elasticity<a class="headerlink" href="#matice-sensitivity-a-elasticity" title="Trvalý odkaz na tento nadpis">#</a></h3>
+<p>Výpočet matice elasticity pomocí levých a pravých vlastních vektorů. Pro násobení matic po složkách (Hadamardův součin) převedeme matice na dvourozměrná pole.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">W</span> <span class="o">=</span> <span class="n">P</span><span class="p">[:,</span><span class="n">l_index</span><span class="p">]</span><span class="o">.</span><span class="n">real</span> <span class="c1"># pravý sloupcový vlastni vektor příslušný maximální vlastní hodnotě</span>
+<span class="n">V</span> <span class="o">=</span> <span class="p">(</span><span class="n">P</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))[</span><span class="n">l_index</span><span class="p">,:]</span><span class="o">.</span><span class="n">real</span> <span class="c1"># levý řádkový vlastní vektor příslušný maximální vlastní hodnotě</span>
+<span class="n">matice_elasticity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">V</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="n">W</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">/</span><span class="n">l</span><span class="p">)</span>
+<span class="n">matice_elasticity</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[0.        , 0.10157076, 0.19054952],
+        [0.29212028, 0.        , 0.        ],
+        [0.        , 0.19054952, 0.22520993]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Výpočet matice elasticity z definice pomocí parciálních derivací a centrální diference. Jedná se o výpočet přímo z definice. Výpočet je méně elegantní než výpočet z předchozího pole, ale nespoléhá se například na vztah mezi levými a pravými vlastními vektory. Podobné taktiky, kdy stejnou veličinu počítáme dvěma různými způsoby, se často používají k tomu, abychom ověřili, že programový kód neobsahuje logické chyby a že počítá to, co potřebujeme.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">matice</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">matice</span>
+<span class="k">for</span> <span class="n">f1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">f2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">L</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">matice</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">L2</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">L3</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">L2</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">]</span> <span class="o">=</span> <span class="n">L2</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span>
+            <span class="n">L3</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">]</span> <span class="o">=</span> <span class="n">L3</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">]</span> <span class="o">-</span> <span class="n">h</span>
+            <span class="n">v2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">L2</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">real</span>
+            <span class="n">v3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">L3</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">real</span>
+            <span class="n">matice</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">v2</span><span class="o">-</span><span class="n">v3</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">))</span><span class="o">*</span><span class="n">L</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">]</span><span class="o">/</span><span class="n">l</span>
+<span class="n">matice</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">matice</span><span class="p">)</span>
+<span class="n">matice</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[0.        , 0.10157068, 0.19055025],
+        [0.29212876, 0.        , 0.        ],
+        [0.        , 0.19055404, 0.22521132]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">matice_elasticity</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9999999999999999
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">matice_elasticity</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[0.29212028],
+        [0.29212028],
+        [0.41575944]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">matice_elasticity</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[0.29212028, 0.29212028, 0.41575944]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Levý vlastní vektor je <strong>reprodukční hodnota</strong> jednotlivých věkových kategorií.
+Udává očekávaný počet potomků na jedince v dané věkové kategorii a v kategoriích
+následujících. Počty jsou vyjádřeny relativně vzhledem k nejmladší kategorii,
+která má reprodukční hodnotu rovnu jedné. Přitom se nejedná o prostý součet, ale
+je zde zohledněn růst populace, tedy jestli se budoucí potomci rodí do větší či
+menší populace (viz Tkadlec strana 121).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">V</span><span class="o">/</span><span class="n">V</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[1.        , 2.42939191, 2.92548796]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="model-jelena-evropskeho-red-deer-cervus-elaphus">
+<h2><span class="section-number">7.2. </span>Model jelena evropského (red deer, <em>Cervus elaphus</em>)<a class="headerlink" href="#model-jelena-evropskeho-red-deer-cervus-elaphus" title="Trvalý odkaz na tento nadpis">#</a></h2>
+<p>Model je představen a studován ve výukovém materiálu
+https://www.youtube.com/watch?v=cMQd-okvS_M
+Populace laní jelena evropského je rozdělena na rok staré laně, dva roky staré
+laně a starší laně. Projekční matice populace je následující.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">,</span>
+              <span class="mf">0.93</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+              <span class="mi">0</span><span class="p">,</span> <span class="mf">0.97</span><span class="p">,</span> <span class="mf">0.91</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">L</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[0.  , 0.2 , 0.26],
+        [0.93, 0.  , 0.  ],
+        [0.  , 0.97, 0.91]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Nejprve vypočteme vlastní čísla a najdeme dominantní vlastní číslo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vlastni_cisla</span><span class="p">,</span> <span class="n">vlastni_vektory</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+<span class="n">maximum_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">vlastni_cisla</span><span class="p">)</span>
+<span class="n">vlastni_cisla</span><span class="p">[</span><span class="n">maximum_index</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.1265483882211464+0j)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pro jednoduché seznámení se s modelem je možné snížit jednu komponentu například
+o deset procent a sledovat odezvu, jak moc se změní dominantní vlastní hodnota.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L_redukce_porodnosti</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">L_redukce_porodnosti</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.9</span><span class="o">*</span><span class="n">L_redukce_porodnosti</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">L_redukce_porodnosti</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.111253336399596+0j)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L_redukce_prezivani</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">L_redukce_prezivani</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.9</span><span class="o">*</span><span class="n">L_redukce_prezivani</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">L_redukce_prezivani</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.0658700220796447+0j)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Detailnější analýzu poskytne matice elasticity.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">W</span> <span class="o">=</span> <span class="n">vlastni_vektory</span><span class="p">[:,</span><span class="n">maximum_index</span><span class="p">]</span>
+<span class="n">V</span> <span class="o">=</span> <span class="p">(</span><span class="n">vlastni_vektory</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))[</span><span class="n">maximum_index</span><span class="p">,:]</span>
+
+<span class="n">matice_sensitivity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">V</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="n">W</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">decimals</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
+<span class="n">matice_elasticity</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">matice_sensitivity</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">/</span><span class="nb">max</span><span class="p">(</span><span class="n">vlastni_cisla</span><span class="p">))</span><span class="o">.</span><span class="n">real</span>
+<span class="n">matice_elasticity</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.        , 0.02275801, 0.13252391],
+       [0.15528228, 0.        , 0.        ],
+       [0.        , 0.13252223, 0.55690577]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">matice_elasticity</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.15528228, 0.15528024, 0.68942968])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Reprodukční hodnotu můžeme určit z levého vlastního vektoru příslušného
+dominantní vlastní hodnotě.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">V</span><span class="o">/</span><span class="n">V</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">real</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[1.        , 1.21134235, 1.20065544]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pro kontrolu můžeme vypočítat komponenty matice elasticity z definice, kdy
+parciální derivaci nahradíme centrální diferencí.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="mf">0.001</span>
+<span class="n">matice</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">matice</span>
+<span class="k">for</span> <span class="n">f1</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">f2</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">L</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">matice</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">L2</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">L3</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">L2</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">]</span> <span class="o">=</span> <span class="n">L2</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span>
+            <span class="n">L3</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">]</span> <span class="o">=</span> <span class="n">L3</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">]</span> <span class="o">-</span> <span class="n">h</span>
+            <span class="n">v2</span><span class="p">,</span><span class="n">P2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">L2</span><span class="p">)</span>
+            <span class="n">v3</span><span class="p">,</span><span class="n">P3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">L3</span><span class="p">)</span>
+            <span class="n">matice</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="nb">max</span><span class="p">(</span><span class="n">v2</span><span class="p">)</span><span class="o">-</span><span class="nb">max</span><span class="p">(</span><span class="n">v3</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">)</span><span class="o">*</span><span class="n">L</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">]</span><span class="o">/</span><span class="nb">max</span><span class="p">(</span><span class="n">vlastni_cisla</span><span class="p">))</span><span class="o">.</span><span class="n">real</span>
+<span class="n">matice</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">matice</span><span class="p">)</span>
+<span class="n">matice</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[0.        , 0.02275818, 0.13252514],
+        [0.15528314, 0.        , 0.        ],
+        [0.        , 0.13252496, 0.55690873]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="tropicky-strom">
+<h2><span class="section-number">7.3. </span>Tropický strom<a class="headerlink" href="#tropicky-strom" title="Trvalý odkaz na tento nadpis">#</a></h2>
+<p>Model je studován ve výukovém materiálu https://www.youtube.com/watch?v=cMQd-okvS_M</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span><span class="mf">0.3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> 
+               <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+               <span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+               <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+               <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">L</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[  0.3 ,   0.  ,   0.  , 100.  , 150.  ],
+        [  0.05,   0.4 ,   0.  ,   0.  ,   0.  ],
+        [  0.  ,   0.1 ,   0.6 ,   0.  ,   0.  ],
+        [  0.  ,   0.  ,   0.1 ,   0.7 ,   0.  ],
+        [  0.  ,   0.  ,   0.  ,   0.1 ,   0.99]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vlastni_cisla</span><span class="p">,</span> <span class="n">vlastni_vektory</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+<span class="n">maximum_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">vlastni_cisla</span><span class="p">)</span>
+<span class="n">maximum_cislo</span> <span class="o">=</span> <span class="n">vlastni_cisla</span><span class="p">[</span><span class="n">maximum_index</span><span class="p">]</span><span class="o">.</span><span class="n">real</span>
+
+<span class="n">W</span> <span class="o">=</span> <span class="n">vlastni_vektory</span><span class="p">[:,</span><span class="n">maximum_index</span><span class="p">]</span><span class="o">.</span><span class="n">real</span>
+<span class="n">V</span> <span class="o">=</span> <span class="p">(</span><span class="n">vlastni_vektory</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))[</span><span class="n">maximum_index</span><span class="p">,:]</span><span class="o">.</span><span class="n">real</span>
+
+<span class="n">matice_sensitivity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">V</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="n">W</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">decimals</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">matice_elasticity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">matice_sensitivity</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">/</span><span class="n">maximum_cislo</span>
+<span class="n">matice_elasticity</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.02796033, 0.        , 0.        , 0.03259729, 0.04210483],
+       [0.07496743, 0.04257206, 0.        , 0.        , 0.        ],
+       [0.        , 0.07496743, 0.08918076, 0.        , 0.        ],
+       [0.        , 0.        , 0.07496743, 0.12977163, 0.        ],
+       [0.        , 0.        , 0.        , 0.04253313, 0.36811714]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">matice_elasticity</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.10292776, 0.11753949, 0.16414819, 0.20490205, 0.41022197])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pW</span> <span class="o">=</span> <span class="mi">100</span><span class="o">*</span><span class="n">W</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">W</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">pW</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[91.6103505 ],
+        [ 6.50284929],
+        [ 1.28925986],
+        [ 0.31881893],
+        [ 0.27872141]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">pW</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[100.]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">V</span><span class="o">/</span><span class="n">V</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[   1.        ,   16.08772469,  113.31971822,  571.56905993,
+         1311.34660023]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="kareta-obecna-loggerhead-sea-turtle">
+<h2><span class="section-number">7.4. </span>Kareta obecná (Loggerhead sea turtle)<a class="headerlink" href="#kareta-obecna-loggerhead-sea-turtle" title="Trvalý odkaz na tento nadpis">#</a></h2>
+<p>Model života Karety obecné je podle <a class="reference external" href="https://www.jstor.org/stable/1939225">publikace</a>  Deborah T. Crouse, Larry B.
+Crowder, Hal Caswell: A Stage-Based Population Model for Loggerhead Sea Turtles
+and Implications for Conservation, Ecology, Vol. 68, No. 5 (Oct., 1987), pp.
+1412-1423.</p>
+<p>V tomto modelu autoři studují dříve publikovaný model založený na matici o
+velikosti <span class="math notranslate nohighlight">\(54\times54\)</span> (Frazer) a místo stáří dělí populaci do vývojových
+stadií. Tím dosáhnou při zachování přesnosti modelu výrazného snížení řádu
+matice, což umožňuje detailnější analýzu.</p>
+<p>Jendotlivé třídy jsou (podle <span id="id1">[<a class="reference internal" href="../literatura.html#id5" title="E. Tkadlec. Populační ekologie: Struktura a růst populací. Univerzita Palckého v Olomouci, 2013.">16</a>]</span>) (1) vajíčka a vylíhlá mláďata,
+(2) mladší juvenilní jedinci, (3) starší juvenilní jedinci, (4) subadultní jedinci,
+(5) poprvé se množící, (6) jednoletí migranti a
+(7) dospělí. Třídy 5, 6 a 7 jsou uvažovány samostatně kvůli velkým rozdílům ve
+fertilitě (Frazer 1984). Přibližný věk v jednotlivých kategoriích je pod jeden
+rok, 1 až 7 let, 8 až 15 let, 16 až 21 let, 22 let, 23 let a 24 až 54 let.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">100</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">])</span>
+<span class="n">M</span><span class="p">[[</span><span class="mi">0</span><span class="p">],:]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">127</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">80</span><span class="p">]</span>
+<span class="n">M</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.7370</span><span class="p">,</span><span class="mf">0.6610</span><span class="p">,</span> <span class="mf">0.6907</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.8089</span><span class="p">]</span>
+<span class="n">M</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.6747</span><span class="p">,</span> <span class="mf">0.0486</span><span class="p">,</span> <span class="mf">0.0147</span><span class="p">,</span> <span class="mf">0.0518</span><span class="p">,</span> <span class="mf">0.8091</span><span class="p">,</span> <span class="mf">0.8091</span><span class="p">]</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+<span class="n">M</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[  0.    ,   0.    ,   0.    ,   0.    , 127.    ,   4.    ,  80.    ],
+        [  0.6747,   0.737 ,   0.    ,   0.    ,   0.    ,   0.    ,   0.    ],
+        [  0.    ,   0.0486,   0.661 ,   0.    ,   0.    ,   0.    ,   0.    ],
+        [  0.    ,   0.    ,   0.0147,   0.6907,   0.    ,   0.    ,   0.    ],
+        [  0.    ,   0.    ,   0.    ,   0.0518,   0.    ,   0.    ,   0.    ],
+        [  0.    ,   0.    ,   0.    ,   0.    ,   0.8091,   0.    ,   0.    ],
+        [  0.    ,   0.    ,   0.    ,   0.    ,   0.    ,   0.8091,   0.8089]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vlastni_cisla</span><span class="p">,</span> <span class="n">vlastni_vektory</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+
+<span class="n">maximum_index</span> <span class="o">=</span> <span class="n">vlastni_cisla</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>
+<span class="n">vlastni_cisla</span><span class="p">[</span><span class="n">maximum_index</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.9450309806910039+0j)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">vlastni_vektory</span><span class="p">[:,[</span><span class="n">vlastni_cisla</span><span class="o">.</span><span class="n">argmax</span><span class="p">()]]</span><span class="o">.</span><span class="n">real</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">w</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
+<span class="n">w</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[20.65048418],
+        [66.97503241],
+        [11.4599702 ],
+        [ 0.66237138],
+        [ 0.03630657],
+        [ 0.03108432],
+        [ 0.18475094]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">vlastni_cisla</span><span class="p">[</span><span class="n">maximum_index</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.056537568225767214
+</pre></div>
+</div>
+</div>
+</div>
+<p>Levý vlastní vektor příslušný dominantní vlastní hodnotě <em>reprodukční hodnota</em>
+příslušné třídy. Jedná se o celkový příspěvek třídy a všech pozdějších tříd k
+populačnímu růstu vyjádřený počtem potomků uvažovaných různou vahou podle toho,
+zda se rodí do velké či malé populace a vyjádřený v násobcích reprodukční
+hodnoty nejmladší kategorie. (vektor je normalizovaný tak, aby první komponenta
+byla rovna jedné).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">leve_vlastni_vektory</span> <span class="o">=</span> <span class="n">vlastni_vektory</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">(</span><span class="n">leve_vlastni_vektory</span><span class="p">[</span><span class="n">maximum_index</span><span class="p">]</span><span class="o">/</span><span class="n">leve_vlastni_vektory</span><span class="p">[</span><span class="n">maximum_index</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">real</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[  1.        ,   1.40066842,   5.99552313, 115.84451127, 568.78085247, 507.37304018,
+         587.66931373]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">W</span> <span class="o">=</span> <span class="n">vlastni_vektory</span><span class="p">[:,</span><span class="n">maximum_index</span><span class="p">]</span><span class="o">.</span><span class="n">real</span>
+<span class="n">V</span> <span class="o">=</span> <span class="p">(</span><span class="n">vlastni_vektory</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">conjugate</span><span class="p">()[</span><span class="n">maximum_index</span><span class="p">,:]</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">real</span>
+
+<span class="n">matice_sensitivity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">V</span><span class="o">*</span><span class="n">W</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">decimals</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">matice_elasticity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">matice_sensitivity</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="o">/</span><span class="n">vlastni_cisla</span><span class="p">[</span><span class="n">maximum_index</span><span class="p">]</span>
+<span class="n">matice_elasticity</span> <span class="o">=</span> <span class="n">matice_elasticity</span><span class="o">.</span><span class="n">real</span>
+<span class="n">matice_elasticity</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.        , 0.        , 0.        , 0.        , 0.01209484, 0.00033861, 0.03894052],
+       [0.05100422, 0.18068776, 0.        , 0.        , 0.        , 0.        , 0.        ],
+       [0.        , 0.0510021 , 0.11868933, 0.        , 0.        , 0.        , 0.        ],
+       [0.        , 0.        , 0.05100204, 0.13850822, 0.        , 0.        , 0.        ],
+       [0.        , 0.        , 0.        , 0.05100187, 0.        , 0.        , 0.        ],
+       [0.        , 0.        , 0.        , 0.        , 0.03895539, 0.        , 0.        ],
+       [0.        , 0.        , 0.        , 0.        , 0.        , 0.03863005, 0.2295232 ]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">matice_elasticity</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 5.100422  , 23.16898583, 16.96913649, 18.95100866,  5.10502311,  3.89686611, 26.84637225])
+</pre></div>
+</div>
+</div>
+</div>
+<p>V původní publikaci, kde se objevil tento model, je vliv jednotlivých komponent
+matice vyjádřen i graficky. Pokusíme se tento obrázek zreprodukovat.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stav</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">stav</span><span class="p">,</span> <span class="n">matice_elasticity</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span><span class="s2">&quot;o-&quot;</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;plodnost&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">stav</span><span class="p">,</span> <span class="n">matice_elasticity</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)],</span> <span class="s2">&quot;^-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;přežívání v současném stadiu&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">stav</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">matice_elasticity</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)],</span> <span class="s2">&quot;s-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;růst do dalšího stadia&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Relativní vliv komponent matice na celkový růst populace&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/cviceni_07_69_0.png" src="../_images/cviceni_07_69_0.png" />
+</div>
+</div>
+<p>Výstupem z modelu je skutečnost, že při snaze zachránit populaci karety má
+ochrana vajíček, na kterou se tradičně zaměřovala pozornost, jenom malý vliv na
+celkovou kondici populace. Účelnější je zaměřit se na přežívání dospívajících a
+dospělých želv. Toho je možné dosáhnout úpravou rybářských sítí tak, aby z nich
+želvy mohly uniknout. Viz <a class="reference external" href="https://youtu.be/jyhumLE7B40">Turtle Excluder Device</a>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "robert-marik/dmp",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./cviceni"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="cviceni_06.html" title="předchozí page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">předchozí</p>
+            <p class="prev-next-title"><span class="section-number">6. </span>LaTeX</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="cviceni_08.html" title="další page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">další</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Levinsův model metapopulací</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Robert Mařík<br/>
+  
+    <div class="extra_footer">
+      <p>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+  All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
+</p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

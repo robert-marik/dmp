@@ -1,0 +1,37 @@
+Traceback (most recent call last):
+  File "/home/marik/anaconda3/envs/jupyter/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/home/marik/anaconda3/envs/jupyter/lib/python3.10/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/marik/anaconda3/envs/jupyter/lib/python3.10/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/home/marik/anaconda3/envs/jupyter/lib/python3.10/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/home/marik/anaconda3/envs/jupyter/lib/python3.10/asyncio/base_events.py", line 646, in run_until_complete
+    return future.result()
+  File "/home/marik/anaconda3/envs/jupyter/lib/python3.10/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/home/marik/anaconda3/envs/jupyter/lib/python3.10/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/marik/anaconda3/envs/jupyter/lib/python3.10/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+fig,axs = plt.subplots(int(len(rs)/2),2,sharex=True, sharey=True)
+ax = axs.flatten()
+for i,r in enumerate(seznam_r):
+    ax[i].plot(df[r],label=r, color="C"+str(i))
+fig.legend(title=r"Hodnota $r$")
+fig.suptitle("Řešení diskrétní logistické rovnice");
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn [37], line 1[0m
+[0;32m----> 1[0m fig,axs [38;5;241m=[39m plt[38;5;241m.[39msubplots([38;5;28mint[39m([38;5;28mlen[39m([43mrs[49m)[38;5;241m/[39m[38;5;241m2[39m),[38;5;241m2[39m,sharex[38;5;241m=[39m[38;5;28;01mTrue[39;00m, sharey[38;5;241m=[39m[38;5;28;01mTrue[39;00m)
+[1;32m      2[0m ax [38;5;241m=[39m axs[38;5;241m.[39mflatten()
+[1;32m      3[0m [38;5;28;01mfor[39;00m i,r [38;5;129;01min[39;00m [38;5;28menumerate[39m(seznam_r):
+
+[0;31mNameError[0m: name 'rs' is not defined
+NameError: name 'rs' is not defined
+

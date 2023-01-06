@@ -1,0 +1,876 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>11. Diskrétní populační modely &#8212; Dynamické modely populací</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="12. Difuzní rovnice" href="12.html" />
+    <link rel="prev" title="10. Modely dravce a kořisti" href="10.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="cs">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Dynamické modely populací</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Hledat v knize..." aria-label="Hledat v knize..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Dynamické modely populací
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Přednášky
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01.html">
+   1. Funkce a vlastnosti funkcí
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02.html">
+   2. Derivace a integrál
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03.html">
+   3. Diferenciální rovnice
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04.html">
+   4. Autonomní diferenciální rovnice
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05.html">
+   5. Bifurkace
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06.html">
+   6. Lineární algebra, matice
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07.html">
+   7. Parciální derivace
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08.html">
+   8. Autonomní systémy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09.html">
+   9. Modely konkurence populací
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10.html">
+   10. Modely dravce a kořisti
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   11. Diskrétní populační modely
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12.html">
+   12. Difuzní rovnice
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Cvičení
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cviceni/cviceni_01.html">
+   1. První kroky v Pythonu
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cviceni/cviceni_02.html">
+   2. Derivace a modely založené na derivaci
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cviceni/cviceni_03.html">
+   3. Diferenciální rovnice 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cviceni/cviceni_04.html">
+   4. Diferenciální rovnice 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cviceni/cviceni_05.html">
+   5. Diferenciální rovnice 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cviceni/cviceni_06.html">
+   6. LaTeX
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cviceni/cviceni_07.html">
+   7. Maticové modely
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cviceni/cviceni_08.html">
+   8. Levinsův model metapopulací
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cviceni/cviceni_09.html">
+   9. Modely konkurence populací
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cviceni/cviceni_10.html">
+   10. Modely dravce a kořisti
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cviceni/cviceni_11.html">
+   11. Práce na zápočtovém projektu 1/2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cviceni/cviceni_12.html">
+   12. Práce na zápočtovém projektu 2/2
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Python snippety
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../snippety/python_zakladni_konstrukce.html">
+   Základní konstrukce
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../snippety/python_text.html">
+   Text a textové řetězce
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../snippety/python_tabulky.html">
+   Tabulky
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../snippety/python_grafy.html">
+   Obrázky, grafy
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Literatura a rejstřík
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../literatura.html">
+   Literatura
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   Rejstřík
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/robert-marik/dmp/main?urlpath=tree/prednaska/11.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://jupyter.mendelu.cz/hub/user-redirect/git-pull?repo=https%3A//github.com/robert-marik/dmp&urlpath=tree/dmp/prednaska/11.md&branch=main"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on JupyterHub"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="headerbtn__text-container">JupyterHub</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/robert-marik/dmp/blob/gh-pages/_sources/prednaska/11.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/robert-marik/dmp"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/prednaska/11.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../_sources/prednaska/11.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#diskretni-modely-jednodruhove-populace">
+   11.1. Diskrétní modely jednodruhové populace
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zakladni-diskretni-modely">
+     11.1.1. Základní diskrétní modely
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#periodicke-cikady">
+     11.1.2. Periodické cikády
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#diskretni-modely-dvou-populaci">
+   11.2. Diskrétní modely dvou populací
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Diskrétní populační modely</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#diskretni-modely-jednodruhove-populace">
+   11.1. Diskrétní modely jednodruhové populace
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zakladni-diskretni-modely">
+     11.1.1. Základní diskrétní modely
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#periodicke-cikady">
+     11.1.2. Periodické cikády
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#diskretni-modely-dvou-populaci">
+   11.2. Diskrétní modely dvou populací
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="diskretni-populacni-modely">
+<h1><span class="section-number">11. </span>Diskrétní populační modely<a class="headerlink" href="#diskretni-populacni-modely" title="Trvalý odkaz na tento nadpis">#</a></h1>
+<p>Diskrétní populační modely jsou zpravidla rekurentní vzorce, které určují
+velikost populace nebo populací v dalším roce na základě velikostí v předchozím
+roce (modely prvního řádu) nebo několika předchozích let (modely vyššího řádu).
+Je-li závislost lineární, můžeme tyto modely zapsat pomocí maticového násobení,
+jak jsme poznali již dříve například u Leslieho matice. To je výhodné, protože můžeme využít rozvinutý aparát lineární algebry.</p>
+<p>Výhodou diskrétních maticových modelů oproti spojitým je jednodušší řešení. To
+spočívá v opakovaném používání modelu a v postupném výpočtu populačních stavů
+jenom použitím jednoduchých matematických operací. Nevýhodou je horší možnost
+nalezení analytického řešení a že se modely někdy mohou chovat nečekaně, viz
+například chaos v diskrétní logistické rovnici.</p>
+<section id="diskretni-modely-jednodruhove-populace">
+<h2><span class="section-number">11.1. </span>Diskrétní modely jednodruhové populace<a class="headerlink" href="#diskretni-modely-jednodruhove-populace" title="Trvalý odkaz na tento nadpis">#</a></h2>
+<section id="zakladni-diskretni-modely">
+<h3><span class="section-number">11.1.1. </span>Základní diskrétní modely<a class="headerlink" href="#zakladni-diskretni-modely" title="Trvalý odkaz na tento nadpis">#</a></h3>
+<p>Diskrétní model jednodruhové populace modelovaný rovnicí prvního řádu má obecný
+tvar <div class="math notranslate nohighlight">
+\[x(k+1)=x(k) f(x(k)),\]</div>
+ kde funkce <span class="math notranslate nohighlight">\(f\)</span> charakterizuje působení
+vnitrodruhové konkurence.</p>
+<p>Základní diskrétní model, diskrétní logistickou rovnici, jsme poznali dříve.
+Tento model je jednoduchý, ale má komplikované chování, které může vést k
+periodickým řešením s vysokou periodou a k chaosu.</p>
+<p>Ukážeme si volbu tří funkcí, které mají společné chování v počátku a při
+dosažení nosné kapacity prostředí. Konkrétně, platí <span class="math notranslate nohighlight">\(f(0)=r\)</span> a <span class="math notranslate nohighlight">\(f(K)=0\)</span>.</p>
+<ul class="simple">
+<li><p>Logistický růst <div class="math notranslate nohighlight">
+\[x(k+1)=r x(k)\left(1-\frac{x(k)}{K}\frac{r-1}{r}\right)\]</div>
+</p></li>
+<li><p>Bevertonova–Holtova rovnice, logistická rovnice Pielou: <div class="math notranslate nohighlight">
+\[x(k+1)=x(t)\frac{rK}{K+(r-1)x(k)}\]</div>
+</p></li>
+<li><p>Rickerova logistická rovnice: <div class="math notranslate nohighlight">
+\[ x(k+1)=x(k)e^{\left(1-\frac {x(t)}K\right)\ln r} \]</div>
+</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>  <span class="c1"># knihovna pro numerické výpočty</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>  <span class="c1"># knihovna pro grafiku</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1"># knihovna pro praci s tabulkami</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">70</span>
+<span class="n">x_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">x_p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">x_r</span> <span class="o">=</span> <span class="n">x_p</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">x_l</span> <span class="o">=</span> <span class="n">x_p</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">1.2</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">x_p</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_p</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">r</span><span class="o">*</span><span class="n">K</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">K</span><span class="o">+</span><span class="p">(</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">x_p</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+    <span class="n">x_r</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_r</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">x_r</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">/</span><span class="n">K</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+    <span class="n">x_l</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_l</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">r</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x_l</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">K</span><span class="o">*</span><span class="n">r</span><span class="o">/</span><span class="p">(</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_p</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Bevertonova-Holtova rovnice&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_r</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Rickerova rovnice&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_l</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;diskrétní logistická rovnice&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Srovnání diskrétních modelů růstu&quot;</span><span class="p">);</span>  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/11_2_0.png" src="../_images/11_2_0.png" />
+</div>
+</div>
+</section>
+<section id="periodicke-cikady">
+<h3><span class="section-number">11.1.2. </span>Periodické cikády<a class="headerlink" href="#periodicke-cikady" title="Trvalý odkaz na tento nadpis">#</a></h3>
+<aside class="margin sidebar" id="index-0">
+<p class="sidebar-title"></p>
+<p><strong>Periodické cikády</strong></p>
+<p><img alt="" src="../_images/cikada.jpg" /></p>
+<p>Cikády <em>Magicicada septendecim</em> se vyznačují synchronizovaným výskytem jednou za 17 let. Celou dobu čekají jako larvy v zemi, aby se po 17 letech vylíhly a nakladly vajíčka pro další generaci.</p>
+<p>V roce 2007 byl v Cincinnati teplý leden, ale v únoru byla opět zima. V tomto
+roce měly stromy dvě sady listí. To způsobilo,  že cikády se vylíhly o rok
+dříve, po 16 letech. Viz <a class="reference external" href="https://entomologytoday.org/2016/03/22/how-do-cicadas-know-when-to-emerge-from-the-ground/">Kevin Fitzgerald:
+How Do Cicadas Know When to Emerge from the
+Ground?</a>
+(leden 2023).</p>
+<p>Obrázek: https://www.flickr.com/photos/lalo_pangue/8931871182</p>
+</aside>
+<p>Následující model je zpracován podle <span id="id1">[<a class="reference internal" href="../literatura.html#id7" title="J. D. Murray. Mathematical Biology. Volume 19 of Biomathematics. Springer, 1989. URL: https://link.springer.com/book/10.1007/978-3-662-08539-4.">14</a>]</span> a vysvětluje zajímavý
+efekt vyskytující se v životě cikád <em>Magicicada septendecim, M. cassini</em> a <em>M. septendecula</em>.</p>
+<p>Dospělé cikády během pár týdnů svého života nakladou vajíčka
+u stromů, kde se vylíhly. Z vajíček se vyklubou larvy, které se
+zavrtají pod zem ke kořenům. Životní cyklus cikád se liší od 3 do 4,
+7, 13 nebo 17 let. Poslední dva typy cikád se vyznačují (na východním
+pobřeží severní Ameriky) masovým synchronizovaným výskytem.</p>
+<p>Předpokládejme, že druh má životní cyklus <span class="math notranslate nohighlight">\(k\)</span> let, larvy dospějí a objeví se na
+povrchu <span class="math notranslate nohighlight">\(k\)</span> let po smrti rodičů. Nechť <span class="math notranslate nohighlight">\(n_t\)</span> je počet larev, které se v roce <span class="math notranslate nohighlight">\(t\)</span>
+zavrtají do země, najdou útočiště a potravu u kořenů stromů a za <span class="math notranslate nohighlight">\(k\)</span> let se z
+nich (pokud přežijí) vylíhnou dospělé cikády.</p>
+<p>Předpokládejme, jenom  zlomek <span class="math notranslate nohighlight">\(\mu\)</span> larev přežije do každého dalšího roku. V
+roce <span class="math notranslate nohighlight">\(t\)</span> se vylíhnou larvy, které se před <span class="math notranslate nohighlight">\(k\)</span> lety zavrtaly do země (jejich
+počet byl <span class="math notranslate nohighlight">\(n_{t-k}\)</span>) a v zemi přežily celkem <span class="math notranslate nohighlight">\(k\)</span> let (každý rok jich přežije
+jenom <span class="math notranslate nohighlight">\(\mu\)</span>-násobek a proto <span class="math notranslate nohighlight">\(k\)</span> let přežije <span class="math notranslate nohighlight">\(\mu^kn_{t-k}\)</span> larev). Tyto larvy se
+objeví v roce <span class="math notranslate nohighlight">\(t\)</span> jako dospělí, kteří uzavřou cyklus. Z tohoto počtu predátoři
+zlikvidují <span class="math notranslate nohighlight">\(p_t\)</span> cikád a pro další rozmnožování zůstane <span class="math notranslate nohighlight">\([\mu^kn_{t-k}-p_t]_+\)</span>
+jedinců, kde <span class="math notranslate nohighlight">\([x]_+=\max(x,0)\)</span>. Jestliže se každé cikádě narodí průměrně <span class="math notranslate nohighlight">\(f\)</span>
+larev, přibude v tomto roce <div class="math notranslate nohighlight">
+\[M_t=f\cdot[\mu^kn_{t-k}-p_t]_+\]</div>
+ larev.</p>
+<p>Je-li <span class="math notranslate nohighlight">\(D\)</span> celková nosná kapacita prostředí, je <em>volná</em> kapacita
+dána vztahem <div class="math notranslate nohighlight">
+\[c_t=\left[D-\sum_{i=1}^{k-1}\mu^in_{t-i}\right]_+,\]</div>
+ protože
+část této kapacity obsadily larvy z loni, předloni, předpředloni atd.
+Z <span class="math notranslate nohighlight">\(M_t\)</span> narozených larev se maximálně <span class="math notranslate nohighlight">\(c_t\)</span> může zavrtat do země
+a přežít. Proto počet larev v dalším roce dán vztahem
+<span class="math notranslate nohighlight">\(n_t=\min\left(M_t, c_t\right)\)</span>.</p>
+<p>Působení predátorů (živí se dospělými cikádami) můžeme modelovat
+rovnicí <div class="math notranslate nohighlight">
+\[p_t=\nu p_{t-1}+a\mu^kn_{t-k-1},\]</div>
+ kde <span class="math notranslate nohighlight">\(\nu&lt;1\)</span> (bez cikád
+predátoři vymírají, toto vymírání se zastavuje s počtem cikád, které
+se loni vylíhly).</p>
+<p>Pro lepší formulaci numerického modelu posuneme index <span class="math notranslate nohighlight">\(t\)</span> o jedničku.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+  p_{t+1}&amp;=\nu p_t+a\mu^kn_{t-k} \\
+  c_{t+1}&amp;=\Bigl[D-\sum_{i=1}^{k-1}\mu^in_{t+1-i}\Bigr]_+\\
+  M_{t+1}&amp;=f\cdot\bigl[\mu^k n_{t+1-k}-p_{t+1}\bigr]_+ \\  
+  n_{t+1}&amp;=\min(M_{t+1}, c_{t+1})
+\end{aligned}
+\end{split}\]</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cikady</span><span class="p">(</span>
+  <span class="n">a</span><span class="o">=</span><span class="mf">.042</span><span class="p">,</span> <span class="c1"># parametry populace (Murray)</span>
+  <span class="n">f</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+  <span class="n">D</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
+  <span class="n">nu</span><span class="o">=</span><span class="mf">.95</span><span class="p">,</span>
+  <span class="n">mu</span><span class="o">=</span><span class="mf">.95</span><span class="p">,</span>
+  <span class="n">k</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="c1"># perioda cikad</span>
+  <span class="n">N</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="c1"># delka simulace</span>
+  <span class="n">n0</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># pocatecni hodnoty</span>
+  <span class="p">):</span>
+
+  <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+  <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+  <span class="n">n</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">n0</span>
+
+  <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">p</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">nu</span><span class="o">*</span><span class="n">p</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span><span class="n">mu</span><span class="o">**</span><span class="n">k</span><span class="o">*</span><span class="n">n</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="n">k</span><span class="p">]</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+          <span class="mi">0</span><span class="p">,</span>
+          <span class="n">D</span><span class="o">-</span><span class="nb">sum</span><span class="p">([</span><span class="n">mu</span><span class="o">**</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="n">n</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">k</span><span class="p">)])</span>
+          <span class="p">)</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+          <span class="mi">0</span><span class="p">,</span>
+          <span class="n">f</span><span class="o">*</span><span class="p">(</span><span class="n">mu</span><span class="o">**</span><span class="n">k</span><span class="o">*</span><span class="n">n</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">k</span><span class="p">]</span><span class="o">-</span><span class="n">p</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+          <span class="p">)</span>
+    <span class="n">n</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">M</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">n</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span>
+                      <span class="mi">2</span><span class="p">,</span>
+                      <span class="mi">2</span><span class="p">,</span>
+                      <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span> 
+                      <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                      <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span>
+                      <span class="p">)</span>
+<span class="n">D</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">],</span> <span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()):</span>
+  <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cikady</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">))</span>
+  <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+      <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">D</span><span class="p">),</span>
+      <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Cikády s periodou &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/11_4_0.png" src="../_images/11_4_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="diskretni-modely-dvou-populaci">
+<h2><span class="section-number">11.2. </span>Diskrétní modely dvou populací<a class="headerlink" href="#diskretni-modely-dvou-populaci" title="Trvalý odkaz na tento nadpis">#</a></h2>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "robert-marik/dmp",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./prednaska"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="10.html" title="předchozí page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">předchozí</p>
+            <p class="prev-next-title"><span class="section-number">10. </span>Modely dravce a kořisti</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="12.html" title="další page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">další</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Difuzní rovnice</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Robert Mařík<br/>
+  
+    <div class="extra_footer">
+      <p>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+  All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
+</p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,1353 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>9. Modely konkurence populací &#8212; Dynamické modely populací</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="10. Modely dravce a kořisti" href="10.html" />
+    <link rel="prev" title="8. Autonomní systémy" href="08.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="cs">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Dynamické modely populací</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Hledat v knize..." aria-label="Hledat v knize..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Dynamické modely populací
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Přednášky
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01.html">
+   1. Funkce a vlastnosti funkcí
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02.html">
+   2. Derivace a integrál
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03.html">
+   3. Diferenciální rovnice
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04.html">
+   4. Autonomní diferenciální rovnice
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05.html">
+   5. Bifurkace
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06.html">
+   6. Lineární algebra, matice
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07.html">
+   7. Parciální derivace
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08.html">
+   8. Autonomní systémy
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   9. Modely konkurence populací
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10.html">
+   10. Modely dravce a kořisti
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11.html">
+   11. Diskrétní populační modely
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="12.html">
+   12. Difuzní rovnice
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Cvičení
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cviceni/cviceni_01.html">
+   1. První kroky v Pythonu
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cviceni/cviceni_02.html">
+   2. Derivace a modely založené na derivaci
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cviceni/cviceni_03.html">
+   3. Diferenciální rovnice 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cviceni/cviceni_04.html">
+   4. Diferenciální rovnice 2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cviceni/cviceni_05.html">
+   5. Diferenciální rovnice 3
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cviceni/cviceni_06.html">
+   6. LaTeX
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cviceni/cviceni_07.html">
+   7. Maticové modely
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cviceni/cviceni_08.html">
+   8. Levinsův model metapopulací
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cviceni/cviceni_09.html">
+   9. Modely konkurence populací
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cviceni/cviceni_10.html">
+   10. Modely dravce a kořisti
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cviceni/cviceni_11.html">
+   11. Práce na zápočtovém projektu 1/2
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../cviceni/cviceni_12.html">
+   12. Práce na zápočtovém projektu 2/2
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Python snippety
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../snippety/python_zakladni_konstrukce.html">
+   Základní konstrukce
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../snippety/python_text.html">
+   Text a textové řetězce
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../snippety/python_tabulky.html">
+   Tabulky
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../snippety/python_grafy.html">
+   Obrázky, grafy
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Literatura a rejstřík
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../literatura.html">
+   Literatura
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   Rejstřík
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/robert-marik/dmp/main?urlpath=tree/prednaska/09.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://jupyter.mendelu.cz/hub/user-redirect/git-pull?repo=https%3A//github.com/robert-marik/dmp&urlpath=tree/dmp/prednaska/09.md&branch=main"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on JupyterHub"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="headerbtn__text-container">JupyterHub</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/robert-marik/dmp/blob/gh-pages/_sources/prednaska/09.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/robert-marik/dmp"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/prednaska/09.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../_sources/prednaska/09.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#konkurence-dvou-populaci">
+   9.1. Konkurence dvou populací
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matematicky-model">
+     9.1.1. Matematický model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fazovy-portret">
+     9.1.2. Fázový portrét
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analyza-stacionarnich-bodu">
+     9.1.3. Analýza stacionárních bodů
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#stacionarni-bod-v-pocatku">
+       9.1.3.1. Stacionární bod v počátku
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#stacionarni-body-na-osach">
+       9.1.3.2. Stacionární body na osách
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#stacionarni-bod-uvnitr-prvniho-kvadrantu">
+       9.1.3.3. Stacionární bod uvnitř prvního kvadrantu
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#shrnuti">
+       9.1.3.4. Shrnutí
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-konkurence-tri-druhu">
+   9.2. Model konkurence tří druhů
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#symbioza-dvou-druhu">
+   9.3. Symbióza dvou druhů
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Modely konkurence populací</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#konkurence-dvou-populaci">
+   9.1. Konkurence dvou populací
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matematicky-model">
+     9.1.1. Matematický model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fazovy-portret">
+     9.1.2. Fázový portrét
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analyza-stacionarnich-bodu">
+     9.1.3. Analýza stacionárních bodů
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#stacionarni-bod-v-pocatku">
+       9.1.3.1. Stacionární bod v počátku
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#stacionarni-body-na-osach">
+       9.1.3.2. Stacionární body na osách
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#stacionarni-bod-uvnitr-prvniho-kvadrantu">
+       9.1.3.3. Stacionární bod uvnitř prvního kvadrantu
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#shrnuti">
+       9.1.3.4. Shrnutí
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-konkurence-tri-druhu">
+   9.2. Model konkurence tří druhů
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#symbioza-dvou-druhu">
+   9.3. Symbióza dvou druhů
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="modely-konkurence-populaci">
+<h1><span class="section-number">9. </span>Modely konkurence populací<a class="headerlink" href="#modely-konkurence-populaci" title="Trvalý odkaz na tento nadpis">#</a></h1>
+<div class="cell tag_hide-input docutils container" id="index-0">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="konkurence-dvou-populaci">
+<h2><span class="section-number">9.1. </span>Konkurence dvou populací<a class="headerlink" href="#konkurence-dvou-populaci" title="Trvalý odkaz na tento nadpis">#</a></h2>
+<p>Předpokládejme, že v jisté izolované oblasti jsou přítomny dva
+živočišné druhy, které si vzájemně konkurují. Předpokládejme dále, že
+konkurence ovlivní rychlost růstu daného druhu tak, že zpomalení
+rychlosti růstu je přímo úměrné četnosti, s níž se jedinci jednoho
+druhu setkávají s jedinci druhého druhu. Nepředpokládáme přitom nic
+bližšího o typu této konkurence, tj. zda jedinci jednoho druhu fyzicky
+brání jedincům druhého druhu v přístupu k potravě, či zda je konkurence
+založena jenom na tom, že „ujídají ze společného krajíce“.  Náš
+model bude zahrnovat oba typy konkurence, změna se projeví pouze ve
+velikosti konstanty úměrnosti, která vyjadřuje zpomalení vývoje
+populací vlivem konkurence.</p>
+<section id="matematicky-model">
+<h3><span class="section-number">9.1.1. </span>Matematický model<a class="headerlink" href="#matematicky-model" title="Trvalý odkaz na tento nadpis">#</a></h3>
+<p>Je-li velikost první populace vyjádřena veličinou <span class="math notranslate nohighlight">\(x\)</span> a velikost druhé
+populace veličinou <span class="math notranslate nohighlight">\(y\)</span>, je možno systém popsat soustavou
+diferenciálních rovnic
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\frac{\mathrm dx}{\mathrm dt}=&amp;(a-bx)x-cxy,\\
+\frac{\mathrm dy}{\mathrm dt}=&amp;(\alpha-\beta y)y-\gamma xy,
+\end{aligned}
+\end{split}\]</div>
+
+kde všechno kromě <span class="math notranslate nohighlight">\(x\)</span>,<span class="math notranslate nohighlight">\(y\)</span> jsou kladné reálné parametry.</p>
+<p>Prozkoumejme strukturu tohoto systému.  První členy na pravých stranách soustavy
+odpovídají logistickému růstu populace, pokud se tato populace nachází v
+prostředí osamocena.  Druhé členy obsahují velikosti obou populací a odpovídají
+zpomalení růstu vlivem mezidruhové konkurence.</p>
+<p>Frekvence setkávání jedinců populace <span class="math notranslate nohighlight">\(x\)</span> s jedinci populace <span class="math notranslate nohighlight">\(y\)</span> je úměrná
+součinu velikostí těchto populací <span class="math notranslate nohighlight">\(xy\)</span> a zpomalení růstu populace <span class="math notranslate nohighlight">\(x\)</span> vlivem
+těchto setkání je úměrné tomuto součinu s konstantou úměrnosti <span class="math notranslate nohighlight">\(c\)</span>. Parametr <span class="math notranslate nohighlight">\(c\)</span>
+tedy reprezentuje sílu konkurence, tj. jaký vliv má vzájemná konkurence na růst
+populace <span class="math notranslate nohighlight">\(x\)</span>. Vliv populace <span class="math notranslate nohighlight">\(x\)</span> na růst populace <span class="math notranslate nohighlight">\(y\)</span> je dán parametrem <span class="math notranslate nohighlight">\(\gamma\)</span>,
+který obecně může být různý od <span class="math notranslate nohighlight">\(c\)</span>.</p>
+<p>Prozkoumejme ještě možná jednodruhová podspolečenstva.  Pro <span class="math notranslate nohighlight">\(y=0\)</span> je přítomna
+pouze populace <span class="math notranslate nohighlight">\(x\)</span>. První rovnice pak představuje logistickou rovnici pro vývoj
+populace <span class="math notranslate nohighlight">\(x\)</span>. Nosná kapacita prostředí je <span class="math notranslate nohighlight">\(\frac ab\)</span>.</p>
+<p>Podobně, je-li <span class="math notranslate nohighlight">\(x=0\)</span>, představuje druhá rovnice v soustavě logistickou rovnici
+pro růst populace <span class="math notranslate nohighlight">\(y\)</span> s nosnou kapacitou prostředí <span class="math notranslate nohighlight">\(\frac \alpha\beta\)</span>.</p>
+<p>Řešení pro konkrétní sadu parametrů a konkrétní sadu počátečních podmínek najdeme stejně snadno, jako řešení jedné diferenciální rovnice. Vykreslíme si pro srovnání čárkovaně do stejného grafu i dynamiku samostatných jednodruhových populací.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="mf">1.1</span><span class="p">,</span><span class="mf">1.1</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">konkurence</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">beta</span><span class="o">=</span><span class="mf">.2</span><span class="p">,</span><span class="n">gamma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">X</span>
+    <span class="k">return</span> <span class="p">[(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">alpha</span><span class="o">-</span><span class="n">beta</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">gamma</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">]</span>
+
+<span class="n">meze</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">]</span>
+<span class="n">pocatecni_podminka</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">]</span>
+
+<span class="n">reseni</span> <span class="o">=</span> <span class="p">[</span><span class="n">solve_ivp</span><span class="p">(</span>
+                   <span class="n">konkurence</span><span class="p">,</span>
+                   <span class="n">meze</span><span class="p">,</span>
+                   <span class="n">pocatecni_podminka</span><span class="p">,</span>
+                   <span class="n">dense_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                   <span class="n">t_eval</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">meze</span><span class="p">,</span><span class="mi">500</span><span class="p">),</span>
+                   <span class="n">args</span><span class="o">=</span><span class="n">args</span>
+                   <span class="p">)</span>
+        <span class="k">for</span> <span class="n">args</span> <span class="ow">in</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span> <span class="p">]</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">reseni</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">t</span><span class="p">,</span><span class="n">reseni</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="p">[</span><span class="sa">r</span><span class="s2">&quot;Druh $x$ v konkurenci s $y$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;Druh $y$ v konkurenci s $x$&quot;</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">reseni</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">t</span><span class="p">,</span><span class="n">reseni</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="s2">&quot;--&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="p">[</span><span class="sa">r</span><span class="s2">&quot;Druh $x$ samostatně&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;Druh $y$ samostatně&quot;</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.1</span><span class="p">),</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Model dvou populací s konkurencí a bez konkurence&quot;</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Čas&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Bezrozměrná velikost&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/09_3_0.png" src="../_images/09_3_0.png" />
+</div>
+</div>
+</section>
+<section id="fazovy-portret">
+<h3><span class="section-number">9.1.2. </span>Fázový portrét<a class="headerlink" href="#fazovy-portret" title="Trvalý odkaz na tento nadpis">#</a></h3>
+<p>Prozkoumáme fázový portrét. Řešení tedy budeme uvažovat jako paametrické křivky
+v rovině, kde na každé ose je velikost jedné z populací.</p>
+<p>Pro nalezení nulklin přepíšeme soustavu do tvaru
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+\begin{aligned}
+\frac{\mathrm dx}{\mathrm dt}=&amp;(a-bx-cy)x,\\
+\frac{\mathrm dy}{\mathrm dt}=&amp;(\alpha-\beta y-\gamma x)y.
+\end{aligned}
+\end{split}\]</div>
+</p>
+<p>Systém má dvě <span class="math notranslate nohighlight">\(x\)</span>-nulkliny
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+  &amp;n_{1x}:\quad x=0,\\
+  &amp;n_{2x}:\quad a-bx-cy=0,
+\end{aligned}
+\end{split}\]</div>
+
+a dvě <span class="math notranslate nohighlight">\(y\)</span>-nulkliny
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+ &amp;n_{1y}:\quad y=0,\\
+ &amp;n_{2y}:\quad \alpha-\beta x-\gamma y=0.
+\end{aligned}
+\end{split}\]</div>
+
+V průsečících <span class="math notranslate nohighlight">\(x\)</span>-nulklin a <span class="math notranslate nohighlight">\(y\)</span>-nulklinami nalezneme stacionární body systému.</p>
+<p>Nulklina <span class="math notranslate nohighlight">\(n_{2x}\)</span> je přímka procházející body <span class="math notranslate nohighlight">\(\left[0,\frac ac\right]\)</span> a
+<span class="math notranslate nohighlight">\(\left[\frac ab, 0\right]\)</span>. Nulklina <span class="math notranslate nohighlight">\(n_{2y}\)</span> je přímka procházející body
+<span class="math notranslate nohighlight">\(\left[\frac \alpha\gamma,0\right]\)</span> a <span class="math notranslate nohighlight">\(\left[0,\frac \alpha\beta\right]\)</span>. Podle
+vzájemné polohy těchto bodů ma osách <span class="math notranslate nohighlight">\(x\)</span> a <span class="math notranslate nohighlight">\(y\)</span> jsou možné čtyři kvalitativně
+odlišné případy znázorněné na obrázcích. Zeleně jsou znázorněny <span class="math notranslate nohighlight">\(x\)</span>-nulkliny a
+červeně <span class="math notranslate nohighlight">\(y\)</span>-nulkliny. Stacionární body jsou v průsečíku nulklin různých barev.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="mf">1.1</span><span class="p">,</span><span class="mf">1.1</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">axs_square</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">axs</span> <span class="o">=</span> <span class="n">axs_square</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span>
+                        <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.6</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.6</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+                        <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.2</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+                    <span class="p">]):</span>
+    <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">beta</span><span class="p">,</span><span class="n">gamma</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">konkurence</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">X</span><span class="p">):</span>
+        <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">X</span>
+        <span class="k">return</span> <span class="p">[(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">alpha</span><span class="o">-</span><span class="n">beta</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">gamma</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">]</span>
+
+    <span class="c1"># Body pro kresleni</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> 
+                       <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+    <span class="c1"># Komponenty vektoroveho pole</span>
+    <span class="n">u</span><span class="p">,</span><span class="n">v</span> <span class="o">=</span> <span class="n">konkurence</span><span class="p">(</span><span class="mi">0</span><span class="p">,[</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">])</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">u</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># velikost vektoru</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">u</span><span class="o">/</span><span class="n">M</span><span class="p">,</span><span class="n">v</span><span class="o">/</span><span class="n">M</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> <span class="n">angles</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">)</span> <span class="c1"># vykresleni s jednotkovou delkou</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">streamplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="c1">#ax.set_aspect(.5) # stejne meritko na obou osach</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">xmax</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">alpha</span><span class="o">/</span><span class="n">beta</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="n">alpha</span><span class="o">/</span><span class="n">gamma</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="n">ymax</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;g&quot;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="p">],[</span><span class="n">a</span><span class="o">/</span><span class="n">c</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;g&quot;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+        <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span><span class="n">xmax</span><span class="p">),</span>
+        <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span><span class="n">ymax</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">([])</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Slabá konkurence&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Dominance druhu $y$&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Silná konkurence&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Dominance druhu $x$&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/09_5_0.png" src="../_images/09_5_0.png" />
+</div>
+</div>
+</section>
+<section id="analyza-stacionarnich-bodu">
+<h3><span class="section-number">9.1.3. </span>Analýza stacionárních bodů<a class="headerlink" href="#analyza-stacionarnich-bodu" title="Trvalý odkaz na tento nadpis">#</a></h3>
+<p>Prozkoumáme chování trajektorií v okolí stacionárních bodů.</p>
+<p>Jacobiho matice systému je
+<div class="math notranslate nohighlight">
+\[\begin{split}J(x,y)= \begin{pmatrix}
+ a-2bx-cy&amp;-cx\\ 
+ -\gamma y&amp;\alpha-2\beta y-\gamma x
+ \end{pmatrix}.\end{split}\]</div>
+</p>
+<p>Označme specifické míry růstu populací (per capita) <span class="math notranslate nohighlight">\(m(x,y)=a-bx-cy\)</span> a
+<span class="math notranslate nohighlight">\(\mu(x,y)=\alpha-\beta y-\gamma x\)</span>.</p>
+<section id="stacionarni-bod-v-pocatku">
+<h4><span class="section-number">9.1.3.1. </span>Stacionární bod v počátku<a class="headerlink" href="#stacionarni-bod-v-pocatku" title="Trvalý odkaz na tento nadpis">#</a></h4>
+<p>Průsečíkem nulklin <span class="math notranslate nohighlight">\(n_{1x}\)</span> a <span class="math notranslate nohighlight">\(n_{1y}\)</span> je stacionární bod <span class="math notranslate nohighlight">\(S_1=[0,0]\)</span>. Tento bod
+odpovídá stavu, kdy v prostředí není přítomna žádná z populací <span class="math notranslate nohighlight">\(x,y\)</span>.
+Pronikne-li do takového prostředí malé množství jedinců populace <span class="math notranslate nohighlight">\(x\)</span>, začnou
+se množit rychlostí <span class="math notranslate nohighlight">\(m(0,0)=a\)</span>. Invazní parametr je tedy kladný a populace se
+uchytí. Podobně invazní parametr populace <span class="math notranslate nohighlight">\(y\)</span> je <span class="math notranslate nohighlight">\(\mu(0,0)=\alpha&gt;0\)</span> a i
+populace <span class="math notranslate nohighlight">\(y\)</span> se v prostředí uchytí a začne množit. Jacobiho matice v bodě
+<span class="math notranslate nohighlight">\(S_1\)</span> je <div class="math notranslate nohighlight">
+\[\begin{split} J(0,0)=\begin{pmatrix}a&amp;0\\0&amp;\alpha \end{pmatrix} \end{split}\]</div>
+ a protože
+<span class="math notranslate nohighlight">\(\det J(0,0)=\alpha a&gt;0\)</span> a <span class="math notranslate nohighlight">\(\mathop{\mathrm {Tr}} J(0,0)=a+\alpha\)</span>, je v bodě
+<span class="math notranslate nohighlight">\(S_1\)</span> nestabilní uzel nebo nestabilní ohnisko. Vzhledem k tomu, že žádná
+trajektorie nemůže vystoupit z prvního kvadrantu (vysvětlete proč!), jedná se
+o nestabilní uzel.</p>
+</section>
+<section id="stacionarni-body-na-osach">
+<h4><span class="section-number">9.1.3.2. </span>Stacionární body na osách<a class="headerlink" href="#stacionarni-body-na-osach" title="Trvalý odkaz na tento nadpis">#</a></h4>
+<p>Průsečíkem nulklin <span class="math notranslate nohighlight">\(n_{1x}\)</span> a <span class="math notranslate nohighlight">\(n_{2y}\)</span> je stacionární bod <span class="math notranslate nohighlight">\(S_2=[0,\frac
+\alpha\beta]\)</span>. Tento stav odpovídá tomu, že populace <span class="math notranslate nohighlight">\(x\)</span> se v prostředí
+nevyskytuje a velikost populace <span class="math notranslate nohighlight">\(y\)</span> je ustálena na hodnotě nosné
+kapacity prostředí. Jakákoliv náhodná změna populace <span class="math notranslate nohighlight">\(y\)</span> vede k tomu, že
+se systém vrátí opět do tohoto stacionárního bodu, jak víme ze studia
+logistické rovnice. Prozkoumejme, jak se systém chová při malých
+náhodných změnách populace <span class="math notranslate nohighlight">\(x\)</span>. Invazní parametr této populace do stavu
+<span class="math notranslate nohighlight">\(S_2\)</span> je
+<span class="math notranslate nohighlight">\(m\left(0,\frac \alpha\beta\right)=a-c\frac \alpha\beta=c\left(\frac ac-\frac
+\alpha\beta \right)\)</span>. Tento výraz je kladný pokud</p>
+<div class="math notranslate nohighlight" id="equation-eq-1">
+<span class="eqno">(9.1)<a class="headerlink" href="#equation-eq-1" title="Permalink to this equation">#</a></span>\[ 
+\frac ac&gt;\frac \alpha\beta,
+\]</div>
+<p>tj. pokud parametr <span class="math notranslate nohighlight">\(c\)</span>, charakterizující sílu mezidruhové konkurence, je dostatečně
+malý. V tomto případě se populace <span class="math notranslate nohighlight">\(x\)</span> uchytí a začne množit. Platí-li opačná nerovnost, bude invazní parametr populace <span class="math notranslate nohighlight">\(x\)</span>
+záporný, populace bude vymírat a systém bude dospívat zpět do
+stacionárního stavu <span class="math notranslate nohighlight">\(S_2\)</span>. Jacobiho matice v bodě <span class="math notranslate nohighlight">\(S_2\)</span> je</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}J\left(0,\frac \alpha\beta\right)=
+  \begin{pmatrix}
+a-c\frac \alpha\beta&amp;0\\
+\gamma\frac\alpha\beta&amp;-\alpha
+\end{pmatrix}
+\end{split}\]</div>
+<p>a protože <span class="math notranslate nohighlight">\(\det J(0,\frac\alpha\beta)=-ac\left(\frac
+ac-\frac\alpha\beta\right)\)</span>, je v bodě <span class="math notranslate nohighlight">\(S_2\)</span> sedlo, jestliže platí  <a class="reference internal" href="#equation-eq-1">(9.1)</a>
+a uzel nebo ohnisko jinak. Vzhledem k tomu, že trajektorie nemůže
+protnout osu <span class="math notranslate nohighlight">\(y\)</span> (proč?), nejedná se o ohnisko. Vzhledem k tvaru
+směrového pole se tedy jedná sedlo nebo o stabilní uzel, podle toho, zda
+je splněna podmínka  <a class="reference internal" href="#equation-eq-1">(9.1)</a> či nikoliv.</p>
+</section>
+<section id="stacionarni-bod-uvnitr-prvniho-kvadrantu">
+<h4><span class="section-number">9.1.3.3. </span>Stacionární bod uvnitř prvního kvadrantu<a class="headerlink" href="#stacionarni-bod-uvnitr-prvniho-kvadrantu" title="Trvalý odkaz na tento nadpis">#</a></h4>
+<p>Průsečíkem nulklin <span class="math notranslate nohighlight">\(n_{2x}\)</span> a <span class="math notranslate nohighlight">\(n_{1y}\)</span> je stacionární bod <span class="math notranslate nohighlight">\(S_3=[\frac ab,0]\)</span>.
+Situace je analogická jako u stacionárního bodu <span class="math notranslate nohighlight">\(S_2\)</span>, pouze jsou vyměněny
+role populací <span class="math notranslate nohighlight">\(x\)</span> a <span class="math notranslate nohighlight">\(y\)</span>. Systém tedy v nepřítomnosti populace <span class="math notranslate nohighlight">\(y\)</span> dospěje do
+stavu, kdy populace <span class="math notranslate nohighlight">\(x\)</span> se ustálí na hodnotě nosné kapacity prostředí, invazní
+parametr populace <span class="math notranslate nohighlight">\(y\)</span> do tohoto stavu je <span class="math notranslate nohighlight">\(\mu(\frac ab,0)=\gamma\left (\frac
+\alpha\gamma-\frac ac\right)\)</span> a je kladný pokud</p>
+<div class="math notranslate nohighlight" id="equation-eq-2">
+<span class="eqno">(9.2)<a class="headerlink" href="#equation-eq-2" title="Permalink to this equation">#</a></span>\[
+\frac\alpha\gamma&gt;\frac ab
+\]</div>
+<p>a záporný jinak. Bod <span class="math notranslate nohighlight">\(S_3\)</span> je sedlo, pokud uvedená podmínka platí a
+stabilní uzel jinak.</p>
+<p>Průsečík nulklin <span class="math notranslate nohighlight">\(n_{2x}\)</span> a <span class="math notranslate nohighlight">\(n_{2y}\)</span> získáme řešením soustavy rovnic</p>
+<div class="math notranslate nohighlight" id="equation-eq-nulkl1">
+<span class="eqno">(9.3)<a class="headerlink" href="#equation-eq-nulkl1" title="Permalink to this equation">#</a></span>\[\begin{split}
+\begin{aligned}
+a-bx-cy&amp;=0,\\ \alpha-\beta y-\gamma x&amp;=0.
+\end{aligned}
+\end{split}\]</div>
+<p>Toto lze provést numericky, přímým řešením, nebo graficky. Zajímáme se přitom
+pouze o řešení, které se nachází v prvním kvadrantu, tj. jehož obě složky jsou
+nezáporné. Z náčrtů je patrné, že přímky odpovídající těmto nulklinám se protnou
+v prvním kvadrantu právě tehdy, když buď platí obě z nerovností <a class="reference internal" href="#equation-eq-1">(9.1)</a>,
+<a class="reference internal" href="#equation-eq-2">(9.2)</a>, nebo ani jedna. Označme průsečík nulklin <span class="math notranslate nohighlight">\(S_4=(x^*, y^*)\)</span>. I když
+hodnoty <span class="math notranslate nohighlight">\(x^*,y^*\)</span> je možno explicitně vypočítat, uvidíme, že jejich znalost
+nebude pro vyšetřování typu stacionárního bodu důležitá. Jacobiho matice v bodě
+<span class="math notranslate nohighlight">\(S_4\)</span> je</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+J(x^*,y^*)=
+\begin{pmatrix}
+a-2bx^*-cy^*&amp;-cx^*\\
+-\gamma y^*&amp;\alpha-2\beta y^*-\gamma x^*
+\end{pmatrix}.
+\end{split}\]</div>
+<p>Vzhledem k tomu, že <span class="math notranslate nohighlight">\((x^*, y^*)\)</span> jsou řešením  <a class="reference internal" href="#equation-eq-nulkl1">(9.3)</a>, platí
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+a-bx^*-cy^*&amp;=0,\\ \alpha-\beta y^*-\gamma x^*&amp;=0
+\end{aligned}
+\end{split}\]</div>
+
+a proto</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+J(x^*,y^*)=
+\begin{pmatrix}
+-bx^*&amp;-cx^*\\
+-\gamma y^*&amp;-\beta y^*
+\end{pmatrix}.
+\end{split}\]</div>
+<p>Stopa Jacobiho matice je vždy záporná. Determinant Jacobiho matice je</p>
+<div class="math notranslate nohighlight">
+\[
+\det J(x^*,y^*)=b\beta x^*y^*-c\gamma x^*y^*=x^*y^*(b\beta-c\gamma).
+\]</div>
+<p>Pokud platí  <a class="reference internal" href="#equation-eq-1">(9.1)</a> a  <a class="reference internal" href="#equation-eq-2">(9.2)</a>, pak
+<div class="math notranslate nohighlight">
+\[
+b\beta&gt;\frac{\alpha c}a \frac{a\gamma}\alpha=c\gamma,
+\]</div>
+
+determinant Jacobiho matice je kladný a bod <span class="math notranslate nohighlight">\(S_4\)</span> je ohnisko nebo uzel. Vzhledem
+k tvaru směrového pole se nemůže jednat o ohnisko a bod je tedy stabilní uzel.
+Pokud neplatí ani jedna z nerovností  <a class="reference internal" href="#equation-eq-1">(9.1)</a>, <a class="reference internal" href="#equation-eq-2">(9.2)</a>, je determinant
+Jacobiho matice naopak záporný a v bodě <span class="math notranslate nohighlight">\(S_4\)</span> je sedlo.</p>
+</section>
+<section id="shrnuti">
+<h4><span class="section-number">9.1.3.4. </span>Shrnutí<a class="headerlink" href="#shrnuti" title="Trvalý odkaz na tento nadpis">#</a></h4>
+<ul class="simple">
+<li><p>Platí-li obě z nerovností  <a class="reference internal" href="#equation-eq-1">(9.1)</a>,  <a class="reference internal" href="#equation-eq-2">(9.2)</a>, leží uvnitř prvního
+kvadrantu singulární bod, který je stabilním uzlem. Všechny trajektorie ležící
+v prvním kvadrantu konvergují do tohoto bodu pro <span class="math notranslate nohighlight">\(t\to\infty\)</span>. Systém tedy vždy
+dospěje do stavu, kdy přežívají obě populace. Podmínky  <a class="reference internal" href="#equation-eq-1">(9.1)</a> a <a class="reference internal" href="#equation-eq-2">(9.2)</a>
+jsou splněny, pokud jsou parametry <span class="math notranslate nohighlight">\(c,\gamma\)</span>, které charakterizují
+mezidruhovou konkurenci, dostatečně malé. Proto tento stav budeme nazývat
+<em>slabou konkurencí</em>.</p></li>
+<li><p>Platí-li  <a class="reference internal" href="#equation-eq-1">(9.1)</a> a neplatí-li  <a class="reference internal" href="#equation-eq-2">(9.2)</a> nemá systém uvnitř prvního
+kvadrantu singulární bod a všechny trajektorie ležící uvnitř tohoto kvadrantu
+konvergují pro <span class="math notranslate nohighlight">\(t\to\infty\)</span> do stacionárního bodu <span class="math notranslate nohighlight">\([\frac ab,0]\)</span>. V systému
+tedy dojde vlivem mezidruhové konkurence k vyloučení druhu <span class="math notranslate nohighlight">\(y\)</span>  a populace
+druhu <span class="math notranslate nohighlight">\(x\)</span> se ustálí na hodnotě, odpovídající jeho nosné kapacitě prostředí.
+Tento stav budeme nazývat <em>dominancí druhu <span class="math notranslate nohighlight">\(x\)</span></em>.</p></li>
+<li><p>Platí-li  <a class="reference internal" href="#equation-eq-2">(9.2)</a> a neplatí-li  <a class="reference internal" href="#equation-eq-1">(9.1)</a>, je situace
+podobná jako v předchozím bodě, pouze dochází ke konkurenčnímu
+vyloučení druhu <span class="math notranslate nohighlight">\(x\)</span> a jedná se tedy o <em>dominanci druhu <span class="math notranslate nohighlight">\(y\)</span></em>.</p></li>
+<li><p>Neplatí-li ani jedna z nerovností  <a class="reference internal" href="#equation-eq-1">(9.1)</a>,  <a class="reference internal" href="#equation-eq-2">(9.2)</a>, má systém uvnitř
+prvního kvadrantu singulární bod, který je sedlem a tedy pouze konečný počet
+trajektorií konverguje k tomuto bodu. Tento bod však nebude odpovídat reálnému
+stavu, ve kterém se může populace trvale nacházet, protože není odolný vůči
+náhodným perturbacím. Trajektorie, konvergující do tohoto sedlového bodu,
+rozdělí první kvadrant na dvě množiny, které tvoří oblasti atraktivity
+jednotlivých stabilních stacionárních bodů. Všechny trajektorie tedy směřují
+pro <span class="math notranslate nohighlight">\(t\to\infty\)</span> buď do stacionárního bodu <span class="math notranslate nohighlight">\([\frac ab,0]\)</span>, nebo
+<span class="math notranslate nohighlight">\([0,\frac\alpha\beta]\)</span>. V systému tedy vždy dojde ke konkurenčnímu vyloučení
+jednoho z druhů. Který z druhů bude vyloučen, záleží na počátečních podmínkách.
+Pokud jsou počáteční podmínky nastaveny tak, že trajektorie začíná v oblasti
+atraktivity stacionárního bodu <span class="math notranslate nohighlight">\([\frac ab,0]\)</span>, dojde k eliminaci druhu <span class="math notranslate nohighlight">\(y\)</span>,
+pokud je tomu naopak, dojde k eliminaci druhu <span class="math notranslate nohighlight">\(x\)</span>. Nesplnění nerovností
+<a class="reference internal" href="#equation-eq-1">(9.1)</a>,  <a class="reference internal" href="#equation-eq-2">(9.2)</a> odpovídá tomu, že parametry mezidruhové konkurence jsou
+dostatečně velké, proto tento stav budeme nazývat <em>silnou konkurencí</em>.</p></li>
+</ul>
+<p>Všechny typy konkurence (konkurenční vyloučení, slabá konkurence,
+silná konkurence) jsou v přírodě pozorovány. V ekologii zpravidla
+největší pozornost upoutává slabá konkurence, kdy dochází ke stabilní
+koexistenci. Tento jev nastává, pokud, řečeno v biologických
+termínech, jedinec daného druhu svou existencí konkuruje jedincům
+svého druhu více, než jedincům druhu jiného. V praxi to znamená, že
+druhy musí mít poněkud odlišné ekologické nároky (Gauseho
+princip). Například společně hnízdící druhy ptáků si konkurují v
+boji o hnízdiště. Tyto druhy mohou koexistovat, pokud mají například
+rozdílné složení potravy. V tomto případě jedinec konkuruje svému
+druhu i v boji o prostor k hnízdění i v boji o potravu, jedincům
+druhého druhu však konkuruje méně – pouze v boji o hnízdiště.
+Všimněme si ještě, že pokud vedle sebe koexistují dvě populace, součet
+velikostí je větší než velikost rovnovážných stavů kterékoliv
+osamocené populace. Dvě konkurující-si populace tedy využívají zdroje
+efektivněji než populace jediná.</p>
+<p>Lze ukázat, že ke konkurenčnímu vyloučení slabšího druhu nemusí dojít,
+pokud druhy žijí v komplikovanějších podmínkách, než jaké jsme dosud
+uvažovali: například v přítomnosti třetího konkurenta, v přítomnosti
+predátora, v periodicky se měnícím životním prostředí, či pokud na
+sebe druhy reagují se zpožděním, ve fragmentovaném prostředí, kdy
+silnější druh neobsadí všechny fragmenty a zůstane tak volný prostor
+pro slabší druh.</p>
+</section>
+</section>
+</section>
+<section id="model-konkurence-tri-druhu">
+<h2><span class="section-number">9.2. </span>Model konkurence tří druhů<a class="headerlink" href="#model-konkurence-tri-druhu" title="Trvalý odkaz na tento nadpis">#</a></h2>
+<p>Podobný model, jako pro konkurenci dvou druhů, je možno sestavit i pro
+konkurenci tří a více druhů. Matematický popis je v tomto případě
+poněkud obtížnější, proto se omezíme na formulaci systému
+diferenciálních rovnic a na některé výsledky.</p>
+<p>Označíme-li velikost populace jednotlivých druhů veličinami <span class="math notranslate nohighlight">\(x,y,z\)</span>, je
+možno model konkurence mezi těmito druhy zapsat ve tvaru
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\frac{\mathrm dx}{\mathrm dt}=&amp;(a-bx-cy-dz)x,\\
+\frac{\mathrm dy}{\mathrm dt}=&amp;(\alpha-\beta x-\gamma y-\delta z)y,\\
+\frac{\mathrm dz}{\mathrm dt}=&amp;(m-nx-oy-pz)z,
+\end{aligned}
+\end{split}\]</div>
+
+kde všechny veličiny kromě <span class="math notranslate nohighlight">\(x,y,z\)</span> jsou kladné parametry.</p>
+<p>Je-li v lokalitě přítomen pouze jeden druh (např. <span class="math notranslate nohighlight">\(x\)</span>), vyvíjí se
+podle logistické rovnice a velikost populace se ustálí na hodnotě dané
+úživností prostředí. O tom, zda do takového stavu mohou proniknout
+druhy <span class="math notranslate nohighlight">\(z\)</span> nebo <span class="math notranslate nohighlight">\(y\)</span> a úspěšně se začít rozmnožovat rozhodují znaménka
+invazních parametrů těchto populací v uvažovaném stacionárním bodě.
+Například populace <span class="math notranslate nohighlight">\(y\)</span> má ve stacionárním bodě <span class="math notranslate nohighlight">\([\frac ab,0,0]\)</span>
+invazní parametr <span class="math notranslate nohighlight">\(\alpha-\beta \frac ab-\gamma 0-\delta
+0=\beta\left(\frac \alpha\beta-\frac ab\right)\)</span> a populace <span class="math notranslate nohighlight">\(z\)</span> má v
+tomtéž bodě invazní parametr <span class="math notranslate nohighlight">\(n\left(\frac mn-\frac ab\right)\)</span>.</p>
+<p>Není-li druh <span class="math notranslate nohighlight">\(z\)</span> ve skutečnosti v dané lokalitě přítomen, je <span class="math notranslate nohighlight">\(z=0\)</span> a
+první dvě rovnice zcela odpovídají modelu konkurence mezi dvěma
+populacemi <span class="math notranslate nohighlight">\(x\)</span> a <span class="math notranslate nohighlight">\(y\)</span>. Podobně je možno studovat další dvojdruhová
+společenství <span class="math notranslate nohighlight">\(x\)</span>,<span class="math notranslate nohighlight">\(z\)</span> a <span class="math notranslate nohighlight">\(y\)</span>,<span class="math notranslate nohighlight">\(z\)</span>.  Pokud invazní parametr každého druhu,
+který není ve společenstvu přítomen, do stavu reprezentovaného
+stabilními stavy dalších dvou druhů, je kladný, systém je permanentní
+a velikost všech populací se udrží na nenulové hodnotě. Tato podmínka
+kladnosti všech invazních parametrů je však pouze dostatečná, nikoliv
+nutná.</p>
+<p>Numerickým řešením tohoto systému je možné ukázat, že při vhodném nastavení
+parametrů mezidruhové konkurence existuje situace, kdy libovolné dvojdruhové
+podspolečenství druhů <span class="math notranslate nohighlight">\(x\)</span>,<span class="math notranslate nohighlight">\(y\)</span>,<span class="math notranslate nohighlight">\(z\)</span> není permanentní a dojde ke konkurenčnímu
+vyloučení některého druhu a k obsazení dané lokality jediným druhem, zatímco v
+přítomnosti nenulového stavu všech tří populací existuje ustálený stav,
+charakterizující přežívání všech tří populací. V takovém případě se tedy,
+poněkud paradoxně, kromě konkurence jedná i o jistý druh symbiózy. Je možné, že
+pokud jeden z druhů náhodnými vlivy nebo neopatrným zásahem člověka vymře,
+nemusí toto vymření vést k posílení populací jeho konkurentů, ale někteří z
+konkurentů mohou vyhynout, zatímco jiní dominují.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meze</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">200</span><span class="p">]</span>
+<span class="k">def</span> <span class="nf">konkurence_tri</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mf">1.4</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">beta</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span><span class="n">gamma</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">delta</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">m</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span><span class="n">o</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span><span class="n">p</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="o">=</span> <span class="n">X</span>
+    <span class="k">return</span> <span class="p">[(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">y</span><span class="o">-</span><span class="n">d</span><span class="o">*</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">alpha</span><span class="o">-</span><span class="n">beta</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">gamma</span><span class="o">*</span><span class="n">y</span><span class="o">-</span><span class="n">delta</span><span class="o">*</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">,(</span><span class="n">m</span><span class="o">-</span><span class="n">n</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">o</span><span class="o">*</span><span class="n">y</span><span class="o">-</span><span class="n">p</span><span class="o">*</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">z</span><span class="p">]</span>
+<span class="n">parametry</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>   <span class="mf">0.4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span>
+              <span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>   <span class="mf">0.5</span><span class="p">,</span>
+              <span class="mi">1</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mi">1</span>  <span class="p">)</span>
+
+<span class="c1"># Můžete vyzkoušet i tuto zajímavou sadu parametrů.</span>
+<span class="c1"># parametry = (1, 1,   0.3, 1.6,</span>
+<span class="c1">#               1, 1.8, 1,   0.2,</span>
+<span class="c1">#               1, 0.3, 1.8, 1  )</span>
+
+<span class="n">pocatecni_podminky</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span><span class="mf">.2</span><span class="p">,</span><span class="mf">.5</span><span class="p">,</span><span class="mf">0.8</span><span class="p">],</span>
+                       <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">.5</span><span class="p">,</span><span class="mf">0.8</span><span class="p">],</span>
+                     <span class="p">]</span>
+<span class="n">reseni</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">solve_ivp</span><span class="p">(</span>
+        <span class="n">konkurence_tri</span><span class="p">,</span>
+        <span class="n">meze</span><span class="p">,</span>
+        <span class="n">pocatecni_podminka</span><span class="p">,</span>
+        <span class="n">dense_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">max_step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">=</span><span class="n">parametry</span>
+        <span class="p">)</span>
+    <span class="k">for</span> <span class="n">pocatecni_podminka</span> <span class="ow">in</span> <span class="n">pocatecni_podminky</span><span class="p">];</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">meze</span><span class="p">,</span><span class="mi">400</span><span class="p">)</span>
+<span class="n">popisky</span><span class="o">=</span><span class="p">[</span><span class="sa">rf</span><span class="s2">&quot;Populace $</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">$&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="s2">&quot;y&quot;</span><span class="p">,</span><span class="s2">&quot;z&quot;</span><span class="p">]]</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>    
+
+<span class="k">for</span> <span class="n">barva</span><span class="p">,</span><span class="n">res</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">reseni</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ax</span><span class="p">)):</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">res</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">t</span><span class="p">)[</span><span class="n">i</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;C&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">barva</span><span class="p">),</span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+            <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.02</span><span class="p">,</span><span class="mf">1.02</span><span class="p">),</span>
+            <span class="n">ylabel</span><span class="o">=</span><span class="n">popisky</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+        <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Konkurence tří populací pro dvě různé počáteční podmínky&quot;</span><span class="p">)</span>        
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;Koexistence všech tří populací&quot;</span><span class="p">,</span><span class="sa">r</span><span class="s2">&quot;Bez přítomnosti $x$ druh $y$ dominuje&quot;</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/09_8_0.png" src="../_images/09_8_0.png" />
+</div>
+</div>
+<p>Na obrázku je schematicky zachycena jedna z takových situací. V průmětnách jsou
+zachyceny poměry pro jednotlivá dvojdruhová společenství. Odsud plyne, že v
+případě dvojdruhového společenství <span class="math notranslate nohighlight">\(zy\)</span> (červená rovina) dominuje druh <span class="math notranslate nohighlight">\(y\)</span>, v případě
+společenství <span class="math notranslate nohighlight">\(xz\)</span> (modrá rovina) dominuje druh <span class="math notranslate nohighlight">\(z\)</span> a u společenství <span class="math notranslate nohighlight">\(xy\)</span> (černá rovina) dominuje druh <span class="math notranslate nohighlight">\(x\)</span>. Na
+osách jsou vyznačeny stacionární body charakterizující nosnou kapacitu prostředí
+pro každou z populací, pokud je populace v prostředí sama. Průsečíky zaznačených
+přímek s osou <span class="math notranslate nohighlight">\(x\)</span> jsou (v pořadí od počátku) <span class="math notranslate nohighlight">\(\frac \alpha\beta\)</span>, <span class="math notranslate nohighlight">\(\frac ab\)</span> a
+<span class="math notranslate nohighlight">\(\frac mn\)</span>, s osou <span class="math notranslate nohighlight">\(y\)</span> <span class="math notranslate nohighlight">\(\frac mo\)</span>, <span class="math notranslate nohighlight">\(\frac \alpha\gamma\)</span> a <span class="math notranslate nohighlight">\(\frac ac\)</span> a s osou
+<span class="math notranslate nohighlight">\(z\)</span> body <span class="math notranslate nohighlight">\(\frac ad\)</span>, <span class="math notranslate nohighlight">\(\frac mp\)</span> a <span class="math notranslate nohighlight">\(\frac \alpha\delta\)</span>.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">beta</span><span class="p">,</span><span class="n">gamma</span><span class="p">,</span><span class="n">delta</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">o</span><span class="p">,</span><span class="n">p</span> <span class="o">=</span> <span class="n">parametry</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span> <span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">view_init</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="mi">51</span><span class="p">)</span>
+
+<span class="n">body</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">alpha</span><span class="o">/</span><span class="n">gamma</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,(</span><span class="n">alpha</span><span class="o">-</span><span class="n">delta</span><span class="p">)</span><span class="o">/</span><span class="n">gamma</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">m</span><span class="o">/</span><span class="n">o</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">m</span><span class="o">/</span><span class="n">p</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">b</span><span class="o">/</span><span class="n">a</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">a</span><span class="o">/</span><span class="n">d</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,(</span><span class="n">m</span><span class="o">-</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="n">p</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">m</span><span class="o">/</span><span class="n">p</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">b</span><span class="o">/</span><span class="n">a</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,(</span><span class="n">a</span><span class="o">-</span><span class="n">c</span><span class="p">)</span><span class="o">/</span><span class="n">b</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">alpha</span><span class="o">/</span><span class="n">beta</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">alpha</span><span class="o">/</span><span class="n">gamma</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">])</span>
+<span class="n">barvy</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">,</span><span class="s2">&quot;red&quot;</span><span class="p">,</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span><span class="s2">&quot;black&quot;</span><span class="p">,</span><span class="s2">&quot;black&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">bod</span><span class="p">,</span><span class="n">barva</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">barvy</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot3D</span><span class="p">([</span><span class="n">bod</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">bod</span><span class="p">[</span><span class="mi">3</span><span class="p">]],</span> <span class="p">[</span><span class="n">bod</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">bod</span><span class="p">[</span><span class="mi">4</span><span class="p">]],</span> <span class="p">[</span><span class="n">bod</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">bod</span><span class="p">[</span><span class="mi">5</span><span class="p">]],</span> <span class="n">color</span><span class="o">=</span><span class="n">barva</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Konkurence tří populací&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span>
+    <span class="n">zlabel</span><span class="o">=</span><span class="s2">&quot;z&quot;</span><span class="p">,</span>
+    <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+    <span class="n">zlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="c1"># Make the grid</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+                      <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+                      <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]))</span>
+<span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">y</span><span class="o">-</span><span class="n">d</span><span class="o">*</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">alpha</span><span class="o">-</span><span class="n">beta</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">gamma</span><span class="o">*</span><span class="n">y</span><span class="o">-</span><span class="n">delta</span><span class="o">*</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">,(</span><span class="n">m</span><span class="o">-</span><span class="n">n</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">o</span><span class="o">*</span><span class="n">y</span><span class="o">-</span><span class="n">p</span><span class="o">*</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">z</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+<span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">y</span><span class="o">-</span><span class="n">d</span><span class="o">*</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">alpha</span><span class="o">-</span><span class="n">beta</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">gamma</span><span class="o">*</span><span class="n">y</span><span class="o">-</span><span class="n">delta</span><span class="o">*</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">,(</span><span class="n">m</span><span class="o">-</span><span class="n">n</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">o</span><span class="o">*</span><span class="n">y</span><span class="o">-</span><span class="n">p</span><span class="o">*</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">z</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+<span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">y</span><span class="o">-</span><span class="n">d</span><span class="o">*</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">alpha</span><span class="o">-</span><span class="n">beta</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">gamma</span><span class="o">*</span><span class="n">y</span><span class="o">-</span><span class="n">delta</span><span class="o">*</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">,(</span><span class="n">m</span><span class="o">-</span><span class="n">n</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">o</span><span class="o">*</span><span class="n">y</span><span class="o">-</span><span class="n">p</span><span class="o">*</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">z</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+
+
+<span class="n">k</span> <span class="o">=</span> <span class="n">reseni</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>    
+<span class="n">ax</span><span class="o">.</span><span class="n">plot3D</span><span class="p">(</span><span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>    
+<span class="n">k</span> <span class="o">=</span> <span class="n">reseni</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>    
+<span class="n">ax</span><span class="o">.</span><span class="n">plot3D</span><span class="p">(</span><span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/09_10_0.png" src="../_images/09_10_0.png" />
+</div>
+</div>
+<p>Teto příklad ukazuje, že v lokalitě obsazené větším počtem druhů, je
+možná koexistence druhů, které jinak koexistovat nemohou. <em>V ekologii se
+zpravidla druhově rozmanitější společenství považují za stabilnější a
+odolnější vůči jakýmkoliv změnám.</em></p>
+</section>
+<section id="symbioza-dvou-druhu">
+<h2><span class="section-number">9.3. </span>Symbióza dvou druhů<a class="headerlink" href="#symbioza-dvou-druhu" title="Trvalý odkaz na tento nadpis">#</a></h2>
+<p>Podobně jako jsme modelovali konkurenci dvou druhů, můžeme modelovat
+i symbiózu dvou druhů – situaci, kdy přítomnost jedné populace
+podporuje růst populace druhé. tento stav lze popsat soustavou
+diferenciálních rovnic obdobnou soustavě pro konkurenci, pouze
+změníme znaménka u členů charakterizujících vnitrodruhové
+působení. Studujme tedy soustavu
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+x'=&amp;(a-bx)x+cxy,\\
+y'=&amp;(\alpha-\beta y)y+\gamma xy,
+\end{aligned}
+\end{split}\]</div>
+
+kde <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span> jsou velikosti jednotlivých populací a ostatní veličiny
+jsou kladné reálné parametry. Podobná analýza jako u modelu konkurence
+dvou druhů přináší následující výsledky.</p>
+<ul class="simple">
+<li><p>Tři stacionární body odpovídají jednomu stavu bez přítomnosti obou
+populací, a dvěma stavům, kdy v prostředí je přítomna pouze jedna
+z populací, jejíž velikost je ustálena na hodnotě kapacity
+prostředí.  Tyto stacionární body jsou nestabilní.</p></li>
+<li><p>Jestliže míra symbiózy je dostatečně silná; přesněji, pokud
+platí
+<div class="math notranslate nohighlight">
+\[
+  c\gamma&gt;b\beta,
+\]</div>
+
+pak systém nemá žádný další stacionární bod a všechny trajektorie
+jsou pro <span class="math notranslate nohighlight">\(t\to\infty\)</span> neohraničené. Tento stav odpovídá situaci, kdy
+míra užitku ze symbiózy převáží vliv vnitrodruhové konkurence, která
+jinak zastavuje růst. Protože růst obou populací není ohraničený, obě
+populace po přemnožení zničí své životní prostředí. V angl.
+literatuře charakterizuje tento stav termín „orgy of mutual
+beneficion“ (orgie vzájemné dobročinnosti).</p></li>
+<li><p>Jestliže míra symbiózy je malá, tj. jestliže platí
+<div class="math notranslate nohighlight">
+\[
+  c\gamma&lt;b\beta,
+\]</div>
+
+má systém stabilní stacionární bod v prvním kvadrantu. Velikosti
+populací se ustálí na hodnotě, odpovídající tomuto bodu. Velikost
+obou populací bude převyšovat úživnou hodnotu prostředí každé
+z populací, populace tedy bude mít větší velikost, než jakou by
+měla, kdyby se v prostředí nacházela osamocena.</p></li>
+</ul>
+<p>Další pojednání o modelech konkurence je možno nalézt například v <span id="id1">[<a class="reference internal" href="../literatura.html#id3" title="M. Begon, C.R. Townsend, and J.L. Harper. Ekologie: jedinci, populace a společenstva. Vydavatelství Univerzity Palackého, 1997. ISBN 9788070676950.">3</a>]</span>
+kapitola 7.4 a <span id="id2">[<a class="reference internal" href="../literatura.html#id5" title="E. Tkadlec. Populační ekologie: Struktura a růst populací. Univerzita Palckého v Olomouci, 2013.">15</a>]</span> str. 220.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "robert-marik/dmp",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./prednaska"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="08.html" title="předchozí page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">předchozí</p>
+            <p class="prev-next-title"><span class="section-number">8. </span>Autonomní systémy</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="10.html" title="další page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">další</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Modely dravce a kořisti</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Robert Mařík<br/>
+  
+    <div class="extra_footer">
+      <p>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+  All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
+</p>
+
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
