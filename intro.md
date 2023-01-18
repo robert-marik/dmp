@@ -38,6 +38,75 @@ není matematikou. Nemá tedy ambice všechny pojmy definovat přesným způsobe
 matematice obvyklým. Přesné definice těchto pojmů je snadné najít v literatuře,
 například {cite}`liska`.
 
+
+
+## Motivace 1, záchrana Lišky ostrovní 
+
+```{figure} ./pics/Urocyon_littoralis_pair.jpg
+*Liška ostrovní, foto: wikimedia.org*
+``` 
+Na úvod jako motivaci uveďme jeden optimistický příběh.
+
+[Liška ostrovní](https://cs.wikipedia.org/wiki/Li%C5%A1ka_ostrovn%C3%AD)
+(*Urocyon littoralis*) je jedinečný živočišný druh, endemit žijící jenom na
+ostrůvcích okolo Kalifornie. Velká jako kočka, důvěřivá (díky absenci
+přirozených nepřátel), citlivá (malá genetická variabilita). Jedna z nejmenších
+psovitých šelem. Umí šplhat po stromech. Vlivem činnosti člověka se dostala do
+velkých potíží. Na ostrově San Miguel klesla populace z 450 dospělých jedinců v
+roce 1994 na 15 v roce 1999
+([odkaz](https://www.iucnredlist.org/species/22781/13985603)). Podobná situace
+byla i na ostatních ostrovech, z nichž každý je osídlen samostatným poddruhem
+lišky ostrovní. Příčinou úhynu by celý řetězec událostí (produkce insekticidu
+DDT, farmaření a rozmnožení zdivočelých prasat, vytlačení orla bělohlavého
+(*Haliaeetus leucocephalus*) orlem skalním (*Aquila chrysaetos*)). Dříve byla
+tato liška těsně před vyhubením, nyní "pouze" téměř ohrožená. Jedná se o jeden z
+nejúspěšnějších záchranných programů pro savce. Zahrnuje vybití divokých prasat
+(jejichž činností se přetvářela vegetace a prasata poskytovala obživu orlům),
+přesídlení orlů (orli si liškami zpestřovali jídelníček a lišky měly málo úkrytů
+ve vegetaci), umělé rozmnožení lišek (stavy silně poklesly, tím byla ohrožena i
+genová diverzita) a jejich návrat do přírody a vakcinaci proti zavlečeným
+chorobám.
+
+* [Článek na idnes.cz](https://www.idnes.cz/cestovani/kolem-sveta/ostrovnim-liskam-kalifornske-rarite-hrozi-vyhynuti.A000706153420igsvet_cha)  z roku 2000 o hrozícím vyhubení.
+* [Youtube video](https://youtu.be/2AVRSGkartg) z roku 2018 o záchraně ostrovních lišek.
+* [Matematický model](https://www.pnas.org/doi/10.1073/pnas.012422499) interakce mezi liškami, orly, skunkem a zdivočelými prasaty.
+
+> Specifika ostrovní biogeografie si představíme ve třetí přednášce. Modelům
+interakce živočišných druhů ve vztahu konkurence nebo predace se budeme věnovat
+koncem semestru.
+
+## Motivace 2, záchrana populace želv
+
+```{figure} ./pics/Sea_turtles.jpg 
+
+*Kareta obecná, foto: wikimedia.org*
+``` 
+
+Mořské želvy obecně mají poměrně komplikovaný životní cyklus. Vylíhnutí
+z vajíček probíhá na souši, další vývoj v moři. Ochrana se tradičně
+soustřeďovala na ochranu pláží pro kladení vajíček a umožnění vylíhnutým
+želvičkám dostat se k vodě. To je efektní a snadno proveditelná činnost. Je to
+ale i efektivní? Je to opravdu účinná strategie pro podporu populace želv? 
+
+Matematický
+rozbor přínosu jednotlivých životních fází k celkovému růstu populace ukázal, že
+pro udržení druhu ochrana vajíček a čerstvě vylíhnutých mláďat nestačí. Ukázal,
+že tato
+činnost má malý vliv. Želva se o svá mláďata nestará a jenom malý zlomek se
+dožije dospělosti. Ukázalo se, že pro podporu populace je důležité chránit
+dospělé jedince, na kterých stojí břímě rozmnožování. Je nutné snížit riziko, že
+tyto jedince z populace odstraníme například jako vedlejší efekt rybolovu.
+Protože se ukazuje, že tato aktivita je pro populaci podstatná (dospělí jedinci
+mají velkou takzvanou *reprodukční hodnotu*), má smysl hledat cesty a řešení. V
+případě rybářských sítí je to například zařízení zvané TED, [Turtle Excluder
+Device](https://www.worldwildlife.org/magazine/issues/summer-2016/articles/how-a-simple-technology-is-saving-turtles), které umožní dospělým želvám (a velkým rybám), na nichž závisí přežití
+druhu, uniknout z rybářských sítí. Protože se jedná se o poměrně jednoduché a
+levné zařízení, je poměr cena/užitek obrovský. 
+
+> Model populace s různými životními etapami si představíme na šesté přednášce.
+> Na sedmé přednášce si ukážeme nástroj na analýzu vlivu parametrů na celkový
+> růst populace a v sedmém cvičení se budeme blíže věnovat zmíněnému modelu populace karety. 
+
 ## Co budeme dělat
 
 V předmětu si představíme základní metody modelování jevů a efektů známých z
