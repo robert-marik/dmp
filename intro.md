@@ -50,7 +50,8 @@ Na úvod jako motivaci uveďme jeden optimistický příběh.
 [Liška ostrovní](https://cs.wikipedia.org/wiki/Li%C5%A1ka_ostrovn%C3%AD)
 (*Urocyon littoralis*) je jedinečný živočišný druh, endemit žijící jenom na
 ostrůvcích okolo Kalifornie. Velká jako kočka, důvěřivá (díky absenci
-přirozených nepřátel), citlivá (malá genetická variabilita). Jedna z nejmenších
+přirozených nepřátel), jako druh citlivá a zranitelná (malá genetická
+variabilita, malá odolnost vůči nemocem zavlečeným z pevniny). Jedna z nejmenších
 psovitých šelem. Umí šplhat po stromech. Vlivem činnosti člověka se dostala do
 velkých potíží. Na ostrově San Miguel klesla populace z 450 dospělých jedinců v
 roce 1994 na 15 v roce 1999
