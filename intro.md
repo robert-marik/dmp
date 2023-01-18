@@ -42,8 +42,8 @@ například {cite}`liska`.
 
 ## Motivace 1, záchrana Lišky ostrovní 
 
-```{figure} ./pics/Urocyon_littoralis_pair.jpg
-*Liška ostrovní, foto: wikimedia.org*
+```{figure} ./pics/Urocyon_littoralis_santacruzae.jpg  
+*Liška ostrovní, poddruh žijící na ostrově Santa Cruz, foto: wikimedia.org*
 ``` 
 Na úvod jako motivaci uveďme jeden optimistický příběh.
 
