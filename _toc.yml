@@ -22,6 +22,7 @@ parts:
   - caption: Cvičení
     numbered: true
     chapters:
+    - file: "Prvni_kroky.ipynb"  
     - file: "cviceni/cviceni_01.ipynb"  
     - file: "cviceni/cviceni_02.ipynb"  
     - file: "cviceni/cviceni_03.ipynb"  
@@ -33,7 +34,6 @@ parts:
     - file: "cviceni/cviceni_09.ipynb"  
     - file: "cviceni/cviceni_10.ipynb"  
     - file: "cviceni/cviceni_11.ipynb"  
-    - file: "cviceni/cviceni_12.ipynb"  
   - caption: Python snippety
     chapters:
     - file: "snippety/python_zakladni_konstrukce.ipynb"
