@@ -51,22 +51,22 @@ Na úvod jako motivaci uveďme jeden optimistický příběh.
 (*Urocyon littoralis*) je jedinečný živočišný druh, endemit žijící jenom na
 ostrůvcích okolo Kalifornie. Velká jako kočka, důvěřivá (díky absenci
 přirozených nepřátel), jako druh citlivá a zranitelná (malá genetická
-variabilita, malá odolnost vůči nemocem zavlečeným z pevniny). Jedna z nejmenších
-psovitých šelem. Umí šplhat po stromech. Vlivem činnosti člověka se dostala do
-velkých potíží. Na ostrově San Miguel klesla populace z 450 dospělých jedinců v
-roce 1994 na 15 v roce 1999
+variabilita, malá odolnost vůči nemocem zavlečeným z pevniny). Jedna z
+nejmenších psovitých šelem. Umí šplhat po stromech. Vlivem činnosti člověka se
+dostala do velkých potíží. Na ostrově San Miguel klesla populace z 450 dospělých
+jedinců v roce 1994 na 15 v roce 1999
 ([odkaz](https://www.iucnredlist.org/species/22781/13985603)). Podobná situace
 byla i na ostatních ostrovech, z nichž každý je osídlen samostatným poddruhem
-lišky ostrovní. Příčinou úhynu by celý řetězec událostí (produkce insekticidu
+lišky ostrovní. Příčinou úhynu by celý řetězec událostí: produkce insekticidu
 DDT, farmaření a rozmnožení zdivočelých prasat, vytlačení orla bělohlavého
-(*Haliaeetus leucocephalus*) orlem skalním (*Aquila chrysaetos*)). Dříve byla
-tato liška těsně před vyhubením, nyní "pouze" téměř ohrožená. Jedná se o jeden z
-nejúspěšnějších záchranných programů pro savce. Zahrnuje vybití divokých prasat
-(jejichž činností se přetvářela vegetace a prasata poskytovala obživu orlům),
-přesídlení orlů (orli si liškami zpestřovali jídelníček a lišky měly málo úkrytů
-ve vegetaci), umělé rozmnožení lišek (stavy silně poklesly, tím byla ohrožena i
-genová diverzita) a jejich návrat do přírody a vakcinaci proti zavlečeným
-chorobám.
+(*Haliaeetus leucocephalus*) orlem skalním (*Aquila chrysaetos*). Dříve vrcholný
+predátor na ostrově se stal najednou kořistí a byl těsně před vyhubením.
+Naštěstí se podařilo situaci pro lišku zachránit, zajistit podmínky ve kterých
+je populace stabilní a populaci lišek opětovně rozmnožit. Nyní je liška ostrovní
+"pouze" téměř ohrožená. Jedná se o jeden z nejúspěšnějších záchranných programů
+pro savce. Komplexní program zahrnoval vybití divokých prasat, přesídlení orlů
+skalních, návrat orlů bělohlavých, umělé rozmnožení lišek, jejich návrat do
+přírody a jejich vakcinaci proti zavlečeným chorobám.
 
 * [Článek na idnes.cz](https://www.idnes.cz/cestovani/kolem-sveta/ostrovnim-liskam-kalifornske-rarite-hrozi-vyhynuti.A000706153420igsvet_cha)  z roku 2000 o hrozícím vyhubení.
 * [Youtube video](https://youtu.be/2AVRSGkartg) z roku 2018 o záchraně ostrovních lišek.
