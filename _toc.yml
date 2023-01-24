@@ -37,7 +37,6 @@ parts:
   - caption: Python snippety
     chapters:
     - file: "snippety/python_zakladni_konstrukce.ipynb"
-    - file: "snippety/python_text.ipynb"    
     - file: "snippety/python_tabulky.ipynb"   
     - file: "snippety/python_grafy.ipynb"   
   - caption: Literatura a rejstřík
