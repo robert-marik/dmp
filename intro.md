@@ -31,7 +31,8 @@ Lotkův-Volterrův model dvoudruhové populace dravce a kořisti byl v první po
 
 Předmět je přednášen na oboru Myslivost. Obsahuje matematický aparát používaný v
 matematické biologii k popisu vývoje populací, jejich vzájemné interakce a
-schopnosti přežívat.
+schopnosti přežívat. [Webová stránka](https://user.mendelu.cz/marik/dmp) předmětu s popisem požadavků na ukončení je
+na webu vyučujícího. 
 
 Budeme používat matematické postupy a zkoumat matematické modely, ale předmět
 není matematikou. Nemá tedy ambice všechny pojmy definovat přesným způsobem v
