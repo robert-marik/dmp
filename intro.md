@@ -44,7 +44,7 @@ například {cite}`liska`.
 ## Motivace 1, záchrana Lišky ostrovní 
 
 ```{figure} ./pics/Urocyon_littoralis_santacruzae.jpg  
-*Liška ostrovní, poddruh žijící na ostrově Santa Cruz, foto: wikimedia.org*
+*Liška ostrovní, poddruh žijící na ostrově Santa Cruz, foto: <https://wikimedia.org>*
 ``` 
 Na úvod jako motivaci uveďme jeden optimistický příběh.
 
@@ -71,7 +71,7 @@ přírody a jejich vakcinaci proti zavlečeným chorobám.
 
 * [Článek na idnes.cz](https://www.idnes.cz/cestovani/kolem-sveta/ostrovnim-liskam-kalifornske-rarite-hrozi-vyhynuti.A000706153420igsvet_cha)  z roku 2000 o hrozícím vyhubení.
 * [Youtube video](https://youtu.be/2AVRSGkartg) z roku 2018 o záchraně ostrovních lišek.
-* [Matematický model](https://www.pnas.org/doi/10.1073/pnas.012422499) interakce mezi liškami, orly, skunkem a zdivočelými prasaty.
+* [Matematický model](https://www.pnas.org/doi/10.1073/pnas.012422499#F3) interakce mezi liškami, orly, skunkem a zdivočelými prasaty.
 
 > Specifika ostrovní biogeografie si představíme ve třetí přednášce. Modelům
 interakce živočišných druhů ve vztahu konkurence nebo predace se budeme věnovat
@@ -81,7 +81,7 @@ koncem semestru.
 
 ```{figure} ./pics/Sea_turtles.jpg 
 
-*Kareta obecná, foto: wikimedia.org*
+*Kareta obecná, foto: <https://wikimedia.org>*
 ``` 
 
 Mořské želvy obecně mají poměrně komplikovaný životní cyklus. Vylíhnutí

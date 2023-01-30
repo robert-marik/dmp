@@ -21,4 +21,7 @@ xelatex python
 cd -
 cp $directory/python.pdf Dynamicke_modely_populaci_text.pdf
 
+echo "Pro upload na server spustit nasledujici prikaz"
+echo "scp Dynamicke_modely_populaci_text.pdf cornus.mendelu.cz:html/dmp/"
+
 
