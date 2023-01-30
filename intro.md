@@ -25,7 +25,7 @@ print ("Poslední změna dokumentu: ", format_datetime(now, locale='cs'))
 
 ```{figure} ./pics/lotka-volterra.jpg
 
-Lotkův-Volterrův model dvoudruhové populace dravce a kořisti byl v první polovině dvacátého století jedním z prvních počinů při snaze využít matematické modelování k objasnění přírodních fenoménů spojených s velikostmi populací živočichů.
+Lotkův-Volterrův model dvoudruhové populace dravce a kořisti byl v první polovině dvacátého století jedním z prvních počinů při snaze využít matematické modelování k objasnění přírodních fenoménů spojených s velikostmi populací živočichů. Model vysvětlil vznik pozorovaných oscilací ve společenstvu dravce a kořisti a také poněkud překvapivou skutečnost, že omezení lovu způsobí posun rovnováhy ve prospěch dravců.
 ```
 ## O předmětu
 
@@ -67,7 +67,7 @@ je populace stabilní a populaci lišek opětovně rozmnožit. Nyní je liška o
 "pouze" téměř ohrožená. Jedná se o jeden z nejúspěšnějších záchranných programů
 pro savce. Komplexní program zahrnoval vybití divokých prasat, přesídlení orlů
 skalních, návrat orlů bělohlavých, umělé rozmnožení lišek, jejich návrat do
-přírody a jejich vakcinaci proti zavlečeným chorobám.
+přírody a jejich vakcinaci proti zavlečeným chorobám. To vše za jednu dekádu.
 
 * [Článek na idnes.cz](https://www.idnes.cz/cestovani/kolem-sveta/ostrovnim-liskam-kalifornske-rarite-hrozi-vyhynuti.A000706153420igsvet_cha)  z roku 2000 o hrozícím vyhubení.
 * [Youtube video](https://youtu.be/2AVRSGkartg) z roku 2018 o záchraně ostrovních lišek.
