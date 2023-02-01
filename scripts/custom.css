@@ -25,3 +25,9 @@ body {
   font-size: 80%;
   line-height: 100%;
 }
+
+
+.sidebar-title {padding-top: 5px; padding-bottom: 5px; color:black !important;}
+
+.sidebar {background-color: var(--hint-title-color) !important; margin-top:10px !important;}
+
