@@ -71,11 +71,16 @@ přírody a jejich vakcinaci proti zavlečeným chorobám. To vše za jednu dek�
 
 * [Článek na idnes.cz](https://www.idnes.cz/cestovani/kolem-sveta/ostrovnim-liskam-kalifornske-rarite-hrozi-vyhynuti.A000706153420igsvet_cha)  z roku 2000 o hrozícím vyhubení.
 * [Youtube video](https://youtu.be/2AVRSGkartg) z roku 2018 o záchraně ostrovních lišek.
-* [Matematický model](https://www.pnas.org/doi/10.1073/pnas.012422499#F3) interakce mezi liškami, orly, skunkem a zdivočelými prasaty.
+* [Matematický model](https://www.pnas.org/doi/10.1073/pnas.012422499#F3)
+  interakce mezi liškami, orly, skunkem a zdivočelými prasaty.
+* [Řešení modelu v prostředí Jupyter notebooku](https://gist.github.com/robert-marik/b1466473f485e7218efda491064765a6)
 
-> Specifika ostrovní biogeografie si představíme ve třetí přednášce. Modelům
-interakce živočišných druhů ve vztahu konkurence nebo predace se budeme věnovat
-koncem semestru.
+> Specifika ostrovní biogeografie si představíme ve [třetí přednášce](prednaska/03.html). Modelům
+interakce živočišných druhů ve vztahu [konkurence](prednaska/09.html) nebo
+[predace](prednaska/10.html) se budeme věnovat koncem semestru. Jednoduchý
+Jupyter zápisník, ukazující, že umíte zkombinovat text s výpočty a umíte spustit
+model a nějakým způsobem vizualizovat řešení bude obsahem seminární práce, nutné
+pro ukončení předmětu. 
 
 ## Motivace 2, záchrana populace želv
 
@@ -105,9 +110,9 @@ Device](https://www.worldwildlife.org/magazine/issues/summer-2016/articles/how-a
 druhu, uniknout z rybářských sítí. Protože se jedná se o poměrně jednoduché a
 levné zařízení, je poměr cena/užitek obrovský. 
 
-> Model populace s různými životními etapami si představíme na šesté přednášce.
-> Na sedmé přednášce si ukážeme nástroj na analýzu vlivu parametrů na celkový
-> růst populace a v sedmém cvičení se budeme blíže věnovat zmíněnému modelu populace karety. 
+> Model populace s různými životními etapami si představíme na [šesté přednášce](prednaska/06.html#zobecneni-leslieho-modelu).
+> Na [sedmé přednášce](prednaska/07.html#sensitivita-a-elasticita-projekcni-matice) si ukážeme nástroj na analýzu vlivu parametrů na celkový
+> růst populace a v [jednom ze cvičení](cviceni/cviceni_07.html#kareta-obecna-loggerhead-sea-turtle) se budeme blíže věnovat zmíněnému modelu populace karety. 
 
 ## Co budeme dělat
 
