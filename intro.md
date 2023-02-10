@@ -208,3 +208,24 @@ Ovládací prvky v horní části stránky umožňují přístup k různým form
 Pokud pracujete na lokálním počítači, máte data pod kontrolou a nikdo jiný je nevidí. Při práci na JupyterHubu na Mendelově univerzitě data může vidět i admin serveru. (Toho budeme využívat při práci na zápočtovém projektu.) Při práci na serverech jako Colab či Binder jdou data přes servery dalších vlastníků a nemáte data plně pod kontrolou. Proto není vhodné pracovat s osobními daty a citlivým obsahem. 
 ```
 
+## Troubleshooting
+
+
+### V příkazech je chyba a je těžké ji najít
+
+Příkazy pište po malých krůčcích a teprve poté vše spojte. Pokud vidíte dlouhou 
+chybovou hlášku, je zpravidla nejinformativnější její konec. Pokud nevíte o co
+jde, můžete část chybového hlášení nakopírovat do vyhledávacího políčka google
+a pátrat po radách k uvedenému problému.
+
+### Učební text se zasekává při otevírání na jupyter.mendelu.cz
+
+Pokud si naklonujete učební text k sobě a něco v něm upravíte, může při
+dalších verzích dojít ke kolizi a nestáhne se vám aktuální verze.
+Nejrychlejší řešení je přepnout se do konzole (v seznamu souborů použít New, 
+Terminal) a tam zadat příkazy OS Linux. Můžete použít `mv dmp dmp_kopie` pro
+přejmenování. Zůstanou Vám i upravené soubory v adresáři dm_kopie. Pokud
+svou práci ukládáte jinam (doporučeno do hlavního adresáře nebo do svého
+podadresáře), můžete adresář smazat příkazem `yes | rm -r dmp` a poté se při
+otevření souboru z učebního textu naklonuje celá nová verze. 
+

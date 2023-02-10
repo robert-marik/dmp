@@ -37,6 +37,10 @@ parts:
   - caption: Python snippety
     chapters:
     - file: "snippety/python_zakladni_konstrukce.ipynb"
+    - file: "snippety/grafy_amateri.ipynb"
+    - file: "snippety/grafy_pokrocili.ipynb"
+    - file: "snippety/diferencialni_rovnice_amateri.ipynb"
+    - file: "snippety/diferencialni_rovnice_pokrocili.ipynb"
     - file: "snippety/python_tabulky.ipynb"   
     - file: "snippety/python_grafy.ipynb"   
     - file: "snippety/reseni_ODR.ipynb"   
