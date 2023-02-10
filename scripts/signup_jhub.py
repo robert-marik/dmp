@@ -1,8 +1,9 @@
 ## import dependencies
 import time
+
 from selenium import webdriver
 from selenium.webdriver.support.select import Select
-
+import pandas as pd
 
 # Puts series of singnup requests to the jupyterhub server with open
 # registration. Useful to create user accounts with predefined
@@ -10,15 +11,8 @@ from selenium.webdriver.support.select import Select
 # to the users.
 
 server = "https://jupyter.mendelu.cz"
-logins_passwords = [
-    ["user_pokus", "heslo_pokus_123456"],
-    ["user2_pokus", "heslo_pokus_123456"],
-    ["user3_pokus", "heslo_pokus_123456"],
-    ]
 
-
-
-
+logins_passwords = [[i[1][0],i[1][1]] for i in pd.read_csv("hesla.csv", header=None).iterrows()]
 
 ## create an object of the chrome webdriver
 driver = webdriver.Chrome(executable_path = r'./chromedriver')
@@ -33,9 +27,9 @@ for login, heslo in logins_passwords:
     inputElement.send_keys(heslo)
     inputElement = driver.find_element("id","password_confirmation_input")
     inputElement.send_keys(heslo)
-    time.sleep(5) # Let the user actually see something!
+    time.sleep(3) # Let the user actually see something!
     inputElement.submit()
-    time.sleep(10) # Let the user actually see something!
+    time.sleep(3) # Let the user actually see something!
 
 #logout = driver.find_element("id","logout")
 #logout.click()
