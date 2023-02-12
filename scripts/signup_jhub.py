@@ -31,8 +31,5 @@ for login, heslo in logins_passwords:
     inputElement.submit()
     time.sleep(3) # Let the user actually see something!
 
-#logout = driver.find_element("id","logout")
-#logout.click()
-#time.sleep(10) # Let the user actually see something!
 
 driver.quit()
