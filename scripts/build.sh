@@ -20,6 +20,7 @@ sed -i 's/Remark/Poznámka/' $directory/prednaska/*html
 sed -i 's/Definition/Definice/' $directory/prednaska/*html
 sed -i 's/Example/Příklad/' $directory/prednaska/*html
 
+
 # Copy custom css file
 cp custom.css $directory/_static/styles/
 cp custom.css $directory/_static/
