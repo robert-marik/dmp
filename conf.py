@@ -25,7 +25,7 @@ html_theme_options = {'extra_footer': '<p>\n<a href="https://creativecommons.org
 html_title = 'Dynamické modely populací'
 jupyter_cache = ''
 jupyter_execute_notebooks = 'auto'
-latex_engine = 'pdflatex'
+latex_engine = 'xelatex'
 myst_enable_extensions = ['amsmath', 'dollarmath']
 myst_url_schemes = ['mailto', 'http', 'https']
 nb_output_stderr = 'show'
@@ -43,3 +43,8 @@ latex_elements = {
     'extrapackages': r'\usepackage{comment}', 
     'papersize': 'a4paper'
     }
+
+html_js_files = [
+    'custom.js',
+    'https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js'
+]
