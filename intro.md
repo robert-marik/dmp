@@ -75,12 +75,7 @@ přírody a jejich vakcinaci proti zavlečeným chorobám. To vše za jednu dek�
   interakce mezi liškami, orly, skunkem a zdivočelými prasaty.
 * [Řešení modelu v prostředí Jupyter notebooku](https://gist.github.com/robert-marik/b1466473f485e7218efda491064765a6)
 
-> Specifika ostrovní biogeografie si představíme ve [třetí přednášce](prednaska/03.html). Modelům
-interakce živočišných druhů ve vztahu [konkurence](prednaska/09.html) nebo
-[predace](prednaska/10.html) se budeme věnovat koncem semestru. Jednoduchý
-Jupyter zápisník, ukazující, že umíte zkombinovat text s výpočty a umíte spustit
-model a nějakým způsobem vizualizovat řešení bude obsahem seminární práce, nutné
-pro ukončení předmětu. 
+> Specifika ostrovní biogeografie si představíme ve [třetí přednášce](/prednaska/03). Modelům interakce živočišných druhů ve vztahu [konkurence](/prednaska/09) nebo [predace](/prednaska/10) se budeme věnovat koncem semestru. Jednoduchý Jupyter zápisník, ukazující, že umíte zkombinovat text s výpočty a umíte spustit model a nějakým způsobem vizualizovat řešení bude obsahem seminární práce, nutné pro ukončení předmětu. 
 
 ## Motivace 2, záchrana populace želv
 
