@@ -21,7 +21,21 @@ html_logo = ''
 html_show_copyright = False
 html_sourcelink_suffix = ''
 html_theme = 'sphinx_book_theme'
-html_theme_options = {'extra_footer': '<p>\n<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>\n  All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>\n</p>\n<script>jQuery(".bd-toc").removeClass("show")</script>','announcement':'Toto je rozpracovaná verze učebního textu.','search_bar_text': 'Hledat v knize...', 'launch_buttons': {'notebook_interface': 'classic', 'binderhub_url': 'https://mybinder.org', 'jupyterhub_url': 'https://jupyter.mendelu.cz', 'thebe': True, 'colab_url': 'https://colab.research.google.com'}, 'path_to_docs': '', 'repository_url': 'https://github.com/robert-marik/dmp', 'repository_branch': 'main', 'google_analytics_id': '', 'extra_navbar': 'Powered by <a href="https://jupyterbook.org">Jupyter Book</a>', 'home_page_in_toc': True, 'announcement': '', 'use_repository_button': True, 'use_edit_page_button': False, 'use_issues_button': False}
+html_theme_options = {
+    'extra_footer': '<p>\n<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>\n  All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>\n</p>',
+    'announcement':'Toto je rozpracovaná verze učebního textu.','search_bar_text': 'Hledat v knize...',
+    'launch_buttons': {'notebook_interface': 'classic', 'binderhub_url': 'https://mybinder.org', 'jupyterhub_url': 'https://jupyter.mendelu.cz', 'thebe': True, 'colab_url': 'https://colab.research.google.com'},
+    'path_to_docs': '',
+    'repository_url': 'https://github.com/robert-marik/dmp',
+    'repository_branch': 'main',
+    'google_analytics_id': '',
+    'extra_navbar': '<a href="https://user.mendelu.cz/marik/dmp/Dynamicke_modely_populaci_text.pdf" style="width: 100%; margin: auto; border-top: solid; border-bottom: solid; display: block;">PDF verze</a><p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>',
+    'home_page_in_toc': False,
+    'announcement': '',
+    'use_repository_button': True,
+    'use_edit_page_button': False,
+    'use_issues_button': False
+}
 html_title = 'Dynamické modely populací'
 jupyter_cache = ''
 jupyter_execute_notebooks = 'auto'
@@ -45,6 +59,5 @@ latex_elements = {
     }
 
 html_js_files = [
-    'custom.js',
     'https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js'
 ]

@@ -24,3 +24,4 @@ sed -i 's/Example/Příklad/' $directory/prednaska/*html
 # Copy custom css file
 cp custom.css $directory/_static/styles/
 cp custom.css $directory/_static/
+cp custom.js $directory/_static/
