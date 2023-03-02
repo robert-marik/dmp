@@ -67,7 +67,7 @@
             "name" : "Řešení diferenciální rovnice (DR)",
             "code" : [
     "### Příprava funkcí a parametrů",
-    "pocatecni_podminka = [0.1]  # počáteční podmínka nebo podmínky",
+    "pocatecni_podminka = [0]  # počáteční podmínka nebo podmínky",
     "meze = [0,15]  # interval, na kterém hledáme řešení",
     "N = 100 # počet dělících bodů",
     "",
@@ -115,7 +115,7 @@
             "name" : "Řešení DR pro různé parametry",
             "code" : [
     "### Příprava funkcí a parametrů",
-    "pocatecni_podminka = [0.1]  # počáteční podmínka",
+    "pocatecni_podminka = [0]  # počáteční podmínka",
     "meze = [0,15]  # interval, na kterém hledáme řešení",
     "N = 100 # počet dělících bodů",
     "parametry = [0.25,0.5,1,2] # seznam parametrů",
