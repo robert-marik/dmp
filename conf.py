@@ -62,3 +62,5 @@ html_js_files = [
     'https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js'
     'custom.js'
 ]
+
+templates_path = ["_templates"]

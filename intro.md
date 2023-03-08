@@ -20,7 +20,7 @@ kernelspec:
 from datetime import datetime
 from babel.dates import format_datetime
 now = datetime.now()
-print ("Poslední změna dokumentu: ", format_datetime(now, locale='cs'))
+print ("Poslední aktualizace: ", format_datetime(now, locale='cs'))
 ```
 
 ```{figure} ./pics/lotka-volterra.jpg
