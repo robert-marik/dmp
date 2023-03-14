@@ -7,7 +7,7 @@
                 "import matplotlib.pyplot as plt",
                 "import pandas as pd",
                 "from scipy.integrate import solve_ivp",
-		"import my_shared_data_folder.modely_dmp as m",
+		"# import my_shared_data_folder.modely_dmp as m",
                 "# from scipy import optimize"            
             ]
         },
