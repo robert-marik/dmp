@@ -1,5 +1,7 @@
 # Literatura
 
-```{bibliography}
+<div>
+
+```{bibliography} references.bib
 :style: plain
 ```
