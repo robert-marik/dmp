@@ -46,6 +46,7 @@ parts:
     - file: "snippety/python_grafy.ipynb"   
     - file: "snippety/reseni_ODR.ipynb"   
     - file: "snippety/tabulky_none.ipynb"   
+    - file: "snippety/multiheader.ipynb"   
   - caption: Literatura a rejstřík
     chapters:
     - file: "literatura.md"
