@@ -34,7 +34,7 @@ parts:
     - file: "cviceni/cviceni_09.ipynb"  
     - file: "cviceni/cviceni_10.ipynb"  
     - file: "cviceni/cviceni_11.ipynb"  
-  - caption: Python snippety
+  - caption: Python konstrukce a ukázky
     chapters:
     - file: "snippety/python_zakladni_konstrukce.ipynb"
     - file: "snippety/cykly.ipynb"
