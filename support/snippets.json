@@ -103,7 +103,7 @@
     "",
     "### Vizualizace řešení",
     "fig,ax = plt.subplots(1)",
-    "ax.plot(t,reseni.y.T)",
+    "ax.plot(reseni.t,reseni.y.T)",
     "ax.set(",
     "    ylim = (0,None),",
     "    title = \"Řešení diferenciální rovnice\",",
