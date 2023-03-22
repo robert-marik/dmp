@@ -3,7 +3,7 @@ directory=../_build/html
 
 touch ../intro.md
 #~/anaconda3/bin/sphinx-build ../ $directory -b html
-~/anaconda3/envs/jupyter/bin/sphinx-build ../ $directory -b html
+sphinx-build ../ $directory -b html
 
 # Loop over lectures do open ipynb files in Colab rather than md files.
 echo "Fixing Colab links from md to ipynb."
