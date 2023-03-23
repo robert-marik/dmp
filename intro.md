@@ -105,9 +105,9 @@ Device](https://www.worldwildlife.org/magazine/issues/summer-2016/articles/how-a
 druhu, uniknout z rybářských sítí. Protože se jedná se o poměrně jednoduché a
 levné zařízení, je poměr cena/užitek obrovský. 
 
-> Model populace s různými životními etapami si představíme na [šesté přednášce](prednaska/06.html#zobecneni-leslieho-modelu).
-> Na [sedmé přednášce](prednaska/07.html#sensitivita-a-elasticita-projekcni-matice) si ukážeme nástroj na analýzu vlivu parametrů na celkový
-> růst populace a v [jednom ze cvičení](cviceni/cviceni_07.html#kareta-obecna-loggerhead-sea-turtle) se budeme blíže věnovat zmíněnému modelu populace karety. 
+> Model populace s různými životními etapami si představíme na [šesté přednášce](/prednaska/06).
+> Na [sedmé přednášce](/prednaska/07) si ukážeme nástroj na analýzu vlivu parametrů na celkový
+> růst populace a v [jednom ze cvičení](/cviceni/cviceni_07) se budeme blíže věnovat zmíněnému modelu populace karety. 
 
 ## Co budeme dělat
 

@@ -43,7 +43,7 @@ html_theme_options = {
     'path_to_docs': '',
     'repository_url': 'https://github.com/robert-marik/dmp',
     'repository_branch': 'main',
-    'google_analytics_id': '',
+    #'google_analytics_id': '',
     'extra_navbar': '<a href="https://user.mendelu.cz/marik/dmp/Dynamicke_modely_populaci_text.pdf" style="width: 100%; margin: auto; border-top: solid; border-bottom: solid; display: block;">PDF verze</a><p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>',
     'home_page_in_toc': False,
     'announcement': '',
