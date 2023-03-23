@@ -8,11 +8,26 @@ bibtex_bibfiles = ['references.bib']
 comments_config = {'hypothesis': False, 'utterances': False}
 copyright = '2022, 2023'
 exclude_patterns = ['**.ipynb_checkpoints', '.DS_Store', 'Thumbs.db', '_build', 'reseni*']
-execution_allow_errors = False
-execution_excludepatterns = []
-execution_in_temp = False
-execution_timeout = 30
-extensions = ['sphinx_togglebutton', 'sphinx_copybutton', 'myst_nb', 'jupyter_book', 'sphinx_thebe', 'sphinx_comments', 'sphinx_external_toc', 'sphinx.ext.intersphinx', 'sphinx_design', 'sphinx_book_theme', 'sphinx_proof', 'sphinxcontrib.bibtex', 'sphinx_jupyterbook_latex','sphinx_last_updated_by_git']
+nb_execution_allow_errors = False
+nb_execution_excludepatterns = []
+nb_execution_in_temp = False
+nb_execution_timeout = 30
+extensions = [
+    'sphinx_togglebutton', 
+    'sphinx_copybutton', 
+    'myst_nb', 
+    'jupyter_book', 
+    'sphinx_thebe', 
+    'sphinx_comments', 
+    'sphinx_external_toc', 
+    'sphinx.ext.intersphinx', 
+    'sphinx_design', 
+    #'sphinx_book_theme', 
+    'sphinx_proof', 
+    'sphinxcontrib.bibtex', 
+    'sphinx_jupyterbook_latex',
+    'sphinx_last_updated_by_git'
+    ]
 external_toc_exclude_missing = False
 external_toc_path = '_toc.yml'
 html_baseurl = ''
@@ -37,8 +52,8 @@ html_theme_options = {
     'use_issues_button': False
 }
 html_title = 'Dynamické modely populací'
-jupyter_cache = ''
-jupyter_execute_notebooks = 'auto'
+nb_execution_cache_path = ''
+nb_execution_mode = 'auto'
 latex_engine = 'xelatex'
 myst_enable_extensions = ['amsmath', 'dollarmath']
 myst_url_schemes = ['mailto', 'http', 'https']
