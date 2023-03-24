@@ -13,7 +13,17 @@ kernelspec:
   name: python3
 ---
 
+```{button-link} https://user.mendelu.cz/marik/dmp/Dynamicke_modely_populaci_text.pdf
+:color: primary
+:shadow:
+:expand:
+PDF verze
+```
+
+
 # Dynamické modely populací
+
+
 
 ```{code-cell} ipython
 :tags: ["hide-input"]
