@@ -16,17 +16,17 @@ extensions = [
     'sphinx_togglebutton', 
     'sphinx_copybutton', 
     'myst_nb', 
-    'jupyter_book', 
+    #'jupyter_book', 
     'sphinx_thebe', 
     'sphinx_comments', 
     'sphinx_external_toc', 
     'sphinx.ext.intersphinx', 
     'sphinx_design', 
-    #'sphinx_book_theme', 
+    'sphinx_book_theme', 
     'sphinx_proof', 
     'sphinxcontrib.bibtex', 
-    'sphinx_jupyterbook_latex',
-    'sphinx_last_updated_by_git'
+    #'sphinx_jupyterbook_latex',
+    #'sphinx_last_updated_by_git'
     ]
 external_toc_exclude_missing = False
 external_toc_path = '_toc.yml'
@@ -38,15 +38,21 @@ html_sourcelink_suffix = ''
 html_theme = 'sphinx_book_theme'
 html_theme_options = {
     'extra_footer': '<p>\n<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>\n  All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>\n</p>',
-    'announcement':'Toto je rozpracovaná verze učebního textu.','search_bar_text': 'Hledat v knize...',
-    'launch_buttons': {'notebook_interface': 'classic', 'binderhub_url': 'https://mybinder.org', 'jupyterhub_url': 'https://jupyter.mendelu.cz', 'thebe': True, 'colab_url': 'https://colab.research.google.com'},
+    'announcement':'Toto je rozpracovaná verze učebního textu.',
+    'search_bar_text': 'Hledat v knize...',
+    'launch_buttons': {
+         #'notebook_interface': 'classic',
+         #'binderhub_url': 'https://mybinder.org',
+         'jupyterhub_url': 'https://jupyter.mendelu.cz',
+         #'thebe': True,
+         'colab_url': 'https://colab.research.google.com'
+    },
     'path_to_docs': '',
     'repository_url': 'https://github.com/robert-marik/dmp',
     'repository_branch': 'main',
     #'google_analytics_id': '',
     'extra_navbar': '<a href="https://user.mendelu.cz/marik/dmp/Dynamicke_modely_populaci_text.pdf" style="width: 100%; margin: auto; border-top: solid; border-bottom: solid; display: block;">PDF verze</a><p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>',
     'home_page_in_toc': False,
-    'announcement': '',
     'use_repository_button': True,
     'use_edit_page_button': False,
     'use_issues_button': False
@@ -78,4 +84,4 @@ html_js_files = [
     'custom.js'
 ]
 
-templates_path = ["_templates"]
+#templates_path = ["_templates"]
