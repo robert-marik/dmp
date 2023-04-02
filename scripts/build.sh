@@ -19,6 +19,7 @@ sed -i 's/Theorem/Věta/' $directory/prednaska/*html
 sed -i 's/Remark/Poznámka/' $directory/prednaska/*html
 sed -i 's/Definition/Definice/' $directory/prednaska/*html
 sed -i 's/Example/Příklad/' $directory/prednaska/*html
+sed -i 's/Podle Robert/Autor Robert/' $directory/*/*html
 
 
 # Copy custom css file

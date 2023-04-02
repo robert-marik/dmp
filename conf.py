@@ -26,7 +26,7 @@ extensions = [
     'sphinx_proof', 
     'sphinxcontrib.bibtex', 
     #'sphinx_jupyterbook_latex',
-    'sphinx_last_updated_by_git'
+    #'sphinx_last_updated_by_git'
     ]
 external_toc_exclude_missing = False
 external_toc_path = '_toc.yml'
