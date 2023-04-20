@@ -4,6 +4,10 @@
 format: jb-book
 root: intro
 parts:
+  - caption: Úvod
+    numbered: false
+    chapters:
+    - file: "uvod"
   - caption: Přednášky
     numbered: true
     chapters:
