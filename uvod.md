@@ -13,7 +13,7 @@ kernelspec:
   name: python3
 ---
 
-# Úvod
+# Úvodní slovo
 
 ```{code-cell} ipython
 :tags: ["hide-input"]
