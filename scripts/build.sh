@@ -21,6 +21,8 @@ sed -i 's/Definition/Definice/' $directory/prednaska/*html
 sed -i 's/Example/Příklad/' $directory/prednaska/*html
 sed -i 's/Podle Robert/Autor Robert/' $directory/*/*html
 
+sed -i 's/\\begin{split}//' $directory/prednaska/*html
+sed -i 's/\\end{split}//' $directory/prednaska/*html
 
 # Copy custom css file
 cp custom.css $directory/_static/styles/
