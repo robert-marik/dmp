@@ -43,7 +43,7 @@ html_theme_options = {
     'launch_buttons': {
          #'notebook_interface': 'classic',
          #'binderhub_url': 'https://mybinder.org',
-         'jupyterhub_url': 'https://jupyter.mendelu.cz',
+#         'jupyterhub_url': 'https://jupyter.mendelu.cz',
          #'thebe': True,
          'colab_url': 'https://colab.research.google.com'
     },
