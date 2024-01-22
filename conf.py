@@ -17,14 +17,14 @@ extensions = [
     'sphinx_copybutton', 
     'myst_nb', 
     #'jupyter_book', 
-    'sphinx_thebe', 
+    #'sphinx_thebe', 
     'sphinx_comments', 
     'sphinx_external_toc', 
     'sphinx.ext.intersphinx', 
     'sphinx_design', 
     'sphinx_book_theme', 
     'sphinx_proof', 
-    'sphinxcontrib.bibtex', 
+    #'sphinxcontrib.bibtex', 
     #'sphinx_jupyterbook_latex',
     #'sphinx_last_updated_by_git'
     ]
@@ -38,7 +38,7 @@ html_sourcelink_suffix = ''
 html_theme = 'sphinx_book_theme'
 html_theme_options = {
     'extra_footer': '<p>\n<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>\n  All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>\n</p>',
-    'announcement':'Toto je rozpracovaná verze učebního textu.',
+#    'announcement':'Toto je rozpracovaná verze učebního textu.',
     'search_bar_text': 'Hledat v knize...',
     'launch_buttons': {
          #'notebook_interface': 'classic',
