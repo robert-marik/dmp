@@ -1,0 +1,12 @@
+conda install conda-forge::sphinx-togglebutton
+conda install conda-forge::sphinx-copybutton
+conda install conda-forge::myst-nb
+conda install conda-forge::sphinx-comments
+conda install conda-forge::sphinx-external-toc
+conda install conda-forge::sphinx-design
+conda install conda-forge::sphinx-book-theme
+pip install sphinx-proof
+conda install conda-forge::sphinx-external-toc
+conda install conda-forge::sphinxcontrib-bibtex 
+conda install conda-forge::sphinx-notfound-page 
+pip install sphinx-last-updated-by-git

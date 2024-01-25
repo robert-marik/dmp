@@ -6,24 +6,21 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.11.5
+    jupytext_version: 1.16.0
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
 
 # Úvodní slovo
 
-```{code-cell} ipython
-:tags: ["hide-input"]
+```{code-cell} ipython3
 from datetime import datetime
 from babel.dates import format_datetime
 now = datetime.now()
 print ("Poslední aktualizace: ", format_datetime(now, locale='cs'))
 ```
-
-
 
 ## Motivace 1, záchrana Lišky ostrovní 
 
@@ -61,6 +58,8 @@ přírody a jejich vakcinaci proti zavlečeným chorobám. To vše za jednu dek�
 
 > Specifika ostrovní biogeografie si představíme ve [třetí přednášce](/prednaska/03). Modelům interakce živočišných druhů ve vztahu [konkurence](/prednaska/09) nebo [predace](/prednaska/10) se budeme věnovat koncem semestru. Jednoduchý Jupyter zápisník, ukazující, že umíte zkombinovat text s výpočty a umíte spustit model a nějakým způsobem vizualizovat řešení bude obsahem seminární práce, nutné pro ukončení předmětu. 
 
++++
+
 ## Motivace 2, záchrana populace želv
 
 ```{figure} ./pics/Sea_turtles.jpg 
@@ -92,6 +91,8 @@ levné zařízení, je poměr cena/užitek obrovský.
 > Model populace s různými životními etapami si představíme na [šesté přednášce](/prednaska/06).
 > Na [sedmé přednášce](/prednaska/07) si ukážeme nástroj na analýzu vlivu parametrů na celkový
 > růst populace a v [jednom ze cvičení](/cviceni/cviceni_07) se budeme blíže věnovat zmíněnému modelu populace karety. 
+
++++
 
 ## Co budeme dělat
 
@@ -128,18 +129,13 @@ správné a to nám umožní sledovat, jak se situace bude měnit při změně p
 jako jsou změna prostředí nebo lov či sběr členů této populace. Matematika
 umožní levné, snadné, etické a bezpečné experimenty s danou populací. 
 
++++
 
 ## O metodách výuky
 
 Cvičení jsou z výpočetního hlediska zaměřeny na využití jazyka Python. To je
 moderní a perspektivní skriptovací jazyk,  vhodný pro manipulaci s daty a
 přístupný i neprogramátorům.
-
-```{margin} 
-![](./pics/ovladaci_prvky.png)
-
-Ovládací prvky v horní části stránky umožňují přístup k různým formátům textu. Nejdůležitější je raketa, ikona pro otevření textu v nástrojích umožňujících interaktivní práci a spouštění výpočtů.
-```
 
 * Díky Pythonu zpřístupníme možnosti řešení matematických modelů i
   nematematikům. Vyhneme se obtížným výpočtům, kvůli kterým bychom se museli
@@ -149,31 +145,13 @@ Ovládací prvky v horní části stránky umožňují přístup k různým form
   a cvičení a umět jej přizpůsobit jinému modelu nebo jiné situaci.
 * Příklady pro **cvičení** jsou zápisníky prostředí Jupyter, ve kterém Python
   budeme spouštět. Je možné otevřít v online prostředí nebo na svém lokálním PC.
-  Online možnosti jsou přístupné přes horní lištu pod ikonkou rakety. 
-    * JupyterHub je volba, kterou budeme používat během cvičení. Touto volbou se
-      vám naklonují materiály do vlastního adresáře a budete moci s touto jejich
-      kopií pracovat. Co se přesně stane a jaké jsou možnosti je popsáno v
-      dokumentaci k
-      [nbgitpuller](https://tljh.jupyter.org/en/latest/howto/content/nbgitpuller.html).
-      Budete pracovat na serveru univerzity, abychom měli všichni stejné
-      prostředí. Zde se také bude pracovat na zápočtovém projektu. Účet na
-      [jupyter.mendelu.cz](https://jupyter.mendelu.cz) mají studenti předmětu.
+    * Ve výuce budeme preferovat server
+      [jupyter.mendelu.cz](https://jupyter.mendelu.cz). Přístup mají studenti předmětu.
       Login je stejný jako do UIS (například `xnovak65`), přednastavené heslo
       máte v UIS, návod jak heslo najít je na přihlašovací stránce JupyterHubu.
-    * Binder založí dočasně server  na službě mybinder.org a umožní Vám
-      experimentovat s kódem, spouštět příkazy. Práce je dočasná, pokud po
-      ukončení nechcete o práci přijít, musíte si zápisník stáhnout na lokální
-      PC. Je možné doinstalovat balíčky, například knihovnu intersect příkazem
-      `! pip install intersect` (vykřičník na začátku informuje o tom, že se
-      jedná o příkaz operačního systému a ne příkaz jazyka Python).
-    * Colab vám po přihlášení ke Google účtu uloží zápisník na Google disk.
-      Prostředí je trochu jiné, ale práce je zpravidla svižnější na odezvu.
-      Zápisník se ukládá a je možné sledovat změny a ukládat verze. Výsledek
-      práce je možno uložit na [GitHub](https://cs.wikipedia.org/wiki/GitHub) do
-      svého repozitáře nebo jako Gist. Je možné doinstalovat chybějící balíčky
-      stejně jako v předchozím bodě pro Binder.
-    * Live Code umožní spouštět příklady přímo na stránce, kterou čtete. Volba
-      je nejméně svižná, ale použitelná. 
+    * S Jupyter zápisníky je možno pracovat ve službě [Colab](https://colab.research.google.com/) spojené s Google účtem.
+    * S Jupyter zápisníky je možno pracovat ve službě [Anaconda Cloud](https://anaconda.cloud/). Účet si můžete zřídit sami,
+      stačí free verze účtu a máte přístup i k umělé inteligenci, která Vám pomůže při psaní nebo ladění kódu.
     * Offline práce je možná, pokud máte nainstalovaný Python, Jupyter a s tím
       spojený ekosystém. Doporučenou volbou pro nejběžnější operační systémy
       (Linux, Windows) je
@@ -186,6 +164,8 @@ Ovládací prvky v horní části stránky umožňují přístup k různým form
 ```{warning}
 Pokud pracujete na lokálním počítači, máte data pod kontrolou a nikdo jiný je nevidí. Při práci na JupyterHubu na Mendelově univerzitě data může vidět i admin serveru. (Toho budeme využívat při práci na zápočtovém projektu.) Při práci na serverech jako Colab či Binder jdou data přes servery dalších vlastníků a nemáte data plně pod kontrolou. Proto není vhodné pracovat s osobními daty a citlivým obsahem. 
 ```
+
++++
 
 ## Troubleshooting
 
@@ -206,5 +186,8 @@ Terminal) a tam zadat příkazy OS Linux. Můžete použít `mv dmp dmp_kopie` p
 přejmenování. Zůstanou Vám i upravené soubory v adresáři dm_kopie. Pokud
 svou práci ukládáte jinam (doporučeno do hlavního adresáře nebo do svého
 podadresáře), můžete adresář smazat příkazem `yes | rm -r dmp` a poté se při
-otevření souboru z učebního textu naklonuje celá nová verze. 
+otevření souboru z učebního textu naklonuje celá nová verze.
 
+```{code-cell} ipython3
+
+```
