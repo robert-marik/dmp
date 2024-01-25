@@ -55,7 +55,7 @@ parts:
     - file: "snippety/multiindex.ipynb"   
     - file: "snippety/multiindex-pokrocili.ipynb"   
     - file: "snippety/reseni_rovnice.ipynb"
-    - file: "snippety/broken_axis.ipynb"
+#   - file: "snippety/broken_axis.ipynb"
   - caption: Literatura a rejstřík
     chapters:
     - file: "literatura.md"
