@@ -24,7 +24,7 @@ extensions = [
     'sphinx_design', 
     'sphinx_book_theme', 
     'sphinx_proof', 
-    #'sphinxcontrib.bibtex', 
+    'sphinxcontrib.bibtex', 
     #'sphinx_jupyterbook_latex',
     #'sphinx_last_updated_by_git'
     ]
