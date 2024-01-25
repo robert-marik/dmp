@@ -24,7 +24,7 @@ extensions = [
     'sphinx_design', 
     'sphinx_book_theme', 
     'sphinx_proof', 
-    #'sphinxcontrib.bibtex', 
+    'sphinxcontrib.bibtex', 
     #'sphinx_jupyterbook_latex',
     #'sphinx_last_updated_by_git'
     ]
@@ -51,7 +51,7 @@ html_theme_options = {
     'repository_url': 'https://github.com/robert-marik/dmp',
     'repository_branch': 'main',
     #'google_analytics_id': '',
-    'extra_navbar': '<a href="https://user.mendelu.cz/marik/dmp/Dynamicke_modely_populaci_text.pdf" style="width: 100%; margin: auto; border-top: solid; border-bottom: solid; display: block;">PDF verze</a><p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>',
+    #'extra_navbar': '<a href="https://user.mendelu.cz/marik/dmp/Dynamicke_modely_populaci_text.pdf" style="width: 100%; margin: auto; border-top: solid; border-bottom: solid; display: block;">PDF verze</a><p>Powered by <a href="https://jupyterbook.org">Jupyter Book</a>',
     'home_page_in_toc': False,
     'use_repository_button': True,
     'use_edit_page_button': False,
@@ -83,5 +83,8 @@ html_js_files = [
     'https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js'
     'custom.js'
 ]
+
+
+latex_table_style = ['booktabs']
 
 #templates_path = ["_templates"]
