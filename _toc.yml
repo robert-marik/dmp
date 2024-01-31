@@ -41,8 +41,10 @@ parts:
     - file: "cviceni/cviceni_10.ipynb"  
     - file: "cviceni/cviceni_11.ipynb"  
   - caption: Kombinovaní
+    numbered: true
     chapters:
     - file: "kombi/01.ipynb"
+    - file: "kombi/02.ipynb"
   - caption: Python konstrukce a ukázky
     chapters:
     - file: "snippety/python_zakladni_konstrukce.ipynb"
