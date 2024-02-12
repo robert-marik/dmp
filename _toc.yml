@@ -7,8 +7,6 @@ parts:
   - caption: 
     numbered: false
     chapters:
-    - url: https://robert-marik.github.io/pages/dmp
-      title: Web předmětu
     - file: "uvod"
   - caption: Přednášky
     numbered: true
