@@ -26,6 +26,7 @@ parts:
   - caption: Cvičení
     numbered: true
     chapters:
+    - file: "ovladani.ipynb"
     - file: "Prvni_kroky.ipynb"  
     - file: "cviceni/cviceni_01.ipynb"  
     - file: "cviceni/cviceni_02.ipynb"  
