@@ -10,9 +10,10 @@ import pandas as pd
 # passwords. The passwords have to be distributed by a secret method
 # to the users.
 
-server = "https://jupyter.mendelu.cz"
+df = pd.read_csv('hesla_kombi.csv')
+df['heslo'] = '2024_'+df['heslo']
 
-logins_passwords = [[i[1][0],i[1][1]] for i in pd.read_csv("hesla.csv", header=None).iterrows()]
+server = "https://jupyter.mendelu.cz"
 
 ## create an object of the chrome webdriver
 driver = webdriver.Chrome(executable_path = r'./chromedriver')
@@ -20,16 +21,18 @@ driver = webdriver.Chrome(executable_path = r'./chromedriver')
 ## open selenium URL in chrome browser
 driver.get(server+'/hub/signup')
 
-for login, heslo in logins_passwords:
+
+for i,(jmeno,login, heslo) in df.iterrows():
+    print (r"\prikaz ",login,";",jmeno,";",heslo,";")
     inputElement = driver.find_element("id","username_input")
     inputElement.send_keys(login)
     inputElement = driver.find_element("id","password_input")
     inputElement.send_keys(heslo)
     inputElement = driver.find_element("id","password_confirmation_input")
     inputElement.send_keys(heslo)
-    time.sleep(3) # Let the user actually see something!
+    time.sleep(1) # Let the user actually see something!
     inputElement.submit()
-    time.sleep(3) # Let the user actually see something!
+    time.sleep(1) # Let the user actually see something!
 
 
 driver.quit()
