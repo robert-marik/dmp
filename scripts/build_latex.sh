@@ -12,6 +12,12 @@ sed -i 's/sphinxShadowBox/comment/' $directory/python.tex
 sed -i 's/documentclass\[/documentclass[twocolumn,/' $directory/python.tex
 cd $directory
 
+sed -i 's/\\def\\sphinxdocclass{report}/\\def\\sphinxdocclass{book}/' python.tex
+sed -i 's/\\usepackage{geometry}/\\usepackage[margin=2cm, left=1.5cm, right=1.5cm]{geometry}/' python.tex
+sed -i 's/\\usepackage{unicode-math}//' python.tex
+
+
+
 sed -i 's/\\chapter{Úvodní slovo}/\\chapter*{Úvodní slovo}/' python.tex
 
 sed -i 's/\\chapter{První kroky}/\\end{document}\\part{Cvičení}\\input cviceni_definice.tex\n\\chapter{První kroky}/' python.tex
