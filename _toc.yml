@@ -63,6 +63,8 @@ parts:
     chapters:
     - file: "literatura.md"
     - file: genindex    
-
-
+  - caption: e-opora
+    chapters:
+    - url: https://robert-marik.github.io/moodle-python
+      title: Python
          
