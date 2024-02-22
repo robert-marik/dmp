@@ -43,6 +43,10 @@ parts:
     chapters:
     - file: "kombi/01.ipynb"
     - file: "kombi/02.ipynb"
+    - file: "kombi/III_01.ipynb"
+    - file: "kombi/III_02.ipynb"
+    - file: "kombi/III_03_Lotka_Volterra.ipynb"
+    - file: "kombi/III_04_konkurence.ipynb"
   - caption: Python konstrukce a ukázky
     chapters:
     - file: "snippety/python_zakladni_konstrukce.ipynb"
