@@ -2,9 +2,9 @@
 
 \usepackage[margin=0.5in]{geometry}
 \usepackage[czech]{babel}
-\usepackage{graphicx}
+\usepackage{graphicx, amsmath}
 \usepackage{booktabs, vwcol, multicol}
-\usepackage[texMathDollars,pipeTables=true,tableCaptions,hybrid]{markdown}
+% \usepackage[texMathDollars,pipeTables=true,tableCaptions,hybrid]{markdown}
 
 \begin{document}
 
@@ -27,7 +27,7 @@ rovnic
   \end{aligned}
 \end{equation*}
 kde $w_1$ a $w_2$ jsou koeficienty, vyjadřující, jak jedna populace zaplňuje nosnou kapacitu populace druhé. 
-Zpravidla systém upravujeme rozdělením zlomkz na dva členy a roznásobením koeficientem před závorkou do tvaru
+Zpravidla systém upravujeme rozdělením zlomků na dva členy a roznásobením koeficientem před závorkou do tvaru
 \begin{equation*}
   \begin{aligned}
     \frac{\mathrm dx}{\mathrm dt} &= x(a-bx-cy) \\
@@ -64,7 +64,7 @@ $$\alpha - \beta \frac ab$$ kladný, populace $y$ roste a pokud záporný,
 populace $y$ klesá. V prvním případě je tedy bod odpovídající
 přítomnosti jenom populace $x$ nestabilní, introdukce populace $y$
 vede k rozšíření $y$ a proto se jedná buď o slabou konkurenci nebo
-dominanci druhu $y$. Podobně znaménko výrazu $a-b\frac\alpha\beta$
+dominanci druhu $y$. Podobně znaménko výrazu $a-c\frac\alpha\gamma$
 rozhoduje o tom, zda při introdukci populace $x$ do prostředí
 obsazeného populací $y$ populace $x$ prosperuje či nikoliv a opět
 odsud odvodíme, o který ze scénářů se může jednat.
