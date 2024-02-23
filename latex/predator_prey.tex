@@ -1,18 +1,25 @@
-\documentclass{article}
+\documentclass[handouts]{beamer}
+\usepackage[orientation=portrait,size=a4, scale=2.3]{beamerposter}
+\beamertemplatenavigationsymbolsempty
 
-\usepackage[margin=0.5in]{geometry}
 \usepackage[czech]{babel}
-\usepackage{graphicx}
-\usepackage{booktabs, vwcol}
-\usepackage[texMathDollars,pipeTables=true,tableCaptions,hybrid]{markdown}
+%\usepackage{graphicx}
+\usepackage{booktabs}
+
+\title{Model dravce a kořisti}
+\author{Robert Mařík}
+\usetheme{CambridgeUS}
+\usecolortheme{crane}
+
 
 \begin{document}
 
+\begin{frame}
+  
 \begin{center}
-  \Large \bfseries
+  \large 
 Model dravce a kořisti
 \end{center}
-\pagestyle{empty}
 
 
 Jednoduchý model predace představili nezávisle na sobě A. Lotka a
@@ -20,7 +27,7 @@ V. Volterra.
 
 Velikosti populace kořisti a predátora jsou po řadě $x$ a $y$.
 
-Model předpokládá následující.
+\begin{block}{Předpoklady modelu}
 
 \begin{itemize}
 \item Populace kořisti je daleko pod svou kapacitou prostředí a
@@ -30,7 +37,7 @@ Model předpokládá následující.
 \item Ulovená kořist se daným procentem projeví příznivě na růstu populace predátora. 
 \item Predátor nemá alternativní potravu a bez kořisti vymírá konstantní rychlostí per-capita.
 \end{itemize}
-
+\end{block}
 \begin{equation*}
 \begin{aligned}
 \frac{\mathrm dx}{\mathrm dt}={}&ax-bxy\\
@@ -38,20 +45,24 @@ Model předpokládá následující.
 \end{aligned}
 \end{equation*}
 
+\begin{block}{Pozorování vyplývající z modelu}
 \begin{itemize}
 \item Nenulovým stacionárním bodem je bod $x=\frac dc$ a $y=\frac
 ab$. Velikosti obou populací kolísají okolo tohoto bodu. 
+\item Po maximu kořisti následuje maximum dravce, minimum kořisti, minimum dravce atd. 
 \item Paradoxem je, že velikost populace kořisti kolísá okolo bodu závisejícího na parametrech populace dravce a naopak. 
 \item Perioda oscilací závisí na počáteční podmínce.  
 \item Přidáním vnitrodruhové konkurence do populace kořisti se systém stabilizuje. 
-\item Cykly blízké stacioárnímu bodu mají rfelativně malé oscilace. Výrazným zásahem do populace, například výraznou redukcí populace dravce, se systém dostane na jiný cyklus, kde jsou vysoké výkyvy obou populací. 
+\item Cykly blízké stacionárnímu bodu mají relativně malé oscilace. Výrazným zásahem do populace, například výraznou redukcí populace dravce, se systém dostane na jiný cyklus, kde jsou vysoké výkyvy obou populací. 
   
 \end{itemize}
+\end{block}
 
+\hbox to \hsize{\includegraphics[width=0.5\hsize]{Lotka-Volterra_portret.pdf}
+  \hss
+\includegraphics[width=0.5\hsize]{Lotka-Volterra_prubeh.pdf}}
 
-\includegraphics[width=0.5\hsize]{Lotka-Volterra_portret.pdf}
-\includegraphics[width=0.5\hsize]{Lotka-Volterra_prubeh.pdf}
-
+\end{frame}
 
 
 
@@ -61,4 +72,5 @@ ab$. Velikosti obou populací kolísají okolo tohoto bodu.
 
 %%% Local Variables: 
 %%% TeX-command-extra-options: "-shell-escape"
+%%% TeX-engine: xetex
 %%% End:

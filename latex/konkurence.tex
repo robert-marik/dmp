@@ -1,23 +1,29 @@
-\documentclass{article}
+\documentclass[handouts]{beamer}
+\usepackage[orientation=portrait,size=a4, scale=1.7]{beamerposter}
+\beamertemplatenavigationsymbolsempty
 
-\usepackage[margin=0.5in]{geometry}
 \usepackage[czech]{babel}
-\usepackage{graphicx, amsmath}
-\usepackage{booktabs, vwcol, multicol}
-% \usepackage[texMathDollars,pipeTables=true,tableCaptions,hybrid]{markdown}
+\usepackage{multicol}
+\usepackage{booktabs}
+
+\title{Model konkurence dvou druhů}
+\author{Robert Mařík}
+\usetheme{CambridgeUS}
+\usecolortheme{crane}
 
 \begin{document}
 
+\begin{frame}
 \begin{center}
-  \Large \bfseries
-Modely konkurence
+  \large Model konkurence dvou druhů
 \end{center}
-\pagestyle{empty}
 
-\begin{multicols}2
+
+\begin{columns}
+  \begin{column}{0.5\hsize}
 Modely konkurence vychází z klasické logistické rovnice
 $$    \frac{\mathrm dx}{\mathrm dt} = rx\left(1-\frac{x}{K}\right) $$
-napsané samostatně pro každou z populací a doplněnou o skutečnost, že část nosné kapacity zaplní konkurující druh. 
+napsané samostatně pro každou z populací. Rovnice jsou doplněny o skutečnost, že část nosné kapacity zaplní konkurující druh. 
 Dvě konkurující si populace o velikostech $x$ a $y$ je možno modelovat dvojicí
 rovnic
 \begin{equation*}
@@ -39,22 +45,24 @@ kde $b$ a $\gamma$ jsou parametry vnitrodruhové konkurence a $c$ a $\beta$ para
 Počátek je vždy nestacionárním bodem. Pokud bude přítomno malé
 množství obou druhů, budou oba druhy růst.
 
-Model vykazuje tři druhy chování.
-\begin{itemize}\itemsep -5 pt
-\item Může dojít k dominanci jednoho z druhů. V tomto případě jedna
+\end{column}
+\begin{column}{0.5\hsize}
+\begin{block}{Tři druhy chování modelu}
+\begin{itemize}
+\item Může dojít k \textbf{dominanci jednoho z druhů}. V tomto případě jedna
   populace vymírá a druhá konverguje k nosné kapacitě. Toto nastává,
   pokud pro jednu populaci je mezidruhová konkurence silnější než
   vnitrodruhová a pro druhou je tomu naopak.
 \item V případě že obě mezidruhové konkurence jsou malé, dojde ke
-  slabé konkurenci. Žádná z populací nevymírá, obě populace setrvávají
+  \textbf{slabé konkurenci}. Žádná z populací nevymírá, obě populace setrvávají
   na nenulových hodnotách.
-\item V případě silné mezidruhové konkurence dochází k silné
-  konkurenci, kdy jedna z populací vymírá a druhá konverguje ke své
+\item V případě silné mezidruhové konkurence dochází k \textbf{silné
+  konkurenci}, kdy jedna z populací vymírá a druhá konverguje ke své
   nosné kapacitě. Na rozdíl od dominance jednoho druhu v tomto případě
   výchozí stav rozhoduje o tom, která z populací přežívá a která
   vymírá.
 \end{itemize}
-
+\end{block}
 Při posuzování síly konkurence nestačí posuzovat pouze koeficienty
 $b$, $c$, $\beta$, $\gamma$, ale je nutno je posuzovat i s ohledem na
 rychlosti růstu $a$ a $\alpha$. Například z první rovnice vidíme, že
@@ -68,15 +76,17 @@ dominanci druhu $y$. Podobně znaménko výrazu $a-c\frac\alpha\gamma$
 rozhoduje o tom, zda při introdukci populace $x$ do prostředí
 obsazeného populací $y$ populace $x$ prosperuje či nikoliv a opět
 odsud odvodíme, o který ze scénářů se může jednat.
+\end{column}
+\end{columns}
 
-\end{multicols}
 
 \hbox to \hsize{\hss\includegraphics[width=0.9\linewidth]{img_konkurence.pdf}\hss}
-
+\end{frame}
 
 \end{document}
 
 
 %%% Local Variables: 
 %%% TeX-command-extra-options: "-shell-escape"
+%%% TeX-engine: xetex
 %%% End:
