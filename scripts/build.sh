@@ -3,6 +3,8 @@ directory=../_build/html
 
 touch ../intro.md
 sed -i 's/ipython3/ipython3\n:tags: ["hide-input"]/' ../prednaska/*.md 
+sed -i ':a;N;$!ba;s/\(:tags: \["hide-input"\]\)\n\(:tags: \["hide-input"\]\)/\1/g' ../prednaska/*.md
+sed -i ':a;N;$!ba;s/\(:tags: \["hide-input"\]\)\n\(:tags: \["hide-input"\]\)/\1/g' ../prednaska/*.md
 #~/anaconda3/bin/sphinx-build ../ $directory -b html
 sphinx-build ../ $directory -b html
 
