@@ -1,0 +1,32 @@
+Traceback (most recent call last):
+  File "/home/jupyter-marik/.local/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/opt/tljh/user/lib/python3.10/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/opt/tljh/user/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 172, in wrapped
+    return loop.run_until_complete(inner)
+  File "/opt/tljh/user/lib/python3.10/asyncio/base_events.py", line 646, in run_until_complete
+    return future.result()
+  File "/opt/tljh/user/lib/python3.10/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/opt/tljh/user/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/tljh/user/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+parametr;r_f;r_s;r_p;\beta_{fs};\beta_{sf};\mu_f;\mu_s;\mu_p;\Phi;\sigma;K_f;K_s;K_p;\lambda_f;\lambda_s;\lambda_p;\nu;\Phi_2;\sigma_2
+liška;10,7;0,4;-10;-0,5;-0,1;-9,8;-0,4;-6,1;-7,9;0,6;1,5;0,1;-8,7;-0,2;-0,1;-15,6;20,8;2,4;1,1
+skunk;-0,4;9,9;-8,8;0;-2.0;0,2;-9,1;-5,4;2;-8,3;-0,1;2,7;-7,6;-0,2;-0,1;-13.8;17,4;2,1;1
+prase;0,9;0,4;-1,3;0;-0,1;-1;-0,5;-8,5;0,3;0,1;0,1;0,1;-1,1;-0,1;-0,1;-9,7;11,2;1,4;0,7
+orel;0,3;0,1;9,6;0;0;-0,1;-0,1;-1,1;-0,1;0;0;0;8,2;0,1;0;8,1;-9,5;0,1;0
+
+------------------
+
+
+[0;36m  Cell [0;32mIn[1], line 1[0;36m[0m
+[0;31m    parametr;r_f;r_s;r_p;\beta_{fs};\beta_{sf};\mu_f;\mu_s;\mu_p;\Phi;\sigma;K_f;K_s;K_p;\lambda_f;\lambda_s;\lambda_p;\nu;\Phi_2;\sigma_2[0m
+[0m                          ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m unexpected character after line continuation character
+
+
