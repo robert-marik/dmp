@@ -38,6 +38,10 @@ parts:
     - file: "cviceni/cviceni_09.ipynb"  
     - file: "cviceni/cviceni_10.ipynb"  
     - file: "cviceni/cviceni_11.ipynb"  
+  - caption: Různá zadání
+    numbered: true
+    chapters:
+    - file: "enzymy.md"
   - caption: Kombinovaní
     numbered: true
     chapters:
