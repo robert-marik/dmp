@@ -12,13 +12,14 @@ volbou jednotek je minimalizován počet parametrů na jediný parametr
 $b$ vystupující v rychlosti syntézy ($1-b(x-1)$).
 
 Vyřešte tuto rovnici pro tři různé hodnoty parametru $b$: pro nulovou
-hodnotu (konstantní produkce) a pro dvě nenulové hodnoty (produkce s
-rychlostí klesající). Zjistěte, která varianta vede k nejrychlejší
-syntéze proteinu z nulové hodnoty.
+hodnotu (konstantní produkce) a pro dvě nenulové hodnoty (záporná
+zpětná vazba, produkce klesá s množstvím syntetizované
+látky). Zjistěte, která varianta vede k nejrychlejší syntéze proteinu
+z nulové hodnoty.
 
 Zjistěte, zda stejná varianta zajistí i nejrychlejší zotavení se po
 rozkolísání rovnovážného stavu. Zopakujte model s jinou počáteční
-podmínkou, kdy nevzcházíme z nulového stavu, ale ze stavu o 20 procent
+podmínkou, kdy nevycházíme z nulového stavu, ale ze stavu o 20 procent
 nad rovnovážnou hodnotou, tj. ze stavu 1.2.
 
 Výstup bude obsahovat následující
