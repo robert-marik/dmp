@@ -42,6 +42,7 @@ parts:
     numbered: true
     chapters:
     - file: "enzymy.md"
+    - file: "chovani.md"
   - caption: Kombinovaní
     numbered: true
     chapters:
