@@ -42,7 +42,9 @@ parts:
     numbered: true
     chapters:
     - file: "enzymy.md"
+    - file: "allee.md"
     - file: "chovani.md"
+    - file: "Beverton-Holt.md"
   - caption: Kombinovaní
     numbered: true
     chapters:

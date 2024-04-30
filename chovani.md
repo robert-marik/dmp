@@ -28,11 +28,15 @@ u téhož zdroje (potrava, hnízdiště, apod).
   silní a po boji je pravděpodobnost zkonzumování zdroje poloviční pro
   každého jestřába.
 
-Matematický rozbor (J. Kalas, Z. Pospíšil, Spojité modely v biologii) ukazuje, že četnost $x$ výskytu jestřábů v populaci
-se řídí diferenciální rovnicí
+Matematický rozbor (J. Kalas, Z. Pospíšil, Spojité modely v biologii)
+ukazuje, že četnost $x$ výskytu jestřábů v populaci se řídí
+diferenciální rovnicí
 $$x'=x(1-x)\left(\frac V2-\frac D2 x\right).$$
-Jediné realistické hodnoty $x$ jsou z intervalu $[0,1]$. Pro nalezení stacionárních bodů a posouzení jejich stability budeme studovat funkci
-$$f=x(1-x)\left(\frac V2-\frac D2 x\right).$$ Stacionární body rovnice jsou nulové body funkce $f$ a to jsou $x=0$, $x=1$ a $x=\frac VD$. Poslední stacionární bod v závislosti na hodnotě parametrů může a nemusí ležet v intervalu $[0,1]$
+Jediné realistické hodnoty $x$ jsou z intervalu $[0,1]$.  Stacionární
+body rovnice jsou nulové body pravé strany rovnice a to jsou $x=0$,
+$x=1$ a $x=\frac VD$. Poslední stacionární bod v závislosti na hodnotě
+parametrů může a nemusí ležet v intervalu $[0,1]$. Pokud leží mimo
+tento interval, nezajímá nás.
 
 
-Namodelujte vývoj procentuálního zastoupení jestřábů pro dva případy, kdy $V<D$ a $V>D$. V každém z případů simulujte několik počátečních podmínek rozložených na intervalu $[0,1]$ a sledujte, zda všechna řešení konvergují ke stejné stacionární hodnotě a pokud ano, k jaké.
+**Úkol:** Namodelujte vývoj procentuálního zastoupení jestřábů pro dva případy, kdy $V<D$ a $V>D$. V každém z případů simulujte několik počátečních podmínek rozložených na intervalu $[0,1]$ a sledujte, zda všechna řešení konvergují ke stejné stacionární hodnotě a pokud ano, k jaké.
