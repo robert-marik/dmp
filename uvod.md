@@ -55,6 +55,7 @@ přírody a jejich vakcinaci proti zavlečeným chorobám. To vše za jednu dek�
 * [Matematický model](https://www.pnas.org/doi/10.1073/pnas.012422499#F3)
   interakce mezi liškami, orly, skunkem a zdivočelými prasaty.
 * [Řešení modelu v prostředí Jupyter notebooku](https://gist.github.com/robert-marik/b1466473f485e7218efda491064765a6)
+* [Citlivostní analýza modelu](https://gist.github.com/robert-marik/1f8f17f1af1746e1aca772bdb7cbb8d6)
 
 > Specifika ostrovní biogeografie si představíme ve [třetí přednášce](/prednaska/03). Modelům interakce živočišných druhů ve vztahu [konkurence](/prednaska/09) nebo [predace](/prednaska/10) se budeme věnovat koncem semestru. Jednoduchý Jupyter zápisník, ukazující, že umíte zkombinovat text s výpočty a umíte spustit model a nějakým způsobem vizualizovat řešení bude obsahem seminární práce, nutné pro ukončení předmětu. 
 
