@@ -1,0 +1,1283 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="cs" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Hierarchický index (pokročilí) &#8212; Dynamické modely populací</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'snippety/multiindex-pokrocili';</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.jscustom.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="Numerické řešení rovnice" href="reseni_rovnice.html" />
+    <link rel="prev" title="Tabulky s hierarchickým indexem" href="multiindex.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="cs"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Hledat v knize..."
+         aria-label="Hledat v knize..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Dynamické modely populací</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Vyhledávání</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvodní slovo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Přednášky</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/01.html">1. Funkce a vlastnosti funkcí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/02.html">2. Derivace a integrál</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/03.html">3. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/04.html">4. Autonomní diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/05.html">5. Bifurkace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/06.html">6. Lineární algebra, matice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/07.html">7. Parciální derivace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/08.html">8. Autonomní systémy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/09.html">9. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/10.html">10. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/11.html">11. Diskrétní populační modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/12.html">12. Difuzní rovnice</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cvičení</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">1. První kroky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_01.html">2. Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_02.html">3. Práce s funkcemi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_03.html">4. Diferenciální rovnice 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_04.html">5. Diferenciální rovnice 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_05.html">6. Diferenciální rovnice 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_06.html">7. LaTeX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_07.html">8. Maticové modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_08.html">9. Levinsův model metapopulací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_09.html">10. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_10.html">11. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_11.html">12. Samostatná práce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Různá zadání</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">1. Enzymy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../allee.html">2. Silný Alleeho efekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chovani.html">3. Model soupeření jestřábí a holubičí povahy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">4. Model populace ryb</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Kombinovaní</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">1. Data a grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">2. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">3. Lov v populaci - fázový portrét</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">4. Lov v populaci - časový vývoj</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">5. Model dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">6. Model konkurence</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python konstrukce a ukázky</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="python_zakladni_konstrukce.html">Základní konstrukce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cykly.html">Cykly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grafy_amateri.html">Kreslení funkcí jednoduše</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grafy_pokrocili.html">Kreslení funkcí pro pokročilé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diferencialni_rovnice_amateri.html">Diferenciální rovnice pro začátečníky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="diferencialni_rovnice_pokrocili.html">Diferenciální rovnice pro pokročilejší</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_tabulky.html">Tabulky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_grafy.html">Obrázky, grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reseni_ODR.html">Řešení diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tabulky_none.html">Tabulky s None a NaN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multiindex.html">Tabulky s hierarchickým indexem</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Hierarchický index (pokročilí)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reseni_rovnice.html">Numerické řešení rovnice</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Literatura a rejstřík</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../literatura.html">Literatura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Rejstřík</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">e-opora</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://robert-marik.github.io/moodle-python">Python</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/robert-marik/dmp/blob/main/snippety/multiindex-pokrocili.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://github.com/robert-marik/dmp" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Zdrojové úložiště"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Stáhněte si tuto stránku">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/snippety/multiindex-pokrocili.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Stáhněte si zdrojový soubor"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Tisk do PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Režim celé obrazovky"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Hierarchický index (pokročilí)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Obsah </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tvorba-tabulky-s-hierarchickym-indexem">Tvorba tabulky s hierarchickým indexem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pouziti-dat-z-tabulky">Použití dat z tabulky</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ukazky-selekce-sloupcu">Ukázky selekce sloupců</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="hierarchicky-index-pokrocili">
+<h1>Hierarchický index (pokročilí)<a class="headerlink" href="#hierarchicky-index-pokrocili" title="Permalink to this heading">#</a></h1>
+<p>Pokročilejší práce s multiindexem (hierarchický index).</p>
+<ul class="simple">
+<li><p>Vyřešíme soustavu rovnic. Naučíme se uložit data do tabulky, kde budou přístupné výsledky pro jednotlivá nastavení modelu (datasety) a pro vývoj jednotlivých populací.</p></li>
+<li><p>Naučíme se uložená data vyvolávat a používat například pro tvorbu grafů.</p></li>
+</ul>
+<p>Nejprve import knihoven a nastavení.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+
+<span class="k">def</span> <span class="nf">konkurence</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">beta</span><span class="o">=</span><span class="mf">.2</span><span class="p">,</span><span class="n">gamma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">X</span>
+    <span class="k">return</span> <span class="p">[(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">alpha</span><span class="o">-</span><span class="n">beta</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">gamma</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">]</span>
+
+<span class="n">meze</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">30</span><span class="p">]</span>
+<span class="n">pocatecni_podminka</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">]</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">meze</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="tvorba-tabulky-s-hierarchickym-indexem">
+<h2>Tvorba tabulky s hierarchickým indexem<a class="headerlink" href="#tvorba-tabulky-s-hierarchickym-indexem" title="Permalink to this heading">#</a></h2>
+<p>Vytvoříme tabulku se sloupcovým indexem obsahujícím dvě úrovně. Pro začátek uložíme pouze sloupec s časem jako index. Ideální z hlediska rychlosti je vytvořit sloupce současně s tabulkou a poté do nich jenom vkládat data, ale je možné sloupce vytvářet i později.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">([],</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">,</span> <span class="s1">&#39;populace&#39;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">my_index</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Čas&quot;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th>Čas</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>29.759519</th>
+    </tr>
+    <tr>
+      <th>29.819639</th>
+    </tr>
+    <tr>
+      <th>29.879760</th>
+    </tr>
+    <tr>
+      <th>29.939880</th>
+    </tr>
+    <tr>
+      <th>30.000000</th>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Dále vyřešíme pro jednotlivá nastavení (bez konkurence, s konkurencí a dominance jednoho a druhého druhu) a vložíme do tabulky. Vytiskneme konec tabulky.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">datasets</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;nezávislé populace&quot;</span><span class="p">,</span><span class="s2">&quot;slabá konkurence&quot;</span><span class="p">,</span><span class="s2">&quot;dominance x&quot;</span><span class="p">,</span><span class="s2">&quot;dominance y&quot;</span><span class="p">]</span>  <span class="c1"># Názvy datasetů</span>
+<span class="n">druhy</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="s2">&quot;y&quot;</span><span class="p">]</span> <span class="c1"># Názvy druhů</span>
+
+<span class="k">for</span> <span class="n">c</span><span class="p">,</span><span class="n">beta</span><span class="p">,</span><span class="n">d</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span> 
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">1.5</span><span class="p">],</span>   <span class="c1"># hodnoty pro koeficient c </span>
+                <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">1.3</span><span class="p">,</span><span class="mf">0.8</span><span class="p">],</span>   <span class="c1"># hodnoty pro koeficient beta</span>
+                <span class="n">datasets</span>  <span class="c1"># názvy datasetů</span>
+        <span class="p">):</span>
+    <span class="n">reseni</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span>
+                       <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span><span class="n">X</span><span class="p">:</span><span class="n">konkurence</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">,</span><span class="n">beta</span><span class="o">=</span><span class="n">beta</span><span class="p">),</span>
+                       <span class="n">meze</span><span class="p">,</span>
+                       <span class="n">pocatecni_podminka</span><span class="p">,</span>
+                       <span class="n">t_eval</span><span class="o">=</span><span class="n">t</span> 
+                       <span class="p">)</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">T</span>   <span class="c1"># řešení ve sloupcích</span>
+    <span class="n">df</span><span class="p">[[(</span><span class="n">d</span><span class="p">,</span><span class="n">druh</span><span class="p">)</span> <span class="k">for</span> <span class="n">druh</span> <span class="ow">in</span> <span class="n">druhy</span><span class="p">]]</span> <span class="o">=</span> <span class="n">reseni</span> <span class="c1"># uložení do tabulky</span>
+<span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span> <span class="c1"># tisk konce tabulky pro kontrolu</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th>dataset</th>
+      <th colspan="2" halign="left">nezávislé populace</th>
+      <th colspan="2" halign="left">slabá konkurence</th>
+      <th colspan="2" halign="left">dominance x</th>
+      <th colspan="2" halign="left">dominance y</th>
+    </tr>
+    <tr>
+      <th>populace</th>
+      <th>x</th>
+      <th>y</th>
+      <th>x</th>
+      <th>y</th>
+      <th>x</th>
+      <th>y</th>
+      <th>x</th>
+      <th>y</th>
+    </tr>
+    <tr>
+      <th>Čas</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>29.759519</th>
+      <td>0.999867</td>
+      <td>0.999926</td>
+      <td>0.652025</td>
+      <td>0.869367</td>
+      <td>0.999876</td>
+      <td>0.000107</td>
+      <td>6.607543e-07</td>
+      <td>0.999999</td>
+    </tr>
+    <tr>
+      <th>29.819639</th>
+      <td>0.999875</td>
+      <td>0.999931</td>
+      <td>0.652022</td>
+      <td>0.869363</td>
+      <td>0.999880</td>
+      <td>0.000105</td>
+      <td>6.411905e-07</td>
+      <td>0.999999</td>
+    </tr>
+    <tr>
+      <th>29.879760</th>
+      <td>0.999882</td>
+      <td>0.999935</td>
+      <td>0.652022</td>
+      <td>0.869363</td>
+      <td>0.999885</td>
+      <td>0.000103</td>
+      <td>6.222057e-07</td>
+      <td>0.999999</td>
+    </tr>
+    <tr>
+      <th>29.939880</th>
+      <td>0.999889</td>
+      <td>0.999938</td>
+      <td>0.652026</td>
+      <td>0.869368</td>
+      <td>0.999889</td>
+      <td>0.000101</td>
+      <td>6.037822e-07</td>
+      <td>0.999999</td>
+    </tr>
+    <tr>
+      <th>30.000000</th>
+      <td>0.999895</td>
+      <td>0.999942</td>
+      <td>0.652032</td>
+      <td>0.869376</td>
+      <td>0.999893</td>
+      <td>0.000099</td>
+      <td>5.859032e-07</td>
+      <td>0.999999</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="pouziti-dat-z-tabulky">
+<h2>Použití dat z tabulky<a class="headerlink" href="#pouziti-dat-z-tabulky" title="Permalink to this heading">#</a></h2>
+<p>Na řadě je vykreslení dat ze sloupců tak, aby byly v jednom obrázku všechna data pro jednotlivé datasety a poté v jedno obrázku všechna data pro jednotlivé populace.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># obrázek se čtyřmi podobrázky ve dou řadách a sloupcích</span>
+<span class="n">axs</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>  <span class="c1"># abychom se nemuseli na podobrázky odkazovat dvojitým indexem, seřadíme je lineárně</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span><span class="n">dataset</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="p">,</span><span class="n">datasets</span><span class="p">):</span>  <span class="c1"># cyklus přes podobrázky a datasety</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">df</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span><span class="s2">&quot;x&quot;</span><span class="p">),</span><span class="n">level</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># vykreslení datasetu do podobrázku</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">df</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span><span class="s2">&quot;y&quot;</span><span class="p">),</span><span class="n">level</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># vykreslení datasetu do podobrázku</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>  <span class="c1"># nastavení nadpisu</span>
+        <span class="n">title</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+        <span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.05</span><span class="p">))</span>    <span class="c1"># rozsah pro svislou osu</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;Druh </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">druhy</span><span class="p">])</span>  <span class="c1"># legenda</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>  <span class="c1"># automatické upravení mezer mezi obrázky</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ba2064b69451e064df6c5506c20fe07eb92d42e3b0260259b506de820a1fc48a.png" src="../_images/ba2064b69451e064df6c5506c20fe07eb92d42e3b0260259b506de820a1fc48a.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span><span class="n">populace</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="p">,</span><span class="n">druhy</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">df</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">key</span><span class="o">=</span><span class="n">populace</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+        <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.05</span><span class="p">),</span>
+        <span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Populace $</span><span class="si">{</span><span class="n">populace</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">datasets</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/dcd2103768eb596729f1f4ba26fb4fc904c47838d6f98acf2ae52f6ac858ac91.png" src="../_images/dcd2103768eb596729f1f4ba26fb4fc904c47838d6f98acf2ae52f6ac858ac91.png" />
+</div>
+</div>
+<p>Mírnou modifikací kódu je možné vykreslit trajektorie řešení. (Pozor na to, jedná se o trajektorie pro čtyři různé autonomní systémy, proto trajektorie mohou vycházet z jednoho bodu por různými směry.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">dataset</span><span class="p">,</span><span class="s2">&quot;x&quot;</span><span class="p">],</span><span class="n">df</span><span class="p">[</span><span class="n">dataset</span><span class="p">,</span><span class="s2">&quot;y&quot;</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="n">dataset</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Trajektorie v modelu konkurence dvou populací&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0abdd7f6c0d4988238065e76ff8567aace43330ee7a810a86a087d0205cee411.png" src="../_images/0abdd7f6c0d4988238065e76ff8567aace43330ee7a810a86a087d0205cee411.png" />
+</div>
+</div>
+</section>
+<section id="ukazky-selekce-sloupcu">
+<h2>Ukázky selekce sloupců<a class="headerlink" href="#ukazky-selekce-sloupcu" title="Permalink to this heading">#</a></h2>
+<p>Výběr podle hodnoty první úrově indexu je jednoduchý. Vlastně to je stejné jako pro klasické indexy.</p>
+<p>Nejprve jak vypadá naše tabulka (začátek).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th>dataset</th>
+      <th colspan="2" halign="left">nezávislé populace</th>
+      <th colspan="2" halign="left">slabá konkurence</th>
+      <th colspan="2" halign="left">dominance x</th>
+      <th colspan="2" halign="left">dominance y</th>
+    </tr>
+    <tr>
+      <th>populace</th>
+      <th>x</th>
+      <th>y</th>
+      <th>x</th>
+      <th>y</th>
+      <th>x</th>
+      <th>y</th>
+      <th>x</th>
+      <th>y</th>
+    </tr>
+    <tr>
+      <th>Čas</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.000000</th>
+      <td>0.200000</td>
+      <td>0.300000</td>
+      <td>0.200000</td>
+      <td>0.300000</td>
+      <td>0.200000</td>
+      <td>0.300000</td>
+      <td>0.200000</td>
+      <td>0.300000</td>
+    </tr>
+    <tr>
+      <th>0.060120</th>
+      <td>0.209793</td>
+      <td>0.312775</td>
+      <td>0.208264</td>
+      <td>0.312015</td>
+      <td>0.208274</td>
+      <td>0.307870</td>
+      <td>0.204138</td>
+      <td>0.309777</td>
+    </tr>
+    <tr>
+      <th>0.120240</th>
+      <td>0.219933</td>
+      <td>0.325841</td>
+      <td>0.216698</td>
+      <td>0.324243</td>
+      <td>0.216741</td>
+      <td>0.315591</td>
+      <td>0.208126</td>
+      <td>0.319622</td>
+    </tr>
+    <tr>
+      <th>0.180361</th>
+      <td>0.230421</td>
+      <td>0.339187</td>
+      <td>0.225294</td>
+      <td>0.336670</td>
+      <td>0.225396</td>
+      <td>0.323143</td>
+      <td>0.211952</td>
+      <td>0.329523</td>
+    </tr>
+    <tr>
+      <th>0.240481</th>
+      <td>0.241253</td>
+      <td>0.352797</td>
+      <td>0.234040</td>
+      <td>0.349277</td>
+      <td>0.234232</td>
+      <td>0.330503</td>
+      <td>0.215607</td>
+      <td>0.339467</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Následovně se z dat vyfiltrje vývoj systému, kdy sledujeme dvě nezávislé populace.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;nezávislé populace&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>populace</th>
+      <th>x</th>
+      <th>y</th>
+    </tr>
+    <tr>
+      <th>Čas</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.000000</th>
+      <td>0.200000</td>
+      <td>0.300000</td>
+    </tr>
+    <tr>
+      <th>0.060120</th>
+      <td>0.209793</td>
+      <td>0.312775</td>
+    </tr>
+    <tr>
+      <th>0.120240</th>
+      <td>0.219933</td>
+      <td>0.325841</td>
+    </tr>
+    <tr>
+      <th>0.180361</th>
+      <td>0.230421</td>
+      <td>0.339187</td>
+    </tr>
+    <tr>
+      <th>0.240481</th>
+      <td>0.241253</td>
+      <td>0.352797</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>29.759519</th>
+      <td>0.999867</td>
+      <td>0.999926</td>
+    </tr>
+    <tr>
+      <th>29.819639</th>
+      <td>0.999875</td>
+      <td>0.999931</td>
+    </tr>
+    <tr>
+      <th>29.879760</th>
+      <td>0.999882</td>
+      <td>0.999935</td>
+    </tr>
+    <tr>
+      <th>29.939880</th>
+      <td>0.999889</td>
+      <td>0.999938</td>
+    </tr>
+    <tr>
+      <th>30.000000</th>
+      <td>0.999895</td>
+      <td>0.999942</td>
+    </tr>
+  </tbody>
+</table>
+<p>500 rows × 2 columns</p>
+</div></div></div>
+</div>
+<p>Komplikovanější je, když na hodnotě první úrovně indexu nezáleží, ale vybíráme podle druhé úrovně. Možností je několik, jedna z nich je využití příkazu <code class="docutils literal notranslate"><span class="pre">xs</span></code>. Takto se vyberou sloupce s vývojem první populace pro jednotlivé scénáře (datasety).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">key</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>dataset</th>
+      <th>nezávislé populace</th>
+      <th>slabá konkurence</th>
+      <th>dominance x</th>
+      <th>dominance y</th>
+    </tr>
+    <tr>
+      <th>Čas</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.000000</th>
+      <td>0.200000</td>
+      <td>0.200000</td>
+      <td>0.200000</td>
+      <td>2.000000e-01</td>
+    </tr>
+    <tr>
+      <th>0.060120</th>
+      <td>0.209793</td>
+      <td>0.208264</td>
+      <td>0.208274</td>
+      <td>2.041376e-01</td>
+    </tr>
+    <tr>
+      <th>0.120240</th>
+      <td>0.219933</td>
+      <td>0.216698</td>
+      <td>0.216741</td>
+      <td>2.081256e-01</td>
+    </tr>
+    <tr>
+      <th>0.180361</th>
+      <td>0.230421</td>
+      <td>0.225294</td>
+      <td>0.225396</td>
+      <td>2.119524e-01</td>
+    </tr>
+    <tr>
+      <th>0.240481</th>
+      <td>0.241253</td>
+      <td>0.234040</td>
+      <td>0.234232</td>
+      <td>2.156074e-01</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>29.759519</th>
+      <td>0.999867</td>
+      <td>0.652025</td>
+      <td>0.999876</td>
+      <td>6.607543e-07</td>
+    </tr>
+    <tr>
+      <th>29.819639</th>
+      <td>0.999875</td>
+      <td>0.652022</td>
+      <td>0.999880</td>
+      <td>6.411905e-07</td>
+    </tr>
+    <tr>
+      <th>29.879760</th>
+      <td>0.999882</td>
+      <td>0.652022</td>
+      <td>0.999885</td>
+      <td>6.222057e-07</td>
+    </tr>
+    <tr>
+      <th>29.939880</th>
+      <td>0.999889</td>
+      <td>0.652026</td>
+      <td>0.999889</td>
+      <td>6.037822e-07</td>
+    </tr>
+    <tr>
+      <th>30.000000</th>
+      <td>0.999895</td>
+      <td>0.652032</td>
+      <td>0.999893</td>
+      <td>5.859032e-07</td>
+    </tr>
+  </tbody>
+</table>
+<p>500 rows × 4 columns</p>
+</div></div></div>
+</div>
+<p>Pokud vybíráme podle více kritérií, používáme n-tice.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">key</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;slabá konkurence&quot;</span><span class="p">,</span><span class="s2">&quot;x&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th>dataset</th>
+      <th>slabá konkurence</th>
+    </tr>
+    <tr>
+      <th>populace</th>
+      <th>x</th>
+    </tr>
+    <tr>
+      <th>Čas</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.000000</th>
+      <td>0.200000</td>
+    </tr>
+    <tr>
+      <th>0.060120</th>
+      <td>0.208264</td>
+    </tr>
+    <tr>
+      <th>0.120240</th>
+      <td>0.216698</td>
+    </tr>
+    <tr>
+      <th>0.180361</th>
+      <td>0.225294</td>
+    </tr>
+    <tr>
+      <th>0.240481</th>
+      <td>0.234040</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>29.759519</th>
+      <td>0.652025</td>
+    </tr>
+    <tr>
+      <th>29.819639</th>
+      <td>0.652022</td>
+    </tr>
+    <tr>
+      <th>29.879760</th>
+      <td>0.652022</td>
+    </tr>
+    <tr>
+      <th>29.939880</th>
+      <td>0.652026</td>
+    </tr>
+    <tr>
+      <th>30.000000</th>
+      <td>0.652032</td>
+    </tr>
+  </tbody>
+</table>
+<p>500 rows × 1 columns</p>
+</div></div></div>
+</div>
+<p>Pokud chceme jeden konkrétní sloupec, je možné předchozí kód zjednodušit. Takto se vyberou data odpovídající první populaci při slabé konkurenci. Formálně je výsledek stejný jako v minulém případě, ale protože výsledekem je jeden sloupec, je výsledek ve tvaru vektoru (přesněji řada typu <code class="docutils literal notranslate"><span class="pre">pandas.Series</span></code>). Předchozí postup pomocí <code class="docutils literal notranslate"><span class="pre">xs</span></code> vrací tabulku, která by při existenci další hierarchie ve sloupcovém indexu mohla mít více sloupců</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;slabá konkurence&quot;</span><span class="p">,</span><span class="s2">&quot;x&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Čas
+0.000000     0.200000
+0.060120     0.208264
+0.120240     0.216698
+0.180361     0.225294
+0.240481     0.234040
+               ...   
+29.759519    0.652025
+29.819639    0.652022
+29.879760    0.652022
+29.939880    0.652026
+30.000000    0.652032
+Name: (slabá konkurence, x), Length: 500, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="multiindex.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">předchozí</p>
+        <p class="prev-next-title">Tabulky s hierarchickým indexem</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="reseni_rovnice.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">další</p>
+        <p class="prev-next-title">Numerické řešení rovnice</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Obsah
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tvorba-tabulky-s-hierarchickym-indexem">Tvorba tabulky s hierarchickým indexem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pouziti-dat-z-tabulky">Použití dat z tabulky</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ukazky-selekce-sloupcu">Ukázky selekce sloupců</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Autor Robert Mařík
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+  All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
+</p>
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

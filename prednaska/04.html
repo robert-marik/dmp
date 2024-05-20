@@ -1,0 +1,1215 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="cs" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>4. Autonomní diferenciální rovnice &#8212; Dynamické modely populací</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'prednaska/04';</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.jscustom.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="5. Bifurkace" href="05.html" />
+    <link rel="prev" title="3. Diferenciální rovnice" href="03.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="cs"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Hledat v knize..."
+         aria-label="Hledat v knize..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Dynamické modely populací</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Vyhledávání</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvodní slovo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Přednášky</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01.html">1. Funkce a vlastnosti funkcí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02.html">2. Derivace a integrál</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03.html">3. Diferenciální rovnice</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Autonomní diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05.html">5. Bifurkace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06.html">6. Lineární algebra, matice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07.html">7. Parciální derivace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08.html">8. Autonomní systémy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09.html">9. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10.html">10. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11.html">11. Diskrétní populační modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12.html">12. Difuzní rovnice</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cvičení</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">1. První kroky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_01.html">2. Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_02.html">3. Práce s funkcemi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_03.html">4. Diferenciální rovnice 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_04.html">5. Diferenciální rovnice 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_05.html">6. Diferenciální rovnice 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_06.html">7. LaTeX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_07.html">8. Maticové modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_08.html">9. Levinsův model metapopulací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_09.html">10. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_10.html">11. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_11.html">12. Samostatná práce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Různá zadání</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">1. Enzymy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../allee.html">2. Silný Alleeho efekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chovani.html">3. Model soupeření jestřábí a holubičí povahy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">4. Model populace ryb</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Kombinovaní</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">1. Data a grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">2. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">3. Lov v populaci - fázový portrét</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">4. Lov v populaci - časový vývoj</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">5. Model dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">6. Model konkurence</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python konstrukce a ukázky</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_zakladni_konstrukce.html">Základní konstrukce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/cykly.html">Cykly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/grafy_amateri.html">Kreslení funkcí jednoduše</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/grafy_pokrocili.html">Kreslení funkcí pro pokročilé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/diferencialni_rovnice_amateri.html">Diferenciální rovnice pro začátečníky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/diferencialni_rovnice_pokrocili.html">Diferenciální rovnice pro pokročilejší</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_tabulky.html">Tabulky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_grafy.html">Obrázky, grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/reseni_ODR.html">Řešení diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/tabulky_none.html">Tabulky s None a NaN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/multiindex.html">Tabulky s hierarchickým indexem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/multiindex-pokrocili.html">Hierarchický index (pokročilí)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/reseni_rovnice.html">Numerické řešení rovnice</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Literatura a rejstřík</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../literatura.html">Literatura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Rejstřík</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">e-opora</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://robert-marik.github.io/moodle-python">Python</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/robert-marik/dmp/blob/gh-pages/_sources/prednaska/04.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://github.com/robert-marik/dmp" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Zdrojové úložiště"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Stáhněte si tuto stránku">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/prednaska/04.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Stáhnout soubor poznámkového bloku"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../_sources/prednaska/04.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Stáhněte si zdrojový soubor"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Tisk do PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Režim celé obrazovky"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Autonomní diferenciální rovnice</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Obsah </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exponencialni-rust">4.1. Exponenciální růst</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#von-bertalanffyho-rust">4.2. Von Bertalanffyho růst</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logisticky-rust">4.3. Logistický růst</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoregulace-a-rychlost-syntezy-proteinu-volitelne">4.4. Autoregulace a rychlost syntézy proteinů (volitelně)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#produkce-konstantni-rychlosti">4.4.1. Produkce konstantní rychlostí</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nondimenzionalizace">4.4.1.1. Nondimenzionalizace</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rustove-krivky">4.4.1.2. Růstové křivky</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#casovy-vyvoj-reseni">4.4.1.3. Časový vývoj řešení</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rychla-produkce-je-zaplacena-rychlou-degradaci">4.4.1.4. Rychlá produkce je „zaplacena“ rychlou degradací</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bezrozmerna-formulace">4.4.1.5. Bezrozměrná formulace</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#produkce-se-zapornou-zpetnou-vazbou">4.4.2. Produkce se zápornou zpětnou vazbou</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">4.4.2.1. Nondimenzionalizace</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#krivky-rustu-a-degradace">4.4.2.2. Křivky růstu a degradace</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#casovy-prubeh-reseni-modelu">4.4.2.3. Časový průběh řešení modelu</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#negativni-zpetna-vazba-urychluje-syntezu">4.4.2.4. Negativní zpětná vazba urychluje syntézu</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="autonomni-diferencialni-rovnice">
+<h1><span class="section-number">4. </span>Autonomní diferenciální rovnice<a class="headerlink" href="#autonomni-diferencialni-rovnice" title="Permalink to this heading">#</a></h1>
+<div class="admonition-co-se-dozvite-v-tomto-textu admonition">
+<p class="admonition-title">Co se dozvíte v tomto textu</p>
+<p><img alt="" src="../_images/Diomedea_exulans.jpg" /></p>
+<p>V tomto textu se budeme věnovat diferenciálním rovnicím, kde rychlost vývoje sledované veličiny nezávisí explicitně na čase, ale jenom na veličině samotné a na parametrech prostředí. Naprostá většina modelů splňuje tyto požadavky. Důsledkem nezávislosti na čase je jistá jednoduchost při kvalitativním popisu chování řešení.</p>
+<p>Důležitým reprezentantem autonomních diferenciálních rovnic je logistická rovnice, která bývá výchozím kamenem při studiu rostlinných a živočišných populací a označení parametrů z této rovnice písmeny <span class="math notranslate nohighlight">\(r\)</span> a <span class="math notranslate nohighlight">\(K\)</span> dalo dokonce název základním životním strategiím živočichů i rostlin.</p>
+<p><em>Foto: Albatros (Diomedea exulans) v letu. Tento pták je představitelem K-stratégů. Autor JJ Harrison , <a class="reference external" href="https://wikimedia.org">https://wikimedia.org</a>.</em></p>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>Diferenciální rovnice <div class="math notranslate nohighlight">
+\[ \frac{\mathrm dx}{\mathrm dt}=f(x)\]</div>
+ s neznámou funkcí
+<span class="math notranslate nohighlight">\(x(t)\)</span> proměnné <span class="math notranslate nohighlight">\(t\)</span> se nazývá <em>autonomní</em>, nebo též nezávislá na čase. Proměnná
+<span class="math notranslate nohighlight">\(t\)</span> se nazývá čas.</p>
+<p>Rovnici je možné řešit analytickou cestou. My se nebudeme zaměřovat na hledání
+analytického tvaru obecného řešení, ale pokusíme se popsat chování řešení, aniž
+bychom tato řešení znali. Pokusíme se s co nejmenší námahou říct, jak se budou
+řešení chovat.</p>
+<ul class="simple">
+<li><p>Je-li <span class="math notranslate nohighlight">\(f(x_0)=0\)</span>, je konstantní funkce <span class="math notranslate nohighlight">\(x(t)=x_0\)</span> řešením rovnice. Protože
+derivace konstantní funkce je nula, vidíme, že řešením rovnice <div class="math notranslate nohighlight">
+\[f(x)=0\]</div>
+
+obdržíme všechna konstantní řešení rovnice. Tato konstantní řešení se
+nazývají <em>stacionární body</em>.</p></li>
+<li><p>Stacionární body a jim odpovídající konstantní řešení představují rovnovážný
+stav. Často nás zajímá, jestli při vychýlení z tohoto rovnovážného stavu má
+systém tendenci se vrátit do původního stavu, nebo se od původního stavu dále
+odchylovat.</p></li>
+<li><p>Pokud se při malém vychýlení z rovnovážného stavu systém do tohoto stavu
+vrací, mluvíme o <em>stabilním stacionárním bodu</em>.</p></li>
+<li><p>Pokud se systém po malé výchylce do tohoto rovnovážného stavu nevrací, ale
+vyvíjí se k dalšímu stacionárnímu bodu nebo neohraničeně,
+mluvíme o <em>nestabilním stacionárním bodu.</em></p></li>
+</ul>
+<p>Následující věta umožní odlišit stabilní a nestabilní stacionární
+body. Protože v přírodě dochází k drobným perturbacím neustále, udává
+vlastně, které stacionární stavy jsou realizovatelné a můžeme je v
+přírodě pozorovat a které jsou prakticky nerealizovatelné.</p>
+<div class="proof theorem admonition" id="theorem-0">
+<span id="index-0"></span><p class="admonition-title"><span>Věta </span> (Stabilita konstantních řešení)</p>
+<section class="theorem-content" id="proof-content">
+<p>Jestliže platí <span class="math notranslate nohighlight">\(f(x_0)=0\)</span>, je
+konstantní funkce <span class="math notranslate nohighlight">\(x(t)=x_0\)</span> konstantním řešením rovnice
+<div class="math notranslate nohighlight">
+\[\frac{\mathrm dx}{\mathrm dt}=f(x).\]</div>
+ Toto řešení je stabilní
+pokud funkce <span class="math notranslate nohighlight">\(f\)</span> v bodě <span class="math notranslate nohighlight">\(x_0\)</span> klesá a nestabilní pokud funkce <span class="math notranslate nohighlight">\(f\)</span> v bodě <span class="math notranslate nohighlight">\(x_0\)</span> roste.</p>
+</section>
+</div><p>Protože funkce <span class="math notranslate nohighlight">\(f\)</span> má ve stacionárním bodě nulovou funkční hodnotu, můžeme růst
+nebo pokles této funkce odhalit i ze znaménka. Pokud se znaménko funkce ve
+stacionárním bodě mění z kladného na záporné, potom funkce klesá. V opačném
+případě roste.</p>
+<p>Pravá strana bývá často rozdílem dvou faktorů, které působí proti sobě v tom
+smyslu, že jeden definuje rychlost růstu a druhý rychlost poklesu sledované veličiny. V takovém případě se hodí následující důsledek předchozí věty.</p>
+<div class="proof corollary admonition" id="corollary-1">
+<p class="admonition-title"><span>Důsledek </span> (Stabilita konstantních řešení rovnice s rozdílem na pravé straně)</p>
+<section class="corollary-content" id="proof-content">
+<p>Jestliže platí <span class="math notranslate nohighlight">\(f(x_0)=g(x_0)\)</span>, je
+konstantní funkce <span class="math notranslate nohighlight">\(x(t)=x_0\)</span> konstantním řešením rovnice
+<div class="math notranslate nohighlight">
+\[\frac{\mathrm dx}{\mathrm dt}=f(x)-g(x).\]</div>
+ Toto řešení je stabilní
+pokud je funkce funkce <span class="math notranslate nohighlight">\(f(x)-g(x)\)</span> kladná v levém okolí a záporná v pravém okolí bodu <span class="math notranslate nohighlight">\(x_0\)</span>. V případě opačných znamének je tento bod nestabilní.</p>
+</section>
+</div><section id="exponencialni-rust">
+<h2><span class="section-number">4.1. </span>Exponenciální růst<a class="headerlink" href="#exponencialni-rust" title="Permalink to this heading">#</a></h2>
+<p id="index-1">Nejjednodušším modelem růstu populace je model vyjadřující situaci, kdy rychlost
+růstu je úměrná velikosti populace. Takový růst je popsán diferenciální rovnicí
+<div class="math notranslate nohighlight">
+\[\frac{\mathrm dx}{\mathrm dt}=kx \]</div>
+ a jeho analytickým řešením vyhovujícím
+podmínce <span class="math notranslate nohighlight">\(x(0)=x_0\)</span> je funkce <div class="math notranslate nohighlight">
+\[x(t)=x_0 e^{kt}.\]</div>
+ Model exponenciálního růstu
+je vhodný pro svou jednoduchost, ale nemůže popisovat dlouhodobý vývoj populace,
+protože při značné velikosti populace nedokáže daná lokalita populaci uživit.
+Model se nazývá Malthusův model a je použitelný pouze v krátkých časových
+intervalech a v situacích, kdy se neprojeví vnitrodruhová konkurence.</p>
+</section>
+<section id="von-bertalanffyho-rust">
+<h2><span class="section-number">4.2. </span>Von Bertalanffyho růst<a class="headerlink" href="#von-bertalanffyho-rust" title="Permalink to this heading">#</a></h2>
+<p id="index-2">Dalším modelem růstu je model, kdy je růst omezen a rychlost růstu je úměrná vzdálenosti vzdálenosti od horní hranice. Původně byl formulován pro růst jedinců, kteří se mohou dožívat maximální výšky <span class="math notranslate nohighlight">\(L_\infty\)</span>. Podle tohoto modelu je výška <span class="math notranslate nohighlight">\(L\)</span> dána vztahem <div class="math notranslate nohighlight">
+\[\frac{\mathrm dL}{\mathrm dt}=k(L_\infty-L)\]</div>
+
+resp.<br />
+<div class="math notranslate nohighlight">
+\[\frac{\mathrm dL}{\mathrm dt}=k_0\left(1-\frac{L}{L_\infty}\right),\]</div>
+
+kde <span class="math notranslate nohighlight">\(k_0=\frac{k}{L_\infty}.\)</span> Analytickým řešením modelu s počáteční podmínkou
+<span class="math notranslate nohighlight">\(L(0)=L_0\)</span> je funkce <div class="math notranslate nohighlight">
+\[L(t)=L_\infty + (L_0-L_\infty)e^{-kt}.\]</div>
+ Tento vztah
+ukazuje, že rozdíl délky a cílové délky se exponenciálně snižuje.</p>
+<p>Kromě jedinců rostoucích rychlostí úměrnou množství chybějícímu do maximální
+velikosti tato rovnice popisuje i procesy, kdy změnu sledované veličiny
+způsobují dva faktory: růst konstantní rychlostí a pokles rychlostí úměrnou
+velikosti. Potom má totiž rovnice tvar <div class="math notranslate nohighlight">
+\[\frac{\mathrm dx}{\mathrm dt} = \alpha
+-\beta x\]</div>
+ a po vytknutí konstanty <span class="math notranslate nohighlight">\(\alpha\)</span> nebo <span class="math notranslate nohighlight">\(\beta\)</span> dospíváme (až na
+označení) k rovnicím výše. Tento růst například odpovídá sledování
+množství enzymů nebo bílkovin, které jsou produkovány konstantní rychlostí a
+degradují rychlostí úměrnou množství, viz <span id="id1">[<a class="reference internal" href="../literatura.html#id8" title="U. Alon. An Introduction to Systems Biology: Design Principles of Biological Circuits. Chapman &amp; Hall/CRC Computational Biology Series. CRC Press LLC, 2019. ISBN 9781439837177.">2</a>]</span> kapitola 1.4.</p>
+</section>
+<section id="logisticky-rust">
+<h2><span class="section-number">4.3. </span>Logistický růst<a class="headerlink" href="#logisticky-rust" title="Permalink to this heading">#</a></h2>
+<span class="target" id="index-3"></span><span class="target" id="index-4"></span><p id="index-5">Modelem pro růst populací v prostředí s nosnou kapacitou prostředí, který je
+všeobecně přijímán jako vhodný kompromis mezi přesností popisu a matematickou
+jednoduchostí je Verhulst-Pearlův model růstu, vycházející z předpokladu, že
+rychlost růstu populace v prostředí s omezenou nosnou kapacitou je úměrná
+velikosti této populace a volnému místu v životním prostředí, nejčastěji vyjádřenému procentem z nosné kapacity. Pokud nosná
+kapacita prostředí je <span class="math notranslate nohighlight">\(K\)</span> a specifická rychlost růstu bez započtení konkurence
+<span class="math notranslate nohighlight">\(r\)</span>, má model tvar <div class="math notranslate nohighlight">
+\[\frac{\mathrm dx}{\mathrm dt}=rx\left(1-\frac xK\right)\]</div>
+
+při vyjádření rychlosti růstu a
+<div class="math notranslate nohighlight">
+\[\frac 1x \frac{\mathrm dx}{\mathrm dt}=r\left(1-\frac xK\right)\]</div>
+
+při vyjádření specifické rychlosti růstu. Pro <span class="math notranslate nohighlight">\(x\)</span> rovno nule je pravá strana rovnice se specifickou rychlostí růstu rovna <span class="math notranslate nohighlight">\(r\)</span>. Odpovídá to specifické rychlosti růstu populace, která roste v prostředí z nulové hodnoty. Proto se parametr <span class="math notranslate nohighlight">\(r\)</span> nazývá <em>invazní parametr</em>.</p>
+<p>Rovnici je možno přepsat do tvaru
+<div class="math notranslate nohighlight">
+\[
+\frac{\mathrm d \frac xK}{\mathrm d(rt)} = \frac {x}{K}\left(1-\frac xK\right)
+\]</div>
+
+a po zavedení bezrozměrné velikosti populace <span class="math notranslate nohighlight">\(y=\frac xK\)</span> a bezrozměrného času
+<span class="math notranslate nohighlight">\(\tau = rt\)</span> má rovnice tvar
+<div class="math notranslate nohighlight">
+\[
+\frac{\mathrm d y}{\mathrm d\tau} = y(1-y).
+\]</div>
+
+To znamená, že bez újmy na obecnosti můžeme v logistické rovnici považovat
+nosnou kapacitu prostředí i inverzní parametr za jednotkové. Přesněji, vhodnou
+volbou jednotek můžeme docílit toho, že v uvedených jednotkách budou tyto
+konstanty numericky rovny jedné. Tohoto docílíme tak, že velikost populace se
+nebude měřit v počtech kusů, ale v násobcích nosné kapacity prostředí. Podobně,
+jednotka času se upraví tak, aby invazní parametr byl roven jedné. Tedy
+jednotkou času bude doba, za jak dlouho by populace dorostla do nosné kapacity
+prostředí, kdyby populace po celou dobu
+rostla konstantní rychlostí odpovídající rychlosti růstu od nulové hodnoty.</p>
+<div class="proof remark admonition" id="remark-2">
+<p class="admonition-title"><span>Poznámka </span> (r-stratégové a K-stratégové)</p>
+<section class="remark-content" id="proof-content">
+<p>Prostředí, ve kterém se populace nacházejí, je stále vystaveno změnám a výkyvům.
+To se odráží i na velikosti populace. Různé druhy živočichů se s těmito
+perturbacemi vyrovnávají různým způsobem. Některé druhy mají takřka stabilní
+stavy. Například populace albatrosů (<em>Diomedea exulans</em>) na ostrově Gough Island
+zůstávala téměř konstantní cca 4000 jedinců od roku 1889 přinejmenším do roku
+1971 (viz <span id="id2">[<a class="reference internal" href="../literatura.html#id9" title="R.M.N. Alexander. Optima for Animals. Optima for Animals. Princeton University Press, 1996. ISBN 9780691027999.">1</a>]</span> kapitola 5.3). Takové živočišné druhy nazýváme
+K-stratégy. Živočišné druhy, jejichž strategií je naopak se v příhodné době
+rychle rozmnožit, nazýváme r-stratégy a při modelování vývoje populace se tento
+faktor projevuje vysokým koeficientem <span class="math notranslate nohighlight">\(r\)</span>. Terminologie r-strategie a
+K-strategie je připisována MacArthurovi a Wilsonovi, autorům teorie ostrovní
+biogeografie.</p>
+</section>
+</div><p>Více o logistické rovnici viz například <span id="id3">[<a class="reference internal" href="../literatura.html#id3" title="M. Begon, C.R. Townsend, and J.L. Harper. Ekologie: jedinci, populace a společenstva. Vydavatelství Univerzity Palackého, 1997. ISBN 9788070676950.">3</a>]</span> kapitola 6.8, <span id="id4">[<a class="reference internal" href="../literatura.html#id6" title="J. D. Murray. Mathematical Biology I. An Introduction. Volume 17 of Interdisciplinary Applied Mathematics. Springer, New York, 3 edition, 2002. URL: https://link.springer.com/book/10.1007/b98868, doi:10.1007/b98868.">15</a>]</span> kapitola 1.1 a <span id="id5">[<a class="reference internal" href="../literatura.html#id5" title="E. Tkadlec. Populační ekologie: Struktura a růst populací. Univerzita Palckého v Olomouci, 2013.">16</a>]</span> str. 182.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">exp_rust</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">k</span><span class="o">*</span><span class="n">x</span>
+<span class="k">def</span> <span class="nf">log_rust</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">r</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">K</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">vB_rust</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">Lmax</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">r</span><span class="o">*</span><span class="p">(</span><span class="n">Lmax</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">meze</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">pocatecni_podminka</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">]</span>
+<span class="n">rovnice</span> <span class="o">=</span> <span class="p">[</span><span class="n">exp_rust</span><span class="p">,</span> <span class="n">vB_rust</span><span class="p">,</span> <span class="n">log_rust</span><span class="p">]</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">meze</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">popisky</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Exponenciální růst&quot;</span><span class="p">,</span><span class="s2">&quot;von Bertalanfyho růst&quot;</span><span class="p">,</span><span class="s2">&quot;logistický růst&quot;</span><span class="p">]</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">popisek</span><span class="p">:</span> 
+       <span class="n">solve_ivp</span><span class="p">(</span>
+           <span class="n">r</span><span class="p">,</span> 
+           <span class="n">meze</span><span class="p">,</span> 
+           <span class="n">pocatecni_podminka</span><span class="p">,</span> 
+           <span class="n">t_eval</span><span class="o">=</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+       <span class="k">for</span> <span class="n">popisek</span><span class="p">,</span><span class="n">r</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">popisky</span><span class="p">,</span><span class="n">rovnice</span><span class="p">)}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">),</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Tři růstové modely&quot;</span>
+    <span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/ec7636e7aded1203218332777b32f9c00bb291f213f1d2be01bc45683f1a9e9c.png" src="../_images/ec7636e7aded1203218332777b32f9c00bb291f213f1d2be01bc45683f1a9e9c.png" />
+</div>
+</div>
+</section>
+<section id="autoregulace-a-rychlost-syntezy-proteinu-volitelne">
+<h2><span class="section-number">4.4. </span>Autoregulace a rychlost syntézy proteinů (volitelně)<a class="headerlink" href="#autoregulace-a-rychlost-syntezy-proteinu-volitelne" title="Permalink to this heading">#</a></h2>
+<blockquote>
+<div><p>Tento text je zpracován podle knihy <span id="id6">[<a class="reference internal" href="../literatura.html#id8" title="U. Alon. An Introduction to Systems Biology: Design Principles of Biological Circuits. Chapman &amp; Hall/CRC Computational Biology Series. CRC Press LLC, 2019. ISBN 9781439837177.">2</a>]</span> a pojednává o tom, jak zpětná vazba může ovlivnit produkci proteinu. Ukazuje několik strategií, jak může příroda zajistit, že v případě potřeby je protein syntetizován rychle a v dostatečném množství. Zaměříme se na matematickou stránku věci. Pěkná přednáška autora knihy a jednoho ze klíčových vědců v systémové biologii, moderní vědě, která se touto problematikou zajímá, je k dispozici na <a class="reference external" href="https://youtu.be/9Y55Y_c_KLk">Youtube zde</a>.</p>
+</div></blockquote>
+<p>Uvažujme model syntézy proteinu, který degraduje rychlostí <span class="math notranslate nohighlight">\(s(x)=\beta x,\)</span> kde
+<span class="math notranslate nohighlight">\(\beta\)</span> je konstanta, tj. rychlostí úměrnou množství proteinu <span class="math notranslate nohighlight">\(x\)</span>. To je
+realistický a měřením potvrzený předpoklad. Kromě toho je protein ještě i
+syntetizován jiným procesem. Při dosažení rovnováhy mezi degradací a produkcí je
+jeho úroveň konstantní.</p>
+<p>Schopnost řízení syntézy správných proteinů ve správnou dobu je klíčová pro
+všechny organismy. Pro některé jednodušší organismy je vzájemný řetězec na sebe
+navazujících reakcí do značné míry zmapován a popsán. Tato spleť reakcí je
+výsledkem dlouhodobé evoluce, kde náhodné genové mutace změnily chod dosud
+zavedených věcí. Tyto mutace buď přinesly svému nositeli výhodu a udržely se a
+rozšířily, nebo naopak přinesly nevýhodu a jejich nositel mutaci dále nešířil,
+protože nebyl tak úspěšný v reprodukci.</p>
+<p>V této podkapitole si ukážeme, jak se dá různými strategiemi ovlivnit rychlost,
+s jakou je v buňce syntetizován protein. Nejedná se o jedinou záležitost, kterou
+v souvislosti s chemickými reakcemi v buňce studujeme matematickými prostředky.
+Dalšími problémy jsou například stabilita a robustnost stacionárních stavů.
+Přístupy jsou jak kvalitativní (může to takto vůbec fungovat?), tak
+kvantitativní (dostáváme při předpovědích vypočtených z modelů správné numerické
+hodnoty pro pozorované veličiny?) a v obou přístupech je dovednost modelování
+pomocí diferenciálních rovnic nezastupitelnou pomůckou.</p>
+<section id="produkce-konstantni-rychlosti">
+<h3><span class="section-number">4.4.1. </span>Produkce konstantní rychlostí<a class="headerlink" href="#produkce-konstantni-rychlosti" title="Permalink to this heading">#</a></h3>
+<p>Množství proteinu označme <span class="math notranslate nohighlight">\(x\)</span> a předpokládejme produkci konstantní rychlostí.
+Spolu s degradací z předchozího odstavce tedy máme model <div class="math notranslate nohighlight">
+\[\frac{\mathrm
+dx}{\mathrm dt}=\alpha - \beta x.\]</div>
+</p>
+<section id="nondimenzionalizace">
+<h4><span class="section-number">4.4.1.1. </span>Nondimenzionalizace<a class="headerlink" href="#nondimenzionalizace" title="Permalink to this heading">#</a></h4>
+<p>Vhodnou volbou jednotek pro veličinu <span class="math notranslate nohighlight">\(x\)</span> je možné docílit toho, že platí <span class="math notranslate nohighlight">\(\alpha
+= \beta.\)</span> Opravdu, rovnici je možno přepsat na tvar
+<div class="math notranslate nohighlight">
+\[\frac{\mathrm d x}{\mathrm dt}=\alpha \left(1- \frac{\beta x}{\alpha} \right)\]</div>
+
+a odsud po vynásobení faktorem <span class="math notranslate nohighlight">\(\frac \beta\alpha\)</span>
+<div class="math notranslate nohighlight">
+\[ \frac{\mathrm d\frac{\beta x}{\alpha}}{\mathrm dt}=\beta \left(1 - \frac{\beta x}{\alpha} \right), \]</div>
+
+což v nových jednotkách <span class="math notranslate nohighlight">\(X=\frac {\beta x}\alpha\)</span> vede na rovnici
+<div class="math notranslate nohighlight">
+\[\frac{\mathrm d X}{\mathrm dt}=\beta \left(1 - X \right).\]</div>
+
+Tato volba znamená, že množství proteinu měříme v procentech rovnovážného stavu.
+Vhodnou volbou jednotky času je možné dosáhnout toho, že společná konstanta
+<span class="math notranslate nohighlight">\(\beta\)</span> je numericky rovna jedné. Tuto volbu však dělat nebudeme, protože chceme
+porovnávat časový průběh pro různé hodnoty konstanty <span class="math notranslate nohighlight">\(\beta\)</span>. Pro pohodlí se
+navíc vrátíme k původnímu označení malým písmenem, tj. budeme studovat rovnici
+<div class="math notranslate nohighlight">
+\[
+\frac{\mathrm d x}{\mathrm dt}=\beta \left(1 - x \right).\]</div>
+
+Toto je rovnice
+<div class="math notranslate nohighlight">
+\[
+\frac{\mathrm d (x-1)}{\mathrm dt}=-\beta \left(x - 1 \right),
+\]</div>
+
+tj. rovnice popisující rozklad rychlostí úměrnou množství pro veličinu <span class="math notranslate nohighlight">\(x-1\)</span> a
+řešením je tedy
+<div class="math notranslate nohighlight">
+\[x(t)=1-(1-x_0) e^{-\beta t}. \]</div>
+
+Přestože máme k dispozici analytické řešení, vyřešíme si úlohu numericky,
+abychom mohli poté volit různé rychlosti produkce.</p>
+</section>
+<section id="rustove-krivky">
+<h4><span class="section-number">4.4.1.2. </span>Růstové křivky<a class="headerlink" href="#rustove-krivky" title="Permalink to this heading">#</a></h4>
+<p>Nejprve nakreslíme křivky produkce a degradace do jednoho obrázku, abychom
+dokázali lokalizovat stacionární body.</p>
+<ul class="simple">
+<li><p>Křivky pro stejné hodnoty parametru jsou stejnou barvou.</p></li>
+<li><p>Průsečík křivek stejné barvy je stacionární bod systému při nastavení
+parametrů daném příslušnou barvou. Všimněte si, že všechny tyto průsečíky jsou
+nad sebou a každý v jiné výšce. Pro všechny parametry nastává stacionární stav
+pro stejné množství proteinu <span class="math notranslate nohighlight">\(x=1\)</span>, ale rychlosti produkce a degradace se v
+tomto stacionárním stavu liší.</p></li>
+<li><p>Všechna nastavení parametrů vykazují převažující růst pro malé a převažující
+degradaci pro velké hodnoty <span class="math notranslate nohighlight">\(x\)</span>. Stacionární body jsou tedy stabilní.</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">beta</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">2.5</span><span class="p">]</span>              <span class="c1"># definice parametrů</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>  <span class="c1"># definice intervalu pro kreslení růstových křivek</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">beta_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">beta</span><span class="p">):</span>       <span class="c1"># Cyklus přes parametry</span>
+    <span class="n">produkce</span> <span class="o">=</span> <span class="n">beta_</span><span class="o">+</span><span class="mi">0</span><span class="o">*</span><span class="n">x</span>       <span class="c1"># Křivka produkce</span>
+    <span class="n">degradace</span> <span class="o">=</span> <span class="n">beta_</span><span class="o">*</span><span class="n">x</span>        <span class="c1"># Křivka degradace</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">produkce</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">beta_</span><span class="p">)</span>     <span class="c1"># Vykreslení křivky produkce</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">degradace</span><span class="p">,</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>    <span class="c1"># Vykreslení křivky degradace</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Křivky produkce a degradce proteinu&quot;</span><span class="p">,</span> 
+       <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;bezrozměrné množství proteinu&#39;</span><span class="p">,</span>
+       <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;rychlost produkce (plná čára)</span><span class="se">\n</span><span class="s1"> a degradace (čárkovaná čára) proteinu&#39;</span><span class="p">,</span>
+       <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+       <span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Parametr $\beta$&quot;</span>
+    <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/0acbcc4e213241e4c6fba0cac8dbdf15f760c626868f385e1187ba11e0473d71.png" src="../_images/0acbcc4e213241e4c6fba0cac8dbdf15f760c626868f385e1187ba11e0473d71.png" />
+</div>
+</div>
+</section>
+<section id="casovy-vyvoj-reseni">
+<h4><span class="section-number">4.4.1.3. </span>Časový vývoj řešení<a class="headerlink" href="#casovy-vyvoj-reseni" title="Permalink to this heading">#</a></h4>
+<p>Průběh řešení pro jednotlivé hodnoty parametru u řešení vycházejícího z nulové
+počáteční podmínky je na obrázku. V praxi nás zajímá, jak rychle bude dosaženo
+určitého množství proteinu. Tedy vybereme si nějakou hladinu, například <span class="math notranslate nohighlight">\(0.6\)</span>, a
+sledujeme, která křivka této hladiny dosáhne jako první a která jako poslední.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meze</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>                <span class="c1"># definice počátečního a koncového časového okamžiku</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">meze</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="c1"># definice intervalu pro kreslení funkcí času</span>
+<span class="n">reseni</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="n">solve_ivp</span><span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">beta_</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">),</span>
+        <span class="n">meze</span><span class="p">,</span> 
+        <span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+        <span class="n">t_eval</span><span class="o">=</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  
+    <span class="k">for</span> <span class="n">beta_</span> <span class="ow">in</span> <span class="n">beta</span>
+    <span class="p">])</span><span class="o">.</span><span class="n">T</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">reseni</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Množství proteinu jako funkce času&quot;</span><span class="p">,</span> 
+    <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;čas&#39;</span><span class="p">,</span> 
+    <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;bezrozměrné množství proteinu&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+    <span class="n">beta</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Parametr $\beta$&quot;</span>
+    <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/8821c2e6d66e25f395b82efd3208cd1c00d6134fb927f91531685583a5edc842.png" src="../_images/8821c2e6d66e25f395b82efd3208cd1c00d6134fb927f91531685583a5edc842.png" />
+</div>
+</div>
+</section>
+<section id="rychla-produkce-je-zaplacena-rychlou-degradaci">
+<h4><span class="section-number">4.4.1.4. </span>Rychlá produkce je „zaplacena“ rychlou degradací<a class="headerlink" href="#rychla-produkce-je-zaplacena-rychlou-degradaci" title="Permalink to this heading">#</a></h4>
+<p>Je patrné, že nejrychleji hladina enzymu roste pro nejvyšší hodnotu parametru.
+Vodorovnou čáru ve výšce <span class="math notranslate nohighlight">\(0.6\)</span> protne jako první křivka odpovídající nejvyšší
+hodnotě parametru <span class="math notranslate nohighlight">\(\beta\)</span>. Být první je neskutečně důležité, někdy přímo otázka
+života a smrti. Taková bakterie, která umí rychle produkovat enzym, například
+umí rychle uniknout z prostředí s nepříznivými životními podmínkami (rychle
+sestaví proteiny, které vytvoří jakýsi molekulární motor a ten buňku posune na
+jiné místo) nebo umí rychle začít ukládat v přítomnosti glukózy energii pro
+budoucí využití. Na druhou stranu, popsaným mechanismem je rychlost je dosažena
+nejenom rychlou produkcí, ale i rychlou degradací proteinu. Tedy protein se
+rychle produkuje a rychle rozpadá. Už z laického hlediska se takový postup nezdá
+být postupem optimálním pro přežití. Je to jako bychom u auta chtěli mít možnost
+okamžitě zrychlit a za tímto účelem udržovali vysoké otáčky motoru, ale abychom
+jeli rozumnou rychlostí tak bychom brzdili. Tedy bychom současně šlapali na plyn
+i na brzdu. To rozumný člověk nedělá.</p>
+<p>Proteiny ve skutečnosti nejsou rychle odbourávány. Popsaný mechanismus šlapání
+na brzdu a plyn současně v buněčném světě ve skutečnosti není použit. Životnost
+proteinu není řádově odlišná od životnosti buňky. Příroda a evoluce by takové
+plýtvání nepřipustily a namísto toho se k problému rychlé produkce proteinu
+staví jinak. Použitím zpětné vazby, což je předmětem následující kapitoly.</p>
+</section>
+<section id="bezrozmerna-formulace">
+<h4><span class="section-number">4.4.1.5. </span>Bezrozměrná formulace<a class="headerlink" href="#bezrozmerna-formulace" title="Permalink to this heading">#</a></h4>
+<p>Zkusíme ještě přepsat rovnici s konstantní produkcí do bezrozměrných jednotek.
+Rovnici
+<div class="math notranslate nohighlight">
+\[\frac{\mathrm dx}{\mathrm dt}=\beta(1-x)\]</div>
+
+je možno přepsat do tvaru
+<div class="math notranslate nohighlight">
+\[\frac{\mathrm dx}{\mathrm d(\beta t)}=1-x\]</div>
+
+a pro bezrozměrný čas <span class="math notranslate nohighlight">\(\tau = \beta t\)</span> se rovnice redukuje na
+<div class="math notranslate nohighlight">
+\[\frac{\mathrm dx}{\mathrm d\tau}=1-x.\]</div>
+
+Rovnice je nezávislá na parametrech a po převodu na bezrozměrný čas (tj. po
+vynásobení času parametrem <span class="math notranslate nohighlight">\(\beta\)</span>) všechna řešení budou splývat. Protože v
+grafu se budou překrývat, vykreslíme je různě širokými poloprůhlednými čarami.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">beta_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">beta</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="o">*</span><span class="n">beta_</span><span class="p">,</span><span class="n">reseni</span><span class="p">[:,</span><span class="n">i</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="n">beta_</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">),</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;bezrozměrný čas&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;bezrozměrné množství proteinu&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Syntéza proteinu v bezrozměrných jednotkách&quot;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/aed513583bf3fed76d04001fc5cde9984c3279cd0ee1854cb7a74424a9cae950.png" src="../_images/aed513583bf3fed76d04001fc5cde9984c3279cd0ee1854cb7a74424a9cae950.png" />
+</div>
+</div>
+<p>Vidíme názorně výhodu bezrozměrných jednotek. Není nutné řešit rovnici pro různé
+hodnoty parametru, ale všechna řešení jsou až na transformaci stejná. Jinými
+slovy vyjádřeno, v modelu
+<div class="math notranslate nohighlight">
+\[\frac{\mathrm dx}{\mathrm dt}=\alpha-\beta x\]</div>
+
+produkce konstantní rychlostí je možno bez újmy na obecnosti položit oba
+parametry <span class="math notranslate nohighlight">\(\alpha\)</span> a <span class="math notranslate nohighlight">\(\beta\)</span> rovny jedné.</p>
+</section>
+</section>
+<section id="produkce-se-zapornou-zpetnou-vazbou">
+<h3><span class="section-number">4.4.2. </span>Produkce se zápornou zpětnou vazbou<a class="headerlink" href="#produkce-se-zapornou-zpetnou-vazbou" title="Permalink to this heading">#</a></h3>
+<p>Předpokládejme produkci proteinu rychlostí související s množstvím proteinu.
+Jedná se tedy o model
+<div class="math notranslate nohighlight">
+\[\frac{\mathrm dx}{\mathrm dt}=f(x) - \beta x,\]</div>
+
+kde <span class="math notranslate nohighlight">\(f(x)\)</span> je rychlost produkce. Budeme porovnávat vliv funkce <span class="math notranslate nohighlight">\(f(x)\)</span> na
+rychlost syntézy.</p>
+<p>Vhodný tvar funkce <span class="math notranslate nohighlight">\(f(x)\)</span> může být například
+rozdíl konstanty a třetí mocniny, tj. <div class="math notranslate nohighlight">
+\[ f(x)=a-bx^3.\]</div>
+</p>
+<p>Čím vyšší hodnota koeficientu <span class="math notranslate nohighlight">\(\alpha\)</span>, tím je počáteční produkce rychlejší a
+dříve je dosaženo potřebného množství enzymu. Toto se děje při konstantní zpětné
+vazbě a konstantním stacionárním stavu (všechny rovnice mají člen popisující
+degradaci ve tvaru <span class="math notranslate nohighlight">\(-x\)</span> a stacionární stav <span class="math notranslate nohighlight">\(x=1\)</span>).</p>
+<section id="id7">
+<h4><span class="section-number">4.4.2.1. </span>Nondimenzionalizace<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h4>
+<p>Vhodnou volbou jednotek pro veličinu <span class="math notranslate nohighlight">\(x\)</span> dosáhneme toho, že stacionárním bodem
+bude <span class="math notranslate nohighlight">\(x=1\)</span> (jinými slovy, množství enzymu budeme měřit v procentech rovnovážného
+stavu). Protože budeme uvažovat stále stejnou rychlost degradace a sledovat
+jenom vliv funkce <span class="math notranslate nohighlight">\(f(x)\)</span>, můžeme jednotky času zvolit tak, že <span class="math notranslate nohighlight">\(\beta = 1\)</span>. Tj.
+studujeme rovnici
+<div class="math notranslate nohighlight">
+\[\frac{\mathrm dx}{\mathrm dt}=f(x) - x,\]</div>
+
+kde <span class="math notranslate nohighlight">\(f(1)=1\)</span>.
+Aby byla navíc splněna podmínka <span class="math notranslate nohighlight">\(f(1)=1\)</span>, budeme uvažovat funkci
+<div class="math notranslate nohighlight">
+\[f(x)=\alpha-(\alpha-1)x^3, \quad \alpha \geq 1.\]</div>
+</p>
+</section>
+<section id="krivky-rustu-a-degradace">
+<h4><span class="section-number">4.4.2.2. </span>Křivky růstu a degradace<a class="headerlink" href="#krivky-rustu-a-degradace" title="Permalink to this heading">#</a></h4>
+<p>Funkce <div class="math notranslate nohighlight">
+\[f(x)=\alpha-(\alpha-1)x^3, \quad \alpha \geq 1\]</div>
+ je klesající funkce.
+Rychlost produkce tedy ubývá s množstvím. Toto se nazývá záporná zpětná vazba.
+Parametr <span class="math notranslate nohighlight">\(\alpha\)</span> reguluje sílu této zpětné vazby, čím je vyšší, tím je zpětná
+vazba výraznější. Vyšší <span class="math notranslate nohighlight">\(\alpha\)</span> charakterizuje vyšší hodnotu průsečíku na
+svislé ose (rychlejší produkci při nulové hladině proteinu) a rychlejší pokles
+při rostoucí koncentraci. Pěkně to je vidět na následujícím obrázku.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">2.5</span><span class="p">]</span>              <span class="c1"># definice parametrů</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>  <span class="c1"># definice intervalu pro kreslení růstových křivek</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">alpha_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">alpha</span><span class="p">):</span>       <span class="c1"># Cyklus přes parametry</span>
+    <span class="n">produkce</span> <span class="o">=</span> <span class="n">alpha_</span> <span class="o">-</span> <span class="p">(</span><span class="n">alpha_</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="c1"># Křivka produkce</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">produkce</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">alpha_</span><span class="p">)</span>     <span class="c1"># Vykreslení křivky produkce</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">,</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;degradace&quot;</span><span class="p">)</span>    <span class="c1"># Vykreslení křivky degradace</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Křivky produkce a degradce proteinu&quot;</span><span class="p">,</span> 
+       <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;bezrozměrné množství proteinu&#39;</span><span class="p">,</span>
+       <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;rychlost produkce (plná čára)</span><span class="se">\n</span><span class="s1"> a degradace (čárkovaná čára) proteinu&#39;</span><span class="p">,</span>
+       <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+       <span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Parametr $\alpha$&quot;</span>
+    <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/a51e8bc1cba8ca5a5dfa75dd3b381326e867d96947bb63072da272201ff79301.png" src="../_images/a51e8bc1cba8ca5a5dfa75dd3b381326e867d96947bb63072da272201ff79301.png" />
+</div>
+</div>
+</section>
+<section id="casovy-prubeh-reseni-modelu">
+<h4><span class="section-number">4.4.2.3. </span>Časový průběh řešení modelu<a class="headerlink" href="#casovy-prubeh-reseni-modelu" title="Permalink to this heading">#</a></h4>
+<p>Zkusíme si namodelovat průběh řešení modelu pro různé hodnoty parametru.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meze</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>                <span class="c1"># definice počátečního a koncového časového okamžiku</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">meze</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="c1"># definice intervalu pro kreslení funkcí času</span>
+<span class="n">reseni</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="n">solve_ivp</span><span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">alpha_</span> <span class="o">-</span> <span class="p">(</span><span class="n">alpha_</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="n">x</span><span class="p">,</span>
+        <span class="n">meze</span><span class="p">,</span> 
+        <span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+        <span class="n">t_eval</span><span class="o">=</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  
+    <span class="k">for</span> <span class="n">alpha_</span> <span class="ow">in</span> <span class="n">alpha</span>
+    <span class="p">])</span><span class="o">.</span><span class="n">T</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">reseni</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Množství proteinu jako funkce času&quot;</span><span class="p">,</span> 
+    <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;čas&#39;</span><span class="p">,</span> 
+    <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;bezrozměrné množství proteinu&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
+    <span class="n">alpha</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Parametr $\alpha$&quot;</span>
+    <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/7a1283db342e3c0fc4ab9a954c2deebdffa07059ecf115bd74f77cb675c3387c.png" src="../_images/7a1283db342e3c0fc4ab9a954c2deebdffa07059ecf115bd74f77cb675c3387c.png" />
+</div>
+</div>
+<p>Čím vyšší hodnota koeficientu <span class="math notranslate nohighlight">\(\alpha\)</span>, tím je počáteční produkce rychlejší a
+dříve je dosaženo potřebného množství enzymu. Toto se děje při konstantní zpětné
+vazbě a konstantním stacionárním stavu (všechny rovnice mají člen popisující
+degradaci ve tvaru <span class="math notranslate nohighlight">\(-x\)</span> a stacionární stav <span class="math notranslate nohighlight">\(x=1\)</span>).</p>
+</section>
+<section id="negativni-zpetna-vazba-urychluje-syntezu">
+<h4><span class="section-number">4.4.2.4. </span>Negativní zpětná vazba urychluje syntézu<a class="headerlink" href="#negativni-zpetna-vazba-urychluje-syntezu" title="Permalink to this heading">#</a></h4>
+<p>Vidíme, že negativní zpětná vazba příznivě ovlivňuje rychlost syntézy proteinu.
+Tím je buňce umožněno zareagovat rychle na vnější podmínky, aniž by za to
+platila cenou rychlé degradace, jako bez zpětné vazby (současně přidávání plynu
+a brzdění). Taková zpětná vazba může být zprostředkována například tím, že
+protein vstupuje do jiných chemických reakcí.</p>
+<p>Příroda zařadila i do jednoduchých organismů typu buňka takových zpětných vazeb
+obrovské množství a dlouholetou evolucí vyladila hodnoty parametrů tak, aby
+potřebné proteiny vznikaly přesně v době, kdy jsou potřeba a aby dostatečně
+rychle vznikly v potřebné koncentraci. To je zařízeno mutacemi v genech. Chybou
+v přepise genů například může vzniknout zpětná vazba, která do té doby
+neexistovala. Pokud se projeví jako  užitečná, dává svému nositeli evoluční
+výhodu a šíří se dál. Podobně se během milionů let vyladí parametry této zpětné
+vazby, například hodnota parametru <span class="math notranslate nohighlight">\(\alpha\)</span>. Těmito problémy zabývá věda
+nazývaná systémová biologie. Tato věda prodělala bouřlivý rozvoj v letech okolo
+roku 2000, kdy byly vyvinuty účinné postupy pro získávání potřebných dat o
+genech a proteinech a tento rozvoj pokračuje dodnes.</p>
+<p>Poznatky, na kterých je založen tento model, jsou potvrzeny experimentálně.
+Používá se například vnesení genu způsobujícího světélkování do genetické
+informace bakterií.</p>
+</section>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">předchozí</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Diferenciální rovnice</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">další</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Bifurkace</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Obsah
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exponencialni-rust">4.1. Exponenciální růst</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#von-bertalanffyho-rust">4.2. Von Bertalanffyho růst</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logisticky-rust">4.3. Logistický růst</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoregulace-a-rychlost-syntezy-proteinu-volitelne">4.4. Autoregulace a rychlost syntézy proteinů (volitelně)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#produkce-konstantni-rychlosti">4.4.1. Produkce konstantní rychlostí</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nondimenzionalizace">4.4.1.1. Nondimenzionalizace</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rustove-krivky">4.4.1.2. Růstové křivky</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#casovy-vyvoj-reseni">4.4.1.3. Časový vývoj řešení</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rychla-produkce-je-zaplacena-rychlou-degradaci">4.4.1.4. Rychlá produkce je „zaplacena“ rychlou degradací</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bezrozmerna-formulace">4.4.1.5. Bezrozměrná formulace</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#produkce-se-zapornou-zpetnou-vazbou">4.4.2. Produkce se zápornou zpětnou vazbou</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">4.4.2.1. Nondimenzionalizace</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#krivky-rustu-a-degradace">4.4.2.2. Křivky růstu a degradace</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#casovy-prubeh-reseni-modelu">4.4.2.3. Časový průběh řešení modelu</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#negativni-zpetna-vazba-urychluje-syntezu">4.4.2.4. Negativní zpětná vazba urychluje syntézu</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Autor Robert Mařík
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+  All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
+</p>
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

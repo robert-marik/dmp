@@ -1,0 +1,1143 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="cs" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>6. Diferenciální rovnice 3 &#8212; Dynamické modely populací</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cviceni/cviceni_05';</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.jscustom.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="7. LaTeX" href="cviceni_06.html" />
+    <link rel="prev" title="5. Diferenciální rovnice 2" href="cviceni_04.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="cs"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Hledat v knize..."
+         aria-label="Hledat v knize..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Dynamické modely populací</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Vyhledávání</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvodní slovo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Přednášky</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/01.html">1. Funkce a vlastnosti funkcí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/02.html">2. Derivace a integrál</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/03.html">3. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/04.html">4. Autonomní diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/05.html">5. Bifurkace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/06.html">6. Lineární algebra, matice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/07.html">7. Parciální derivace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/08.html">8. Autonomní systémy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/09.html">9. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/10.html">10. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/11.html">11. Diskrétní populační modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/12.html">12. Difuzní rovnice</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cvičení</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">1. První kroky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_01.html">2. Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_02.html">3. Práce s funkcemi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_03.html">4. Diferenciální rovnice 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_04.html">5. Diferenciální rovnice 2</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Diferenciální rovnice 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_06.html">7. LaTeX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_07.html">8. Maticové modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_08.html">9. Levinsův model metapopulací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_09.html">10. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_10.html">11. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_11.html">12. Samostatná práce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Různá zadání</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">1. Enzymy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../allee.html">2. Silný Alleeho efekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chovani.html">3. Model soupeření jestřábí a holubičí povahy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">4. Model populace ryb</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Kombinovaní</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">1. Data a grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">2. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">3. Lov v populaci - fázový portrét</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">4. Lov v populaci - časový vývoj</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">5. Model dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">6. Model konkurence</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python konstrukce a ukázky</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_zakladni_konstrukce.html">Základní konstrukce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/cykly.html">Cykly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/grafy_amateri.html">Kreslení funkcí jednoduše</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/grafy_pokrocili.html">Kreslení funkcí pro pokročilé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/diferencialni_rovnice_amateri.html">Diferenciální rovnice pro začátečníky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/diferencialni_rovnice_pokrocili.html">Diferenciální rovnice pro pokročilejší</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_tabulky.html">Tabulky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_grafy.html">Obrázky, grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/reseni_ODR.html">Řešení diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/tabulky_none.html">Tabulky s None a NaN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/multiindex.html">Tabulky s hierarchickým indexem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/multiindex-pokrocili.html">Hierarchický index (pokročilí)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/reseni_rovnice.html">Numerické řešení rovnice</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Literatura a rejstřík</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../literatura.html">Literatura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Rejstřík</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">e-opora</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://robert-marik.github.io/moodle-python">Python</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/robert-marik/dmp/blob/main/cviceni/cviceni_05.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://github.com/robert-marik/dmp" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Zdrojové úložiště"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Stáhněte si tuto stránku">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/cviceni/cviceni_05.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Stáhněte si zdrojový soubor"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Tisk do PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Režim celé obrazovky"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Diferenciální rovnice 3</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Obsah </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lov-v-logisticke-rovnici">6.1. Lov v logistické rovnici</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konstantni-uzitek">6.1.1. Konstantní užitek</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konstantni-usili">6.1.2. Konstantní úsilí</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alleeho-efekt">6.2. Alleeho efekt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#populace-pod-predacnim-tlakem">6.3. Populace pod predačním tlakem</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="diferencialni-rovnice-3">
+<h1><span class="section-number">6. </span>Diferenciální rovnice 3<a class="headerlink" href="#diferencialni-rovnice-3" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="lov-v-logisticke-rovnici">
+<h2><span class="section-number">6.1. </span>Lov v logistické rovnici<a class="headerlink" href="#lov-v-logisticke-rovnici" title="Permalink to this heading">#</a></h2>
+<section id="konstantni-uzitek">
+<h3><span class="section-number">6.1.1. </span>Konstantní užitek<a class="headerlink" href="#konstantni-uzitek" title="Permalink to this heading">#</a></h3>
+<p>V logistické rovnici nakreslíme pro tři různé intenzity lovu průběh řešení. Prorovnejte následující kód s kódem pro kreslení řešení jedné sady pro jednu intenzitu lovu.</p>
+<p>Zpravidla netriviální kód nenapíšeme napoprvé, ale musíme příkazy ladit. V následujícím jsou rozděleny fáze řešení rovnice a vykreslení řešení. Pro potřeby spouštění je po odladění vhodné buňky sloučit.</p>
+<ul class="simple">
+<li><p>Zkuste si v následující buňce rozdělit kód do dvou různých buněk. Tedy přepnete se do editace, najdete vhodný řádek a v menu vyberete „Edit“ a „Split Cell“.</p></li>
+<li><p>Poté zkuste buňky co se mají spouštět společně spojit. V příkazovém modu buňky označte (například shift + šipka nahoru nebo dolů) a stisknout velké M, tj. Shift + M. Pozor, pokud byste stiskli malé „m“, buňka by se změnila na Markdown buňku s textem. Zpět na buňku s kódem je klávesa „y“.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pocatecni_podminka</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">1.2</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">meze</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">meze</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">destrukce_populace</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>  <span class="c1"># Pokud x klesne na nulu, zastavíme výpočet</span>
+    <span class="k">return</span> <span class="n">x</span>
+<span class="n">destrukce_populace</span><span class="o">.</span><span class="n">terminal</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="k">def</span> <span class="nf">rovnice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">0.15</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">r</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">K</span><span class="p">)</span><span class="o">-</span><span class="n">h</span>
+
+<span class="n">lovy</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">]</span>
+<span class="c1"># Pro různé počáteční podmínky se bude lišit interval, </span>
+<span class="c1"># na kterém algoritmus najde řešení. Proto nemůžeme data</span>
+<span class="c1"># shrnout do jedné tabulky. Alternativou je tabulka s </span>
+<span class="c1"># nedefinovanými hodnotami, viz</span>
+<span class="c1"># https://robert-marik.github.io/dmp/snippety/tabulky_none.html</span>
+<span class="c1"># a https://robert-marik.github.io/dmp/snippety/multiindex.html</span>
+<span class="n">reseni</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span> <span class="n">solve_ivp</span><span class="p">(</span>
+                   <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">:</span><span class="n">rovnice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="n">h</span><span class="p">),</span>
+                   <span class="n">meze</span><span class="p">,</span>
+                   <span class="p">[</span><span class="n">pp</span><span class="p">],</span>
+                   <span class="n">t_eval</span><span class="o">=</span><span class="n">t</span><span class="p">,</span>
+                   <span class="n">events</span><span class="o">=</span><span class="n">destrukce_populace</span><span class="p">,</span>  <span class="c1"># zastavení výpočtu při poklesu populace na nulu</span>
+                   <span class="p">)</span>
+          <span class="k">for</span> <span class="n">pp</span> <span class="ow">in</span> <span class="n">pocatecni_podminka</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">lovy</span><span class="p">]</span>
+
+<span class="c1"># GRAFICKA PREZENTACE VYSLEDKU</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">r</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">reseni</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">r</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">t</span><span class="p">,</span><span class="n">res</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;C</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;lov </span><span class="si">{</span><span class="n">lovy</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+  <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Logistická rovnice s konstantním lovem&quot;</span><span class="p">,</span>
+  <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;bezrozměrný čas&quot;</span><span class="p">,</span>
+  <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;bezrozměrná velikost populace&quot;</span>
+  <span class="p">);</span>
+
+<span class="c1"># Návod jak seskupit položky legendy je na https://stackoverflow.com/questions/26337493/pyplot-combine-multiple-line-labels-in-legend</span>
+<span class="n">handles</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">()</span>
+<span class="n">labels</span><span class="p">,</span> <span class="n">ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">return_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">handles</span> <span class="o">=</span> <span class="p">[</span><span class="n">handles</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ids</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="p">,</span> <span class="n">labels</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/94a43d98e82d838c5f1d605323fb8653da17b95d6cd7bdcae3518ab127825d5f.png" src="../_images/94a43d98e82d838c5f1d605323fb8653da17b95d6cd7bdcae3518ab127825d5f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">rovnice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;růst bez lovu&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">lovy</span><span class="p">:</span> 
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">h</span><span class="o">+</span><span class="mi">0</span><span class="o">*</span><span class="n">x</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;lov </span><span class="si">{</span><span class="n">h</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;velikost populace&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;rychlost růstu a lovu&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Srovnání dynamiky růstu a lovu&quot;</span>
+<span class="p">)</span>    
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f30dd93a8d0&gt;
+</pre></div>
+</div>
+<img alt="../_images/837ea6c02646f161ba6fba6dde11a6dd47fd8f0f2a0af837bf0c59c854aa2e51.png" src="../_images/837ea6c02646f161ba6fba6dde11a6dd47fd8f0f2a0af837bf0c59c854aa2e51.png" />
+</div>
+</div>
+</section>
+<section id="konstantni-usili">
+<h3><span class="section-number">6.1.2. </span>Konstantní úsilí<a class="headerlink" href="#konstantni-usili" title="Permalink to this heading">#</a></h3>
+<p>Modifikujte předchozí kód s vykreslením časového vývoje populace vystavené lovu.
+Lov konstantní intenzitou nahraďte lovem s konstantním úsilím. Zkuste nejprve minimální úprava kódu.
+Bez ohledu na efektivitu, vyjděte z předchozího a snažte se co nejméně
+modifikovat výchozí kód. Poté si prostudujte elegantnější přístup využívající
+toho, že žádné řešení neskončí v konečném čase.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sem napiste reseni</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>U konstantního úsilí není problém s tím, že by některá řešení končila dříve. Proto může být programový kód kratší a čistý. Například nemusíme pracovat s vnořenými cykly a můžeme příkazu <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> poslat současně všechny počáteční podmínky. Pokusme se o to.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pocatecni_podminka</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">1.2</span><span class="p">,</span><span class="mi">51</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">meze</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">meze</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">rovnice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">0.15</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">r</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">K</span><span class="p">)</span><span class="o">-</span><span class="n">h</span><span class="o">*</span><span class="n">x</span>
+
+<span class="n">lovy</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.6</span><span class="p">]</span>
+
+<span class="c1">### Definice tabulky s víceúrovňovými nadpisy sloupců, MultiIndex</span>
+<span class="c1">### https://pandas.pydata.org/docs/user_guide/advanced.html</span>
+<span class="n">iterables</span> <span class="o">=</span> <span class="p">[</span><span class="n">lovy</span><span class="p">,</span><span class="n">pocatecni_podminka</span><span class="p">]</span>
+<span class="n">my_index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_product</span><span class="p">(</span><span class="n">iterables</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;lov&#39;</span><span class="p">,</span> <span class="s1">&#39;poč.podm.&#39;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">my_index</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;čas&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span>
+<span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">lovy</span><span class="p">:</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span>
+              <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">:</span><span class="n">rovnice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="n">h</span><span class="p">),</span>
+              <span class="n">meze</span><span class="p">,</span>
+              <span class="n">pocatecni_podminka</span><span class="p">,</span>
+              <span class="n">t_eval</span><span class="o">=</span><span class="n">t</span><span class="p">,</span>
+              <span class="p">)</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">df</span><span class="p">[[(</span><span class="n">h</span><span class="p">,</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">pocatecni_podminka</span><span class="p">]]</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;čas&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>čas</th>
+      <th>0.000000</th>
+      <th>0.101010</th>
+      <th>0.202020</th>
+      <th>0.303030</th>
+      <th>0.404040</th>
+      <th>0.505051</th>
+      <th>0.606061</th>
+      <th>0.707071</th>
+      <th>0.808081</th>
+      <th>0.909091</th>
+      <th>...</th>
+      <th>9.090909</th>
+      <th>9.191919</th>
+      <th>9.292929</th>
+      <th>9.393939</th>
+      <th>9.494949</th>
+      <th>9.595960</th>
+      <th>9.696970</th>
+      <th>9.797980</th>
+      <th>9.898990</th>
+      <th>10.000000</th>
+    </tr>
+    <tr>
+      <th>lov</th>
+      <th>poč.podm.</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">0.1</th>
+      <th>0.1</th>
+      <td>0.100</td>
+      <td>0.108371</td>
+      <td>0.117336</td>
+      <td>0.126920</td>
+      <td>0.137151</td>
+      <td>0.148054</td>
+      <td>0.159650</td>
+      <td>0.171950</td>
+      <td>0.184964</td>
+      <td>0.198694</td>
+      <td>...</td>
+      <td>0.898016</td>
+      <td>0.898182</td>
+      <td>0.898329</td>
+      <td>0.898459</td>
+      <td>0.898573</td>
+      <td>0.898675</td>
+      <td>0.898768</td>
+      <td>0.898856</td>
+      <td>0.898940</td>
+      <td>0.899027</td>
+    </tr>
+    <tr>
+      <th>0.122</th>
+      <td>0.122</td>
+      <td>0.131909</td>
+      <td>0.142472</td>
+      <td>0.153707</td>
+      <td>0.165637</td>
+      <td>0.178276</td>
+      <td>0.191634</td>
+      <td>0.205712</td>
+      <td>0.220505</td>
+      <td>0.236000</td>
+      <td>...</td>
+      <td>0.898404</td>
+      <td>0.898538</td>
+      <td>0.898656</td>
+      <td>0.898760</td>
+      <td>0.898852</td>
+      <td>0.898934</td>
+      <td>0.899008</td>
+      <td>0.899078</td>
+      <td>0.899147</td>
+      <td>0.899216</td>
+    </tr>
+    <tr>
+      <th>0.144</th>
+      <td>0.144</td>
+      <td>0.155339</td>
+      <td>0.167371</td>
+      <td>0.180106</td>
+      <td>0.193555</td>
+      <td>0.207723</td>
+      <td>0.222605</td>
+      <td>0.238190</td>
+      <td>0.254458</td>
+      <td>0.271383</td>
+      <td>...</td>
+      <td>0.898676</td>
+      <td>0.898787</td>
+      <td>0.898885</td>
+      <td>0.898971</td>
+      <td>0.899047</td>
+      <td>0.899115</td>
+      <td>0.899177</td>
+      <td>0.899235</td>
+      <td>0.899291</td>
+      <td>0.899349</td>
+    </tr>
+    <tr>
+      <th>0.166</th>
+      <td>0.166</td>
+      <td>0.178662</td>
+      <td>0.192036</td>
+      <td>0.206123</td>
+      <td>0.220922</td>
+      <td>0.236423</td>
+      <td>0.252609</td>
+      <td>0.269455</td>
+      <td>0.286929</td>
+      <td>0.304989</td>
+      <td>...</td>
+      <td>0.898878</td>
+      <td>0.898972</td>
+      <td>0.899055</td>
+      <td>0.899128</td>
+      <td>0.899192</td>
+      <td>0.899250</td>
+      <td>0.899302</td>
+      <td>0.899351</td>
+      <td>0.899399</td>
+      <td>0.899448</td>
+    </tr>
+    <tr>
+      <th>0.188</th>
+      <td>0.188</td>
+      <td>0.201879</td>
+      <td>0.216470</td>
+      <td>0.231766</td>
+      <td>0.247752</td>
+      <td>0.264403</td>
+      <td>0.281690</td>
+      <td>0.299574</td>
+      <td>0.318011</td>
+      <td>0.336948</td>
+      <td>...</td>
+      <td>0.899034</td>
+      <td>0.899115</td>
+      <td>0.899186</td>
+      <td>0.899249</td>
+      <td>0.899304</td>
+      <td>0.899354</td>
+      <td>0.899399</td>
+      <td>0.899441</td>
+      <td>0.899482</td>
+      <td>0.899524</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">0.6</th>
+      <th>1.112</th>
+      <td>1.112</td>
+      <td>1.038781</td>
+      <td>0.976482</td>
+      <td>0.922880</td>
+      <td>0.877138</td>
+      <td>0.838270</td>
+      <td>0.805131</td>
+      <td>0.776418</td>
+      <td>0.750671</td>
+      <td>0.726294</td>
+      <td>...</td>
+      <td>0.407163</td>
+      <td>0.406875</td>
+      <td>0.406598</td>
+      <td>0.406333</td>
+      <td>0.406079</td>
+      <td>0.405835</td>
+      <td>0.405601</td>
+      <td>0.405376</td>
+      <td>0.405161</td>
+      <td>0.404954</td>
+    </tr>
+    <tr>
+      <th>1.134</th>
+      <td>1.134</td>
+      <td>1.057181</td>
+      <td>0.991996</td>
+      <td>0.936033</td>
+      <td>0.888480</td>
+      <td>0.848319</td>
+      <td>0.814316</td>
+      <td>0.785022</td>
+      <td>0.758774</td>
+      <td>0.733722</td>
+      <td>...</td>
+      <td>0.407263</td>
+      <td>0.406970</td>
+      <td>0.406690</td>
+      <td>0.406421</td>
+      <td>0.406163</td>
+      <td>0.405915</td>
+      <td>0.405678</td>
+      <td>0.405450</td>
+      <td>0.405232</td>
+      <td>0.405022</td>
+    </tr>
+    <tr>
+      <th>1.156</th>
+      <td>1.156</td>
+      <td>1.075507</td>
+      <td>1.007379</td>
+      <td>0.949009</td>
+      <td>0.899631</td>
+      <td>0.858199</td>
+      <td>0.823389</td>
+      <td>0.793589</td>
+      <td>0.766905</td>
+      <td>0.741191</td>
+      <td>...</td>
+      <td>0.407361</td>
+      <td>0.407065</td>
+      <td>0.406780</td>
+      <td>0.406508</td>
+      <td>0.406246</td>
+      <td>0.405995</td>
+      <td>0.405755</td>
+      <td>0.405524</td>
+      <td>0.405303</td>
+      <td>0.405090</td>
+    </tr>
+    <tr>
+      <th>1.178</th>
+      <td>1.178</td>
+      <td>1.093759</td>
+      <td>1.022631</td>
+      <td>0.961806</td>
+      <td>0.910585</td>
+      <td>0.867910</td>
+      <td>0.832358</td>
+      <td>0.802137</td>
+      <td>0.775090</td>
+      <td>0.748730</td>
+      <td>...</td>
+      <td>0.407459</td>
+      <td>0.407159</td>
+      <td>0.406871</td>
+      <td>0.406594</td>
+      <td>0.406329</td>
+      <td>0.406075</td>
+      <td>0.405831</td>
+      <td>0.405597</td>
+      <td>0.405373</td>
+      <td>0.405157</td>
+    </tr>
+    <tr>
+      <th>1.2</th>
+      <td>1.200</td>
+      <td>1.111938</td>
+      <td>1.037750</td>
+      <td>0.974419</td>
+      <td>0.921339</td>
+      <td>0.877452</td>
+      <td>0.841232</td>
+      <td>0.810687</td>
+      <td>0.783359</td>
+      <td>0.756369</td>
+      <td>...</td>
+      <td>0.407558</td>
+      <td>0.407253</td>
+      <td>0.406961</td>
+      <td>0.406681</td>
+      <td>0.406412</td>
+      <td>0.406155</td>
+      <td>0.405908</td>
+      <td>0.405671</td>
+      <td>0.405443</td>
+      <td>0.405225</td>
+    </tr>
+  </tbody>
+</table>
+<p>153 rows × 100 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lovy</span><span class="p">)):</span> <span class="c1"># tři čáry mimo obrázek kvůli legendě</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">h</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lovy</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span><span class="n">df</span><span class="p">[</span><span class="n">h</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;C</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+  <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Logistická rovnice s lovem s konstantním úsilím&quot;</span><span class="p">,</span>
+  <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;bezrozměrný čas&quot;</span><span class="p">,</span>
+  <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;bezrozměrná velikost populace&quot;</span><span class="p">,</span>
+  <span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="kc">None</span><span class="p">]</span>
+  <span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;lov </span><span class="si">{</span><span class="n">lov</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">lov</span> <span class="ow">in</span> <span class="n">lovy</span><span class="p">]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ded9d62567018c6de0785915d6cb3e5417281722dfd701df45564d71dc67c5ae.png" src="../_images/ded9d62567018c6de0785915d6cb3e5417281722dfd701df45564d71dc67c5ae.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">rovnice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;růst bez lovu&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">lovy</span><span class="p">:</span> 
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">a</span><span class="o">*</span><span class="n">x</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;lov </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;velikost populace&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;rychlost růstu a lovu&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Srovnání dynamiky růstu a lovu&quot;</span><span class="p">,</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="p">)</span>    
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f30d440c440&gt;
+</pre></div>
+</div>
+<img alt="../_images/642162c6f925949560a6a6f4c3edf344772af3573a3d6adeab8c0da6b3eb66b9.png" src="../_images/642162c6f925949560a6a6f4c3edf344772af3573a3d6adeab8c0da6b3eb66b9.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="alleeho-efekt">
+<h2><span class="section-number">6.2. </span>Alleeho efekt<a class="headerlink" href="#alleeho-efekt" title="Permalink to this heading">#</a></h2>
+<p>Nakreslete model řešení rovnice modelující lov konstantním úsilím v populaci s
+Alleeho efektem. Můžete uvažovat slabý Aleeho efekt (pro malé velikosti
+populace se dynamika růstu výrazně zpomalí) nebo silný Alleeho efekt  (pro malé
+velikosti populace vymírá). Můžete použít například rovnici
+<div class="math notranslate nohighlight">
+\[\frac{\mathrm dx}{\mathrm dt} = rx ^k\left(1-\frac xK\right) -ax, \quad k&gt;1\]</div>
+
+pro slabý nebo
+<div class="math notranslate nohighlight">
+\[\frac{\mathrm dx}{\mathrm dt} = rx \left(1-\frac xK\right)\left(\frac
+xA-1\right) -ax, \quad 0&lt;A&lt;K\]</div>
+
+pro silný Alleeho efekt. Nejprve si nakreslete křivky růstu a lovu, pro
+vytipování vhodných numerických hodnot pro parametry a poté nakreslete řešení
+diferenciální rovnice pro různé intenzity lovu a různé počáteční podmínky.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sem napiste kod pro vykreslení krivek rustu a lovu</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sem napiste kod pro vykreslení reseni diferenciální rovnice</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="populace-pod-predacnim-tlakem">
+<h2><span class="section-number">6.3. </span>Populace pod predačním tlakem<a class="headerlink" href="#populace-pod-predacnim-tlakem" title="Permalink to this heading">#</a></h2>
+<p>Vykreslete model pro populaci pro predačním tlakem <a class="reference external" href="https://robert-marik.github.io/dmp/prednaska/05.html#populace-pod-predacnim-tlakem">https://robert-marik.github.io/dmp/prednaska/05.html#populace-pod-predacnim-tlakem</a>. Použijte bezrozměnrou formulaci, tj. rovnici  <div class="math notranslate nohighlight">
+\[\frac{ \mathrm dx}{ \mathrm d\tau}=\alpha\left(1-\frac {x}{\beta}\right)x-\frac
+   {x^2}{x^2+1}.\]</div>
+
+Tři dvojice hodnot pro <span class="math notranslate nohighlight">\(\alpha\)</span> a <span class="math notranslate nohighlight">\(\beta\)</span> můžete použít z <a class="reference external" href="https://robert-marik.github.io/dmp/prednaska/05.html#rustove-krivky">https://robert-marik.github.io/dmp/prednaska/05.html#rustove-krivky</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sem napiste reseni</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="cviceni_04.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">předchozí</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Diferenciální rovnice 2</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="cviceni_06.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">další</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>LaTeX</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Obsah
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lov-v-logisticke-rovnici">6.1. Lov v logistické rovnici</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konstantni-uzitek">6.1.1. Konstantní užitek</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konstantni-usili">6.1.2. Konstantní úsilí</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alleeho-efekt">6.2. Alleeho efekt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#populace-pod-predacnim-tlakem">6.3. Populace pod predačním tlakem</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Autor Robert Mařík
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+  All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
+</p>
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,960 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="cs" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>7. Parciální derivace &#8212; Dynamické modely populací</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'prednaska/07';</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.jscustom.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="8. Autonomní systémy" href="08.html" />
+    <link rel="prev" title="6. Lineární algebra, matice" href="06.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="cs"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Hledat v knize..."
+         aria-label="Hledat v knize..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Dynamické modely populací</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Vyhledávání</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvodní slovo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Přednášky</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01.html">1. Funkce a vlastnosti funkcí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02.html">2. Derivace a integrál</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03.html">3. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04.html">4. Autonomní diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05.html">5. Bifurkace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06.html">6. Lineární algebra, matice</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Parciální derivace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08.html">8. Autonomní systémy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09.html">9. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10.html">10. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11.html">11. Diskrétní populační modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12.html">12. Difuzní rovnice</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cvičení</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">1. První kroky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_01.html">2. Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_02.html">3. Práce s funkcemi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_03.html">4. Diferenciální rovnice 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_04.html">5. Diferenciální rovnice 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_05.html">6. Diferenciální rovnice 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_06.html">7. LaTeX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_07.html">8. Maticové modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_08.html">9. Levinsův model metapopulací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_09.html">10. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_10.html">11. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_11.html">12. Samostatná práce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Různá zadání</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">1. Enzymy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../allee.html">2. Silný Alleeho efekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chovani.html">3. Model soupeření jestřábí a holubičí povahy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">4. Model populace ryb</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Kombinovaní</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">1. Data a grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">2. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">3. Lov v populaci - fázový portrét</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">4. Lov v populaci - časový vývoj</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">5. Model dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">6. Model konkurence</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python konstrukce a ukázky</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_zakladni_konstrukce.html">Základní konstrukce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/cykly.html">Cykly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/grafy_amateri.html">Kreslení funkcí jednoduše</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/grafy_pokrocili.html">Kreslení funkcí pro pokročilé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/diferencialni_rovnice_amateri.html">Diferenciální rovnice pro začátečníky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/diferencialni_rovnice_pokrocili.html">Diferenciální rovnice pro pokročilejší</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_tabulky.html">Tabulky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_grafy.html">Obrázky, grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/reseni_ODR.html">Řešení diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/tabulky_none.html">Tabulky s None a NaN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/multiindex.html">Tabulky s hierarchickým indexem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/multiindex-pokrocili.html">Hierarchický index (pokročilí)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/reseni_rovnice.html">Numerické řešení rovnice</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Literatura a rejstřík</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../literatura.html">Literatura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Rejstřík</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">e-opora</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://robert-marik.github.io/moodle-python">Python</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/robert-marik/dmp/blob/gh-pages/_sources/prednaska/07.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://github.com/robert-marik/dmp" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Zdrojové úložiště"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Stáhněte si tuto stránku">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/prednaska/07.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Stáhnout soubor poznámkového bloku"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../_sources/prednaska/07.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Stáhněte si zdrojový soubor"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Tisk do PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Režim celé obrazovky"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Parciální derivace</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Obsah </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zavedeni-parcialni-derivace">7.1. Zavedení parciální derivace</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sensitivita-a-elasticita-projekcni-matice">7.2. Sensitivita a elasticita projekční matice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linearni-aproximace">7.3. Lineární aproximace</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rovnice-vedeni-tepla">7.4. Rovnice vedení tepla</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fisherovakpp-rovnice">7.5. Fisherova–KPP rovnice</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="parcialni-derivace">
+<h1><span class="section-number">7. </span>Parciální derivace<a class="headerlink" href="#parcialni-derivace" title="Permalink to this heading">#</a></h1>
+<div class="admonition-co-se-dozvite-v-tomto-textu admonition">
+<p class="admonition-title">Co se dozvíte v tomto textu</p>
+<p><img alt="" src="../_images/muskrat.jpg" /></p>
+<p>V této části se naučíme sledovat rychlosti růstu funkce dvou a více proměnných.</p>
+<p>Mezi aplikace patří ochrana ohrožených druhů, kdy při snaze podpořit růst populace musíme vybrat ze škály parametrů ovlivňujících vývoj ten, který má na růst populace nejpodstatnější vliv. Postup je možné použít i naopak a při snaze o kontrolu škůdců vytipovat parametr, který vývoj populace škůdce nejvíce postihne.</p>
+<p>Další aplikací je model šíření invazních druhů, kdy se zastoupení živočišného druhu mění v čase i v prostoru tím, jak se druh množí a rozšiřuje území, na kterém žije.</p>
+<p><em>Foto: Ondatra se jako invazní druh velmi rychle rozšířila z Dobříšského panství do celé Evropy. Tato invaze byla popsána v jednom z prvním článků věnovaných invazím živočišných druhů a díky tomu se naše země dostala do většiny ekologických učebnic.  D. Gordon E. Robertson, <a class="reference external" href="https://commons.wikimedia.org/">https://commons.wikimedia.org/</a></em></p>
+</div>
+<p>Pomocí derivace jsme se naučili sledovat rychlost růstu funkce jedné proměnné.
+Tato veličina je užitečná protože rychlost růstu je často determinována
+měřitelnými veličinami a je k dispozici zákon vyjadřující souvislost rychlosti
+růstu sledované veličiny s ostatními parametry systému. Často je mezi těmito
+parametry i ona sledovaná veličina, což při sestavení modelu vede na
+diferenciální rovnice.</p>
+<p>Někdy není možné si vystačit pouze s funkcemi jedné proměnné. Proto si nyní
+koncept derivace rozšíříme i na funkce více proměnných.</p>
+<p>Navážeme na <a class="reference internal" href="06.html#model-populace-tulenu"><span class="std std-ref">příklad s růstem populace
+tuleňů</span></a>.  Je-li <span class="math notranslate nohighlight">\(\lambda\)</span> největší reálné
+vlastní číslo matice projekce a <span class="math notranslate nohighlight">\(v\)</span> příslušný vlastní vektor, potom
+velikost populace roste ve všech věkových kategoriích geoemtrickou
+řadou s kvocientem <span class="math notranslate nohighlight">\(\lambda\)</span> a poměr velikostí populace v jednotlivých
+věkových kategoriích je stejný, jako poměr velikostí komponenty
+vlastního vektoru <span class="math notranslate nohighlight">\(v\)</span>. Změna hodnot v matici, která by vyjařovala
+změnu v pravděpodobnosti přežívání nebo změnu v počtu potomků, se
+zcela jistě projeví i na dynamice růstu. Zde však je nutné si
+uvědomit, že parametrů v matici je několik a situace je tedy odlišná
+od úloh, jaké jsme řešili doposud. Dosud pomocí derivací umíme popsat
+rekci závislé proměnné, závisející na jedné nezávislé proměnné. Touto
+nezávislou proměnnou byl zpravidla čas. Nyní však je nezávislých
+proměnných hned několik. Rychlost růstu se v tkaových případech
+modeluje pomocí parciální derivace.</p>
+<section id="zavedeni-parcialni-derivace">
+<h2><span class="section-number">7.1. </span>Zavedení parciální derivace<a class="headerlink" href="#zavedeni-parcialni-derivace" title="Permalink to this heading">#</a></h2>
+<p>Změna funkce více proměnných může být způsobena změnou libovolné nezávislé
+proměnné. Pokud sledujeme například rychlost růstu populace popsané Leslieho
+maticí, může nás zajímat, jak tato rychlost růstu souvisí s jednotlivými prvky
+projekční matice, tj. s plodností jednotlivých věkových tříd a s jejich
+pravděpodobností přežití. Zdá se býti rozumné oddělit jednotlivé změny a
+studovat každou samostatně. Buď v daném bodě fixovat všechny parametry až na
+jeden a sledovat například vliv pravděpodobnosti přežití u nejmladší věkové
+kategorie na celkový růst populace.</p>
+<p>Následující definice výše uvedenou myšlenku odděleného sledování změny funkce
+(závislé veličiny) jako reakce na změnu jedné jediné vstupní informace (jedné
+nezávislé veličiny) uvádí v život. Definice je stejná jako u derivace funkce
+jedné proměnné, změna je pouze v tom, že je přítomna i další proměnná.</p>
+<div class="proof definition admonition" id="definition-0">
+<p class="admonition-title"><span>Definice </span> (Parciální derivace funkce dvou proměnných)</p>
+<section class="definition-content" id="proof-content">
+<p>Buď <span class="math notranslate nohighlight">\(f\colon \mathbb R^2\to\mathbb R\)</span> funkce dvou proměnných,  <span class="math notranslate nohighlight">\(x\)</span> a <span class="math notranslate nohighlight">\(y\)</span>, tj. <span class="math notranslate nohighlight">\(f(x,y)\)</span>. Výraz
+<div class="math notranslate nohighlight">
+\[\frac{\partial f}{\partial x}:=\lim_{h\to 0}\frac{f(x+h,y)-f(x,y)}h\]</div>
+ se nazývá <em>parciální derivace funkce <span class="math notranslate nohighlight">\(f\)</span> podle <span class="math notranslate nohighlight">\(x\)</span></em>. Podobně,
+<div class="math notranslate nohighlight">
+\[\frac{\partial f}{\partial y}:=\lim_{h\to 0}\frac{f(x,y+h)-f(x,y)}h\]</div>
+ je <em>parciální derivace funkce <span class="math notranslate nohighlight">\(f\)</span> podle <span class="math notranslate nohighlight">\(y\)</span></em>.</p>
+</section>
+</div><p>Podobně můžeme definovat parciální derivaci pro funkce libovolného konečného
+počtu proměnných. V těchto parciálních derivacích vlastně sledujeme, jak reaguje
+veličina <span class="math notranslate nohighlight">\(f\)</span> na změny jenom v jedné proměnné. Proměnná, přes kterou se
+nederivuje, má vlastně roli parametru, nijak se nemění.</p>
+<p>Kromě <span class="math notranslate nohighlight">\(\frac{\partial f}{\partial x}\)</span> se běžně parciální derivace označuje
+symboly <span class="math notranslate nohighlight">\(f'_x\)</span>, <span class="math notranslate nohighlight">\(f_x\)</span>, <span class="math notranslate nohighlight">\(\partial_x f\)</span> nebo <span class="math notranslate nohighlight">\(D_x f\)</span>.</p>
+<p>Parciální derivaci <span class="math notranslate nohighlight">\(\frac{\partial f}{\partial x}\)</span> je tedy možné chápat jako rychlost s jakou se mění veličina <span class="math notranslate nohighlight">\(f\)</span> jako funkce proměnné <span class="math notranslate nohighlight">\(x\)</span>. Ekvivalentně jako změnu veličiny <span class="math notranslate nohighlight">\(f\)</span> při změně veličiny <span class="math notranslate nohighlight">\(x\)</span> o jednotku. Tato hodnota bude malá, pokud se funkční hodnoty při změnách <span class="math notranslate nohighlight">\(x\)</span> moc nemění. To by znamenalo, že rozkolísání hodnot veličiny <span class="math notranslate nohighlight">\(x\)</span> má malý vliv na veličinu <span class="math notranslate nohighlight">\(f\)</span>. V tomto smyslu se jedná o jakousi míru citlivosti (sensitivity) a parciální derivace se používají pro citlivostní analýzu.</p>
+<p>Vektor
+<div class="math notranslate nohighlight">
+\[\nabla f=\left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial x}\right)\]</div>
+
+se nazývá gradient funkce <span class="math notranslate nohighlight">\(f\)</span>. Gradient míří směrem, ve kterém roste funkce <span class="math notranslate nohighlight">\(f\)</span>
+nejrychleji a jeho délka je rovna nárůstu funkční hodnoty na jednotce délky. V
+přírodních vědách často pracujeme se záporně vzatým gradientem, který udává směr
+a intenzitu maximálního poklesu funkčních hodnot funkce <span class="math notranslate nohighlight">\(f\)</span>.</p>
+</section>
+<section id="sensitivita-a-elasticita-projekcni-matice">
+<h2><span class="section-number">7.2. </span>Sensitivita a elasticita projekční matice<a class="headerlink" href="#sensitivita-a-elasticita-projekcni-matice" title="Permalink to this heading">#</a></h2>
+<p>Zkoumejme model <div class="math notranslate nohighlight">
+\[x(n+1)=Ax(n)\]</div>
+ věkově nebo jinak strukturované populace, kde
+<span class="math notranslate nohighlight">\(A=(a_{ij})\)</span> je projekční matice zobrazující současný stav na stav v
+následujícím časovém okamžiku. Bude nás zajímat, jak se bude měnit dynamika
+modelu při změnách parametrů. To je důležité pro nastavení správných postupů při
+ochraně živočišných druhů nebo při nastavení dlouhodobě udržitelné intenzity
+lovu či sklizně.</p>
+<p>Rychlost růstu populace je dána dominantní vlastní hodnotou matice <span class="math notranslate nohighlight">\(A\)</span>. Derivace
+<span class="math notranslate nohighlight">\(\frac{\partial \lambda}{\partial a_{ij}}\)</span> dominantní vlastní hodnoty <span class="math notranslate nohighlight">\(\lambda\)</span>
+podle prvku <span class="math notranslate nohighlight">\(a_{ij}\)</span> udává, jak rychle se mění tato vlastní hodnota při změnách
+prvku <span class="math notranslate nohighlight">\(a_{ij}\)</span>. Jedná se o <em>citlivost</em> (<em>sensitivitu</em>) dominatní vlastní hodnoty
+na komponentu <span class="math notranslate nohighlight">\(a_{ij}\)</span> projekční matice <span class="math notranslate nohighlight">\(A\)</span>. Podle <span id="id1">[<a class="reference internal" href="../literatura.html#id16" title="Hal Caswell. Matrix population models. Sinauer, 2. ed edition, 2001. ISBN 0878930965.">5</a>]</span> platí <div class="math notranslate nohighlight">
+\[
+\frac{\partial \lambda}{\partial a_{ij}}=v_iw_j, \]</div>
+ kde <span class="math notranslate nohighlight">\(w\)</span> a <span class="math notranslate nohighlight">\(v\)</span> jsou pravý a
+levý vlastní vektory příslušné vlastní hodnotě <span class="math notranslate nohighlight">\(\lambda\)</span> a jejichž skalární
+součin je roven jedné.</p>
+<p>Změna <span class="math notranslate nohighlight">\(\Delta \lambda\)</span> vlastní hodnoty způsobená změnou parametru <span class="math notranslate nohighlight">\(a_{ij}\)</span> o <span class="math notranslate nohighlight">\(\Delta a_{ij}\)</span> je <div class="math notranslate nohighlight">
+\[\Delta \lambda = \frac{\partial \lambda}{\partial a_{ij}} \Delta a_{ij}.\]</div>
+
+Matice <span class="math notranslate nohighlight">\(\left(\frac{\partial \lambda}{\partial a_{ij}}\right)\)</span> se nazývá <em>matice sensitivity</em> nebo <em>matice citlivosti dominantní vlastní hodnoty na složky projekční matice</em>. Matice ukazuje, jaké mají jednotlivé parametry populace vliv na celkový růst. Zpravidla ji počítáme pomocí sloupcového pravého vlastního vektoru <span class="math notranslate nohighlight">\(\vec w\)</span> a řádkového levého vlastního vektoru <span class="math notranslate nohighlight">\(\vec v\)</span> pomocí vztahu
+<div class="math notranslate nohighlight">
+\[\left(\frac{\partial \lambda}{\partial a_{ij}}\right)=\vec v^T \vec w^T,\]</div>
+
+přičemž tyto vektory splňují <span class="math notranslate nohighlight">\(\vec v \vec w = 1\)</span> (skalární součin je roven jedné). Podmínka na skalární součin bývá splněna automaticky, pokud pokud levý vlastní vektor najdeme pomocí inverzní matice složené z pravých vlastních vektorů.</p>
+<p>Často je vhodné pracovat s relativními změnami <span class="math notranslate nohighlight">\(\frac{\Delta \lambda}{\lambda}\)</span>
+a <span class="math notranslate nohighlight">\(\frac{\Delta a_{ij}}{a_{ij}}\)</span>, pro které plyne vztah <div class="math notranslate nohighlight">
+\[\frac{\Delta
+\lambda}{\lambda} = \frac{\partial \lambda}{\partial a_{ij}}
+\frac{a_{ij}}{\lambda}\frac{\Delta a_{ij}}{a_{ij}},\]</div>
+ kde výraz <div class="math notranslate nohighlight">
+\[\frac{\partial
+\lambda}{\partial a_{ij}} \frac{a_{ij}}{\lambda}\]</div>
+ se nazývá <em>elasticita</em>
+dominantní vlastní hodnoty vzhledem ke složce <span class="math notranslate nohighlight">\(a_{ij}\)</span>. Udává, o kolik procent
+se změní maximální vlastní číslo, pokud se koeficient <span class="math notranslate nohighlight">\(a_{ij}\)</span> změní o jedno
+procento. Součet všech elasticit je roven jedné a proto je možno elasticitu
+chápat jako míru, s jakou se jednotlivé komponenty matice projekce podílejí na
+růstu populace. Bývá výhodné elasticity uspořádat do matice <div class="math notranslate nohighlight">
+\[\left(\frac{\partial \lambda}{\partial a_{ij}}
+\frac{a_{ij}}{\lambda}\right),\]</div>
+ která se nazývá <em>matice elasticity</em>.</p>
+<p>Prozkoumejme matici elasticity na příkladu s populací tuleňů z minulé přednášky.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span>
+    <span class="mi">0</span><span class="p">,</span> <span class="mf">1.26</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span>
+    <span class="mf">0.614</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span> <span class="mf">0.808</span><span class="p">,</span> <span class="mf">0.808</span>
+<span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">v</span><span class="p">,</span><span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+<span class="n">l</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>  <span class="c1"># maximální vlastní hodnota</span>
+<span class="n">l_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="c1"># pozice maximální vlastní hodnoty</span>
+
+<span class="n">W</span> <span class="o">=</span> <span class="n">P</span><span class="p">[:,</span><span class="n">l_index</span><span class="p">]</span><span class="o">.</span><span class="n">real</span> <span class="c1"># pravý sloupcový vlastni vektor příslušný maximální vlastní hodnotě</span>
+<span class="n">V</span> <span class="o">=</span> <span class="p">(</span><span class="n">P</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))[</span><span class="n">l_index</span><span class="p">:]</span><span class="o">.</span><span class="n">real</span> <span class="c1"># levý řádkový vlastní vektor příslušný maximální vlastní hodnotě</span>
+<span class="n">matice_sensitivity</span> <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="n">W</span><span class="o">.</span><span class="n">T</span>
+<span class="n">matice_elasticity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">matice_sensitivity</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">/</span><span class="n">l</span><span class="p">)</span>
+<span class="n">matice_elasticity</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[0.        , 0.10157076, 0.19054952],
+        [0.29212028, 0.        , 0.        ],
+        [0.        , 0.19054952, 0.22520993]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Vidíme, že největší vliv na růst populace mají parametry spojené s přežíváním
+nejstarší věkové kategorie a s dospíváním mláďat, toto jsou dvě jediné hodnoty
+nad 20 procent. Pokud populace vymírá, snažíme se při ochraně tohoto druhu
+navýšit parametry s nejvyšší elasticitou. Změna těchto parametrů má totiž
+největší efekt. Fertilita jednotlivých věkových tříd (čísla v prvním řádku) nemá
+tak výrazný vliv a navíc ji zpravidla nemůžeme tak efektivně ovlivnit, jako
+koeficienty přežití.</p>
+<div class="proof remark admonition" id="remark-1">
+<p class="admonition-title"><span>Poznámka </span> (Matice elasticity v ochraně přírody)</p>
+<section class="remark-content" id="proof-content">
+<p>Podle <span id="id2">[<a class="reference internal" href="../literatura.html#id5" title="E. Tkadlec. Populační ekologie: Struktura a růst populací. Univerzita Palckého v Olomouci, 2013.">16</a>]</span> (str. 127) by se v ochraně přírody při ochraně ohrožených
+druhů měly navyšovat ty koeficienty, které jsou spojeny s největšími
+elasticitami. Při redukci populace škůdců se také věnujeme koeficientů s
+největšími elasticitami, ale tyto koeficienty se snažíme snižovat. Pokud
+populaci hospodářsky využíváme, poté lov či sklizeň zaměříme naopak na
+kategorie, kde jsou koeficienty s nejnižšími elasticitami. V těchto případech
+totiž vnější zásahy ovlivňují populaci relativně nejméně. Vždy je však nutné
+přihlédnout k tomu, že některé koeficienty ovlivníme relativně snadno, některé
+jenom s velkými ekonomickými náklady a některé prakticky ovlivnit moc nemůžeme.</p>
+</section>
+</div><p>Pro kontrolu můžeme vypočítat matici elasticity po složkách pomocí numerické
+aproximace derivace centrální diferencí. S každou komponentou matice posuneme o
+zvolený krok nahoru a dolů, v každém z těchto případů vypočteme dominantní
+vlastní hodnotu a určíme derivaci (rychlost změny) pomocí poměru změn a poté
+vypočteme elasticitu jako relativní rychlost změny. Přitom není nutné počítat
+derivace pro nulové komponenty matice, protože tyto derivace budou při přepočtu
+na relativní rychlost změny násobeny nulou a neuplatní se.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">matice</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">matice</span>
+<span class="k">for</span> <span class="n">f1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">f2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">L</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">matice</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">L2</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">L3</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">L2</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">]</span> <span class="o">=</span> <span class="n">L2</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span>
+            <span class="n">L3</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">]</span> <span class="o">=</span> <span class="n">L3</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">]</span> <span class="o">-</span> <span class="n">h</span>
+            <span class="n">v2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">L2</span><span class="p">)</span>
+            <span class="n">v3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">L3</span><span class="p">)</span>
+            <span class="n">matice</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="nb">max</span><span class="p">(</span><span class="n">v2</span><span class="p">)</span><span class="o">-</span><span class="nb">max</span><span class="p">(</span><span class="n">v3</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">))</span><span class="o">.</span><span class="n">real</span><span class="o">*</span><span class="n">L</span><span class="p">[</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">]</span><span class="o">/</span><span class="n">l</span>
+<span class="n">matice</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">matice</span><span class="p">)</span>
+<span class="n">matice</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[0.        , 0.10157068, 0.19055025],
+        [0.29212876, 0.        , 0.        ],
+        [0.        , 0.19055404, 0.22521132]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Součet komponent matice elasticity by měl být v rámci zaokrouhlovací chyby roven jedné.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">matice_elasticity</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pokud potřebujeme regulovat rychlost růstu populace, má smysl soustředit se na
+ty komponenty matice elasticity, které jsou numericky největší. Jejich změna se
+na růstu populace projeví nejvíce. (Některé koeficienty projekční matice je
+ovšem z principu těžké nebo nemožné regulovat, potom se soustředíme na ty, které
+regulovat můžeme.)</p>
+<p>Koeficienty matice elasticity můžeme navzájem sčítat a součty interpretovat jako
+agregovaný podíl na růstu populace. Například součty po sloupcích odhalí, jak se
+jednotlivé věkové kategorie podílejí na celkovém růstu.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">matice</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[0.29212876, 0.29212473, 0.41576157]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="linearni-aproximace">
+<h2><span class="section-number">7.3. </span>Lineární aproximace<a class="headerlink" href="#linearni-aproximace" title="Permalink to this heading">#</a></h2>
+<p>Jedna z úspěšných inženýrských metod je nahrazení nelineární funkce
+pomocí funkce lineární. Linearizace nám objasní, proč je v naprosté
+většině fyzikálních zákonů přímá úměrnost resp. přímá úměrnost nějaké
+mocnině. Není v tom nic složitějšího než prostá selská logika
+představená v následující poznámce.</p>
+<div class="proof remark admonition" id="remark-2">
+<p class="admonition-title"><span>Poznámka </span> (Lineární aproximace selskou logikou)</p>
+<section class="remark-content" id="proof-content">
+<p>Uvažujme modelový případ populace jelenů, která má v roce 2020 celkem 1023 členů a roste rychlostí 12 jedinců za rok. (Čistý růst, tedy přírůstek snížený o úmrtí a lov.) Odhadneme velikost populace v budoucích letech. V roce <span class="math notranslate nohighlight">\(x\)</span> je populace celkem <span class="math notranslate nohighlight">\(\Delta x = x-2020\)</span> let od roku 2020. V tomto roce bude velikost <span class="math notranslate nohighlight">\(N(x)\)</span> populace dána součtem velikosti v roce 2020 a přírůstku za daný počet let. Tento přírůstek je roven přírůstku za rok vynásobenému počtem let, tedy <div class="math notranslate nohighlight">
+\[\Delta N = 12 \Delta x.\]</div>
+ Velikost populace v roce <span class="math notranslate nohighlight">\(x\)</span> je <div class="math notranslate nohighlight">
+\[N(x)=N(2020)+\Delta N = 1023+12\Delta x = 1023 + 12(x-2020).\]</div>
+</p>
+</section>
+</div><p>V předchozím příkladě je rychlost růstu vlastně derivace velikosti populace
+podle času. Stejným postupem můžeme určit časový vývoj libovolné veličiny, u níž
+je znám výchozí stav a rychlost růstu. Má to pouze jednu vadu na kráse. Málokdy
+se totiž setkáme s tím, že rychlost růstu je konstantní. Proto uvedená myšlenka
+bude platit jenom přibližně a jenom lokálně v okolí bodu, z nějž vycházíme. To
+proto, že na krátkém intervalu se rychlost růstu funkce zpravidla nestihne
+podstatně změnit. Dostáváme následující přibližné vzorce pro změnu funkce a pro
+funkční předpis v okolí bodu aproximace.</p>
+<div class="math notranslate nohighlight">
+\[\Delta f\approx \frac{\mathrm {d}f}{\mathrm {d}x}(x_0)\Delta x \]</div>
+<div class="math notranslate nohighlight">
+\[f(x)\approx f(x_0) + \frac{\mathrm {d}f}{\mathrm {d}x}(x_0)(x-x_0)\]</div>
+<p>Geometricky uvedená aproximace znamená, že křivku definovanou grafem funkce
+nahrazujeme přímkou. Tímto jsou dány i meze použitelnosti: metoda výborně
+funguje pro funkce, jejichž derivace se mění pomalu a graf připomíná lineární závislost. Kvantitativně to je možno vyjádřit tak, že derivace má malou derivaci, tj. že druhá derivace je malá (ve smyslu numericky blízko k nule, tj. že absolutní hodnota druhé derivace je malá).</p>
+<p>Pokud funkce závisí na dvou nebo více proměnných, jednotlivé příspěvky ke změně
+sečteme.
+<div class="math notranslate nohighlight">
+\[\Delta f\approx \frac{\partial f}{\partial x}(x_0,y_0)\Delta x + \frac{\partial f}{\partial x}(x_0,y_0)\Delta y \]</div>
+</p>
+<div class="math notranslate nohighlight">
+\[f(x,y)\approx f(x_0,y_0) + \frac{\partial f}{\partial x}(x_0,y_0)(x-x_0) + \frac{\partial f}{\partial x}(x_0,y_0)(y-y_0) \]</div>
+<p>Toto je možno zapsat vektorově pomocí gradientu a součinu řádkové a sloupcové matice ve tvaru
+<div class="math notranslate nohighlight">
+\[f(x,y)\approx f(x_0,y_0) + \nabla f(x_0,y_0)\begin{pmatrix}x-x_0\\y-y_0\end{pmatrix}.\]</div>
+</p>
+<p>Je-li <span class="math notranslate nohighlight">\(\vec F(x,y)=(f_1(x,y),f_2(x,y))\)</span> vektorová funkce dvou proměnných, je
+možné napsat linearizaci podle výše uvedeného vzorce pro každou komponentu
+samostatně a v maticovém zápisu máme
+<div class="math notranslate nohighlight">
+\[\vec F(x,y)=\vec F(x_0,y_0) + J(x_0,y_0)\begin{pmatrix}x-x_0\\y-y_0\end{pmatrix} ,\]</div>
+ kde <div class="math notranslate nohighlight">
+\[ J(x,y)=\begin{pmatrix}\frac{\partial f_1}{\partial x} &amp; \frac{\partial f_1}{\partial y}\\\frac{\partial f_2}{\partial x} &amp; \frac{\partial f_2}{\partial y}\end{pmatrix}\]</div>
+ je Jacobiho matice zobrazení <span class="math notranslate nohighlight">\(\vec F\)</span></p>
+<p>Jacobiho matice má tedy v řádcích gradienty jednotlivých komponent.</p>
+<p>V praxi je často vstupem funkce nějaký podnět a výstupem odezva na
+tento podnět. Funkční závislosti tohoto typu se nazývají konstituční
+vztahy. Protože v těchto typech závislostí zpravidla platí, že bez
+podnětu není odezva, studované funkční závislosti procházejí bodem
+<span class="math notranslate nohighlight">\([0,0]\)</span>, tj. počátkem. Lineární aproximace v tomto bodě je poté
+lineární funkce procházející počátkem a tedy přímá úměrnost. To je i
+důvod, proč se v konstitučních vztazích tak často přímá úměrnost
+vyskytuje.</p>
+</section>
+<section id="rovnice-vedeni-tepla">
+<h2><span class="section-number">7.4. </span>Rovnice vedení tepla<a class="headerlink" href="#rovnice-vedeni-tepla" title="Permalink to this heading">#</a></h2>
+<p>Rovnice vedení tepla popisuje vedení tepla v jednorozměrném objektu, například v
+tyči. Teplo se předává z teplejšího místa do místa o nižší teplotě a tím se v
+čase teplejší místo ochlazuje a chladnější otepluje.</p>
+<p>Vedení tepla je proces, který si většina z nás umí snadno představit a má s ním praktické zkušenosti. Model je však plně univerzální a hodí se pro libovolný transportní děj v přírodě. To zahrnuje nejenom transport energie ve formě tepla, ale i transport látek, například pomocí difuze nebo prouděním v pórovitém prostředí. Tím je podchyceno například šíření nečistot ze zdroje do okolí, proudění podzemní vody, sušení dřeva ale i rozšiřování chorob či invazních druhů v ekosystému. To si ukážeme později (Fisherova–KPP rovnice).</p>
+<p>Shrňme si nejprve základní fyzikální představy o vedení tepla.</p>
+<ul class="simple">
+<li><p>Rychlost růstu teploty v čase je úměrná rychlosti, s jakou je do daného místa
+dodáváno teplo. Pokud do daného místa dodáváme teplo, teplota roste tím
+rychleji, čím více tepla dodáváme za jednotku času.</p></li>
+<li><p>Rychlost, s jakou je do daného místa dodáváno teplo, se určí jako pokles toku tepla podél tyče v daném místě.</p></li>
+<li><p>Tok tepla je úměrný rychlosti, s jakou klesá teplo podél tyče.</p></li>
+</ul>
+<p>Rychlost růstu je vždy vyjádřena derivací, rychlost poklesu záporně vzatou
+derivací. Pokud sledujeme, jak se veličina mění v čase, jedná se o derivaci
+podle času, pokud sledujeme změnu podél tyče, jedná se o derivaci podle polohy.
+Tímto jsme si připravili vše potřebné k formulaci matematického modelu.</p>
+<p>Teplota <span class="math notranslate nohighlight">\(T\)</span> souvisí s polohou a s časem, jedná se tedy o funkci dvou proměnných
+a pro vyjádření rychlosti změny musíme použít parciální derivace. Parciální
+derivace teploty podle času <span class="math notranslate nohighlight">\(\frac{\partial T}{\partial t}\)</span> udává, jak rychle s
+daném místě teplota roste s časem a souvisí s rychlostí dodávání tepla. Rychlost
+dodávání tepla je možné měřit tím, jak v daném místě slábne tok tepla <span class="math notranslate nohighlight">\(q\)</span>, tj.
+jaká je záporně vzatá derivace toku tepla podle polohy. Konstanty úměrnosti dodá
+fyzika, jedná se o hustotu <span class="math notranslate nohighlight">\(\varrho\)</span> a měrnou tepelnou kapacitu <span class="math notranslate nohighlight">\(c\)</span>, tj. <div class="math notranslate nohighlight">
+\[
+\varrho c \frac{\partial T}{\partial t}=-\frac{\partial q}{\partial x}.\]</div>
+</p>
+<p>Teplo teče z místa s větší teplotou do místa s menší teplotou a teče
+intenzivněji, pokud je mezi těmito místy velký teplotní rozdíl. Pokles tepla
+podél tyče je dán záporně vzatou derivací teploty podle polohy a tok je tomuto
+poklesu úměrný (s konstantou úměrnosti, která se nazývá specifická vodivost a
+značí <span class="math notranslate nohighlight">\(\lambda\)</span>). Tedy <div class="math notranslate nohighlight">
+\[ q = -\lambda \frac{\partial T}{\partial x}.\]</div>
+</p>
+<p>Spojením obou vztahů dostáváme rovnici vedení tepla ve tvaru <div class="math notranslate nohighlight">
+\[ \varrho c \frac{\partial T}{\partial t}=\frac{\partial }{\partial x} \left(\lambda \frac{\partial T}{\partial x}\right). \]</div>
+
+Je-li <span class="math notranslate nohighlight">\(\lambda\)</span> konstantní (nezávislá na teplotě a poloze), potom je možné rovnici upravit na
+<div class="math notranslate nohighlight">
+\[ \varrho c \frac{\partial T}{\partial t}=\lambda\frac{\partial^2 T}{\partial x^2}, \]</div>
+
+kde <span class="math notranslate nohighlight">\(\frac{\partial^2 T}{\partial x^2} = \frac{\partial }{\partial x}
+\left(\frac{\partial T}{\partial x}\right)\)</span> je druhá derivace teploty podle polohy.</p>
+</section>
+<section id="fisherovakpp-rovnice">
+<h2><span class="section-number">7.5. </span>Fisherova–KPP rovnice<a class="headerlink" href="#fisherovakpp-rovnice" title="Permalink to this heading">#</a></h2>
+<p>Analogický postup jako u vedení tepla funguje pro libovolný transportní děj. Používá se například pro model šíření živočišného druhu v životním prostředí nebo šíření genu v populaci. Ukážeme si zde lineární verzi pro jednorozměrné životní prostředí, například podél řeky. Vícerozměrné zobecnění si uvedeme na konci semestru.</p>
+<p>Tento model se nazývá Fisherova–KPP rovnice a jedná se vlastně o rovnici vedení tepla, do které jsou doplněny zdroje.</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Poněkud kryptický název Fisherovy–KPP rovnice je podle jmen významných vědců spojených s touto rovnicích. Jsou to významný americký statistik a biolog Ronald Fisher a trojice ruských matematiků Andrey Kolmogorov, Ivan Petrovsky a Nikolai Piskunov. Oba články o této rovnici, americký i ruský, vyšly nezávisle na sobě v roce 1937.</p>
+</aside>
+<p>Fisherova–KPP rovnice popisuje populaci, která se může šířit v prostoru. Kromě časové závislosti tedy musíme uvažovat i závislost na poloze. Tato rovnice je vyjádřena pro funkci vyjadřující hustotu populace. Hustotou populace může být například množství jedinců na jednotku délky, v případě zobecnění na více dimenzí množství jedinců na jednotku plochy. Procesy vedoucí k migraci a tedy i změně hustoty populace jsou stejné jako u vedení tepla. Populace má tendenci migrovat z míst, kde je vysoká hustota do míst, kde je hustota menší a v místě, kde převažuje imigrace nad emigrací velikost populace roste. Protože se populace může rozmnožovat, je do rovnice navíc započítán člen modelující vlastní reprodukci. Zpravidla je uvažován logistický růst a rovnice má poté tvar
+<div class="math notranslate nohighlight">
+\[\frac{\partial u}{\partial t}=D\frac{\partial^2 u}{\partial x^2}+ru\left(1-\frac uK\right).\]</div>
+
+Tato rovnice byla původně navržena jako model šíření výhodného genu populací. To potvrzuje, že v rovnici máme opravdu nástroj pro šíření nebo transport různých objektů, od energie, přes molekuly nebo částice v látce či geny v populaci až po jedince invazního druhu v ekosystému.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="06.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">předchozí</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Lineární algebra, matice</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="08.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">další</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Autonomní systémy</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Obsah
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#zavedeni-parcialni-derivace">7.1. Zavedení parciální derivace</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sensitivita-a-elasticita-projekcni-matice">7.2. Sensitivita a elasticita projekční matice</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linearni-aproximace">7.3. Lineární aproximace</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rovnice-vedeni-tepla">7.4. Rovnice vedení tepla</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fisherovakpp-rovnice">7.5. Fisherova–KPP rovnice</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Autor Robert Mařík
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+  All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
+</p>
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

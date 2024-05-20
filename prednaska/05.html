@@ -1,0 +1,1297 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="cs" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>5. Bifurkace &#8212; Dynamické modely populací</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'prednaska/05';</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.jscustom.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="6. Lineární algebra, matice" href="06.html" />
+    <link rel="prev" title="4. Autonomní diferenciální rovnice" href="04.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="cs"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Hledat v knize..."
+         aria-label="Hledat v knize..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Dynamické modely populací</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Vyhledávání</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvodní slovo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Přednášky</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01.html">1. Funkce a vlastnosti funkcí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02.html">2. Derivace a integrál</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03.html">3. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04.html">4. Autonomní diferenciální rovnice</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Bifurkace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06.html">6. Lineární algebra, matice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07.html">7. Parciální derivace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08.html">8. Autonomní systémy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09.html">9. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10.html">10. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11.html">11. Diskrétní populační modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12.html">12. Difuzní rovnice</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cvičení</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">1. První kroky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_01.html">2. Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_02.html">3. Práce s funkcemi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_03.html">4. Diferenciální rovnice 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_04.html">5. Diferenciální rovnice 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_05.html">6. Diferenciální rovnice 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_06.html">7. LaTeX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_07.html">8. Maticové modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_08.html">9. Levinsův model metapopulací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_09.html">10. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_10.html">11. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_11.html">12. Samostatná práce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Různá zadání</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">1. Enzymy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../allee.html">2. Silný Alleeho efekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chovani.html">3. Model soupeření jestřábí a holubičí povahy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">4. Model populace ryb</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Kombinovaní</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">1. Data a grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">2. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">3. Lov v populaci - fázový portrét</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">4. Lov v populaci - časový vývoj</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">5. Model dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">6. Model konkurence</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python konstrukce a ukázky</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_zakladni_konstrukce.html">Základní konstrukce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/cykly.html">Cykly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/grafy_amateri.html">Kreslení funkcí jednoduše</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/grafy_pokrocili.html">Kreslení funkcí pro pokročilé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/diferencialni_rovnice_amateri.html">Diferenciální rovnice pro začátečníky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/diferencialni_rovnice_pokrocili.html">Diferenciální rovnice pro pokročilejší</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_tabulky.html">Tabulky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_grafy.html">Obrázky, grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/reseni_ODR.html">Řešení diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/tabulky_none.html">Tabulky s None a NaN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/multiindex.html">Tabulky s hierarchickým indexem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/multiindex-pokrocili.html">Hierarchický index (pokročilí)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/reseni_rovnice.html">Numerické řešení rovnice</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Literatura a rejstřík</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../literatura.html">Literatura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Rejstřík</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">e-opora</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://robert-marik.github.io/moodle-python">Python</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/robert-marik/dmp/blob/gh-pages/_sources/prednaska/05.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://github.com/robert-marik/dmp" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Zdrojové úložiště"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Stáhněte si tuto stránku">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/prednaska/05.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Stáhnout soubor poznámkového bloku"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../_sources/prednaska/05.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Stáhněte si zdrojový soubor"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Tisk do PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Režim celé obrazovky"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Bifurkace</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Obsah </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bifurkace-v-logisticke-diskretni-rovnici">5.1. Bifurkace v logistické diskrétní rovnici</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logisticky-rust-a-dve-strategie-lovu">5.2. Logistický růst a dvě strategie lovu</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konstantni-intenzita-lovu">5.2.1. Konstantní intenzita lovu</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lov-umerny-velikosti-populace">5.2.2. Lov úměrný velikosti populace</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#populace-pod-predacnim-tlakem">5.3. Populace pod predačním tlakem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matematicky-model">5.3.1. Matematický model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nondimenzionalizace">5.3.2. Nondimenzionalizace</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rustove-krivky">5.3.3. Růstové křivky</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bifurkacni-diagram">5.3.4. Bifurkační diagram</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zaver">5.3.5. Závěr</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="bifurkace">
+<h1><span class="section-number">5. </span>Bifurkace<a class="headerlink" href="#bifurkace" title="Permalink to this heading">#</a></h1>
+<div class="admonition-co-se-dozvite-v-tomto-textu admonition">
+<p class="admonition-title">Co se dozvíte v tomto textu</p>
+<p><img alt="" src="../_images/rybarske_site.jpg" /></p>
+<p>V tomto textu se budeme věnovat vlivu parametrů na chování řešení diferenciální rovnice. Zvláštní pozornost bude věnována situacím, kdy může dojít ke jiným než plynulým změnám fázového portrétu, například zániku nebo ztrátě stability stacionárního bodu.</p>
+<p>Techniky sledující závislost řešení na parametrech jsou zásadním při managementu populací, zejména při návrhu trvale udržitelného lovu. Historicky byly nejprve rozpracovány pro rybolov, aby byl přehled o důsledcích lovu na život v oceánech.</p>
+<p>Kromě základní metodiky a aplikací na lov populace se seznámíme i s problematikou redukce populace škůdce působením predátorů a následky, které mohou nastat při překročení hranice, při které se mění struktura stacionárních bodů modelu, jejich počet a stabilita.</p>
+<p><em>Foto: S bifurkacemi se setkáváme v situacích, kdy se podstatně mění chování systému. V praxi to může znamenat například zhroucení ekosystému, jak se několikrát stalo v případě nadměrného rybolovu. Na snímku rybářské sítě pro rybolov malého rozsahu. Anoop Negi, <a class="reference external" href="https://www.flickr.com/photos/ezee123/117560929">https://www.flickr.com/photos/ezee123/117560929</a></em></p>
+</div>
+<p>Jak jsme viděli v předešlých modelech, v praxi naše modely obsahují parametry.
+Tyto parametry ovlivňují chování modelu v několika ohledech.</p>
+<p>Zpravidla se stává, že malé změny parametrů mají malý vliv na chování řešení.
+Ovlivní pouze polohu stacionárních stavů a rychlost konvergence řešení do těchto
+bodů, ale při malé změně parametrů se zpravidla stacionární body posunují o malé
+hodnoty a jejich počet i jejich stabilita zůstávají zachovávány. V zásadě se pro
+všechny hodnoty parametru řešení chovají pořád stejně. To jsme viděli například
+u diferenciální rovnice ochlazování
+<div class="math notranslate nohighlight">
+\[\frac{\mathrm dT}{\mathrm dt}=-k(T-T_\infty).\]</div>
+
+Řešení ukazuje, že těleso se ochladí na teplotu okolí pro libovolnou kombinaci
+konstanty úměrnosti <span class="math notranslate nohighlight">\(k\)</span> a teploty okolí <span class="math notranslate nohighlight">\(T_\infty.\)</span> Toto plyne i z faktu, že v
+bezrozměrném tvaru rovnice ochlazování neobsahuje žádný parametr.</p>
+<p>Někdy se však stane, že změna parametru při překročení nějaké hodnoty vyvolá
+velkou změnu chování systému. Například zanikne nebo vznikne nový stacionární
+bod, nebo se změní jeho stabilita. V takovém případě říkáme, že rovnice má v
+daném bodě <em>bifurkaci</em>. Příslušná hodnota parametru se nazývá <em>bifurkační
+hodnota</em>.</p>
+<section id="bifurkace-v-logisticke-diskretni-rovnici">
+<h2><span class="section-number">5.1. </span>Bifurkace v logistické diskrétní rovnici<a class="headerlink" href="#bifurkace-v-logisticke-diskretni-rovnici" title="Permalink to this heading">#</a></h2>
+<p>Nejjednodušší je pozorovat bifurkaci na diskrétní obdobě logistické rovnice, na
+rovnici
+<div class="math notranslate nohighlight">
+\[x_{k+1} = rx_k(1-x_k)\]</div>
+</p>
+<p>Rovnice má pro malé <span class="math notranslate nohighlight">\(r\)</span> stacionární bod a řešení konverguje podobně jako u
+spojité logistické rovnice k nosné kapacitě prostředí. Pokud hodnotu <span class="math notranslate nohighlight">\(r\)</span>
+zvyšujeme, stacionární bod se posunuje, ale jinak se nic neděje dokud
+nepřekročíme jistý kritický bod. Za hodnotou <span class="math notranslate nohighlight">\(r=3\)</span> už řešení přestává
+konvergovat k jedné hodnotě, ale přeskakuje mezi dvěma hodnotami, má cyklus s
+periodou 2. Při dalším zvyšování se jenom posunují body, mezi kterými řešení
+osciluje, dokud se nedostaneme k další kritické hodnotě. Pro <span class="math notranslate nohighlight">\(r\)</span> mezi přibližně
+3.44949 a 3.54409 začne řešení periodicky přeskakovat mezi čtyřmi hodnotami a
+jedná se tedy o cyklus s periodou 4.</p>
+<p>Pro hodnoty parametru <span class="math notranslate nohighlight">\(r\)</span> použité v obrázcích se řešení buď ustálí na konstantní
+hodnotě, nebo vznikne cyklus s periodou dva nebo cyklus s periodou čtyři. V
+posledním případě dokonce vznikne zdánlivě chaotické chování, které je ve
+skutečnosti cyklem s s dlouhou periodou.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>  <span class="c1"># knihovna pro numerické výpočty</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>  <span class="c1"># knihovna pro grafiku</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1"># knihovna pro práci s tabulkami</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span><span class="p">,</span> <span class="n">cumulative_trapezoid</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">80</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.4</span><span class="p">,</span><span class="mf">3.2</span><span class="p">,</span><span class="mf">3.5</span><span class="p">,</span><span class="mf">3.9</span><span class="p">])</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">N</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">r</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+    <span class="n">layout</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+    <span class="n">legend</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+<span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span><span class="n">r</span><span class="p">):</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+        <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
+        <span class="n">title</span><span class="o">=</span><span class="p">(</span><span class="sa">rf</span><span class="s2">&quot;$r=</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Diskrétní logistická rovnice&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/2e1262c8d85079400b176c8c1f200d90420481e4162fcd717cc4c63b3f7b1879.png" src="../_images/2e1262c8d85079400b176c8c1f200d90420481e4162fcd717cc4c63b3f7b1879.png" />
+</div>
+</div>
+<p>Vidíme, že chování rovnice je velice pestré. Následující diagram je takzvaný
+bifurkační diagram této rovnice. Na vodorovné ose je hodnota parametru. Pokud
+parametru odpovídá jedna hodnota na svislé ose, řešení se ustálí na dané
+hodnotě. Pokud více, řešení mezi těmito hodnotami přeskakuje v cyklu. V místě,
+kde se křivka rozdvojuje se mění počet hodnot, mezi kterými řešení přeskakuje a
+mění se tedy perioda cyklu, ke kterému řešení konverguje. V takovém bodě má
+rovnice bifurkaci.</p>
+<p>Čím více průsečíků má graf se svislou přímkou, tím větší je perioda řešení a tím
+chaotičtější je systém, protože se střídají řádově desítky či stovky hodnot.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r_hodnoty</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">pocet</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="k">def</span> <span class="nf">log_rce_tail</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">r</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="n">pocet</span><span class="p">:]</span>
+
+<span class="n">x_hodnoty</span> <span class="o">=</span> <span class="p">[</span><span class="n">log_rce_tail</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">r_hodnoty</span><span class="p">]</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r_hodnoty</span><span class="p">,</span> <span class="n">x_hodnoty</span><span class="p">,</span> <span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span> <span class="p">(</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;parametr $r$&#39;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;hodnoty $x$&#39;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Bifurkační diagram diskétní logistické rovnice&#39;</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/62a77ce71defae8bda3fa8621662c566f12a6a5db95411085cf02305e9cb1d43.png" src="../_images/62a77ce71defae8bda3fa8621662c566f12a6a5db95411085cf02305e9cb1d43.png" />
+</div>
+</div>
+</section>
+<section id="logisticky-rust-a-dve-strategie-lovu">
+<h2><span class="section-number">5.2. </span>Logistický růst a dvě strategie lovu<a class="headerlink" href="#logisticky-rust-a-dve-strategie-lovu" title="Permalink to this heading">#</a></h2>
+<p>Předpokládejme, že populace vyvíjející se podle logistické rovnice a populace je
+vystavena lovu, odchytu či těžbě. Naším cílem je zjistit, jaké bude mít tento
+lov důsledky na stav a vývoj populace.</p>
+<aside class="margin sidebar">
+<p class="sidebar-title">Zhroucení lovišť</p>
+<p><em>(převzato z https://www.enviweb.cz/, autor Jaroslav Petr)</em></p>
+<p><img alt="" src="../_images/treska.jpg" />
+(zdroj: wikimedia.org, Lamiot)</p>
+<p>Cenu, jakou za uspokojení rostoucí poptávky po „darech moře“ platíme, názorně dokumentuje osud tresky. Jedno z historicky nejbohatších lovišť ve vodách u kanadského Newfoundlandu dnes zeje prázdnotou. Odedávna sem připlouvaly rybářské flotily a jen málokdy se vracely s prázdnou.
+V sezóně tu bývalo tolik lodí, že Rudyard Kipling mohl bez uzardění mezi jejich posádkami spřádat dramatické nitky svého románu „Stateční kapitáni“. Koncem osmdesátých let minulého století začali biologové bít na poplach. Stavy tresek povážlivě klesaly a jejich hejnům hrozil kolaps. <em>„Rybolov u Newfoundlandu se musí zastavit! Teď hned!“</em> volali oceánologové. Rybáři vyděšení hrozbou ztráty živobytí se bouřili a kanadská vláda pod jejich tlakem otálela se zákazem lovu u Newfoundlandu až do roku 1992. To už bylo pozdě. Chmurné vize vědců se naplnily. Celá populace newfoundlandské tresky se zhroutila. Rybáři tak o své zaměstnání stejně přišli a Newfoundland postihla hluboká krize. Celá oblast se vylidnila. Lidé odtud houfně prchali v zoufalé snaze najít práci. Ceny nemovitostí fatálně poklesly, protože všichni chtěli pryč a nikdo se sem nestěhoval. Jen malá část rybářů se tu udržela tím, že změnila zavedené zvyklosti a začala lovit místo tresek mořské měkkýše. Ani dvanáct let zákazu rybolovu v newfoundlandských vodách nestačilo tamějším tresčím hejnům k obnovení stavů.</p>
+<p><em>Více viz <a class="reference external" href="https://www.enviweb.cz/47362">Ryba nad zlato</a>, enviweb.cz.</em></p>
+</aside>
+<section id="konstantni-intenzita-lovu">
+<h3><span class="section-number">5.2.1. </span>Konstantní intenzita lovu<a class="headerlink" href="#konstantni-intenzita-lovu" title="Permalink to this heading">#</a></h3>
+<p id="index-0">Předpokládejme, že lov je prováděn tak, že rychlost, s jakou odebíráme jedince z
+populace, je konstantní. Označme tuto rychlost <span class="math notranslate nohighlight">\(h\)</span>. Model vývoje populace má
+tedy tvar
+<div class="math notranslate nohighlight">
+\[
+ \frac{\mathrm dx}{\mathrm dt}=rx\left(1-\frac xK\right)-h.
+\]</div>
+</p>
+<p>Nejprve zredukujeme počet parametrů. Rovnici je možno přepsat do tvaru
+<div class="math notranslate nohighlight">
+\[
+ \frac{\mathrm d \frac xK}{\mathrm d(rt)}=\frac xK\left(1-\frac xK\right)-\frac {h}{Kr}
+\]</div>
+
+a po zavedení bezrozměrné velikosti populace <span class="math notranslate nohighlight">\(y=\frac xK\)</span>, bezrozměrného času
+<span class="math notranslate nohighlight">\(\tau = rt\)</span> a bezrozměrného lovu <span class="math notranslate nohighlight">\(\alpha=\frac{h}{Kr}\)</span> má bezrozměrná rovnice
+lovu konstantní intenzity tvar
+<div class="math notranslate nohighlight">
+\[
+ \frac{\mathrm dy}{\mathrm d \tau}=y\left(1-y\right)-\alpha.
+\]</div>
+</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Téhož tvaru bezrozměrné rovnice dosáhneme, pokud budeme velikost
+populace měřit v násobcích nosné
+kapacity prostředí a čas v takových jednotkách, aby byl bez lovu invazní
+parametr roven jedné. Tedy aby bez lovu malá populace rostla rychlostí
+odpovídající dosažení nosné kapacity prostředí za jednotku času.
+V praxi se často tato úvaha odbude tvrzením „invazní parametr a nosnou
+kapacitu prostředí můžeme bez újmy na obecnosti položit rovny jedné“.</p>
+</div>
+<p>Funkce stojící na pravé straně diferenciální rovnice v rozdílu si vykreslíme.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h1</span><span class="p">,</span><span class="n">h2</span> <span class="o">=</span> <span class="mf">0.13</span><span class="p">,</span><span class="mf">0.27</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">logisticky_rust</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">r</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">K</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>    
+
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Logistický růst&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">logisticky_rust</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Lov nízké intenzity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">h1</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Lov vysoké intenzity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">h2</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Logistický růst s konstantním lovem&quot;</span><span class="p">,</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span><span class="kc">None</span><span class="p">),</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;bezrozměrná velikost populace&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;bezrozměrná rychlost růstu/poklesu populace&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/3a8e9590d67b4cc39c48050c5eb5c0be603a798a60f10423c72d54456a9bcc40.png" src="../_images/3a8e9590d67b4cc39c48050c5eb5c0be603a798a60f10423c72d54456a9bcc40.png" />
+</div>
+</div>
+<p>Grafem funkcí, jejichž rozdíl figuruje na pravé straně rovnice, jsou parabola
+řídící růst a vodorovná přímka vyjadřující lov. Změnou intenzity lovu se
+vodorovná přímka posunuje nahoru (zvýšení), či dolů (snížení). Pro lov nízkou
+intenzitou má přímka s parabolou dva průsečíky a ty se posunují, jak se
+vodorovná přímka posunuje nahoru nebo dolů. Pro lov s vysokou intenzitou
+průsečíky zaniknou.</p>
+<p>Pro vysoký lov tedy je rozdíl růstu a poklesu záporný a velikost populace klesá
+v čase. Tato rychlost poklesu je minimálně tak velká, jako vzdálenost vodorovné
+přímky od vrcholu paraboly a proto není možné očekávat, že by se pokles zastavil
+tak, že řešení konverguje k vodorovné asymptotě. V této situaci populace
+nepřežije a lov ji zlikviduje.</p>
+<p>Pro lov nízké intenzity mají křivky růstu a poklesu dva průsečíky. Nalevo od
+prvního průsečíku převažuje pokles nad růstem a populace vymře. Napravo od
+druhého průsečíku také převažuje pokles nad přírůstkem, populace vymírá, ale
+toto vymírání se zastaví ve stacionárním bodě odpovídajícím tomuto průsečíku.
+Mezi stacionárními body převažuje růst nad lovem a populace roste.</p>
+<p>Model ukazuje, že pro vysoké hodnoty lovu populace zanikne a pro rozumné hodnoty
+lovu přežívá. Toto přežívání je podmíněno tím, že velikost populace na začátku
+vývoje není pod nestabilním stacionárním bodem a ani pod něj náhodnými
+fluktuacemi neklesne.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pocatecni_podminka</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">1.2</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">meze</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">meze</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">destrukce_populace</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>  <span class="c1"># Pokud x klesne na nulu, zastavíme výpočet</span>
+    <span class="k">return</span> <span class="n">x</span>
+<span class="n">destrukce_populace</span><span class="o">.</span><span class="n">terminal</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="k">def</span> <span class="nf">rovnice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">0.15</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">r</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">K</span><span class="p">)</span><span class="o">-</span><span class="n">h</span>
+
+<span class="c1"># Pro různé počáteční podmínky se bude lišit interval, </span>
+<span class="c1"># na kterém algoritmus najde řešení. Proto nemůžeme data</span>
+<span class="c1"># shrnout do jedné tabulky.</span>
+<span class="n">reseni</span> <span class="o">=</span> <span class="p">[</span> <span class="n">solve_ivp</span><span class="p">(</span>
+                   <span class="n">rovnice</span><span class="p">,</span>
+                   <span class="n">meze</span><span class="p">,</span>
+                   <span class="p">[</span><span class="n">pp</span><span class="p">],</span>
+                   <span class="n">t_eval</span><span class="o">=</span><span class="n">t</span><span class="p">,</span>
+                   <span class="n">events</span><span class="o">=</span><span class="n">destrukce_populace</span><span class="p">,</span>
+                   <span class="p">)</span>
+          <span class="k">for</span> <span class="n">pp</span> <span class="ow">in</span> <span class="n">pocatecni_podminka</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">reseni</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">t</span><span class="p">,</span><span class="n">i</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+  <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Logistická rovnice s konstantním lovem, nízká intenzita lovu&quot;</span><span class="p">,</span>
+  <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;bezrozměrný čas&quot;</span><span class="p">,</span>
+  <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;bezrozměrná velikost populace&quot;</span>
+  <span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/3deed40b4cfdfa9f9797412c6d7cfbccef46b0cf458019c75f6b05c82cd9b324.png" src="../_images/3deed40b4cfdfa9f9797412c6d7cfbccef46b0cf458019c75f6b05c82cd9b324.png" />
+</div>
+</div>
+<p>Bifurkační diagram je na obrázku. Pro různé hodnoty parametru je na něm možné najít polohu stacionárních bodů a identifikovat jejich stabilitu. Pro hodnotu <span class="math notranslate nohighlight">\(h=0.25\)</span> nastává bifurkace, kdy při zvyšování lovu splývají a zanikají oba stacionární body.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N_stabilni</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">N_nestabilni</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">N</span><span class="p">,</span><span class="n">typ</span><span class="p">,</span><span class="n">popisek</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">N_stabilni</span><span class="p">,</span><span class="n">N_nestabilni</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;-&quot;</span><span class="p">,</span><span class="s2">&quot;--&quot;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s2">&quot;stabilní&quot;</span><span class="p">,</span><span class="s2">&quot;nestabilní&quot;</span><span class="p">]</span>
+    <span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">N</span><span class="p">),</span><span class="n">N</span><span class="p">,</span><span class="n">typ</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="n">popisek</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.10</span><span class="p">,</span><span class="mf">0.15</span><span class="p">,</span><span class="mf">0.20</span><span class="p">]:</span>
+    <span class="n">dy</span><span class="o">=</span><span class="mf">0.05</span><span class="p">;</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span>
+        <span class="n">i</span><span class="p">,</span><span class="mf">0.5</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">0.25</span><span class="o">-</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="n">dy</span><span class="p">,</span>
+        <span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">0.25</span><span class="o">-</span><span class="n">i</span><span class="p">)</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">dy</span><span class="p">,</span>
+        <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">head_length</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">overhang</span><span class="o">=</span><span class="mf">0.5</span>
+        <span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span>
+        <span class="n">i</span><span class="p">,</span><span class="mf">1.2</span><span class="p">,</span>
+        <span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">0.55</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">0.25</span><span class="o">-</span><span class="n">i</span><span class="p">),</span>
+        <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">head_length</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">overhang</span><span class="o">=</span><span class="mf">0.5</span>
+        <span class="p">)</span>    
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.15</span><span class="p">,</span><span class="mf">0.20</span><span class="p">]:</span>
+    <span class="n">dy</span><span class="o">=</span><span class="mf">0.05</span><span class="p">;</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span>
+        <span class="n">i</span><span class="p">,</span><span class="mf">0.5</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">0.25</span><span class="o">-</span><span class="n">i</span><span class="p">)</span><span class="o">-</span><span class="n">dy</span><span class="p">,</span>
+        <span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="p">(</span><span class="mf">0.4</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">0.25</span><span class="o">-</span><span class="n">i</span><span class="p">)),</span>
+        <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">head_length</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">overhang</span><span class="o">=</span><span class="mf">0.5</span>
+        <span class="p">)</span>    
+<span class="n">plt</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span>
+        <span class="mf">0.28</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">0.8</span><span class="p">,</span>
+        <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">head_width</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">head_length</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">overhang</span><span class="o">=</span><span class="mf">0.5</span>
+        <span class="p">)</span>    
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Bifurkační diagram rovnice $\frac{\mathrm</span><span class="si">{d}</span><span class="s2"> x}{\mathrm</span><span class="si">{d}</span><span class="s2">t}=x(1-x)-h$&quot;</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;bifurkační parametr $h$&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;poloha stacionárních bodů&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Stabilita stacionárního bodu&quot;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/2e93f29f41b73368f02258a4a9ef3ac026fed87a8d143dfe31da4a9c6c2dae7e.png" src="../_images/2e93f29f41b73368f02258a4a9ef3ac026fed87a8d143dfe31da4a9c6c2dae7e.png" />
+</div>
+</div>
+<p>Pro přežívání populace je nutné hlídat, aby populace nikdy neklesla pod
+kritickou hodnotu vedoucí k vymření populace. Proto je dobré udržovat hodnotu
+lovu na takové úrovni, aby vzdálenost mezi stabilním a nestabilním stacionárním
+bodem byla dostatečně velká, aby náhodné perturbace, ke kterým může kdykoliv
+dojít, nesnížily velikost populace pod nestabilní práh. V takovém případě při
+poklesu populace není nutné měnit strategii lovu, populace drobné fluktuace
+vyrovná sama svými přirozenými růstovými mechanismy.</p>
+<p>V praxi je nutno buď uvažovat co největší <span class="math notranslate nohighlight">\(h\)</span>, abychom měli co největší užitek,
+sledovat, zda vlivem výkyvů velikost populace neklesá pod kritickou hodnotu a
+pokud ano tak okamžitě měnit rychlost lovu nebo další parametry systému
+(podpořit rozmnožování a pod.). Další alternativou je lovit menší rychlostí <span class="math notranslate nohighlight">\(h\)</span>,
+což nese nižší užitek z lovu, ale ponechává populaci možnost, aby se sama
+vyrovnala s případnými výkyvy.</p>
+<p>Poznamenejme, že v uvedeném modelu má smysl i předpoklad, že
+koeficient <span class="math notranslate nohighlight">\(h\)</span> je záporný. V takovém případě nemluvíme o záporném
+lovu, ale příslušný člen interpretujeme jako rychlost imigrace, se
+kterou uvažovaný druh proniká do dané lokality.</p>
+<p>Následující model ukazuje mechanickou představu bifurkace pomocí analogie s
+kuličkodráhou. Je vykreslen potenciál (záporně vzatý integrál) pravé strany. Ten
+je možno chápat jako potenciální energii a chování systému je možné přirovnat k
+chování kuličky pohybující se po kuličkodráze ve stejném tvaru jako je tento
+potenciál. Pro malé hodnoty lovu má potenciál lokální minimum a v tomto minimu
+existuje stabilní stacionární stav. S rostoucím lovem je minimum stále méně
+výrazné a i malá perutbace může kuličku z dolíku vyhodit a kulička se skutálí
+pryč. Pro kritický lov <span class="math notranslate nohighlight">\(h=0.25\)</span> už lokální minimum zaniká. Pro ještě
+intenzivnější lov se celá křivka svažuje doleva a kulička se odkutálí pryč.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.3</span><span class="p">]:</span>
+    <span class="n">potencial</span> <span class="o">=</span> <span class="o">-</span> <span class="n">cumulative_trapezoid</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">potencial</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">h</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span><span class="mf">0.2</span><span class="p">),</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Mechanický model bifurkace rovnice s konstantním lovem&quot;</span><span class="p">,</span>
+    <span class="n">yticks</span><span class="o">=</span><span class="p">[]</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Velikost $h$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/1192fda40f3cee84ba1711848d47ae8c6a9fd90a5144e108ff7e10b2318a3b71.png" src="../_images/1192fda40f3cee84ba1711848d47ae8c6a9fd90a5144e108ff7e10b2318a3b71.png" />
+</div>
+</div>
+</section>
+<section id="lov-umerny-velikosti-populace">
+<h3><span class="section-number">5.2.2. </span>Lov úměrný velikosti populace<a class="headerlink" href="#lov-umerny-velikosti-populace" title="Permalink to this heading">#</a></h3>
+<p>Uvažujme strategii lovu spočívající v tom, že rychlost, s jakou lovem snižujeme
+velikost populace, je úměrná celkové velikosti populace. Malou populaci lovíme
+málo, větší populaci více. To by odpovídalo například filtrování, kdy
+odstraňujeme bakterie z živného roztoku.</p>
+<p>Matematicky vyjádřeno, populace se vyvíjí podle modelu
+<div class="math notranslate nohighlight">
+\[
+ \frac{\mathrm dx}{\mathrm dt}=rx\left(1-\frac xK\right)-qx,
+\]</div>
+
+kde <span class="math notranslate nohighlight">\(r,q,K\)</span> jsou kladné konstanty. První člen na pravé straně je parabola známá
+z logistické rovnice, druhý člen odpovídá přímce procházející počátkem.</p>
+<p>V bezrozměrném tvaru má rovnice podobu
+<div class="math notranslate nohighlight">
+\[
+ \frac{\mathrm dy}{\mathrm d\tau}=y\left(1-y\right)-\alpha y,
+\]</div>
+
+kde <span class="math notranslate nohighlight">\(y=\frac xK\)</span>, <span class="math notranslate nohighlight">\(\tau = rt\)</span> a <span class="math notranslate nohighlight">\(\alpha=\frac qr.\)</span> Tento tvar vyjadřuje, že v
+rovnici je možné bez újmy na obecnosti položit hodnoty invazního parametru a
+nosné kapacity prostředí rovny jedné.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">1.3</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">logisticky_rust</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">r</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">K</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>    
+
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Logistický růst&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">logisticky_rust</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Lov s nízkým úsilím&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">x</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Lov s optimálním úsilím&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Lov s vysokým úsilím&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">x</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Lov s extrémním úsilím&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="n">x</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Logistický růst s lovem s konstantním úsilím&quot;</span><span class="p">,</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">.3</span><span class="p">),</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\frac </span><span class="si">{x}{K}</span><span class="s2">$&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;rychlost růstu/poklesu&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/45b621d3caa7417014a42ba584ddecb9badc616b618221a25af0d93cbda618c1.png" src="../_images/45b621d3caa7417014a42ba584ddecb9badc616b618221a25af0d93cbda618c1.png" />
+</div>
+</div>
+<p>Vidíme, že tato strategie lovu má oproti konstantnímu lovu velkou výhodu: nemá
+nestabilní stacionární bod. (S výjimkou extrémně vysoké intenzity lovu, kdy je
+směrnice přímky charakterizující lov v bezrozměrných veličinách větší než
+jedna.)</p>
+<p>Pro praktické provádění této strategie je však nutno znát v každém okamžiku
+aktuální velikost populace, což může být obtížně zjistitelné, nebo takřka
+nemožné. V takovém případě je vhodnější použít strategii konstantního lovu. V
+případě, kdy velikost úlovku je úměrná intenzitě lovu (např. vynaloženému úsilí,
+kvalitě loveckých pomůcek a pod.), je naopak snadné realizovat strategii s
+proměnnou rychlostí, protože stačí lovit se stále stejnou intenzitou <span class="math notranslate nohighlight">\(q\)</span>.</p>
+<p>V praxi se snažíme užitek z lovu maximalizovat a tedy se snažíme o to, aby
+součin <span class="math notranslate nohighlight">\(qx\)</span> byl v rovnovážném stavu co největší. To znamená, že přímka
+charakterizující lov prochází vrcholem paraboly. Zvýšení úsilí vede ke strmější
+přímce, která protíná parabolu níže a celkový užitek z lovu se tedy snižuje.</p>
+<p>Kromě toho je pro <em>ekonomicky</em> nejvýhodnější strategii lovu nutno uvažovat, že
+většího úlovku dosáhneme jenom za použití většího úsilí. Na toto zvýšení úsilí
+je nutno vynaložit větší ekonomické náklady, které snižují celkový zisk. Je tedy
+nutno hledat určitou rovnováhu – chceme odlovit co nejvíce jedinců, abychom
+měli co největší zisk, od určité hranice je však již lov drahý a nevyplácí se.
+Tato problematika, maximalizace ekonomického profitu, je podrobně rozpracována v
+odborné literatuře, zejména na příkladech z rybolovu.</p>
+</section>
+</section>
+<section id="populace-pod-predacnim-tlakem">
+<h2><span class="section-number">5.3. </span>Populace pod predačním tlakem<a class="headerlink" href="#populace-pod-predacnim-tlakem" title="Permalink to this heading">#</a></h2>
+<p id="index-1">Následující model má velký historický význam. Umožnil objasnit, proč v
+kanadských lesích dochází periodicky k přemnožování obaleče smrkového. Toto je
+motýl, jehož housenky v době přemnožení dokáží zničit obrovské plochy lesa. Na
+monitorování situace používala kanadská lesní správa model (Holling, Jones, Clark) obsahující 30 tisíc
+proměnných, které sledovaly prostorové rozložení populace a její vývoj v čase.
+Model však nedokázal odpovědět na otázku, proč dochází k periodickému
+přemnožení. Pokud pochopíme tento proces, budeme schopni mu účinně bránit.</p>
+<p>Na vysvětlení uvedeného problému sestavili Ludwig, Jones a Holling model složený
+ze tří diferenciálních rovnic popisujících dynamiku lesa, housenek obaleče a
+jejich predátorů, ptáků. My si zde představíme zjednodušení, kdy se budeme
+věnovat jenom nejrychleji se měnící populaci, populaci housenek obaleče. Tato
+populace bude pod tlakem predátorů, ptáků a malých savců, kteří se housenkami
+živí.</p>
+<section id="matematicky-model">
+<h3><span class="section-number">5.3.1. </span>Matematický model<a class="headerlink" href="#matematicky-model" title="Permalink to this heading">#</a></h3>
+<p>Předpokládejme, že populace predátorů je stabilizovaná a že přežití predátorů
+není závislé na velikosti populace obaleče. To nastane zejména v případech,
+kdy má predátor v prostředí i alternativní zdroje potravy a kdy dynamika jeho
+populace je pomalejší než dynamika populace obaleče.</p>
+<p>Situaci budeme modelovat diferenciální rovnicí
+<div class="math notranslate nohighlight">
+\[
+ \frac{ \mathrm dN}{ \mathrm dt}=r\left(1-\frac NK\right)N-V(N),
+\]</div>
+
+kde první člen na pravé straně rovnice odpovídá logistickému růstu
+obaleče a druhý člen na pravé straně charakterizuje, jak je
+vývoj populace zpomalován působením predátorů. Působení predátorů je
+charakterizováno následujícími znaky.</p>
+<ul class="simple">
+<li><p>Bez přítomnosti kořisti predátoři nic neuloví, tj. <span class="math notranslate nohighlight">\(V(0)=0\)</span>.</p></li>
+<li><p>Je-li více kořisti, predátoři jí neuloví méně, tj. <span class="math notranslate nohighlight">\(V\)</span> je
+neklesající funkce</p></li>
+<li><p>Predátoři nemohou ulovit neomezeně mnoho kořisti, ale loví pouze
+do jisté hladiny nasycení, funkce <span class="math notranslate nohighlight">\(V\)</span> je proto ohraničená.</p></li>
+<li><p>Je-li populace kořisti malá, predátoři ji téměř neloví, ale dávají
+přednost dostupnějším zdrojům potravy, funkce <span class="math notranslate nohighlight">\(V\)</span> tedy zpočátku
+roste pomalu.</p></li>
+</ul>
+<aside class="margin sidebar">
+<p class="sidebar-title">Derivace a průběh funkce</p>
+<p><a class="reference external" href="https://user.mendelu.cz/marik/manim/Obalec/"><img alt="" src="https://user.mendelu.cz/marik/manim/thumbs/Obalec.jpg" /></a></p>
+<p>Model obaleče a jeho predátorů.</p>
+</aside>
+<p>Ludwig, Jones a Holling navrhli použít pro funkci <span class="math notranslate nohighlight">\(V\)</span> trofickou funkci typu
+Holling II ve tvaru
+<div class="math notranslate nohighlight">
+\[  V(N)=S\frac {N^2}{N^2+b^2},\]</div>
+
+kde <span class="math notranslate nohighlight">\(S\)</span> a <span class="math notranslate nohighlight">\(b\)</span> jsou kladné konstanty.
+Uvažovanou úlohu poté modeluje rovnice
+<div class="math notranslate nohighlight">
+\[
+ \frac{ \mathrm dN}{ \mathrm dt}=r\left(1-\frac NK\right)N-S\frac {N^2}{N^2+b^2}.
+\]</div>
+</p>
+</section>
+<section id="nondimenzionalizace">
+<h3><span class="section-number">5.3.2. </span>Nondimenzionalizace<a class="headerlink" href="#nondimenzionalizace" title="Permalink to this heading">#</a></h3>
+<p>Abychom mohli kvalitativně prozkoumat vlastnosti řešení, pokusíme se zavést
+bezrozměrné veličiny a tím poněkud zjednodušit pravou stranu rovnice. Budeme se
+snažit především eliminovat parametry z trofické funkce, protože tento člen na
+pravé straně rovnice je složitější než člen z rovnice logistického růstu.</p>
+<p>Zavedeme novou závisle proměnnou <span class="math notranslate nohighlight">\(x\)</span> substitucí <span class="math notranslate nohighlight">\(N=bx\)</span>.  Biologicky to
+znamená, že velikost populace budeme měřit v nových jednotkách, které
+jsou <span class="math notranslate nohighlight">\(b\)</span>-násobkem původních jednotek. Po této substituci má rovnice tvar
+<div class="math notranslate nohighlight">
+\[
+  b\frac{ \mathrm dx}{ \mathrm dt}=rb\left(1-\frac {bx}K\right)x-S\frac
+  {x^2}{x^2+1}.
+\]</div>
+
+Tuto rovnici je možno dále přepsat do tvaru
+<div class="math notranslate nohighlight">
+\[  \frac bS \frac{ \mathrm dx}{ \mathrm dt}=\frac {rb}S\left(1-\frac {x}{\tfrac
+  Kb}\right)x-\frac
+   {x^2}{x^2+1}.
+\]</div>
+
+Změníme-li dále jednotky měření času substitucí <span class="math notranslate nohighlight">\(\tau=\frac{tS}b\)</span> a
+zavedeme nové parametry <span class="math notranslate nohighlight">\(\alpha=\frac {rb}S\)</span>, <span class="math notranslate nohighlight">\(\beta=\frac Kb\)</span>, má rovnice
+pro vývoj populace tvar
+<div class="math notranslate nohighlight">
+\[    \frac{ \mathrm dx}{ \mathrm d\tau}=\alpha\left(1-\frac {x}{\beta}\right)x-\frac
+   {x^2}{x^2+1}.
+\]</div>
+
+Jinými slovy, bez újmy na obecnosti můžeme položit hodnoty <span class="math notranslate nohighlight">\(S\)</span> a <span class="math notranslate nohighlight">\(b\)</span> rovny jedné.
+Jedná se tedy o klasickou rovnici pro vývoj jednodruhové populace se
+specifickou mírou růstu
+<div class="math notranslate nohighlight">
+\[ \mu(x)=\alpha\left(1-\frac {x}{\beta}\right)-\frac
+   {x}{x^2+1}.
+\]</div>
+</p>
+</section>
+<section id="rustove-krivky">
+<h3><span class="section-number">5.3.3. </span>Růstové křivky<a class="headerlink" href="#rustove-krivky" title="Permalink to this heading">#</a></h3>
+<p>Funkci <span class="math notranslate nohighlight">\(\frac{x}{x^2+1}\)</span> a přímku <span class="math notranslate nohighlight">\(\alpha\left(1-\frac x\beta\right)\)</span> vykreslíme
+do jednoho grafu. V závislosti na hodnotách parametrů <span class="math notranslate nohighlight">\(\alpha\)</span> a <span class="math notranslate nohighlight">\(\beta\)</span> může
+vzájemná poloha dopadnout trojím způsobem. Buď se křivky protnou jenom jednou v
+bodě, kde je hodnota populace malá. Toto nastane pro malou nosnou kapacitu a
+malý invazní parametr. V takovém případě je populace housenek na nízké úrovni.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">parametry</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">.2</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="s2">&quot;růst, přemnožení nemůže nastat&quot;</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">.4</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="s2">&quot;růst, existuje riziko přemnožení&quot;</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">.55</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="s2">&quot;růst, přemnožení&quot;</span><span class="p">]]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;křivka predace&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">alpha</span><span class="p">,</span><span class="n">beta</span><span class="p">,</span><span class="n">text</span> <span class="ow">in</span> <span class="n">parametry</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">alpha</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">beta</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="n">text</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="kc">None</span><span class="p">),</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;bezrozměrná velikost populace škůdce&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;bezrozměrná specifická rychlost růstu a predace&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Populace škůdce pod tlakem predátorů&quot;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/84767fbb88eaf324a6565af867b5ff7f5e25091bd1e2f39226d7c2d798566256.png" src="../_images/84767fbb88eaf324a6565af867b5ff7f5e25091bd1e2f39226d7c2d798566256.png" />
+</div>
+</div>
+</section>
+<section id="bifurkacni-diagram">
+<h3><span class="section-number">5.3.4. </span>Bifurkační diagram<a class="headerlink" href="#bifurkacni-diagram" title="Permalink to this heading">#</a></h3>
+<p>V prostoru parametrů můžeme dokonce najít křivky oddělující existenci jednoho
+stacionárního stavu a tří. Vznikne bifurkační diagram ukazující, pro které
+hodnoty parametrů jsou možné tři stacionární stavy (dva stabilní a jeden
+nestabilní) a pro které hodnoty existuje jenom jeden. Tečky v diagramu
+odpovídají přímkám, které jsou v zachyceny na předchozím obrázku. Barvy si
+odpovídají, červený bod charakterizuje červenou přímku a podobně.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1.01</span><span class="p">,</span><span class="mf">1.5</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1.51</span><span class="p">,</span><span class="mi">20</span><span class="p">)])</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">dydx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="n">body</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">x0</span><span class="p">,</span><span class="n">y0</span><span class="p">,</span><span class="n">dydx0</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">dydx</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">y0</span> <span class="o">-</span> <span class="n">dydx0</span><span class="o">*</span><span class="n">x0</span>  <span class="c1"># pruseciky tecny s osami</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">x0</span> <span class="o">-</span> <span class="n">y0</span><span class="o">/</span><span class="n">dydx0</span>
+    <span class="n">body</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="p">[</span><span class="n">K</span><span class="p">,</span><span class="n">r</span><span class="p">]</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">body</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">parametry</span><span class="p">):</span>
+    <span class="n">r</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">j</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">K</span><span class="p">],[</span><span class="n">r</span><span class="p">],</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">vyska</span><span class="p">,</span> <span class="n">popisek</span><span class="p">,</span> <span class="n">barva</span> <span class="ow">in</span> <span class="p">[</span>
+        <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span><span class="s2">&quot;jeden stacionární bod, malá populace&quot;</span><span class="p">,</span><span class="s2">&quot;C1&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.35</span><span class="p">,</span><span class="s2">&quot;tři stacionární body&quot;</span><span class="p">,</span><span class="s2">&quot;C2&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="mf">0.6</span><span class="p">,</span><span class="s2">&quot;jeden stacionární bod, přemnožení&quot;</span><span class="p">,</span><span class="s2">&quot;C3&quot;</span><span class="p">],</span>
+        <span class="p">]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="n">vyska</span><span class="p">,</span><span class="n">popisek</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">barva</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">.7</span><span class="p">),</span>
+    <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">40</span><span class="p">),</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;bezrozměrná nosná kapacita $\beta$&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;bezrozměrný invazní parametr $\alpha$&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Bifurkační diagram&quot;</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/1cd6b3d31053ad7d721e4b2d645c8a0de37d046213253def50488e631d70a02a.png" src="../_images/1cd6b3d31053ad7d721e4b2d645c8a0de37d046213253def50488e631d70a02a.png" />
+</div>
+</div>
+</section>
+<section id="zaver">
+<h3><span class="section-number">5.3.5. </span>Závěr<a class="headerlink" href="#zaver" title="Permalink to this heading">#</a></h3>
+<p>Model vysvětluje, proč dochází k periodickému přemnožování. Jak les roste,
+poskytuje větší nosnou kapacitu prostředí pro obaleče a lepší podmínky pro jeho
+množení. Tím se přímky v diagramu srovnávajícím produkci a predaci dostávají
+doprava nahoru a z původně jednoho nízkého stacionárního stavu (oranžová přímka)
+máme tři stacionární stavy s možností přemnožení a malým prahem mezi prvním a
+druhým stacionárním bodem (zelená přímka) a nakonec jeden stacionární stav
+znamenající přemnožení. Jakmile k tomuto přemnožení dojde, škůdce zničí les i
+své životní prostředí a les začíná růst od začátku. Tyto cykly pozorujeme v
+provincii Nový Brunšvik, protože v jiných provinciích dochází k jiným
+katastrofám omezujícím růst lesa, například lesní požáry (<span id="id1">[<a class="reference internal" href="../literatura.html#id13" title="A.C. Fowler, A.C. Fowler, D.G. Crighton, and M.J. Ablowitz. Mathematical Models in the Applied Sciences. Cambridge Texts in Applied Mathematics. Cambridge University Press, 1997. ISBN 9780521467032.">9</a>]</span>).</p>
+<p>Strategií ochrany lesa je vhodnými opatřeními nedovolit posun parametrů do
+oblasti, kde je jeden stacionární bod s vysokou hodnotou populace. V takových
+podmínkách totiž je nízká úroveň populace daleko od stabilního stavu a její
+udržování je možné pouze za cenu neustálých zásahů a vysokých investic. Po
+jakémkoliv jednorázovém zredukování populace se rychle obnovuje rovnováha
+odpovídající vysokým hodnotám. Pro účinný zásah je nutné vhodnými opatřeními
+zajistit, aby se parametry systému přesunuly do oblasti se třemi stacionárními
+body a poté dalším zásahem jednorázově zredukovat populaci. Jakmile populaci
+jednou zredukujeme pod hodnotu odpovídající nestabilními stacionárnímu bodu,
+bude konvergovat ke stabilnímu stacionárnímu bodu odpovídajícímu malé populaci a
+obaleč tedy nebude přemnožen.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">předchozí</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Autonomní diferenciální rovnice</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="06.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">další</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Lineární algebra, matice</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Obsah
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bifurkace-v-logisticke-diskretni-rovnici">5.1. Bifurkace v logistické diskrétní rovnici</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logisticky-rust-a-dve-strategie-lovu">5.2. Logistický růst a dvě strategie lovu</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konstantni-intenzita-lovu">5.2.1. Konstantní intenzita lovu</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lov-umerny-velikosti-populace">5.2.2. Lov úměrný velikosti populace</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#populace-pod-predacnim-tlakem">5.3. Populace pod predačním tlakem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matematicky-model">5.3.1. Matematický model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nondimenzionalizace">5.3.2. Nondimenzionalizace</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rustove-krivky">5.3.3. Růstové křivky</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bifurkacni-diagram">5.3.4. Bifurkační diagram</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zaver">5.3.5. Závěr</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Autor Robert Mařík
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+  All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
+</p>
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

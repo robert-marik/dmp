@@ -1,0 +1,1304 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="cs" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>2. Derivace a integrál &#8212; Dynamické modely populací</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'prednaska/02';</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.jscustom.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="3. Diferenciální rovnice" href="03.html" />
+    <link rel="prev" title="1. Funkce a vlastnosti funkcí" href="01.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="cs"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Hledat v knize..."
+         aria-label="Hledat v knize..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Dynamické modely populací</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Vyhledávání</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvodní slovo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Přednášky</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01.html">1. Funkce a vlastnosti funkcí</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Derivace a integrál</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03.html">3. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04.html">4. Autonomní diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05.html">5. Bifurkace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06.html">6. Lineární algebra, matice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07.html">7. Parciální derivace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08.html">8. Autonomní systémy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09.html">9. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10.html">10. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11.html">11. Diskrétní populační modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12.html">12. Difuzní rovnice</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cvičení</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">1. První kroky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_01.html">2. Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_02.html">3. Práce s funkcemi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_03.html">4. Diferenciální rovnice 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_04.html">5. Diferenciální rovnice 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_05.html">6. Diferenciální rovnice 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_06.html">7. LaTeX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_07.html">8. Maticové modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_08.html">9. Levinsův model metapopulací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_09.html">10. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_10.html">11. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_11.html">12. Samostatná práce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Různá zadání</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">1. Enzymy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../allee.html">2. Silný Alleeho efekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chovani.html">3. Model soupeření jestřábí a holubičí povahy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">4. Model populace ryb</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Kombinovaní</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">1. Data a grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">2. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">3. Lov v populaci - fázový portrét</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">4. Lov v populaci - časový vývoj</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">5. Model dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">6. Model konkurence</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python konstrukce a ukázky</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_zakladni_konstrukce.html">Základní konstrukce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/cykly.html">Cykly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/grafy_amateri.html">Kreslení funkcí jednoduše</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/grafy_pokrocili.html">Kreslení funkcí pro pokročilé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/diferencialni_rovnice_amateri.html">Diferenciální rovnice pro začátečníky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/diferencialni_rovnice_pokrocili.html">Diferenciální rovnice pro pokročilejší</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_tabulky.html">Tabulky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_grafy.html">Obrázky, grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/reseni_ODR.html">Řešení diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/tabulky_none.html">Tabulky s None a NaN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/multiindex.html">Tabulky s hierarchickým indexem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/multiindex-pokrocili.html">Hierarchický index (pokročilí)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/reseni_rovnice.html">Numerické řešení rovnice</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Literatura a rejstřík</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../literatura.html">Literatura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Rejstřík</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">e-opora</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://robert-marik.github.io/moodle-python">Python</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/robert-marik/dmp/blob/gh-pages/_sources/prednaska/02.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://github.com/robert-marik/dmp" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Zdrojové úložiště"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Stáhněte si tuto stránku">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/prednaska/02.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Stáhnout soubor poznámkového bloku"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../_sources/prednaska/02.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Stáhněte si zdrojový soubor"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Tisk do PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Režim celé obrazovky"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Derivace a integrál</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Obsah </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prumerna-rychlost-a-okamzita-rychlost">2.1. Průměrná rychlost a okamžitá rychlost</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spojitost">2.2. Spojitost</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limita">2.3. Limita</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definice-derivace">2.4. Definice derivace</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vyuziti-derivace">2.5. Využití derivace</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivace-v-populacni-ekologii">2.6. Derivace v populační ekologii</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-tepelne-vymeny">2.7. Model tepelné výměny</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyticky-vypocet-derivace-ad-info-jde-to-i-takto">2.8. Analytický výpočet derivace (ad info, jde to i takto)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numericky-vypocet-derivace-ad-info-kdyby-bylo-potreba">2.9. Numerický výpočet derivace (ad info, kdyby bylo potřeba)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integral-a-jeho-vyuziti-volitelne-pro-zajemce">2.10. Integrál a jeho využití (volitelně, pro zájemce)</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="derivace-a-integral">
+<h1><span class="section-number">2. </span>Derivace a integrál<a class="headerlink" href="#derivace-a-integral" title="Permalink to this heading">#</a></h1>
+<div class="admonition-co-se-dozvite-v-tomto-textu admonition">
+<p class="admonition-title">Co se dozvíte v tomto textu</p>
+<p><img alt="" src="../_images/polarni_vlk.jpg" /></p>
+<p>Zásadním problémem v modelování je dovednost vyjádřit rychlost procesu a s touto rychlostí pracovat. Matematice trvalo dlouho, než se tyto dovednosti vypilovaly do formy přijatelné pro použití v přírodních vědách a tato snaha vyústila v partie matematiky nazývané diferenciální a integrální počet. Toto jsou techniky, umožňující pracovat s rychlostí změny funkce a hledat buď rychlost z časového průběhu (diferenciální počet, derivace) nebo časový průběh z rychlosti (integrální počet, integrál). S oběma technikami se seznámíme v následujícím textu.</p>
+<p>Na rozdíl od běžně užívaných textů věnovaných této problematice se nebudeme zaměřovat na počítání příkladů na derivace a integrály, ale zdůrazníme si koncept, hlavní myšlenky a využití při formulaci matematických modelů.</p>
+<p>Jako ukázku si představíme model ochlazování. Ten je možné použít pro modelování žádoucího ochlazování horké kávy i nežádoucího ochlazování těl živočichů v polárních oblastech. To jsou nejtypičtější začátečnické úlohy z modelování. Jedná se však o univerzální přístup, pomocí kterého později budeme schopni popisat i procesy probíhající v přírodě a ekosystémech.</p>
+<p><em>Foto: Derivace jsou základním nástrojem pro modelování systémů s deterministickým chováním. Jeden z nejjednodušeji modelovatelných procesů je model tepelné výměny. Pochopením tohoto procesu je možné odhalit, jak se živočichové žijící na sněhu a ledu brání teplotním ztrátám při kontaktu končetin se zemí. Zdroj: <a class="reference external" href="https://pxhere.com/en/photo/954181">https://pxhere.com/en/photo/954181</a></em></p>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>  <span class="c1"># knihovna pro numerické výpočty</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>  <span class="c1"># knihovna pro grafiku</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1"># knihovna pro práci s tabulkami</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">integrate</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>Ústředním tématem přednášky je pojem derivace. Neformálně řečeno je to nástroj,
+který nám umožňuje pracovat s rychlostí změny funkce. Objevení derivací mělo
+obrovský dopad v přírodních vědách. Derivace jsou základním nástrojem pro práci
+s měnícími se veličinami. Jsou tedy přirozeným nástrojem pro práci s dynamickými
+systémy charakterizovanými proměnnými veličinami a vystavenými proměnným
+podmínkám.</p>
+<p>Každý zvládne jednoduše vypočítat následující úkoly.</p>
+<ul class="simple">
+<li><p>Teplota roste konstantní rychlostí a za tři hodny naroste z teploty
+<span class="math notranslate nohighlight">\(10^\circ\mathrm C\)</span> na <span class="math notranslate nohighlight">\(16^\circ\mathrm C\)</span>. Jak rychle teplota roste?
+(Evidentně rychlostí <span class="math notranslate nohighlight">\(2^\circ \mathrm C/\mathrm{hod}\)</span>).</p></li>
+<li><p>Teplota roste konstantní rychlostí <span class="math notranslate nohighlight">\(2^\circ \mathrm C/\mathrm{hod}\)</span>. O kolik
+teplota naroste za čtyři hodiny? (Evidentně o <span class="math notranslate nohighlight">\(8^\circ \mathrm C\)</span>).</p></li>
+</ul>
+<p>Tyto příklady jsou extrémně jednoduché díky předpokladu, že teplota roste
+konstantní rychlostí. Potom určujeme rychlost podílem změny teploty a času a
+změnu určujeme součinem rychlosti a času. V této přednášce si ukážeme nástroje,
+které umí dávat podobné výsledky i pro procesy probíhající proměnlivou
+rychlostí.</p>
+<section id="prumerna-rychlost-a-okamzita-rychlost">
+<h2><span class="section-number">2.1. </span>Průměrná rychlost a okamžitá rychlost<a class="headerlink" href="#prumerna-rychlost-a-okamzita-rychlost" title="Permalink to this heading">#</a></h2>
+<p>Budeme se zajímat o to, jak rychle se mění funkční hodnoty v čase nebo obecněji,
+jak se mění při změnách vstupních dat.</p>
+<p>Průměrnou rychlost určujeme tak, že změnu sledované veličiny přepočteme na
+jednotku času (u závislosti na čase), délky (u závislosti na poloze) nebo obecně
+na jednotku veličiny, na které sledovaná veličina závisí.</p>
+<p>Průměrná rychlost s jakou se mění funkce <span class="math notranslate nohighlight">\(f\)</span> na intervalu <span class="math notranslate nohighlight">\([x,x+h]\)</span> je dána
+vztahem <div class="math notranslate nohighlight">
+\[\frac{f(x+h)-f(x)}h.\]</div>
+
+Pozitivum tohoto vzorce je, že používá jenom dvě ze čtyř základních operací,
+rozdíl a dělení. Vzorec s podílem však má i nedostatky. Výrazným nedostatkem je,
+že průměrná rychlost pracuje jenom s informací v koncových bodech intervalu a
+proto bohužel neobsahuje informaci, co přesně se děje uvnitř intervalu, přes
+který průměrujeme. Počítáme-li ale průměr přes stále kratší interval, nevýhoda
+průměrné rychlosti mizí. Naším cílem bude počítat průměr přes interval prakticky
+nerozlišitelný od nuly. To by dalo okamžitou rychlost.</p>
+<p>Pokud průměrujeme za stále kratší čas, čitatel i jmenovatel se blíží k nule a
+jsou potíže s interpretací zlomku. Nulou totiž není možné dělit. Musíme vytvořit
+koncept, který umožní sledovat, co se děje s funkčními hodnotami funkce, pokud
+se vstupními daty jdeme ke kraji definičního oboru. K tomu použijeme pojem
+limita. Budeme se (zatím) soustředit na tzv. vlastní limitu ve vlastním bodě.
+Tím se oproti obecnému postupu mnohé usnadní. Zejména pojem limity můžeme opřít
+o pojem spojitost, který je přece jenom intuitivnější než obecný koncept
+využívající limitu jako základní pojem.</p>
+</section>
+<section id="spojitost">
+<h2><span class="section-number">2.2. </span>Spojitost<a class="headerlink" href="#spojitost" title="Permalink to this heading">#</a></h2>
+<p>Definice spojitosti zavádí jakousi třídu funkcí, které jsou v jistém smyslu
+pěkné a můžeme pro ně použít postupy, které pro obecné funkce nefungují. Jsou
+zde funkce, jejichž funkční hodnoty se mění plynule a nemůžou se změnit skokově.
+Malá změna ve vstupních datech vyvolá malou změnu ve funkčních hodnotách.</p>
+<div class="proof definition admonition" id="definition-0">
+<p class="admonition-title"><span>Definice </span> (Okolí)</p>
+<section class="definition-content" id="proof-content">
+<p><em>Okolím</em> bodu <span class="math notranslate nohighlight">\(x_0\)</span> rozumíme libovolný otevřený interval obsahující bod <span class="math notranslate nohighlight">\(x_0\)</span>.</p>
+</section>
+</div><div class="proof definition admonition" id="definition-1">
+<p class="admonition-title"><span>Definice </span> (Spojitost)</p>
+<section class="definition-content" id="proof-content">
+<p>Buď <span class="math notranslate nohighlight">\(f\colon \mathbb R\to\mathbb R\)</span> funkce jedné proměnné. Řekneme, že funkce <span class="math notranslate nohighlight">\(f\)</span> je <em>spojitá v bodě</em> <span class="math notranslate nohighlight">\(x_0\)</span> jestliže je v tomto bodě definovaná a pro libovolnou předem zadanou toleranci (i extrémně malou) existuje okolí bodu <span class="math notranslate nohighlight">\(x_0\)</span> takové, že všechny body z okolí bodu <span class="math notranslate nohighlight">\(x_0\)</span> mají funkční hodnotu v rámci uvažované tolerance nerozlišitelnou od <span class="math notranslate nohighlight">\(f(x_0)\)</span>. Řekneme, že funkce <span class="math notranslate nohighlight">\(f\)</span> je <em>spojitá</em> na otevřeném intervalu, je-li spojitá v každém jeho bodě.</p>
+</section>
+</div><p>Definice spojitosti sice není zcela názorná, ale následující definice a věta
+velmi pomůže. Zhruba řečeno vysvětlují, proč si v naprosté většině prakticky
+využitelných případů můžeme spojitost ověřit jenom tím, že zjistíme, zda je
+funkce definována.</p>
+<div class="proof definition admonition" id="definition-2">
+<p class="admonition-title"><span>Definice </span> (Elementární funkce)</p>
+<section class="definition-content" id="proof-content">
+<p>Všechny mnohočleny, goniometrické, cyklometrické,
+exponenciální a logaritmické funkce a obecná mocnina se nazývají
+<em>základní elementární funkce</em> Všechny funkce, které ze základních
+elementárních funkcí získáme konečným počtem operací sčítání,
+odečítání, násobení, dělení a skládání těchto funkcí navzájem se
+nazývají <em>elementární funkce</em>.</p>
+</section>
+</div><div class="proof theorem admonition" id="theorem-3">
+<p class="admonition-title"><span>Věta </span> (Spojitost elementárních funkcí)</p>
+<section class="theorem-content" id="proof-content">
+<p>Všechny elementární funkce jsou spojité v každém vnitřním bodě svého definičního oboru.</p>
+</section>
+</div><p>Podobně jako spojitost funkce jedné proměnné je definována spojitost funkcí více
+proměnných. Zůstane dokonce v platnosti předchozí věta. V naprosté většině
+základních praktických aplikací vystačíme s popisem pomocí elementárních funkcí
+a proto jsou funkce, se kterými pracujeme, zpravidla automaticky spojité.
+Opatrnost je nutná pouze tam, kde bychom se od elementárních funkcí odchýlili,
+například při použití nekonečných řad.</p>
+<div class="proof remark admonition" id="remark-4">
+<p class="admonition-title"><span>Poznámka </span> (Body nespojitosti)</p>
+<section class="remark-content" id="proof-content">
+<p>Body, v jejichž okolí je funkce ohraničená, ale je zde porušena spojitost, se nazývají body nespojitosti. Typickými příklady jsou skok a odstranitelná nespojitost. (Opět se vyhneme přesné definici, ale název a vzhled grafu situaci dostatečně ozřejmí.)</p>
+<p><strong>skok</strong>
+: Náhlá změna v jediném bodě, přičemž vlevo i vpravo od tohoto bodu je funkce spojitá. Na jeho odhalení stačí zvolit toleranci v definici spojitosti menší, než je výška skoku. Například <span class="math notranslate nohighlight">\(f(x)=\frac{|x|+x}{2x}\)</span> je jednotkový skok v nule.</p>
+<p><strong>odstranitelná nespojitost</strong>
+: Chybějící funkční hodnota. Tato nespojitost nás zajímá nejvíce. Je to nespojitost, kterou je možno odstranit vhodným dodefinováním funkční hodnoty v bodě nespojitosti. Například funkce <div class="math notranslate nohighlight">
+\[f(x)= \begin{cases}   \frac {\sin x}{x}&amp; x\neq 0\\   1&amp; x=0 \end{cases} \]</div>
+ je spojitá funkce. Vznikla doplněním jedné funkční hodnoty do definice funkce <span class="math notranslate nohighlight">\(\frac{\sin x}x\)</span>, která má odstranitelnou nespojitost v bodě <span class="math notranslate nohighlight">\(x=0\)</span>.</p>
+</section>
+</div><p>Grafy funkcí z předchozí poznámky jsou níže. Jsou vykresleny z jednotlivých bodů
+a tyto body nejsou spojeny obvyklou čarou. Tím vyniknou případné nespojitosti.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">funkce</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
+<span class="n">popisky</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Skok, podstatná nespojitost&quot;</span><span class="p">,</span> <span class="s2">&quot;Odstranitelná nespojitost&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">funkce</span><span class="p">,</span><span class="n">popisky</span><span class="p">):</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1">## Minimalisticka varianta:</span>
+<span class="c1"># x = np.linspace(-10,10,100)</span>
+<span class="c1"># plt.plot(x,np.sin(x)/x,&quot;.&quot;)</span>
+<span class="c1"># plt.plot(x,(x+np.abs(x))/x,&quot;.&quot;)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/640bdeeb9fc13aea48b641c5fdd79d080c8197fb8788a0b45b215cf0ad720de7.png" src="../_images/640bdeeb9fc13aea48b641c5fdd79d080c8197fb8788a0b45b215cf0ad720de7.png" />
+</div>
+</div>
+</section>
+<section id="limita">
+<h2><span class="section-number">2.3. </span>Limita<a class="headerlink" href="#limita" title="Permalink to this heading">#</a></h2>
+<p>Definici limity opřeme o pojem spojitosti. V podstatě pod limitu skryjeme buď
+funkční hodnotu spojité funkce (pokud existuje), nebo hodnotu, která danou
+funkci učiní spojitou. Můžeme tedy limitu považovat za  „nejlepší rozumnou
+náhradu“ funkční hodnoty v tom smyslu, že po předefinování jedné funkční hodnoty
+se funkce stane spojitou, tj. relativně pěknou.</p>
+<aside class="margin sidebar">
+<p class="sidebar-title">Různé definice limity</p>
+<p>Oproti obecné definici v literatuře je naše definice limity méně obsáhlá  (například nejsme schopni pracovat s limitou v nekonečnu) a hůře se používá (protože se opírá o pojem spojitost), pro konečné limity v konečném bodě a pro spojitost definovanou nezávisle na pojmu limita je to však ekvivalentní a pro naše potřeby názornější.</p>
+</aside>
+<div class="proof definition admonition" id="definition-5">
+<p class="admonition-title"><span>Definice </span> (Limita)</p>
+<section class="definition-content" id="proof-content">
+<p>Nechť <span class="math notranslate nohighlight">\(f\)</span> je funkce definovaná v okolí bodu <span class="math notranslate nohighlight">\(x_0\)</span>, s případnou výjimkou bodu <span class="math notranslate nohighlight">\(x_0\)</span>. Řekneme, že funkce <span class="math notranslate nohighlight">\(f\)</span> má v bodě <span class="math notranslate nohighlight">\(x_0\)</span> <em>limitu</em> rovnu číslu <span class="math notranslate nohighlight">\(L\)</span>, jestliže funkce <span class="math notranslate nohighlight">\(g(x)\)</span> definovaná vztahem <div class="math notranslate nohighlight">
+\[g(x)= \begin{cases}   L&amp; x=x_0\\ f(x)&amp; \text {jinak,}\end{cases}\]</div>
+ je spojitá v bodě <span class="math notranslate nohighlight">\(x_0\)</span>. Píšeme <div class="math notranslate nohighlight">
+\[\lim_{x\to x_0}f(x)=L.\]</div>
+</p>
+</section>
+</div><p>Velmi stručně řečeno: pokud se nedá nějaké číslo do funkce dosadit přímo, mohlo
+by to jít pomocí limity. Například funkce <div class="math notranslate nohighlight">
+\[\frac{\sin x}{x}\]</div>
+ není definována v
+nule. V okolí nuly se však chová v jistém smyslu pěkně: má funkční hodnoty
+prakticky nerozlišitelné od jedničky, viz graf v odstavci věnovanému spojitosti.
+Proto platí <div class="math notranslate nohighlight">
+\[\lim_{x\to 0}\frac{\sin x}{x}=1.\]</div>
+</p>
+</section>
+<section id="definice-derivace">
+<h2><span class="section-number">2.4. </span>Definice derivace<a class="headerlink" href="#definice-derivace" title="Permalink to this heading">#</a></h2>
+<p>Nyní jsme připraveni ve vzorci <div class="math notranslate nohighlight">
+\[\frac{f(x+h)-f(x)}h\]</div>
+ pro průměrnou rychlost
+změny na intervalu délky <span class="math notranslate nohighlight">\(h\)</span> položit <span class="math notranslate nohighlight">\(h=0\)</span> a dosáhnout toho, že vzorec bude
+udávat okamžitou rychlost. Protože bychom však přímým dosazením dostali
+nedefinovaný výraz s nulou ve jmenovateli, uděláme toto dosazení v limitním
+smyslu.</p>
+<div class="proof definition admonition" id="definition-6">
+<p class="admonition-title"><span>Definice </span> (Derivace)</p>
+<section class="definition-content" id="proof-content">
+<p><em>Derivací</em> funkce <span class="math notranslate nohighlight">\(f\)</span> v bodě <span class="math notranslate nohighlight">\(x\)</span> rozumíme
+limitu
+<div class="math notranslate nohighlight">
+\[\frac{\mathrm df}{\mathrm dx}:=\lim_{h\to 0}\frac{f(x+h)-f(x)}{h},\]</div>
+
+pokud tato limita existuje.</p>
+</section>
+</div><p>Derivaci funkce <span class="math notranslate nohighlight">\(f\)</span> v bodě <span class="math notranslate nohighlight">\(x_0\)</span> označujeme <span class="math notranslate nohighlight">\(f'(x_0)\)</span> nebo
+<span class="math notranslate nohighlight">\(\frac{\mathrm df(x_0)}{\mathrm dx}\)</span> nebo <span class="math notranslate nohighlight">\(\frac{\mathrm df}{\mathrm dx}(x_0)\)</span>. Derivaci v libovolném bodě potom <span class="math notranslate nohighlight">\(f'\)</span>, <span class="math notranslate nohighlight">\(f'(x)\)</span> nebo <span class="math notranslate nohighlight">\(\frac{\mathrm df}{\mathrm dx}\)</span>. Zápis <span class="math notranslate nohighlight">\(\frac{\mathrm df}{\mathrm dx}\)</span> je Leibnizova notace, zápis <span class="math notranslate nohighlight">\(f'\)</span> je Lagrangeova notace. Derivace podle času se označuje tečkou, například <span class="math notranslate nohighlight">\(\dot x\)</span> (Newtonova notace). V některých oborech se používá Eulerova notace <span class="math notranslate nohighlight">\(Df\)</span>, <span class="math notranslate nohighlight">\(D_x f\)</span> nebo <span class="math notranslate nohighlight">\((Df)(x)\)</span>.</p>
+<div class="proof remark admonition" id="remark-7">
+<p class="admonition-title"><span>Poznámka </span> (Slovní interpretace definice derivace)</p>
+<section class="remark-content" id="proof-content">
+<p>Ještě jednou rozšifrujeme jednotlivé komponenty definice derivace.</p>
+<ul class="simple">
+<li><p>Výraz z čitatele, tj. <span class="math notranslate nohighlight">\(f(x+h)-f(x)\)</span>, je změna veličiny <span class="math notranslate nohighlight">\(f\)</span> na intervalu <span class="math notranslate nohighlight">\([x,x+h]\)</span>. Často označujeme též <span class="math notranslate nohighlight">\(\Delta f\)</span>.</p></li>
+<li><p>Podíl, tj. <span class="math notranslate nohighlight">\(\frac{f(x+h)-f(x)}h\)</span> je změna veličiny <span class="math notranslate nohighlight">\(f\)</span> na intervalu <span class="math notranslate nohighlight">\([x,x+h]\)</span> přepočítaná na jednotku veličiny <span class="math notranslate nohighlight">\(x\)</span>, tj. v jistém smyslu průměrná rychlost na tomto intervalu. Často označujeme též <span class="math notranslate nohighlight">\(\frac{\Delta f}{\Delta x}\)</span>.</p></li>
+<li><p>Limita v definici derivace stahuje délku intervalu, na kterém počítáme průměrnou rychlost, k nule.  Tím se z průměrné rychlosti stane okamžitá rychlost.</p></li>
+</ul>
+</section>
+</div><table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-left head"><p>Část definičního vztahu</p></th>
+<th class="text-left head"><p>Slovní interpretace</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><span class="math notranslate nohighlight">\(f(x)\)</span></p></td>
+<td class="text-left"><p>funkční hodnota v bodě</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><span class="math notranslate nohighlight">\(f(x+h)\)</span></p></td>
+<td class="text-left"><p>funkční hodnota ve vedlejším bodě</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><span class="math notranslate nohighlight">\(f(x+h)-f(x)\)</span></p></td>
+<td class="text-left"><p>změna funkce na intervalu <span class="math notranslate nohighlight">\([x,x+h]\)</span></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><span class="math notranslate nohighlight">\(\displaystyle\frac{f(x+h)-f(x)}{h}\)</span></p></td>
+<td class="text-left"><p>průměrná rychlost změny funkce na intervalu <span class="math notranslate nohighlight">\([x,x+h]\)</span>, též změna funkce po přepočtu na interval jednotkové délky</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><span class="math notranslate nohighlight">\(\displaystyle\lim_{h\to 0}\cdots\)</span></p></td>
+<td class="text-left"><p>limita pro redukci průměrné rychlosti na okamžitou</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><span class="math notranslate nohighlight">\(\displaystyle\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}\)</span></p></td>
+<td class="text-left"><p>okamžitá rychlost změny funkce v bodě <span class="math notranslate nohighlight">\(x\)</span>, derivace</p></td>
+</tr>
+</tbody>
+</table>
+<p>Pro interpretaci derivace v praktických úlohách je vodítkem i fyzikální jednotka derivace. Ta je dána následující poznámkou.</p>
+<div class="proof remark admonition" id="remark-8">
+<p class="admonition-title"><span>Poznámka </span> (Jednotka derivace)</p>
+<section class="remark-content" id="proof-content">
+<p>Jednotka derivace <span class="math notranslate nohighlight">\(\frac{\mathrm df}{\mathrm dx}\)</span> funkce <span class="math notranslate nohighlight">\(f(x)\)</span> je stejná, jako jednotka podílu <span class="math notranslate nohighlight">\(\frac {f(x)}x\)</span>.</p>
+</section>
+</div></section>
+<section id="vyuziti-derivace">
+<h2><span class="section-number">2.5. </span>Využití derivace<a class="headerlink" href="#vyuziti-derivace" title="Permalink to this heading">#</a></h2>
+<p>Interpretace derivace v nematematických disciplínách je okamžitá rychlost s
+jakou veličina <span class="math notranslate nohighlight">\(f\)</span> reaguje na změny veličiny <span class="math notranslate nohighlight">\(x\)</span>. Často studujeme veličiny
+závislé na čase s v tomto případě jde tedy o rychlost, s jakou se veličina mění
+v čase.</p>
+<p>Obecně, ať již je nezávislou proměnnou čas či jiná veličina, se derivace <span class="math notranslate nohighlight">\(f'(x)\)</span>
+často slovně interpretuje jako změna veličiny <span class="math notranslate nohighlight">\(f\)</span>, odpovídající změně veličiny
+<span class="math notranslate nohighlight">\(x\)</span> o jednotku. Je to podobné, jako údaj o rychlosti na tachometru v automobilu.
+Ten udává, kolik kilometrů ujedeme za hodinu. Od skutečně uražené dráhy se tento
+údaj může lišit, protože pohyb může trvat třeba jenom deset minut. A kdyby jízda
+opravdu trvala hodinu, mohlo by vlivem jízdy v zácpě dojít k podstatnému nesouladu
+se skutečně uraženou dráhou. Přesto je okamžitá rychlost ukazovaná na tachometru
+při jízdě automobilem užitečná veličina a nemáme problémy s jejím chápáním.
+Stejně tak pohlížejme na derivaci.</p>
+<p>Derivace (její existence a znaménko) úzce souvisí s některými vlastnostmi
+funkce. Přesněji, existence derivace impĺikuje spojitost a znaménko derivace
+určuje druh monotonie funkce. Přesněji viz následující dvě věty.</p>
+<div class="proof theorem admonition" id="theorem-9">
+<p class="admonition-title"><span>Věta </span> (Existence derivace implikuje spojitost)</p>
+<section class="theorem-content" id="proof-content">
+<p>Má-li funkce <span class="math notranslate nohighlight">\(f\)</span> derivaci na intervalu <span class="math notranslate nohighlight">\(I\)</span>, je na tomto intervalu spojitá.</p>
+</section>
+</div><div class="proof theorem admonition" id="theorem-10">
+<p class="admonition-title"><span>Věta </span> (Znaménko derivace implikuje monotonii)</p>
+<section class="theorem-content" id="proof-content">
+<ul class="simple">
+<li><p>Má-li funkce <span class="math notranslate nohighlight">\(f\)</span> kladnou derivaci na intervalu <span class="math notranslate nohighlight">\(I\)</span>, je na tomto intervalu rostoucí.</p></li>
+<li><p>Má-li funkce <span class="math notranslate nohighlight">\(f\)</span> zápornou derivaci na intervalu <span class="math notranslate nohighlight">\(I\)</span>, je na tomto intervalu klesající.</p></li>
+</ul>
+</section>
+</div><aside class="margin sidebar">
+<p class="sidebar-title">Derivace a průběh funkce</p>
+<p><a class="reference external" href="https://user.mendelu.cz/marik/manim/PrubehFunkce/"><img alt="" src="https://user.mendelu.cz/marik/manim/thumbs/PrubehFunkce.jpg" /></a></p>
+<p>Animace ukazuje souvislost chování funkce s chováním její derivace.</p>
+</aside>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-left head"><p>Derivace funkce</p></th>
+<th class="text-left head"><p>Chování funkce</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Derivace je nulová.</p></td>
+<td class="text-left"><p>Funkce je konstantní. Sledovaná veličina se nemění při změně vstupních dat.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Derivace je kladná.</p></td>
+<td class="text-left"><p>Funkce roste. Pokud data na vstupu rostou, sledovaná veličina také roste.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Derivace je záporná.</p></td>
+<td class="text-left"><p>Funkce klesá. Pokud data na vstupu rostou, sledovaná veličina klesá.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Derivace je numericky malá (blízká k nule).</p></td>
+<td class="text-left"><p>Funkce se mění pomalu. Sledovaná veličina reaguje na změny ve vstupních datech pouze málo.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Derivace je numericky velká (hodně kladná nebo hodně záporná).</p></td>
+<td class="text-left"><p>Funkce se mění rychle. Malá změna na vstupu má velký vliv na sledovanou veličinu.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Derivace je konstantní.</p></td>
+<td class="text-left"><p>Funkce je lineární. Klesá nebo roste pořád stejně rychle. Pokud vstup roste aritmetickou řadou (po stejných skocích), sledovaná veličina roste nebo klesá také aritmetickou řadou.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Derivace roste.</p></td>
+<td class="text-left"><p>Funkce je nelineární a roste stále rychleji. Pokud je funkce kladná, rostoucí derivace znamená, že růst se stále zrychluje.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Derivace klesá k nule.</p></td>
+<td class="text-left"><p>Funkce je nelineární a přibližuje se k vodorovné asymptotě. Pokud je funkce kladná, k nule klesající derivace znamená, že růst se stále zpomaluje a zastaví se.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="derivace-v-populacni-ekologii">
+<h2><span class="section-number">2.6. </span>Derivace v populační ekologii<a class="headerlink" href="#derivace-v-populacni-ekologii" title="Permalink to this heading">#</a></h2>
+<p>V populační ekologii derivaci používáme k vyjádření rychlosti růstu nebo poklesu
+velikosti sledované populace. Je-li velikost populace jako funkce času dána
+funkcí <span class="math notranslate nohighlight">\(N(t)\)</span>, je derivace této funkce, tj. <div class="math notranslate nohighlight">
+\[\frac{\mathrm dN}{\mathrm dt}\]</div>
+
+rychlost růstu této populace. (Záporná derivace tj. záporná rychlost růstu je
+interpretována jako pokles.) Jednotka derivace je odvozena od povahy úlohy a
+jednotek sledovaných veličin. Například stovky jedinců za rok.</p>
+<p>Ekvivalentním vyjádřením rychlosti je nárůst velikosti populace za jednotku času.</p>
+<p>Často pracujeme i s relativní rychlostí růstu, kdy rychlost růstu vztáhneme na
+jednotkové množství, tj. pracujeme s funkcí <div class="math notranslate nohighlight">
+\[\frac 1{N}\frac{\mathrm
+dN}{\mathrm dt},\]</div>
+ která se někdy v literatuře zapisuje ve formě <div class="math notranslate nohighlight">
+\[\frac{\mathrm
+dN}{N\mathrm dt}\]</div>
+ a zpravidla se o ní mluví jako o <em>specifické rychlosti</em>
+růstu, nebo jako o rychlosti růstu <em>per capita</em>.</p>
+</section>
+<section id="model-tepelne-vymeny">
+<h2><span class="section-number">2.7. </span>Model tepelné výměny<a class="headerlink" href="#model-tepelne-vymeny" title="Permalink to this heading">#</a></h2>
+<aside class="margin sidebar" id="index-0">
+<p class="sidebar-title">Rychlost změny teploty je ovlivněna touto teplotou</p>
+<p><img alt="" src="../_images/kava.jpg" /></p>
+<p>Ochlazování kávy probíhá tak, že se teplo z kávy předává do okolí. Tento proces je tím intenzivnější, čím je větší teplotní rozdíl kávy a okolí. Horká káva chladne rychleji než vlažná. Je to typický proces probíhající proměnnou rychlostí, kdy rychlost změny teploty souvisí i s okamžitou hodnotou této teploty. Proto fyzikální zákon vyjadřující tento proces obsahuje teplotu jako funkci času i její derivaci. S podobnou situací se setkáváme ve fyzice i v modelování přírodních dějů velmi často.</p>
+</aside>
+<aside class="margin sidebar">
+<p class="sidebar-title">Zvířata a protiproudý teplotní výměník</p>
+<p><img alt="" src="../_images/karibu.jpeg" /></p>
+<p>Zvířata žijící v polárních oblastech mají v nohách blízko sebe žíly a tepny. Tím
+krev proudící do končetiny předává teplo krvi proudící zpět do těla a na konci
+končetiny, kde je kontakt se sněhem a ledem, je malý teplotní rozdíl mezi
+povrchem těla a okolím. Tím je dosaženo malé intenzity předávání tepla a tím
+pádem malých teplotních ztrát. Podle <a class="reference external" href="https://twitter.com/fuseknowledge/status/1215796937657479168">https://twitter.com/fuseknowledge/status/1215796937657479168</a>.</p>
+</aside>
+<p>Derivace jsou přirozeným jazykem pro formulaci matematického modelu mnoha dějů v
+přírodě, kdy potřebujeme pracovat s rychlostí a tato rychlost není během děje
+konstantní. To znamená že změnu není možné určit jednoduše jako součin rychlosti
+a času. Typickým příkladem je tepelná výměna. Rychlost vyrovnávání teplot
+souvisí s teplotním rozdílem a během vyrovnávání teplot se tento teplotní rozdíl
+snižuje. Tím se zpomaluje i dynamika děje.</p>
+<p>Horké těleso o teplotě <span class="math notranslate nohighlight">\(T\)</span> je v chladnější místnosti o teplotě <span class="math notranslate nohighlight">\(T_\infty\)</span>. Z
+fyziky je známo (Newtonův zákon tepelné výměny), že rychlost s jakou klesá
+teplota tělesa je úměrná teplotnímu rozdílu. Tento rozdíl je <span class="math notranslate nohighlight">\(T-T_\infty\)</span> (od
+většího odečítáme menší).</p>
+<ul class="simple">
+<li><p>Veličina <span class="math notranslate nohighlight">\(T\)</span> je teplota tělesa měřená například ve stupních Celsia.</p></li>
+<li><p>Veličina <span class="math notranslate nohighlight">\(t\)</span> je čas měřený například v hodinách.</p></li>
+<li><p>Derivace <span class="math notranslate nohighlight">\(\frac{\mathrm dT}{\mathrm dt}\)</span> ve stupních Celsia
+za hodinu je rychlost, s jakou roste teplota tělesa.</p>
+<ul>
+<li><p>Pokud je například derivace kladná a rovna hodnotě <span class="math notranslate nohighlight">\(5\)</span> stupňů Celsia za
+hodinu, znamená to, že teplota roste rychlostí <span class="math notranslate nohighlight">\(5\)</span> stupňů Celsia za hodinu.</p></li>
+<li><p>Pokud je například derivace záporná a rovna hodnotě <span class="math notranslate nohighlight">\(-5\)</span> stupňů Celsia za
+hodinu, znamená to, že teplota klesá rychlostí <span class="math notranslate nohighlight">\(5\)</span> stupňů Celsia za hodinu.</p></li>
+<li><p>Pokud je derivace dána vztahem <span class="math notranslate nohighlight">\(-e^{-t}\)</span>, kde <span class="math notranslate nohighlight">\(t\)</span> je čas v hodinách a
+derivace vychází ve stupních Celsia za hodinu, využijeme toho, že <span class="math notranslate nohighlight">\(e^0=1\)</span> a
+<span class="math notranslate nohighlight">\(e^{-1}=0.37\)</span>. To znamená, že na počátku se teplota snižuje okamžitou
+rychlostí jeden stupeň Celsia za hodinu, tato rychlost ochlazování se
+pozvolna mění a například po hodině se teplota snižuje už jenom rychlostí
+<span class="math notranslate nohighlight">\(0.37\)</span> stupně Celsia za hodinu.</p></li>
+</ul>
+</li>
+<li><p>Matematickým vyjádřením toho, že rychlost s jakou se mění teplota  je úměrná
+teplotnímu rozdílu <span class="math notranslate nohighlight">\(T-T_\infty\)</span> je rovnice
+<div class="math notranslate nohighlight">
+\[\frac{\mathrm dT}{\mathrm dt}=-k(T-T_\infty),\]</div>
+
+kde <span class="math notranslate nohighlight">\(k\)</span> je konstanta úměrnosti a záporné znaménko
+vyjadřuje, že teplota klesá. Konstanta <span class="math notranslate nohighlight">\(k\)</span> je číselně rovna rychlosti
+ochlazování v situaci, kdy je jednotkový rozdíl mezi teplotou objektu a okolí.</p></li>
+<li><p>Neznámou v sestavené rovnici je funkce a v rovnici figuruje derivace této
+funkce. Takové rovnice se nazývají diferenciální rovnice.</p></li>
+<li><p>Uvedená rovnice udává scénář vývoje systému. Je to jakési kvantitativní
+vyjádření funkce mechanismu, který vyrovnává teploty. V praxi je nutné ještě k
+plnohodnotné simulaci zadat výchozí stav. Většinou je výchozím okamžikem čas
+nula a proto se zadává výchozí stav podmínkou <div class="math notranslate nohighlight">
+\[T(0)=T_0,\]</div>
+ kde <span class="math notranslate nohighlight">\(T_0\)</span> je
+počáteční teplota. Tato podmínka se nazývá počáteční podmínka.</p></li>
+</ul>
+<div class="admonition hint">
+<p class="admonition-title">Rada</p>
+<p>Předchozí příklad je často v různých obměnách používán na modelování
+ochlazování kávy, což je proces, který většina lidí důvěrně zná. Nemáme
+pochopitelně ambice se domnívat, že bychom dokázali z této rovnice odvodit
+nějaké zásadní výsledky aplikovatelné při pití ranní kávy. Učíme se na malých
+věcech, abychom později mohli dělat věci velké. Na známých věcech se učíme
+aparát, který bude naším jediným nástrojem tam, kde intuice začne selhávat. Z
+tohoto příkladu je nutné si odnést, že derivace, jako rychlost změny, hraje
+roli při kvantitativním popisu dějů a při studia procesů, kdy se mění veličiny.
+Ať už doopravdy (studium pohybu nebo dějů, probíhajících v čase) nebo virtuálně
+(problémy spojené s mechanikou, včetně statiky, stability a deformací, často
+pracují s virtuálními změnami, tj. se změnami, které jsou sice z hlediska úlohy
+přípustné, ale příroda je z nějakého důvodu nerealizuje). Tedy naprostá většina
+dějů a jevů, které studujeme a chceme jim rozumět. Jakmile se v popisu
+fyzikálního zákona nebo přírodního procesu objeví slovo <em>rychlost</em>, někdy
+nahrazené souslovím <em>časová změna</em>, znamená to, že kvantitativní popis se děje
+pomocí derivací.</p>
+</div>
+<p>V této chvíli je pro nás cenné to, že umíme přeformulovat fyzikální popis vývoje
+(rychlost změny teploty je úměrná rozdílu teplot) na kvantitativní popis, kde
+dokážeme realizovat numerickou simulaci. Realizace takové simulace může vypadat
+například tak, že na krátký časový krok budeme předpokládat konstantní rychlost.
+Tuto rychlost použijeme pro odhad nové teploty, tato nová teplota změní teplotní
+rozdíl, tím se změní i rychlost a postup opakujeme.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Nastavení parametrů</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>    <span class="c1"># počet bodů pro výpočet</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>  <span class="c1"># body na časové ose</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># délka kroku v čase</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1"># koeficient z rovnice</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>  <span class="c1"># vyhrazené místo pro teploty, zatím samé nuly</span>
+<span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># výchozí teplota</span>
+<span class="n">T_okoli</span> <span class="o">=</span> <span class="mi">20</span>  <span class="c1"># teplota okolí</span>
+
+<span class="c1">### Výpočet modelu</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">dT</span> <span class="o">=</span> <span class="o">-</span> <span class="n">k</span><span class="o">*</span><span class="n">dt</span><span class="o">*</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">T_okoli</span><span class="p">)</span>  <span class="c1"># změna teploty podle modelu</span>
+    <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dT</span>   <span class="c1"># teplota v dalším časovém okamžiku</span>
+
+<span class="c1">### Vykreslení řešení</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">T</span><span class="p">)</span>
+
+<span class="c1">### Dekorace grafu</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;čas&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;teplota&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Ochlazování rychlostí úměrnou teplotnímu rozdílu&quot;</span><span class="p">,</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/4b801215715b0e45116fddbcef18d6669d360e7aa1515b5855994966023ccc58.png" src="../_images/4b801215715b0e45116fddbcef18d6669d360e7aa1515b5855994966023ccc58.png" />
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Minimalizovana verze (odpoznamkujte)</span>
+<span class="c1"># T = 100</span>
+<span class="c1"># t = 0</span>
+<span class="c1"># dt = 0.1</span>
+<span class="c1"># for i in range(100):</span>
+<span class="c1">#     t = t+dt</span>
+<span class="c1">#     T = T - 0.5 * (T-20) * dt</span>
+<span class="c1">#     plt.plot([t],[T],&quot;b.&quot;)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Úplně minimalistická verze</span>
+<span class="c1"># T = 100</span>
+<span class="c1"># N = 100</span>
+<span class="c1"># teploty = [T := T - 0.5 * (T-20) * 0.1 for i in range (N)]</span>
+<span class="c1"># plt.plot(teploty)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+<section id="analyticky-vypocet-derivace-ad-info-jde-to-i-takto">
+<h2><span class="section-number">2.8. </span>Analytický výpočet derivace (ad info, jde to i takto)<a class="headerlink" href="#analyticky-vypocet-derivace-ad-info-jde-to-i-takto" title="Permalink to this heading">#</a></h2>
+<p>Analytickým výpočtem derivace rozumíme získání vzorce pro derivaci funkce z
+analytického předpisu funkce, tj. ze vzorce definujícího funkční hodnoty. Toto
+se naučíme později v obecnějším kontextu, až se budeme věnovat derivacím funkcí
+více proměnných, parciálním derivacím.</p>
+<div class="admonition important">
+<p class="admonition-title">Důležité</p>
+<p>Nikdy (nebo alespoň skoro nikdy) nederivujeme pomocí definice, ale používáme
+<a class="reference external" href="https://raw.githubusercontent.com/robert-marik/mat-slidy/master/cheatsheet/cheatsheet-MT.pdf">vzorce</a>
+pro derivace základních elementárních funkcí a pro derivace matematických
+operací s funkcemi. Další možností je využití systémů počítačové algebry, které
+umožňují pracovat se symbolickými výrazy namísto numerických dat. V programu
+Python je možno použít knihovnu SymPy.</p>
+</div>
+<p>Při analytickém výpočtu derivace používáme pravidla pro derivování základních
+elementárních funkcí a pravidla pro derivaci matematických operací. Nám budou
+stačit pouze základní vzorce, které uvedeme nejprve slovně.</p>
+<ul class="simple">
+<li><p>Derivace konstantní funkce je nulová funkce.</p></li>
+<li><p>Derivace součtu funkcí je součet derivací těchto funkcí.</p></li>
+<li><p>Derivace konstantního násobku funkce je konstantní násobek derivace této funkce.</p></li>
+<li><p>Derivace složené funkce je součinem derivace vnější a vnitřní složky.</p></li>
+<li><p>Derivace funkce <span class="math notranslate nohighlight">\(x\)</span> je rovna jedné.</p></li>
+<li><p>Derivace funkce <span class="math notranslate nohighlight">\(e^x\)</span> je <span class="math notranslate nohighlight">\(e^x\)</span>.</p></li>
+</ul>
+<p>Tedy pro funkce <span class="math notranslate nohighlight">\(f\)</span> a <span class="math notranslate nohighlight">\(g\)</span> proměnné <span class="math notranslate nohighlight">\(x\)</span> a konstantu <span class="math notranslate nohighlight">\(c\)</span> platí následující vzorce.
+<div class="math notranslate nohighlight">
+\[\begin{aligned}
+\frac{\mathrm dc}{\mathrm dx} &amp;= 0\cr
+\frac{\mathrm d}{\mathrm dx}(f+g) &amp;= \frac{\mathrm df}{\mathrm dx} + \frac{\mathrm dg}{\mathrm dx}\cr
+\frac{\mathrm d}{\mathrm dx}(cf) &amp;= c\frac{\mathrm df}{\mathrm dx}\cr
+\frac{\mathrm df}{\mathrm dx} &amp;= \frac{\mathrm df}{\mathrm dg} \frac{\mathrm dg}{\mathrm dx}\cr
+\frac{\mathrm d}{\mathrm dx}(x) &amp;= 1\cr
+\frac{\mathrm d}{\mathrm dx}(e^x) &amp;= e^x
+\end{aligned}\]</div>
+</p>
+</section>
+<section id="numericky-vypocet-derivace-ad-info-kdyby-bylo-potreba">
+<h2><span class="section-number">2.9. </span>Numerický výpočet derivace (ad info, kdyby bylo potřeba)<a class="headerlink" href="#numericky-vypocet-derivace-ad-info-kdyby-bylo-potreba" title="Permalink to this heading">#</a></h2>
+<p>Numerickým výpočtem derivace rozumíme výpočet číselné hodnoty derivace funkce z
+funkčních hodnot vypočtených ve vhodných bodech definičního oboru funkce,
+zpravidla v rovnoměrně rozmístěných bodech na intervalu konečné délky. Tento
+výpočet může být a bývá zatížen zaokrouhlovací chybou.</p>
+<p>Numerický výpočet se realizuje v případě, že není k dispozici analytický vzorec
+pro funkci, nebo není efektivní či nutné využít analytický postup. Provádí se
+zpravidla tak, že vstupem je funkce definovaná v bodech rovnoměrně rozložených
+na jejím definičním oboru a namísto derivace jako okamžité rychlosti počítáme
+průměrnou rychlost. K tomu se využijí sousední body a odhad pro derivaci v bodě
+<span class="math notranslate nohighlight">\(x\)</span> poté je <div class="math notranslate nohighlight">
+\[ \frac{\mathrm d f}{\mathrm dx}=
+\frac{f(x+h)-f(x-h)}{2h}+\mathcal O(h^2),\]</div>
+
+kdy asymptotika je uvažována v okolí nuly. Tento vzorec se nazývá <em>centrální
+diference</em> s krokem <span class="math notranslate nohighlight">\(h\)</span>. V krajních bodech definičního oboru nemáme k dispozici
+oba sousední body a proto se používá k výpočtu dopředná a zpětná diference dané
+po řadě vztahy <div class="math notranslate nohighlight">
+\[\frac{\mathrm df}{\mathrm dx}=\frac{f(x+h)-f(x)}{h}+\mathcal
+O(h)\]</div>
+  a <div class="math notranslate nohighlight">
+\[\frac{\mathrm df}{\mathrm dx}=\frac{f(x)-f(x-h)}{h}+\mathcal O(h).\]</div>
+</p>
+<p>Všimněte si, že centrální diference je o řád přesnější než dopředná nebo zpětná
+diference. Pro <span class="math notranslate nohighlight">\(h=0.01\)</span> jsou <span class="math notranslate nohighlight">\(\mathcal O(h)\)</span> řádově setiny, kdežto <span class="math notranslate nohighlight">\(\mathcal O(h^2)\)</span>
+jsou řádově desetitisíciny.</p>
+<p>Graf funkce a její derivace je na následujícím obrázku. Mřížka je nakreslena pro
+pravou osu, protože funkční hodnoty funkce (škála na levé svislé ose) nejsou
+podstatné a derivaci nevlivní. Derivace nesleduje číselné hodnoty jako takové,
+ale sleduje, jak rychle se tyto hodnoty mění. Funkce nejprve klesá, její
+derivace je záporná. V minimu se pokles obrátí v růst a derivace se změní ze
+záporné na kladnou. V minimu je tedy derivace rovna nule. Poté funkce roste a
+roste stále rychleji. To znamená, že derivace také roste.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>  <span class="c1"># body na vodorovné ose</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="o">-</span><span class="mi">10</span><span class="o">*</span><span class="n">x</span>  <span class="c1"># funkční hodnoty</span>
+<span class="n">dydx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>   <span class="c1"># !!! výpočet derivace</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>          <span class="c1"># každý graf má svou svislou osu</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Funkce&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">dydx</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Derivace&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Graf funkce $y=x^3-10x$ a její derivace&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Funkce&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Derivace&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">get_label</span><span class="p">()</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s2">&quot;C0&quot;</span><span class="p">)</span> 
+<span class="n">ax2</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">get_label</span><span class="p">()</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/9c1434def3f169ff8fcef8705f617ad767508ddf1436283589a8334e338cf63d.png" src="../_images/9c1434def3f169ff8fcef8705f617ad767508ddf1436283589a8334e338cf63d.png" />
+</div>
+</div>
+</section>
+<section id="integral-a-jeho-vyuziti-volitelne-pro-zajemce">
+<h2><span class="section-number">2.10. </span>Integrál a jeho využití (volitelně, pro zájemce)<a class="headerlink" href="#integral-a-jeho-vyuziti-volitelne-pro-zajemce" title="Permalink to this heading">#</a></h2>
+<p>Naučili jsme se pracovat s derivacemi, tedy s rychlostí změny.
+Známe-li funkci a zderivujeme ji, dostaneme rychlost změny. Pokud potom
+původní funkci „ztratíme“ a zůstane nám jenom derivace, je otázka,
+jestli dokážeme původní funkci z této derivace najít. Odpověď zní, že v
+jistém smyslu ano. Spojení „v jistém smyslu“ naznačuje, že souvislost
+nebude tak snadná jako je souvislost u navzájem inverzních
+funkcí. Derivováním totiž můžeme ztratit aditivní konstanty, které v
+derivaci dávají nulu a zpětně není možné rekonstruovat, derivováním
+jaké konstanty jsme tuto nulu dostali.</p>
+<div class="proof definition admonition" id="definition-11">
+<p class="admonition-title"><span>Definice </span> (Neurčitý integrál)</p>
+<section class="definition-content" id="proof-content">
+<p>Řekneme, že funkce <span class="math notranslate nohighlight">\(F\)</span> je <em>primitivní funkcí</em> k funkci <span class="math notranslate nohighlight">\(f\)</span> na intervalu <span class="math notranslate nohighlight">\(I\)</span>, jestliže platí <div class="math notranslate nohighlight">
+\[F'(x)=f(x)\]</div>
+ na intervalu <span class="math notranslate nohighlight">\(I\)</span>. Množina všech primitivních funkcí k funkci <span class="math notranslate nohighlight">\(f\)</span> se nazývá <em>neurčitý integrál</em> funkce <span class="math notranslate nohighlight">\(f\)</span> a značí <div class="math notranslate nohighlight">
+\[\int f(x)\,\mathrm dx.\]</div>
+</p>
+</section>
+</div><p>Platí následující.</p>
+<ul class="simple">
+<li><p>Ke každé spojité funkci existuje neurčitý integrál.</p></li>
+<li><p>Primitivní funkce je dána jednoznačně až na aditivní konstantu.</p></li>
+</ul>
+<div class="proof remark admonition" id="remark-12">
+<p class="admonition-title"><span class="caption-number">Poznámka 2.1 </span> (Veličina vypočtená z rychlosti své změny)</p>
+<section class="remark-content" id="proof-content">
+<p>Pokud se veličina <span class="math notranslate nohighlight">\(f(t)\)</span> mění v čase rychlostí <span class="math notranslate nohighlight">\(r(t)\)</span>, platí <div class="math notranslate nohighlight">
+\[f(t)=\int r(t)\,\mathrm dt,\]</div>
+ přičemž pravá strana je dána jednoznačně až na aditivní konstantu. To koresponduje s pozorováním, že rychlost změn k jednoznačné identifikaci časového průběhu měnící se veličiny nestačí. Je potřeba mít zadán ještě výchozí stav.</p>
+</section>
+</div><p>Neurčitý integrál není dán jednoznačně. Proto je někdy výhodnější počítat pouze
+změnu měnící se veličiny, tj. určovat rozdíl na konci a na začátku intervalu. To
+vede na poněkud odlišné pojetí integrálu.</p>
+<div class="proof definition admonition" id="definition-13">
+<p class="admonition-title"><span>Definice </span> (Newtonův určitý integrál)</p>
+<section class="definition-content" id="proof-content">
+<p>Buď <span class="math notranslate nohighlight">\(f\)</span> funkce a <span class="math notranslate nohighlight">\(F\)</span> její
+primitivní funkce na intervalu <span class="math notranslate nohighlight">\(I\)</span>. Buď <span class="math notranslate nohighlight">\([a,b]\subset I\)</span> podinterval v
+<span class="math notranslate nohighlight">\(I\)</span>. <em>Určitým integrálem funkce <span class="math notranslate nohighlight">\(f\)</span> na intervalu <span class="math notranslate nohighlight">\([a,b]\)</span></em> rozumíme
+veličinu označenou a definovanou vztahem <div class="math notranslate nohighlight">
+\[\int_a^b f(x)\mathrm
+dx:=F(b)-F(a).\]</div>
+</p>
+</section>
+</div><div class="proof remark admonition" id="remark-14">
+<p class="admonition-title"><span class="caption-number">Poznámka 2.2 </span> (Změna veličiny vypočtená pomocí rychlosti)</p>
+<section class="remark-content" id="proof-content">
+<p>Pokud se veličina <span class="math notranslate nohighlight">\(f(t)\)</span> mění v časovém intervalu od <span class="math notranslate nohighlight">\(t=a\)</span> do <span class="math notranslate nohighlight">\(t=b\)</span> rychlostí <span class="math notranslate nohighlight">\(r(t)\)</span>, je změna veličiny <span class="math notranslate nohighlight">\(f\)</span> za tento časový okamžik rovna <div class="math notranslate nohighlight">
+\[\Delta f=f(b)-f(a)=\int_a^b r(t)\,\mathrm dt.\]</div>
+</p>
+</section>
+</div><ul class="simple">
+<li><p>Určitý integrál je možno numericky aproximovat i bez znalosti primitivní
+funkce. Je možno použít funkci <code class="docutils literal notranslate"><span class="pre">numpy.trapz</span></code>, <code class="docutils literal notranslate"><span class="pre">scipy.integrate.trapezoid</span></code>
+pokud je funkce dána pomocí hodnot, nebo <code class="docutils literal notranslate"><span class="pre">scipy.integrate.quad</span></code>, pokud je
+funkce dána funkčním předpisem.</p></li>
+<li><p>Neurčitý integrál je možno vypočítat pomocí určitého integrálu jako funkci horní meze.
+<div class="math notranslate nohighlight">
+\[\int f(x)\,\mathrm dx  = \int_{0}^x f(t) \,\mathrm dt +C\]</div>
+</p></li>
+</ul>
+<p>Následující sada příkazů vypočítá pro zadanou funkci <span class="math notranslate nohighlight">\(f(x)\)</span> primitivní funkci
+jako integrál <div class="math notranslate nohighlight">
+\[\int_0^x f(t)\,\mathrm dt\]</div>
+ a funkci i její integrál vykreslí.
+Výpočet zajišťuje funkce <code class="docutils literal notranslate"><span class="pre">scipy.integrate.cumulative_trapezoid</span></code>. Kromě toho je
+možné počítat integrály i analyticky použitím knihovny <code class="docutils literal notranslate"><span class="pre">sympy</span></code>, to však v našich
+výpočtech potřebovat nebudeme.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">integral</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">cumulative_trapezoid</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">initial</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">integral</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Funkce&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Primitivní funkce&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/d44df9886fc82bc5c3c005f9ce725d4a10397cab0dd024258a75075bdbafad06.png" src="../_images/d44df9886fc82bc5c3c005f9ce725d4a10397cab0dd024258a75075bdbafad06.png" />
+</div>
+</div>
+<p>Integrál je tedy možno použít k nalezení funkce, pokud víme, jak rychle se tato
+funkce mění v čase. Bohužel naprostá většina procesů probíhajících v přírodě
+souvisí ne s časem, ale s velikostí měnící se veličiny. Například rychlost s
+jakou roste populace jelenů souvisí s velikostí této populace (větší populace
+jelenů má více plodných laní) a ne s časem. (V roce 2020 roste stejná populace
+stejně rychle jako v roce 2016.) Viděli jsme to i na modelu tepelné výměny, kdy
+rychlost změny teploty nesouvisela přímo s časem, ale souvisela s dosaženou
+teplotou. V takových případech je nutné použít speciální aparát nazývaný
+diferenciální rovnice, který si představíme v další přednášce.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">předchozí</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Funkce a vlastnosti funkcí</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">další</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Diferenciální rovnice</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Obsah
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prumerna-rychlost-a-okamzita-rychlost">2.1. Průměrná rychlost a okamžitá rychlost</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spojitost">2.2. Spojitost</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limita">2.3. Limita</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definice-derivace">2.4. Definice derivace</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vyuziti-derivace">2.5. Využití derivace</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derivace-v-populacni-ekologii">2.6. Derivace v populační ekologii</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-tepelne-vymeny">2.7. Model tepelné výměny</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyticky-vypocet-derivace-ad-info-jde-to-i-takto">2.8. Analytický výpočet derivace (ad info, jde to i takto)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numericky-vypocet-derivace-ad-info-kdyby-bylo-potreba">2.9. Numerický výpočet derivace (ad info, kdyby bylo potřeba)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integral-a-jeho-vyuziti-volitelne-pro-zajemce">2.10. Integrál a jeho využití (volitelně, pro zájemce)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Autor Robert Mařík
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+  All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
+</p>
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,677 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="cs" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>9. Levinsův model metapopulací &#8212; Dynamické modely populací</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cviceni/cviceni_08';</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.jscustom.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="10. Modely konkurence populací" href="cviceni_09.html" />
+    <link rel="prev" title="8. Maticové modely" href="cviceni_07.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="cs"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Hledat v knize..."
+         aria-label="Hledat v knize..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Dynamické modely populací</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Vyhledávání</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvodní slovo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Přednášky</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/01.html">1. Funkce a vlastnosti funkcí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/02.html">2. Derivace a integrál</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/03.html">3. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/04.html">4. Autonomní diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/05.html">5. Bifurkace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/06.html">6. Lineární algebra, matice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/07.html">7. Parciální derivace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/08.html">8. Autonomní systémy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/09.html">9. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/10.html">10. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/11.html">11. Diskrétní populační modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/12.html">12. Difuzní rovnice</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cvičení</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">1. První kroky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_01.html">2. Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_02.html">3. Práce s funkcemi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_03.html">4. Diferenciální rovnice 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_04.html">5. Diferenciální rovnice 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_05.html">6. Diferenciální rovnice 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_06.html">7. LaTeX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_07.html">8. Maticové modely</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">9. Levinsův model metapopulací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_09.html">10. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_10.html">11. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_11.html">12. Samostatná práce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Různá zadání</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">1. Enzymy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../allee.html">2. Silný Alleeho efekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chovani.html">3. Model soupeření jestřábí a holubičí povahy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">4. Model populace ryb</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Kombinovaní</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">1. Data a grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">2. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">3. Lov v populaci - fázový portrét</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">4. Lov v populaci - časový vývoj</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">5. Model dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">6. Model konkurence</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python konstrukce a ukázky</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_zakladni_konstrukce.html">Základní konstrukce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/cykly.html">Cykly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/grafy_amateri.html">Kreslení funkcí jednoduše</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/grafy_pokrocili.html">Kreslení funkcí pro pokročilé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/diferencialni_rovnice_amateri.html">Diferenciální rovnice pro začátečníky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/diferencialni_rovnice_pokrocili.html">Diferenciální rovnice pro pokročilejší</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_tabulky.html">Tabulky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_grafy.html">Obrázky, grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/reseni_ODR.html">Řešení diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/tabulky_none.html">Tabulky s None a NaN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/multiindex.html">Tabulky s hierarchickým indexem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/multiindex-pokrocili.html">Hierarchický index (pokročilí)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/reseni_rovnice.html">Numerické řešení rovnice</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Literatura a rejstřík</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../literatura.html">Literatura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Rejstřík</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">e-opora</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://robert-marik.github.io/moodle-python">Python</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/robert-marik/dmp/blob/main/cviceni/cviceni_08.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://github.com/robert-marik/dmp" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Zdrojové úložiště"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Stáhněte si tuto stránku">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/cviceni/cviceni_08.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Stáhněte si zdrojový soubor"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Tisk do PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Režim celé obrazovky"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Levinsův model metapopulací</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Obsah </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#populace-ve-fragmentovanem-prostredi">9.1. Populace ve fragmentovaném prostředí</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matematicky-model">9.2. Matematický model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dusledky-modelu">9.3. Důsledky modelu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mozne-ukoly">9.4. Možné úkoly</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="levinsuv-model-metapopulaci">
+<h1><span class="section-number">9. </span>Levinsův model metapopulací<a class="headerlink" href="#levinsuv-model-metapopulaci" title="Permalink to this heading">#</a></h1>
+<p>Americký ekolog <a class="reference external" href="https://en.wikipedia.org/wiki/Richard_Levins">Richard Levins</a> představil v roce 1969 model metapopulací. Jedná se o populace žijící ve fragmentovaném prostředí, které je možno studovat jako systém oddělených populací, které spolu komunikují díky možnosti migrace. Nejčastěji dochází k fragmentaci vlivem činnosti člověka. V hustě osídlených oblastech, jako je například Evropa, je fragmentace důležitým aspektem, ovlivňujícím vývoj životního prostředí. Proto je vhodné podrobně rozumět jeho souvislostem a uvědomovat si důsledky fragmentace i to, jak činnost člověka vývoj metapopulací ovlivňuje.</p>
+<section id="populace-ve-fragmentovanem-prostredi">
+<h2><span class="section-number">9.1. </span>Populace ve fragmentovaném prostředí<a class="headerlink" href="#populace-ve-fragmentovanem-prostredi" title="Permalink to this heading">#</a></h2>
+<p>Uvažujme populaci žijící ve fragmentovaném prostředí.
+Tuto fragmentaci si můžeme představit jako systém ostrůvků, ve kterých
+se populace nachází. Tyto ostrůvky (fragmenty) jsou zřetelně odděleny.
+(Například louky nebo lesní palouky.)</p>
+<p>Některé z těchto podlokalit mohou být nevhodné pro trvalé osídlení a
+populace na nich může přežívat jen díky přistěhovalcům.</p>
+<p>Na některých podlokalitách zase může vlivem náhodných jevů populace
+zcela vymřít a za několik let se zde může znovu objevit, díky
+přenesení několika jedinců z jiné podlokality, kteří se zde rozmnoží.</p>
+<p>Předpokládejme, že míra migrace je tak malá, že není možné posuzovat
+populaci jako jedinou populaci, která se řídí logistickou nebo jinou
+obdobnou rovnicí.  Taková síť místních malých populací, které jsou
+propojeny občasnými náhodnými migracemi, se nazývá
+<em>metapopulace</em>.</p>
+</section>
+<section id="matematicky-model">
+<h2><span class="section-number">9.2. </span>Matematický model<a class="headerlink" href="#matematicky-model" title="Permalink to this heading">#</a></h2>
+<p>Budeme sledovat, jaká část podlokalit (fragmentů) bude danou
+populací obsazena.</p>
+<p>Označme <span class="math notranslate nohighlight">\(n(t)\)</span> počet fragmentů, které jsou v čase <span class="math notranslate nohighlight">\(t\)</span> obsazeny
+sledovanou populací, <span class="math notranslate nohighlight">\(N\)</span> celkový počet fragmentů, <span class="math notranslate nohighlight">\(d(n)\)</span> rychlost
+vymírání lokálních populací, tj. počet lokálních populací které
+vyhynou za jednotku času v případě, že je obsazeno právě <span class="math notranslate nohighlight">\(n\)</span> fragmentů
+a konečně označme <span class="math notranslate nohighlight">\(b(n)\)</span> rychlost kolonizace nových fragmentů,
+tj. počet fragmentů prostředí, které jsou za jednotku času nově
+kolonizovány za předpokladu, že populace je rozdělena do <span class="math notranslate nohighlight">\(n\)</span> fragmentů
+životního prostředí.</p>
+<p>Relativní četnost obsazených fragmentů v čase <span class="math notranslate nohighlight">\(t\)</span> označme <span class="math notranslate nohighlight">\(x(t)\)</span>,
+platí tedy <span class="math notranslate nohighlight">\(x(t)=\frac{n(t)}N\)</span>. Tato četnost se bude
+(podle předpokladů) řídit diferenciální rovnicí
+<div class="math notranslate nohighlight">
+\[
+  \frac{\mathrm dx}{\mathrm dt}=\frac{1}N\frac{\mathrm dn}{\mathrm dt}=\frac{b(n)-d(n)}{N}.
+\]</div>
+</p>
+<p>Funkce <span class="math notranslate nohighlight">\(b\)</span> a <span class="math notranslate nohighlight">\(d\)</span> musí splňovat přirozené podmínky <span class="math notranslate nohighlight">\(b(0)=b(N)=0\)</span>,
+<span class="math notranslate nohighlight">\(b(n)\geq 0\)</span> pro <span class="math notranslate nohighlight">\(n\geq 0\)</span>, <span class="math notranslate nohighlight">\(d(0)=0\)</span>, <span class="math notranslate nohighlight">\(d(n)\geq 0\)</span>.  Tyto podmínky
+vyjadřují, že pokud všechny fragmenty jsou prázdné nebo obsazené,
+nemůže dojít ke kolonizaci, protože buď nejsou žádní potenciální
+kolonizátoři, nebo není co kolonizovat a pokud není žádný fragment
+kolonizován, žádná populace nevymírá. Jednoduché funkce, splňující
+tyto podmínky, jsou
+<div class="math notranslate nohighlight">
+\[
+  b(n)=an(N-n), \quad d(n)=\nu n.
+\]</div>
+
+Po dosazení do
+rovnice
+<div class="math notranslate nohighlight">
+\[
+\frac{\mathrm dx}{\mathrm dt}=\frac {an(N-n)-\nu n}{N}
+=aNx(1-x)-\nu x
+\]</div>
+
+a po zavedení konstanty <span class="math notranslate nohighlight">\(\mu=aN\)</span>,
+obdržíme matematický model
+<div class="math notranslate nohighlight">
+\[
+\frac{\mathrm dx}{\mathrm dt}=\mu x(1-x)-\nu x.
+\]</div>
+
+Jediné realistické hodnoty veličiny <span class="math notranslate nohighlight">\(x\)</span> jsou z intervalu <span class="math notranslate nohighlight">\([0,1]\)</span>. Veličina <span class="math notranslate nohighlight">\(x\)</span> navíc již je v bezrozměrných jednotkách.</p>
+</section>
+<section id="dusledky-modelu">
+<h2><span class="section-number">9.3. </span>Důsledky modelu<a class="headerlink" href="#dusledky-modelu" title="Permalink to this heading">#</a></h2>
+<p>Často citované závěry z modelu jsou následující (viz <span id="id1">[<a class="reference internal" href="../literatura.html#id4" title="J. Kalas and Z. Pospíšil. Spojité modely v biologii. Masarykova univerzita, 2001.">10</a>]</span>).</p>
+<ul class="simple">
+<li><p>I když na jednotlivých fragmentech
+životního prostředí může populace vymizet, díky občasné migraci může
+populace jako celek trvale přežívat.</p></li>
+<li><p>Za podmínek vhodných k přežívání populace se poměr obsazených a
+neobsazených fragmentů životního prostředí ustálí na jisté
+konstantní hodnotě, dané stabilním stacionárním stavem. Z tohoto
+důvodu snížení počtu neobsazených fragmentů vede ve svém důsledku
+k odpovídajícímu snížení počtu fragmentů obsazených. Proto pro zachování optimálních podmínek pro vývoj populace je nutno
+chránit nejen fragmenty obsazené, ale i neobsazené, které slouží
+jako jistá záloha. Do nich se může populace přenést při vyhynutí na
+jiných fragmentech. Zničení volných fragmentů vede k tomu, že tyto
+zálohy nejsou k dispozici a v případě vyhynutí populace na některém
+z fragmentů se život nemá kam přenést a opět se nastolí rovnovážný
+poměr mezi počtem fragmentů obsazených a neobsazených. Přitom
+zničením fragmentu v tomto smyslu rozumíme jakékoliv zabránění
+populaci, aby se díky migraci mohla na tento fragment přesunout.
+Nemusí se tedy jednat pouze o fyzickou destrukci dané lokality, ale
+i například o uzavření přirozeného koridoru, který
+migraci umožňuje a kterým může být daná lokalita kolonizována.</p></li>
+<li><p>Ve fragmentovaném prostředí podle výše uvedeného modelu
+zůstávají vždy nějaké neobsazené lokality. To může být výhodou pro
+jiné, konkurenčně slabší biologické druhy, které nemůžou s naším
+uvažovaným druhem koexistovat, protože při vzájemné koexistenci
+podlehnou konkurenčnímu boji a vyhynou (viz některé modely dále).
+Vzhledem k tomu, že některé fragmenty jsou neobsazeny, stačí, aby
+konkurenčně slabší druh byl schopný rychlejší migrace než
+konkurenčně silnější druh, a může dojít k tomu, že oba druhy budou
+koexistovat (nikoliv však na téže lokalitě).</p></li>
+</ul>
+<p>Levinsovu modelu je často vyčítáno přílišné zjednodušení (nerozlišování lokálních populací, konstantní parametry extinkce a kolonizace, ignorování prostorového rozložení fragmentů a jiné). Argumenty pro přijetí tohoto modelu však tyto námitky zpravidla vyvrací. Od poukázání na fakt, že kvůli zjednodušením modely vlastně děláme, až po sofistikovaný rozbor toho, že se model dá snadno při mírně modifikované interpretaci proměnných použít i v mnohem obecnějším pojetí. Viz například <span id="id2">[<a class="reference internal" href="../literatura.html#id14" title="R. S. Etienne. A scrutiny of the levins metapopulation model. Comments on Theoretical Biology, 7:257–281, 2002. URL: https://core.ac.uk/download/pdf/29299949.pdf.">8</a>]</span>.</p>
+<p>Klasickými příklady metapopulací jsou (podle <span id="id3">[<a class="reference internal" href="../literatura.html#id5" title="E. Tkadlec. Populační ekologie: Struktura a růst populací. Univerzita Palckého v Olomouci, 2013.">16</a>]</span>) lesní hmyz žijící na kmenech padlých stromů a hmyz obecně, dafnie ve skalních jezírkách, skokani v rybnících, brhlíci v remízcích obklopených zemědělskou krajinou.</p>
+</section>
+<section id="mozne-ukoly">
+<h2><span class="section-number">9.4. </span>Možné úkoly<a class="headerlink" href="#mozne-ukoly" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Prozkoumejte dynamiku modelu. Nakreslete řešení pro různé hodnoty parametrů. Snažte se počet parametrů zredukovat zavedením bezrozměrného času (velikost populace již bezrozměrná je).</p></li>
+<li><p>Pro stejné hodnoty bezrozměrného parametru získaného v předchozím případě máme stejné chování (konvergenci do stejného stavu), ale liší se rychlost konvergence k tomuto stavu. Nakreslete pro rovnici <div class="math notranslate nohighlight">
+\[ \frac{\mathrm dx}{\mathrm dt}=\mu x(1-x)-\nu x \]</div>
+ vývoj řešení v čase pro různé kombinace parametrů. Volte hodnoty tak, aby byla patrná konvergence do stejného stavu, ale jiná rychlost této konvergence.</p></li>
+<li><p>Jedno navrhované zobecnění Levinsova modelu je v <span id="id4">[<a class="reference internal" href="../literatura.html#id4" title="J. Kalas and Z. Pospíšil. Spojité modely v biologii. Masarykova univerzita, 2001.">10</a>]</span> ve tvaru <div class="math notranslate nohighlight">
+\[ \frac{\mathrm dx}{\mathrm dt}=\mu x^\alpha(1-x)^\beta-\nu x^\gamma. \]</div>
+ Prozkoumejte tento model z hlediska závislosti na parametrech. Jeden z efektů zavedení parametrů <span class="math notranslate nohighlight">\(\alpha\)</span> a <span class="math notranslate nohighlight">\(\gamma\)</span> je jiné chování v okolí nuly v závislosti na vzájemné velikosti těchto parametrů. Pokuste se zjistit jak se liší chování pro <span class="math notranslate nohighlight">\(\alpha&gt;\gamma\)</span> a <span class="math notranslate nohighlight">\(\alpha&lt; \gamma\)</span> prozkoumáním růstových křivek. Potvrďte si hypotézu prozkoumáním řešení modelu při uvedeném nastavení parametrů.</p></li>
+<li><p>Další navrhované zobecnění je v <span id="id5">[<a class="reference internal" href="../literatura.html#id5" title="E. Tkadlec. Populační ekologie: Struktura a růst populací. Univerzita Palckého v Olomouci, 2013.">16</a>]</span> str. 345 ve tvaru <div class="math notranslate nohighlight">
+\[\frac{\mathrm dx}{\mathrm dt}=\mu x(1-x)-\nu_0e^{-mx}x.\]</div>
+ Porovnejte
+chování tohoto modelu a modelu původního, který je zde obsažen pro volbu <span class="math notranslate nohighlight">\(m=0\)</span>.</p></li>
+<li><p>Další možné modifikace Levinsova modelu jsou popsány na webech <a class="reference external" href="http://ecovirtual.ib.usp.br/doku.php?id=en:ecovirt:roteiro:metap_uma:roteiros">EcoVirtual</a> a <a class="reference external" href="https://hankstevens.github.io/Primer-of-Ecology/meta.html">Primer of Ecology using R</a> a v článku Gotelli, N J. 1991. <em>Metapopulation Models: The Rescue Effect, the Propagule Rain, and the Core-Satellite Hypothesis.</em> The American Naturalist 138: 768–76 (k dispozici u vyučujícího).</p></li>
+</ol>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="cviceni_07.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">předchozí</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Maticové modely</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="cviceni_09.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">další</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Modely konkurence populací</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Obsah
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#populace-ve-fragmentovanem-prostredi">9.1. Populace ve fragmentovaném prostředí</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matematicky-model">9.2. Matematický model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dusledky-modelu">9.3. Důsledky modelu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mozne-ukoly">9.4. Možné úkoly</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Autor Robert Mařík
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+  All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
+</p>
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

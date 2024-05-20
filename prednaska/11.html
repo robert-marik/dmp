@@ -1,0 +1,1745 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="cs" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>11. Diskrétní populační modely &#8212; Dynamické modely populací</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'prednaska/11';</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.jscustom.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="12. Difuzní rovnice" href="12.html" />
+    <link rel="prev" title="10. Modely dravce a kořisti" href="10.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="cs"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Hledat v knize..."
+         aria-label="Hledat v knize..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Dynamické modely populací</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Vyhledávání</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvodní slovo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Přednášky</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01.html">1. Funkce a vlastnosti funkcí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02.html">2. Derivace a integrál</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03.html">3. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04.html">4. Autonomní diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05.html">5. Bifurkace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06.html">6. Lineární algebra, matice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07.html">7. Parciální derivace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08.html">8. Autonomní systémy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09.html">9. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10.html">10. Modely dravce a kořisti</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">11. Diskrétní populační modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12.html">12. Difuzní rovnice</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cvičení</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">1. První kroky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_01.html">2. Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_02.html">3. Práce s funkcemi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_03.html">4. Diferenciální rovnice 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_04.html">5. Diferenciální rovnice 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_05.html">6. Diferenciální rovnice 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_06.html">7. LaTeX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_07.html">8. Maticové modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_08.html">9. Levinsův model metapopulací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_09.html">10. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_10.html">11. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_11.html">12. Samostatná práce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Různá zadání</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">1. Enzymy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../allee.html">2. Silný Alleeho efekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chovani.html">3. Model soupeření jestřábí a holubičí povahy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">4. Model populace ryb</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Kombinovaní</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">1. Data a grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">2. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">3. Lov v populaci - fázový portrét</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">4. Lov v populaci - časový vývoj</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">5. Model dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">6. Model konkurence</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python konstrukce a ukázky</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_zakladni_konstrukce.html">Základní konstrukce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/cykly.html">Cykly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/grafy_amateri.html">Kreslení funkcí jednoduše</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/grafy_pokrocili.html">Kreslení funkcí pro pokročilé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/diferencialni_rovnice_amateri.html">Diferenciální rovnice pro začátečníky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/diferencialni_rovnice_pokrocili.html">Diferenciální rovnice pro pokročilejší</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_tabulky.html">Tabulky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_grafy.html">Obrázky, grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/reseni_ODR.html">Řešení diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/tabulky_none.html">Tabulky s None a NaN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/multiindex.html">Tabulky s hierarchickým indexem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/multiindex-pokrocili.html">Hierarchický index (pokročilí)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/reseni_rovnice.html">Numerické řešení rovnice</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Literatura a rejstřík</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../literatura.html">Literatura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Rejstřík</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">e-opora</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://robert-marik.github.io/moodle-python">Python</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/robert-marik/dmp/blob/gh-pages/_sources/prednaska/11.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://github.com/robert-marik/dmp" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Zdrojové úložiště"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Stáhněte si tuto stránku">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/prednaska/11.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Stáhnout soubor poznámkového bloku"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../_sources/prednaska/11.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Stáhněte si zdrojový soubor"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Tisk do PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Režim celé obrazovky"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Diskrétní populační modely</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Obsah </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diskretni-modely-jednodruhove-populace">11.1. Diskrétní modely jednodruhové populace</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zakladni-diskretni-modely">11.1.1. Základní diskrétní modely</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#periodicke-cikady">11.1.2. Periodické cikády</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diskretni-modely-dvou-populaci">11.2. Diskrétní modely dvou populací</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="diskretni-populacni-modely">
+<h1><span class="section-number">11. </span>Diskrétní populační modely<a class="headerlink" href="#diskretni-populacni-modely" title="Permalink to this heading">#</a></h1>
+<p>Diskrétní populační modely jsou zpravidla rekurentní vzorce, které určují
+velikost populace nebo populací v dalším roce na základě velikostí v předchozím
+roce (modely prvního řádu) nebo několika předchozích let (modely vyššího řádu).
+Je-li závislost lineární, můžeme tyto modely zapsat pomocí maticového násobení,
+jak jsme poznali již dříve například u Leslieho matice. To je výhodné, protože můžeme využít rozvinutý aparát lineární algebry.</p>
+<p>Výhodou diskrétních maticových modelů oproti spojitým je jednodušší řešení. To
+spočívá v opakovaném používání modelu a v postupném výpočtu populačních stavů
+jenom použitím jednoduchých matematických operací. Nevýhodou je horší možnost
+nalezení analytického řešení a že se modely někdy mohou chovat nečekaně, viz
+například chaos v diskrétní logistické rovnici.</p>
+<section id="diskretni-modely-jednodruhove-populace">
+<h2><span class="section-number">11.1. </span>Diskrétní modely jednodruhové populace<a class="headerlink" href="#diskretni-modely-jednodruhove-populace" title="Permalink to this heading">#</a></h2>
+<section id="zakladni-diskretni-modely">
+<h3><span class="section-number">11.1.1. </span>Základní diskrétní modely<a class="headerlink" href="#zakladni-diskretni-modely" title="Permalink to this heading">#</a></h3>
+<p>Diskrétní model jednodruhové populace modelovaný rovnicí prvního řádu má obecný
+tvar <div class="math notranslate nohighlight">
+\[x(k+1)=x(k) f(x(k)),\]</div>
+ kde funkce <span class="math notranslate nohighlight">\(f\)</span> charakterizuje působení
+vnitrodruhové konkurence.</p>
+<p>Základní diskrétní model, diskrétní logistickou rovnici, jsme poznali dříve.
+Tento model je jednoduchý, ale má komplikované chování, které může vést k
+periodickým řešením s vysokou periodou a k chaosu.</p>
+<p>Ukážeme si volbu tří funkcí, které mají společné chování v počátku a při
+dosažení nosné kapacity prostředí. Konkrétně, platí <span class="math notranslate nohighlight">\(f(0)=r\)</span> a <span class="math notranslate nohighlight">\(f(K)=1\)</span>.</p>
+<ul class="simple">
+<li><p>Logistický růst <div class="math notranslate nohighlight">
+\[x(k+1)=r x(k)\left(1-\frac{x(k)}{K}\frac{r-1}{r}\right)\]</div>
+</p></li>
+<li><p>Bevertonova–Holtova rovnice, logistická rovnice Pielou: <div class="math notranslate nohighlight">
+\[x(k+1)=x(t)\frac{rK}{K+(r-1)x(k)}\]</div>
+</p></li>
+<li><p>Rickerova logistická rovnice: <div class="math notranslate nohighlight">
+\[ x(k+1)=x(k)e^{\left(1-\frac {x(t)}K\right)\ln r} \]</div>
+</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>  <span class="c1"># knihovna pro numerické výpočty</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>  <span class="c1"># knihovna pro grafiku</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1"># knihovna pro praci s tabulkami</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">70</span>
+<span class="n">x_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">x_p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">x_r</span> <span class="o">=</span> <span class="n">x_p</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">x_l</span> <span class="o">=</span> <span class="n">x_p</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">1.2</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">x_p</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_p</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">r</span><span class="o">*</span><span class="n">K</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">K</span><span class="o">+</span><span class="p">(</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">x_p</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+    <span class="n">x_r</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_r</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">x_r</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">/</span><span class="n">K</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+    <span class="n">x_l</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x_l</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">r</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x_l</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">K</span><span class="o">*</span><span class="n">r</span><span class="o">/</span><span class="p">(</span><span class="n">r</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_p</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Bevertonova-Holtova rovnice&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_r</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Rickerova rovnice&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_l</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;diskrétní logistická rovnice&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Srovnání diskrétních modelů růstu&quot;</span><span class="p">);</span>  
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/af7728d1a333485f1776e96b0dda53804db280d20f42d7ff269329d7bcd0513b.png" src="../_images/af7728d1a333485f1776e96b0dda53804db280d20f42d7ff269329d7bcd0513b.png" />
+</div>
+</div>
+</section>
+<section id="periodicke-cikady">
+<h3><span class="section-number">11.1.2. </span>Periodické cikády<a class="headerlink" href="#periodicke-cikady" title="Permalink to this heading">#</a></h3>
+<aside class="margin sidebar" id="index-0">
+<p class="sidebar-title">Periodické cikády</p>
+<p><img alt="" src="../_images/cikada.jpg" /></p>
+<p>Cikády <em>Magicicada septendecim</em> se vyznačují synchronizovaným výskytem jednou za 17 let. Celou dobu čekají jako larvy v zemi, aby se po 17 letech vylíhly a nakladly vajíčka pro další generaci.</p>
+<p>V roce 2007 byl v Cincinnati teplý leden, ale v únoru byla opět zima. V tomto
+roce měly stromy dvě sady listí. To způsobilo,  že cikády se vylíhly o rok
+dříve, po 16 letech. Viz <a class="reference external" href="https://entomologytoday.org/2016/03/22/how-do-cicadas-know-when-to-emerge-from-the-ground/">Kevin Fitzgerald:
+How Do Cicadas Know When to Emerge from the
+Ground?</a>
+(leden 2023).</p>
+<p>Obrázek: https://www.flickr.com/photos/lalo_pangue/8931871182</p>
+</aside>
+<p>Následující model je zpracován podle <span id="id1">[<a class="reference internal" href="../literatura.html#id7" title="J. D. Murray. Mathematical Biology. Volume 19 of Biomathematics. Springer, 1989. URL: https://link.springer.com/book/10.1007/978-3-662-08539-4.">14</a>]</span> a vysvětluje zajímavý
+efekt vyskytující se v životě cikád <em>Magicicada septendecim, M. cassini</em> a <em>M. septendecula</em>.</p>
+<p>Dospělé cikády během pár týdnů svého života nakladou vajíčka
+u stromů, kde se vylíhly. Z vajíček se vyklubou larvy, které se
+zavrtají pod zem ke kořenům. Životní cyklus cikád se liší od 3 do 4,
+7, 13 nebo 17 let. Poslední dva typy cikád se vyznačují (na východním
+pobřeží severní Ameriky) masovým synchronizovaným výskytem. Viz například <a class="reference external" href="https://youtu.be/EWr8fzUz-Yw">následující video</a>.</p>
+<p>Předpokládejme, že druh má životní cyklus <span class="math notranslate nohighlight">\(k\)</span> let, larvy dospějí a objeví se na
+povrchu <span class="math notranslate nohighlight">\(k\)</span> let po smrti rodičů. Nechť <span class="math notranslate nohighlight">\(n_t\)</span> je počet larev, které se v roce <span class="math notranslate nohighlight">\(t\)</span>
+zavrtají do země, najdou útočiště a potravu u kořenů stromů a za <span class="math notranslate nohighlight">\(k\)</span> let se z
+nich (pokud přežijí) vylíhnou dospělé cikády.</p>
+<p>Předpokládejme, jenom  zlomek <span class="math notranslate nohighlight">\(\mu\)</span> larev přežije do každého dalšího roku. V
+roce <span class="math notranslate nohighlight">\(t\)</span> se vylíhnou larvy, které se před <span class="math notranslate nohighlight">\(k\)</span> lety zavrtaly do země (jejich
+počet byl <span class="math notranslate nohighlight">\(n_{t-k}\)</span>) a v zemi přežily celkem <span class="math notranslate nohighlight">\(k\)</span> let (každý rok jich přežije
+jenom <span class="math notranslate nohighlight">\(\mu\)</span>-násobek a proto <span class="math notranslate nohighlight">\(k\)</span> let přežije <span class="math notranslate nohighlight">\(\mu^kn_{t-k}\)</span> larev). Tyto larvy se
+objeví v roce <span class="math notranslate nohighlight">\(t\)</span> jako dospělí, kteří uzavřou cyklus. Z tohoto počtu predátoři
+zlikvidují <span class="math notranslate nohighlight">\(p_t\)</span> cikád a pro další rozmnožování zůstane <span class="math notranslate nohighlight">\([\mu^kn_{t-k}-p_t]_+\)</span>
+jedinců, kde <span class="math notranslate nohighlight">\([x]_+=\max(x,0)\)</span>. Jestliže se každé cikádě narodí průměrně <span class="math notranslate nohighlight">\(f\)</span>
+larev, přibude v tomto roce <div class="math notranslate nohighlight">
+\[M_t=f\cdot[\mu^kn_{t-k}-p_t]_+\]</div>
+ larev.</p>
+<p>Je-li <span class="math notranslate nohighlight">\(D\)</span> celková nosná kapacita prostředí, je <em>volná</em> kapacita
+dána vztahem <div class="math notranslate nohighlight">
+\[c_t=\left[D-\sum_{i=1}^{k-1}\mu^in_{t-i}\right]_+,\]</div>
+ protože
+část této kapacity obsadily larvy z loni, předloni, předpředloni atd.
+Z <span class="math notranslate nohighlight">\(M_t\)</span> narozených larev se maximálně <span class="math notranslate nohighlight">\(c_t\)</span> může zavrtat do země
+a přežít. Proto počet larev v dalším roce dán vztahem
+<span class="math notranslate nohighlight">\(n_t=\min\left(M_t, c_t\right)\)</span>.</p>
+<p>Působení predátorů (živí se dospělými cikádami) můžeme modelovat
+rovnicí <div class="math notranslate nohighlight">
+\[p_t=\nu p_{t-1}+a\mu^kn_{t-k-1},\]</div>
+ kde <span class="math notranslate nohighlight">\(\nu&lt;1\)</span> (bez cikád
+predátoři vymírají, toto vymírání se zastavuje s počtem cikád, které
+se loni vylíhly).</p>
+<p>Pro lepší formulaci numerického modelu posuneme index <span class="math notranslate nohighlight">\(t\)</span> o jedničku.</p>
+<div class="math notranslate nohighlight">
+\[
+\begin{aligned}
+  p_{t+1}&amp;=\nu p_t+a\mu^kn_{t-k} \\
+  c_{t+1}&amp;=\Bigl[D-\sum_{i=1}^{k-1}\mu^in_{t+1-i}\Bigr]_+\\
+  M_{t+1}&amp;=f\cdot\bigl[\mu^k n_{t+1-k}-p_{t+1}\bigr]_+ \\  
+  n_{t+1}&amp;=\min(M_{t+1}, c_{t+1})
+\end{aligned}
+\]</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cikady</span><span class="p">(</span>
+    <span class="n">a</span><span class="o">=</span><span class="mf">.042</span><span class="p">,</span> <span class="c1"># parametry populace (Murray)</span>
+    <span class="n">f</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">D</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
+    <span class="n">nu</span><span class="o">=</span><span class="mf">.95</span><span class="p">,</span>
+    <span class="n">mu</span><span class="o">=</span><span class="mf">.95</span><span class="p">,</span>
+    <span class="n">k</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="c1"># perioda cikad</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="c1"># delka simulace</span>
+    <span class="n">n0</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># pocatecni hodnoty</span>
+    <span class="p">):</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">n</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">n0</span>
+
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">p</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">nu</span><span class="o">*</span><span class="n">p</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="o">*</span><span class="n">mu</span><span class="o">**</span><span class="n">k</span><span class="o">*</span><span class="n">n</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="n">k</span><span class="p">]</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+              <span class="mi">0</span><span class="p">,</span>
+              <span class="n">D</span><span class="o">-</span><span class="nb">sum</span><span class="p">([</span><span class="n">mu</span><span class="o">**</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="n">n</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">k</span><span class="p">)])</span>
+              <span class="p">)</span>
+        <span class="n">M</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+              <span class="mi">0</span><span class="p">,</span>
+              <span class="n">f</span><span class="o">*</span><span class="p">(</span><span class="n">mu</span><span class="o">**</span><span class="n">k</span><span class="o">*</span><span class="n">n</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">k</span><span class="p">]</span><span class="o">-</span><span class="n">p</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+              <span class="p">)</span>
+        <span class="n">n</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">M</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">n</span>
+
+<span class="n">stadium_larvy</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">17</span><span class="p">]</span>
+<span class="n">reseni</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">cikady</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">stadium_larvy</span><span class="p">])</span>
+<span class="n">reseni</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">reseni</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">columns</span> <span class="o">=</span> <span class="n">stadium_larvy</span><span class="p">)</span>
+<span class="n">reseni</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">background_gradient</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_03081_row0_col0, #T_03081_row1_col2, #T_03081_row2_col2, #T_03081_row2_col15, #T_03081_row3_col7 {
+  background-color: #023858;
+  color: #f1f1f1;
+}
+#T_03081_row0_col1 {
+  background-color: #cacee5;
+  color: #000000;
+}
+#T_03081_row0_col2, #T_03081_row1_col0 {
+  background-color: #fef6fb;
+  color: #000000;
+}
+#T_03081_row0_col3, #T_03081_row1_col1, #T_03081_row2_col0, #T_03081_row2_col1, #T_03081_row2_col3, #T_03081_row2_col4, #T_03081_row2_col5, #T_03081_row2_col6, #T_03081_row2_col7, #T_03081_row2_col8, #T_03081_row2_col9, #T_03081_row2_col10, #T_03081_row2_col11, #T_03081_row2_col12, #T_03081_row2_col13, #T_03081_row2_col14, #T_03081_row2_col16, #T_03081_row2_col17, #T_03081_row2_col18, #T_03081_row2_col19, #T_03081_row3_col0, #T_03081_row3_col1, #T_03081_row3_col2, #T_03081_row3_col3, #T_03081_row3_col4, #T_03081_row3_col5, #T_03081_row3_col6, #T_03081_row3_col8, #T_03081_row3_col9, #T_03081_row3_col10, #T_03081_row3_col11, #T_03081_row3_col12, #T_03081_row3_col13, #T_03081_row3_col14, #T_03081_row3_col15, #T_03081_row3_col16, #T_03081_row3_col17, #T_03081_row3_col18, #T_03081_row3_col19 {
+  background-color: #fff7fb;
+  color: #000000;
+}
+#T_03081_row0_col4 {
+  background-color: #045b8e;
+  color: #f1f1f1;
+}
+#T_03081_row0_col5 {
+  background-color: #c9cee4;
+  color: #000000;
+}
+#T_03081_row0_col6 {
+  background-color: #f6eff7;
+  color: #000000;
+}
+#T_03081_row0_col7 {
+  background-color: #f7f0f7;
+  color: #000000;
+}
+#T_03081_row0_col8 {
+  background-color: #056dac;
+  color: #f1f1f1;
+}
+#T_03081_row0_col9 {
+  background-color: #c8cde4;
+  color: #000000;
+}
+#T_03081_row0_col10, #T_03081_row0_col11 {
+  background-color: #f0eaf4;
+  color: #000000;
+}
+#T_03081_row0_col12 {
+  background-color: #2182b9;
+  color: #f1f1f1;
+}
+#T_03081_row0_col13 {
+  background-color: #c6cce3;
+  color: #000000;
+}
+#T_03081_row0_col14, #T_03081_row1_col14, #T_03081_row1_col15 {
+  background-color: #e9e5f1;
+  color: #000000;
+}
+#T_03081_row0_col15 {
+  background-color: #eae6f1;
+  color: #000000;
+}
+#T_03081_row0_col16 {
+  background-color: #3f93c2;
+  color: #f1f1f1;
+}
+#T_03081_row0_col17 {
+  background-color: #c5cce3;
+  color: #000000;
+}
+#T_03081_row0_col18 {
+  background-color: #e2dfee;
+  color: #000000;
+}
+#T_03081_row0_col19 {
+  background-color: #e3e0ee;
+  color: #000000;
+}
+#T_03081_row1_col3 {
+  background-color: #3790c0;
+  color: #f1f1f1;
+}
+#T_03081_row1_col4 {
+  background-color: #f1ebf4;
+  color: #000000;
+}
+#T_03081_row1_col5 {
+  background-color: #f1ebf5;
+  color: #000000;
+}
+#T_03081_row1_col6, #T_03081_row1_col7 {
+  background-color: #f2ecf5;
+  color: #000000;
+}
+#T_03081_row1_col8 {
+  background-color: #f3edf5;
+  color: #000000;
+}
+#T_03081_row1_col9 {
+  background-color: #056ba7;
+  color: #f1f1f1;
+}
+#T_03081_row1_col10 {
+  background-color: #6ba5cd;
+  color: #f1f1f1;
+}
+#T_03081_row1_col11, #T_03081_row1_col12 {
+  background-color: #e7e3f0;
+  color: #000000;
+}
+#T_03081_row1_col13 {
+  background-color: #e8e4f0;
+  color: #000000;
+}
+#T_03081_row1_col16 {
+  background-color: #358fc0;
+  color: #f1f1f1;
+}
+#T_03081_row1_col17 {
+  background-color: #8cb3d5;
+  color: #000000;
+}
+#T_03081_row1_col18 {
+  background-color: #dfddec;
+  color: #000000;
+}
+#T_03081_row1_col19 {
+  background-color: #e0dded;
+  color: #000000;
+}
+</style>
+<table id="T_03081">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_03081_level0_col0" class="col_heading level0 col0" >180</th>
+      <th id="T_03081_level0_col1" class="col_heading level0 col1" >181</th>
+      <th id="T_03081_level0_col2" class="col_heading level0 col2" >182</th>
+      <th id="T_03081_level0_col3" class="col_heading level0 col3" >183</th>
+      <th id="T_03081_level0_col4" class="col_heading level0 col4" >184</th>
+      <th id="T_03081_level0_col5" class="col_heading level0 col5" >185</th>
+      <th id="T_03081_level0_col6" class="col_heading level0 col6" >186</th>
+      <th id="T_03081_level0_col7" class="col_heading level0 col7" >187</th>
+      <th id="T_03081_level0_col8" class="col_heading level0 col8" >188</th>
+      <th id="T_03081_level0_col9" class="col_heading level0 col9" >189</th>
+      <th id="T_03081_level0_col10" class="col_heading level0 col10" >190</th>
+      <th id="T_03081_level0_col11" class="col_heading level0 col11" >191</th>
+      <th id="T_03081_level0_col12" class="col_heading level0 col12" >192</th>
+      <th id="T_03081_level0_col13" class="col_heading level0 col13" >193</th>
+      <th id="T_03081_level0_col14" class="col_heading level0 col14" >194</th>
+      <th id="T_03081_level0_col15" class="col_heading level0 col15" >195</th>
+      <th id="T_03081_level0_col16" class="col_heading level0 col16" >196</th>
+      <th id="T_03081_level0_col17" class="col_heading level0 col17" >197</th>
+      <th id="T_03081_level0_col18" class="col_heading level0 col18" >198</th>
+      <th id="T_03081_level0_col19" class="col_heading level0 col19" >199</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_03081_level0_row0" class="row_heading level0 row0" >4</th>
+      <td id="T_03081_row0_col0" class="data row0 col0" >2696</td>
+      <td id="T_03081_row0_col1" class="data row0 col1" >2695</td>
+      <td id="T_03081_row0_col2" class="data row0 col2" >2695</td>
+      <td id="T_03081_row0_col3" class="data row0 col3" >2695</td>
+      <td id="T_03081_row0_col4" class="data row0 col4" >2696</td>
+      <td id="T_03081_row0_col5" class="data row0 col5" >2695</td>
+      <td id="T_03081_row0_col6" class="data row0 col6" >2695</td>
+      <td id="T_03081_row0_col7" class="data row0 col7" >2695</td>
+      <td id="T_03081_row0_col8" class="data row0 col8" >2696</td>
+      <td id="T_03081_row0_col9" class="data row0 col9" >2695</td>
+      <td id="T_03081_row0_col10" class="data row0 col10" >2695</td>
+      <td id="T_03081_row0_col11" class="data row0 col11" >2695</td>
+      <td id="T_03081_row0_col12" class="data row0 col12" >2696</td>
+      <td id="T_03081_row0_col13" class="data row0 col13" >2695</td>
+      <td id="T_03081_row0_col14" class="data row0 col14" >2695</td>
+      <td id="T_03081_row0_col15" class="data row0 col15" >2695</td>
+      <td id="T_03081_row0_col16" class="data row0 col16" >2696</td>
+      <td id="T_03081_row0_col17" class="data row0 col17" >2695</td>
+      <td id="T_03081_row0_col18" class="data row0 col18" >2695</td>
+      <td id="T_03081_row0_col19" class="data row0 col19" >2695</td>
+    </tr>
+    <tr>
+      <th id="T_03081_level0_row1" class="row_heading level0 row1" >7</th>
+      <td id="T_03081_row1_col0" class="data row1 col0" >1657</td>
+      <td id="T_03081_row1_col1" class="data row1 col1" >1657</td>
+      <td id="T_03081_row1_col2" class="data row1 col2" >1658</td>
+      <td id="T_03081_row1_col3" class="data row1 col3" >1658</td>
+      <td id="T_03081_row1_col4" class="data row1 col4" >1657</td>
+      <td id="T_03081_row1_col5" class="data row1 col5" >1657</td>
+      <td id="T_03081_row1_col6" class="data row1 col6" >1657</td>
+      <td id="T_03081_row1_col7" class="data row1 col7" >1657</td>
+      <td id="T_03081_row1_col8" class="data row1 col8" >1657</td>
+      <td id="T_03081_row1_col9" class="data row1 col9" >1658</td>
+      <td id="T_03081_row1_col10" class="data row1 col10" >1658</td>
+      <td id="T_03081_row1_col11" class="data row1 col11" >1657</td>
+      <td id="T_03081_row1_col12" class="data row1 col12" >1657</td>
+      <td id="T_03081_row1_col13" class="data row1 col13" >1657</td>
+      <td id="T_03081_row1_col14" class="data row1 col14" >1657</td>
+      <td id="T_03081_row1_col15" class="data row1 col15" >1657</td>
+      <td id="T_03081_row1_col16" class="data row1 col16" >1658</td>
+      <td id="T_03081_row1_col17" class="data row1 col17" >1658</td>
+      <td id="T_03081_row1_col18" class="data row1 col18" >1657</td>
+      <td id="T_03081_row1_col19" class="data row1 col19" >1657</td>
+    </tr>
+    <tr>
+      <th id="T_03081_level0_row2" class="row_heading level0 row2" >13</th>
+      <td id="T_03081_row2_col0" class="data row2 col0" >0</td>
+      <td id="T_03081_row2_col1" class="data row2 col1" >0</td>
+      <td id="T_03081_row2_col2" class="data row2 col2" >10000</td>
+      <td id="T_03081_row2_col3" class="data row2 col3" >0</td>
+      <td id="T_03081_row2_col4" class="data row2 col4" >0</td>
+      <td id="T_03081_row2_col5" class="data row2 col5" >0</td>
+      <td id="T_03081_row2_col6" class="data row2 col6" >0</td>
+      <td id="T_03081_row2_col7" class="data row2 col7" >0</td>
+      <td id="T_03081_row2_col8" class="data row2 col8" >0</td>
+      <td id="T_03081_row2_col9" class="data row2 col9" >0</td>
+      <td id="T_03081_row2_col10" class="data row2 col10" >0</td>
+      <td id="T_03081_row2_col11" class="data row2 col11" >0</td>
+      <td id="T_03081_row2_col12" class="data row2 col12" >0</td>
+      <td id="T_03081_row2_col13" class="data row2 col13" >0</td>
+      <td id="T_03081_row2_col14" class="data row2 col14" >0</td>
+      <td id="T_03081_row2_col15" class="data row2 col15" >10000</td>
+      <td id="T_03081_row2_col16" class="data row2 col16" >0</td>
+      <td id="T_03081_row2_col17" class="data row2 col17" >0</td>
+      <td id="T_03081_row2_col18" class="data row2 col18" >0</td>
+      <td id="T_03081_row2_col19" class="data row2 col19" >0</td>
+    </tr>
+    <tr>
+      <th id="T_03081_level0_row3" class="row_heading level0 row3" >17</th>
+      <td id="T_03081_row3_col0" class="data row3 col0" >0</td>
+      <td id="T_03081_row3_col1" class="data row3 col1" >0</td>
+      <td id="T_03081_row3_col2" class="data row3 col2" >0</td>
+      <td id="T_03081_row3_col3" class="data row3 col3" >0</td>
+      <td id="T_03081_row3_col4" class="data row3 col4" >0</td>
+      <td id="T_03081_row3_col5" class="data row3 col5" >0</td>
+      <td id="T_03081_row3_col6" class="data row3 col6" >0</td>
+      <td id="T_03081_row3_col7" class="data row3 col7" >10000</td>
+      <td id="T_03081_row3_col8" class="data row3 col8" >0</td>
+      <td id="T_03081_row3_col9" class="data row3 col9" >0</td>
+      <td id="T_03081_row3_col10" class="data row3 col10" >0</td>
+      <td id="T_03081_row3_col11" class="data row3 col11" >0</td>
+      <td id="T_03081_row3_col12" class="data row3 col12" >0</td>
+      <td id="T_03081_row3_col13" class="data row3 col13" >0</td>
+      <td id="T_03081_row3_col14" class="data row3 col14" >0</td>
+      <td id="T_03081_row3_col15" class="data row3 col15" >0</td>
+      <td id="T_03081_row3_col16" class="data row3 col16" >0</td>
+      <td id="T_03081_row3_col17" class="data row3 col17" >0</td>
+      <td id="T_03081_row3_col18" class="data row3 col18" >0</td>
+      <td id="T_03081_row3_col19" class="data row3 col19" >0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Varianta použitelná pro velké tabulky, podle <a class="reference external" href="https://pandas.pydata.org/docs/user_guide/style.html#Magnify">User Guide</a>.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">magnify</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="n">selector</span><span class="o">=</span><span class="s2">&quot;th&quot;</span><span class="p">,</span>
+                 <span class="n">props</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;font-size&quot;</span><span class="p">,</span> <span class="s2">&quot;4pt&quot;</span><span class="p">)]),</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="n">selector</span><span class="o">=</span><span class="s2">&quot;td&quot;</span><span class="p">,</span>
+                 <span class="n">props</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;padding&#39;</span><span class="p">,</span> <span class="s2">&quot;0em 0em&quot;</span><span class="p">)]),</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="n">selector</span><span class="o">=</span><span class="s2">&quot;th:hover&quot;</span><span class="p">,</span>
+                 <span class="n">props</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;font-size&quot;</span><span class="p">,</span> <span class="s2">&quot;12pt&quot;</span><span class="p">)]),</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="n">selector</span><span class="o">=</span><span class="s2">&quot;tr:hover td:hover&quot;</span><span class="p">,</span>
+                 <span class="n">props</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;max-width&#39;</span><span class="p">,</span> <span class="s1">&#39;200px&#39;</span><span class="p">),</span>
+                        <span class="p">(</span><span class="s1">&#39;font-size&#39;</span><span class="p">,</span> <span class="s1">&#39;12pt&#39;</span><span class="p">)])</span>
+<span class="p">]</span>
+
+<span class="n">reseni</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">background_gradient</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>\
+    <span class="o">.</span><span class="n">set_properties</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s1">&#39;max-width&#39;</span><span class="p">:</span> <span class="s1">&#39;80px&#39;</span><span class="p">,</span> <span class="s1">&#39;font-size&#39;</span><span class="p">:</span> <span class="s1">&#39;2pt&#39;</span><span class="p">})</span>\
+    <span class="o">.</span><span class="n">set_caption</span><span class="p">(</span><span class="s2">&quot;Hover to magnify&quot;</span><span class="p">)</span>\
+    <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>\
+    <span class="o">.</span><span class="n">set_table_styles</span><span class="p">(</span><span class="n">magnify</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_f6f38 th {
+  font-size: 4pt;
+}
+#T_f6f38 td {
+  padding: 0em 0em;
+}
+#T_f6f38 th:hover {
+  font-size: 12pt;
+}
+#T_f6f38 tr:hover td:hover {
+  max-width: 200px;
+  font-size: 12pt;
+}
+#T_f6f38_row0_col0, #T_f6f38_row1_col2 {
+  background-color: #fef6fb;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col1, #T_f6f38_row1_col3, #T_f6f38_row2_col0, #T_f6f38_row2_col1, #T_f6f38_row2_col2, #T_f6f38_row2_col3, #T_f6f38_row2_col4, #T_f6f38_row2_col5, #T_f6f38_row2_col7, #T_f6f38_row2_col8, #T_f6f38_row2_col9, #T_f6f38_row2_col10, #T_f6f38_row2_col11, #T_f6f38_row2_col12, #T_f6f38_row2_col13, #T_f6f38_row2_col14, #T_f6f38_row2_col15, #T_f6f38_row2_col16, #T_f6f38_row2_col17, #T_f6f38_row2_col18, #T_f6f38_row2_col20, #T_f6f38_row2_col21, #T_f6f38_row2_col22, #T_f6f38_row2_col23, #T_f6f38_row2_col24, #T_f6f38_row2_col25, #T_f6f38_row2_col26, #T_f6f38_row2_col27, #T_f6f38_row2_col28, #T_f6f38_row2_col29, #T_f6f38_row2_col30, #T_f6f38_row2_col31, #T_f6f38_row2_col33, #T_f6f38_row2_col34, #T_f6f38_row2_col35, #T_f6f38_row2_col36, #T_f6f38_row2_col37, #T_f6f38_row2_col38, #T_f6f38_row2_col39, #T_f6f38_row2_col40, #T_f6f38_row2_col41, #T_f6f38_row2_col42, #T_f6f38_row2_col43, #T_f6f38_row2_col44, #T_f6f38_row2_col46, #T_f6f38_row2_col47, #T_f6f38_row2_col48, #T_f6f38_row2_col49, #T_f6f38_row3_col0, #T_f6f38_row3_col1, #T_f6f38_row3_col2, #T_f6f38_row3_col4, #T_f6f38_row3_col5, #T_f6f38_row3_col6, #T_f6f38_row3_col7, #T_f6f38_row3_col8, #T_f6f38_row3_col9, #T_f6f38_row3_col10, #T_f6f38_row3_col11, #T_f6f38_row3_col12, #T_f6f38_row3_col13, #T_f6f38_row3_col14, #T_f6f38_row3_col15, #T_f6f38_row3_col16, #T_f6f38_row3_col17, #T_f6f38_row3_col18, #T_f6f38_row3_col19, #T_f6f38_row3_col21, #T_f6f38_row3_col22, #T_f6f38_row3_col23, #T_f6f38_row3_col24, #T_f6f38_row3_col25, #T_f6f38_row3_col26, #T_f6f38_row3_col27, #T_f6f38_row3_col28, #T_f6f38_row3_col29, #T_f6f38_row3_col30, #T_f6f38_row3_col31, #T_f6f38_row3_col32, #T_f6f38_row3_col33, #T_f6f38_row3_col34, #T_f6f38_row3_col35, #T_f6f38_row3_col36, #T_f6f38_row3_col38, #T_f6f38_row3_col39, #T_f6f38_row3_col40, #T_f6f38_row3_col41, #T_f6f38_row3_col42, #T_f6f38_row3_col43, #T_f6f38_row3_col44, #T_f6f38_row3_col45, #T_f6f38_row3_col46, #T_f6f38_row3_col47, #T_f6f38_row3_col48, #T_f6f38_row3_col49 {
+  background-color: #fff7fb;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col2, #T_f6f38_row1_col4, #T_f6f38_row2_col6, #T_f6f38_row2_col19, #T_f6f38_row2_col32, #T_f6f38_row2_col45, #T_f6f38_row3_col3, #T_f6f38_row3_col20, #T_f6f38_row3_col37 {
+  background-color: #023858;
+  color: #f1f1f1;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col3, #T_f6f38_row0_col48, #T_f6f38_row0_col49 {
+  background-color: #bbc7e0;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col4 {
+  background-color: #f5eef6;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col5 {
+  background-color: #f5eff6;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col6 {
+  background-color: #04598c;
+  color: #f1f1f1;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col7 {
+  background-color: #b9c6e0;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col8 {
+  background-color: #ede8f3;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col9 {
+  background-color: #eee8f3;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col10, #T_f6f38_row1_col11 {
+  background-color: #056ba7;
+  color: #f1f1f1;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col11 {
+  background-color: #b8c6e0;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col12, #T_f6f38_row0_col13 {
+  background-color: #e5e1ef;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col14 {
+  background-color: #197db7;
+  color: #f1f1f1;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col15, #T_f6f38_row1_col40 {
+  background-color: #b7c5df;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col16 {
+  background-color: #dddbec;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col17 {
+  background-color: #dedcec;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col18 {
+  background-color: #348ebf;
+  color: #f1f1f1;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col19, #T_f6f38_row0_col23 {
+  background-color: #b5c4df;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col20, #T_f6f38_row0_col21 {
+  background-color: #d7d6e9;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col22 {
+  background-color: #4e9ac6;
+  color: #f1f1f1;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col24 {
+  background-color: #d2d2e7;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col25, #T_f6f38_row1_col41, #T_f6f38_row1_col42, #T_f6f38_row1_col43 {
+  background-color: #d2d3e7;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col26 {
+  background-color: #63a2cb;
+  color: #f1f1f1;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col27, #T_f6f38_row0_col31 {
+  background-color: #b4c4df;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col28, #T_f6f38_row0_col29 {
+  background-color: #cdd0e5;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col30 {
+  background-color: #75a9cf;
+  color: #f1f1f1;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col32, #T_f6f38_row0_col33 {
+  background-color: #c8cde4;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col34 {
+  background-color: #80aed2;
+  color: #f1f1f1;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col35, #T_f6f38_row0_col39, #T_f6f38_row0_col43, #T_f6f38_row0_col47 {
+  background-color: #b3c3de;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col36, #T_f6f38_row0_col37 {
+  background-color: #c4cbe3;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col38 {
+  background-color: #89b1d4;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col40, #T_f6f38_row0_col41 {
+  background-color: #c0c9e2;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col42 {
+  background-color: #91b5d6;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col44, #T_f6f38_row0_col45 {
+  background-color: #bdc8e1;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row0_col46 {
+  background-color: #97b7d7;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row1_col0 {
+  background-color: #fdf5fa;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row1_col1 {
+  background-color: #fef6fa;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row1_col5 {
+  background-color: #3790c0;
+  color: #f1f1f1;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row1_col6 {
+  background-color: #f1ebf4;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row1_col7 {
+  background-color: #f1ebf5;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row1_col8, #T_f6f38_row1_col9 {
+  background-color: #f2ecf5;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row1_col10 {
+  background-color: #f3edf5;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row1_col12, #T_f6f38_row1_col25 {
+  background-color: #6ba5cd;
+  color: #f1f1f1;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row1_col13, #T_f6f38_row1_col14 {
+  background-color: #e7e3f0;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row1_col15 {
+  background-color: #e8e4f0;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row1_col16, #T_f6f38_row1_col17 {
+  background-color: #e9e5f1;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row1_col18 {
+  background-color: #358fc0;
+  color: #f1f1f1;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row1_col19 {
+  background-color: #8cb3d5;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row1_col20 {
+  background-color: #dfddec;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row1_col21, #T_f6f38_row1_col22 {
+  background-color: #e0dded;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row1_col23, #T_f6f38_row1_col24 {
+  background-color: #e0deed;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row1_col26, #T_f6f38_row1_col39 {
+  background-color: #a1bbda;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row1_col27, #T_f6f38_row1_col28 {
+  background-color: #d9d8ea;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row1_col29, #T_f6f38_row1_col30, #T_f6f38_row1_col31 {
+  background-color: #dad9ea;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row1_col32 {
+  background-color: #8bb2d4;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row1_col33, #T_f6f38_row1_col46 {
+  background-color: #adc1dd;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row1_col34 {
+  background-color: #d5d5e8;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row1_col35, #T_f6f38_row1_col36, #T_f6f38_row1_col37, #T_f6f38_row1_col38 {
+  background-color: #d6d6e9;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row1_col44, #T_f6f38_row1_col45 {
+  background-color: #d3d4e7;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row1_col47 {
+  background-color: #bcc7e1;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+#T_f6f38_row1_col48, #T_f6f38_row1_col49 {
+  background-color: #d1d2e6;
+  color: #000000;
+  max-width: 80px;
+  font-size: 2pt;
+}
+</style>
+<table id="T_f6f38">
+  <caption>Hover to magnify</caption>
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_f6f38_level0_col0" class="col_heading level0 col0" >150</th>
+      <th id="T_f6f38_level0_col1" class="col_heading level0 col1" >151</th>
+      <th id="T_f6f38_level0_col2" class="col_heading level0 col2" >152</th>
+      <th id="T_f6f38_level0_col3" class="col_heading level0 col3" >153</th>
+      <th id="T_f6f38_level0_col4" class="col_heading level0 col4" >154</th>
+      <th id="T_f6f38_level0_col5" class="col_heading level0 col5" >155</th>
+      <th id="T_f6f38_level0_col6" class="col_heading level0 col6" >156</th>
+      <th id="T_f6f38_level0_col7" class="col_heading level0 col7" >157</th>
+      <th id="T_f6f38_level0_col8" class="col_heading level0 col8" >158</th>
+      <th id="T_f6f38_level0_col9" class="col_heading level0 col9" >159</th>
+      <th id="T_f6f38_level0_col10" class="col_heading level0 col10" >160</th>
+      <th id="T_f6f38_level0_col11" class="col_heading level0 col11" >161</th>
+      <th id="T_f6f38_level0_col12" class="col_heading level0 col12" >162</th>
+      <th id="T_f6f38_level0_col13" class="col_heading level0 col13" >163</th>
+      <th id="T_f6f38_level0_col14" class="col_heading level0 col14" >164</th>
+      <th id="T_f6f38_level0_col15" class="col_heading level0 col15" >165</th>
+      <th id="T_f6f38_level0_col16" class="col_heading level0 col16" >166</th>
+      <th id="T_f6f38_level0_col17" class="col_heading level0 col17" >167</th>
+      <th id="T_f6f38_level0_col18" class="col_heading level0 col18" >168</th>
+      <th id="T_f6f38_level0_col19" class="col_heading level0 col19" >169</th>
+      <th id="T_f6f38_level0_col20" class="col_heading level0 col20" >170</th>
+      <th id="T_f6f38_level0_col21" class="col_heading level0 col21" >171</th>
+      <th id="T_f6f38_level0_col22" class="col_heading level0 col22" >172</th>
+      <th id="T_f6f38_level0_col23" class="col_heading level0 col23" >173</th>
+      <th id="T_f6f38_level0_col24" class="col_heading level0 col24" >174</th>
+      <th id="T_f6f38_level0_col25" class="col_heading level0 col25" >175</th>
+      <th id="T_f6f38_level0_col26" class="col_heading level0 col26" >176</th>
+      <th id="T_f6f38_level0_col27" class="col_heading level0 col27" >177</th>
+      <th id="T_f6f38_level0_col28" class="col_heading level0 col28" >178</th>
+      <th id="T_f6f38_level0_col29" class="col_heading level0 col29" >179</th>
+      <th id="T_f6f38_level0_col30" class="col_heading level0 col30" >180</th>
+      <th id="T_f6f38_level0_col31" class="col_heading level0 col31" >181</th>
+      <th id="T_f6f38_level0_col32" class="col_heading level0 col32" >182</th>
+      <th id="T_f6f38_level0_col33" class="col_heading level0 col33" >183</th>
+      <th id="T_f6f38_level0_col34" class="col_heading level0 col34" >184</th>
+      <th id="T_f6f38_level0_col35" class="col_heading level0 col35" >185</th>
+      <th id="T_f6f38_level0_col36" class="col_heading level0 col36" >186</th>
+      <th id="T_f6f38_level0_col37" class="col_heading level0 col37" >187</th>
+      <th id="T_f6f38_level0_col38" class="col_heading level0 col38" >188</th>
+      <th id="T_f6f38_level0_col39" class="col_heading level0 col39" >189</th>
+      <th id="T_f6f38_level0_col40" class="col_heading level0 col40" >190</th>
+      <th id="T_f6f38_level0_col41" class="col_heading level0 col41" >191</th>
+      <th id="T_f6f38_level0_col42" class="col_heading level0 col42" >192</th>
+      <th id="T_f6f38_level0_col43" class="col_heading level0 col43" >193</th>
+      <th id="T_f6f38_level0_col44" class="col_heading level0 col44" >194</th>
+      <th id="T_f6f38_level0_col45" class="col_heading level0 col45" >195</th>
+      <th id="T_f6f38_level0_col46" class="col_heading level0 col46" >196</th>
+      <th id="T_f6f38_level0_col47" class="col_heading level0 col47" >197</th>
+      <th id="T_f6f38_level0_col48" class="col_heading level0 col48" >198</th>
+      <th id="T_f6f38_level0_col49" class="col_heading level0 col49" >199</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_f6f38_level0_row0" class="row_heading level0 row0" >4</th>
+      <td id="T_f6f38_row0_col0" class="data row0 col0" >2694</td>
+      <td id="T_f6f38_row0_col1" class="data row0 col1" >2694</td>
+      <td id="T_f6f38_row0_col2" class="data row0 col2" >2698</td>
+      <td id="T_f6f38_row0_col3" class="data row0 col3" >2695</td>
+      <td id="T_f6f38_row0_col4" class="data row0 col4" >2695</td>
+      <td id="T_f6f38_row0_col5" class="data row0 col5" >2695</td>
+      <td id="T_f6f38_row0_col6" class="data row0 col6" >2697</td>
+      <td id="T_f6f38_row0_col7" class="data row0 col7" >2695</td>
+      <td id="T_f6f38_row0_col8" class="data row0 col8" >2695</td>
+      <td id="T_f6f38_row0_col9" class="data row0 col9" >2695</td>
+      <td id="T_f6f38_row0_col10" class="data row0 col10" >2697</td>
+      <td id="T_f6f38_row0_col11" class="data row0 col11" >2695</td>
+      <td id="T_f6f38_row0_col12" class="data row0 col12" >2695</td>
+      <td id="T_f6f38_row0_col13" class="data row0 col13" >2695</td>
+      <td id="T_f6f38_row0_col14" class="data row0 col14" >2697</td>
+      <td id="T_f6f38_row0_col15" class="data row0 col15" >2695</td>
+      <td id="T_f6f38_row0_col16" class="data row0 col16" >2695</td>
+      <td id="T_f6f38_row0_col17" class="data row0 col17" >2695</td>
+      <td id="T_f6f38_row0_col18" class="data row0 col18" >2697</td>
+      <td id="T_f6f38_row0_col19" class="data row0 col19" >2695</td>
+      <td id="T_f6f38_row0_col20" class="data row0 col20" >2695</td>
+      <td id="T_f6f38_row0_col21" class="data row0 col21" >2695</td>
+      <td id="T_f6f38_row0_col22" class="data row0 col22" >2696</td>
+      <td id="T_f6f38_row0_col23" class="data row0 col23" >2695</td>
+      <td id="T_f6f38_row0_col24" class="data row0 col24" >2695</td>
+      <td id="T_f6f38_row0_col25" class="data row0 col25" >2695</td>
+      <td id="T_f6f38_row0_col26" class="data row0 col26" >2696</td>
+      <td id="T_f6f38_row0_col27" class="data row0 col27" >2695</td>
+      <td id="T_f6f38_row0_col28" class="data row0 col28" >2695</td>
+      <td id="T_f6f38_row0_col29" class="data row0 col29" >2695</td>
+      <td id="T_f6f38_row0_col30" class="data row0 col30" >2696</td>
+      <td id="T_f6f38_row0_col31" class="data row0 col31" >2695</td>
+      <td id="T_f6f38_row0_col32" class="data row0 col32" >2695</td>
+      <td id="T_f6f38_row0_col33" class="data row0 col33" >2695</td>
+      <td id="T_f6f38_row0_col34" class="data row0 col34" >2696</td>
+      <td id="T_f6f38_row0_col35" class="data row0 col35" >2695</td>
+      <td id="T_f6f38_row0_col36" class="data row0 col36" >2695</td>
+      <td id="T_f6f38_row0_col37" class="data row0 col37" >2695</td>
+      <td id="T_f6f38_row0_col38" class="data row0 col38" >2696</td>
+      <td id="T_f6f38_row0_col39" class="data row0 col39" >2695</td>
+      <td id="T_f6f38_row0_col40" class="data row0 col40" >2695</td>
+      <td id="T_f6f38_row0_col41" class="data row0 col41" >2695</td>
+      <td id="T_f6f38_row0_col42" class="data row0 col42" >2696</td>
+      <td id="T_f6f38_row0_col43" class="data row0 col43" >2695</td>
+      <td id="T_f6f38_row0_col44" class="data row0 col44" >2695</td>
+      <td id="T_f6f38_row0_col45" class="data row0 col45" >2695</td>
+      <td id="T_f6f38_row0_col46" class="data row0 col46" >2696</td>
+      <td id="T_f6f38_row0_col47" class="data row0 col47" >2695</td>
+      <td id="T_f6f38_row0_col48" class="data row0 col48" >2695</td>
+      <td id="T_f6f38_row0_col49" class="data row0 col49" >2695</td>
+    </tr>
+    <tr>
+      <th id="T_f6f38_level0_row1" class="row_heading level0 row1" >7</th>
+      <td id="T_f6f38_row1_col0" class="data row1 col0" >1657</td>
+      <td id="T_f6f38_row1_col1" class="data row1 col1" >1657</td>
+      <td id="T_f6f38_row1_col2" class="data row1 col2" >1657</td>
+      <td id="T_f6f38_row1_col3" class="data row1 col3" >1657</td>
+      <td id="T_f6f38_row1_col4" class="data row1 col4" >1660</td>
+      <td id="T_f6f38_row1_col5" class="data row1 col5" >1659</td>
+      <td id="T_f6f38_row1_col6" class="data row1 col6" >1657</td>
+      <td id="T_f6f38_row1_col7" class="data row1 col7" >1657</td>
+      <td id="T_f6f38_row1_col8" class="data row1 col8" >1657</td>
+      <td id="T_f6f38_row1_col9" class="data row1 col9" >1657</td>
+      <td id="T_f6f38_row1_col10" class="data row1 col10" >1657</td>
+      <td id="T_f6f38_row1_col11" class="data row1 col11" >1659</td>
+      <td id="T_f6f38_row1_col12" class="data row1 col12" >1658</td>
+      <td id="T_f6f38_row1_col13" class="data row1 col13" >1657</td>
+      <td id="T_f6f38_row1_col14" class="data row1 col14" >1657</td>
+      <td id="T_f6f38_row1_col15" class="data row1 col15" >1657</td>
+      <td id="T_f6f38_row1_col16" class="data row1 col16" >1657</td>
+      <td id="T_f6f38_row1_col17" class="data row1 col17" >1657</td>
+      <td id="T_f6f38_row1_col18" class="data row1 col18" >1659</td>
+      <td id="T_f6f38_row1_col19" class="data row1 col19" >1658</td>
+      <td id="T_f6f38_row1_col20" class="data row1 col20" >1657</td>
+      <td id="T_f6f38_row1_col21" class="data row1 col21" >1657</td>
+      <td id="T_f6f38_row1_col22" class="data row1 col22" >1657</td>
+      <td id="T_f6f38_row1_col23" class="data row1 col23" >1657</td>
+      <td id="T_f6f38_row1_col24" class="data row1 col24" >1657</td>
+      <td id="T_f6f38_row1_col25" class="data row1 col25" >1658</td>
+      <td id="T_f6f38_row1_col26" class="data row1 col26" >1658</td>
+      <td id="T_f6f38_row1_col27" class="data row1 col27" >1657</td>
+      <td id="T_f6f38_row1_col28" class="data row1 col28" >1657</td>
+      <td id="T_f6f38_row1_col29" class="data row1 col29" >1657</td>
+      <td id="T_f6f38_row1_col30" class="data row1 col30" >1657</td>
+      <td id="T_f6f38_row1_col31" class="data row1 col31" >1657</td>
+      <td id="T_f6f38_row1_col32" class="data row1 col32" >1658</td>
+      <td id="T_f6f38_row1_col33" class="data row1 col33" >1658</td>
+      <td id="T_f6f38_row1_col34" class="data row1 col34" >1657</td>
+      <td id="T_f6f38_row1_col35" class="data row1 col35" >1657</td>
+      <td id="T_f6f38_row1_col36" class="data row1 col36" >1657</td>
+      <td id="T_f6f38_row1_col37" class="data row1 col37" >1657</td>
+      <td id="T_f6f38_row1_col38" class="data row1 col38" >1657</td>
+      <td id="T_f6f38_row1_col39" class="data row1 col39" >1658</td>
+      <td id="T_f6f38_row1_col40" class="data row1 col40" >1658</td>
+      <td id="T_f6f38_row1_col41" class="data row1 col41" >1657</td>
+      <td id="T_f6f38_row1_col42" class="data row1 col42" >1657</td>
+      <td id="T_f6f38_row1_col43" class="data row1 col43" >1657</td>
+      <td id="T_f6f38_row1_col44" class="data row1 col44" >1657</td>
+      <td id="T_f6f38_row1_col45" class="data row1 col45" >1657</td>
+      <td id="T_f6f38_row1_col46" class="data row1 col46" >1658</td>
+      <td id="T_f6f38_row1_col47" class="data row1 col47" >1658</td>
+      <td id="T_f6f38_row1_col48" class="data row1 col48" >1657</td>
+      <td id="T_f6f38_row1_col49" class="data row1 col49" >1657</td>
+    </tr>
+    <tr>
+      <th id="T_f6f38_level0_row2" class="row_heading level0 row2" >13</th>
+      <td id="T_f6f38_row2_col0" class="data row2 col0" >0</td>
+      <td id="T_f6f38_row2_col1" class="data row2 col1" >0</td>
+      <td id="T_f6f38_row2_col2" class="data row2 col2" >0</td>
+      <td id="T_f6f38_row2_col3" class="data row2 col3" >0</td>
+      <td id="T_f6f38_row2_col4" class="data row2 col4" >0</td>
+      <td id="T_f6f38_row2_col5" class="data row2 col5" >0</td>
+      <td id="T_f6f38_row2_col6" class="data row2 col6" >10000</td>
+      <td id="T_f6f38_row2_col7" class="data row2 col7" >0</td>
+      <td id="T_f6f38_row2_col8" class="data row2 col8" >0</td>
+      <td id="T_f6f38_row2_col9" class="data row2 col9" >0</td>
+      <td id="T_f6f38_row2_col10" class="data row2 col10" >0</td>
+      <td id="T_f6f38_row2_col11" class="data row2 col11" >0</td>
+      <td id="T_f6f38_row2_col12" class="data row2 col12" >0</td>
+      <td id="T_f6f38_row2_col13" class="data row2 col13" >0</td>
+      <td id="T_f6f38_row2_col14" class="data row2 col14" >0</td>
+      <td id="T_f6f38_row2_col15" class="data row2 col15" >0</td>
+      <td id="T_f6f38_row2_col16" class="data row2 col16" >0</td>
+      <td id="T_f6f38_row2_col17" class="data row2 col17" >0</td>
+      <td id="T_f6f38_row2_col18" class="data row2 col18" >0</td>
+      <td id="T_f6f38_row2_col19" class="data row2 col19" >10000</td>
+      <td id="T_f6f38_row2_col20" class="data row2 col20" >0</td>
+      <td id="T_f6f38_row2_col21" class="data row2 col21" >0</td>
+      <td id="T_f6f38_row2_col22" class="data row2 col22" >0</td>
+      <td id="T_f6f38_row2_col23" class="data row2 col23" >0</td>
+      <td id="T_f6f38_row2_col24" class="data row2 col24" >0</td>
+      <td id="T_f6f38_row2_col25" class="data row2 col25" >0</td>
+      <td id="T_f6f38_row2_col26" class="data row2 col26" >0</td>
+      <td id="T_f6f38_row2_col27" class="data row2 col27" >0</td>
+      <td id="T_f6f38_row2_col28" class="data row2 col28" >0</td>
+      <td id="T_f6f38_row2_col29" class="data row2 col29" >0</td>
+      <td id="T_f6f38_row2_col30" class="data row2 col30" >0</td>
+      <td id="T_f6f38_row2_col31" class="data row2 col31" >0</td>
+      <td id="T_f6f38_row2_col32" class="data row2 col32" >10000</td>
+      <td id="T_f6f38_row2_col33" class="data row2 col33" >0</td>
+      <td id="T_f6f38_row2_col34" class="data row2 col34" >0</td>
+      <td id="T_f6f38_row2_col35" class="data row2 col35" >0</td>
+      <td id="T_f6f38_row2_col36" class="data row2 col36" >0</td>
+      <td id="T_f6f38_row2_col37" class="data row2 col37" >0</td>
+      <td id="T_f6f38_row2_col38" class="data row2 col38" >0</td>
+      <td id="T_f6f38_row2_col39" class="data row2 col39" >0</td>
+      <td id="T_f6f38_row2_col40" class="data row2 col40" >0</td>
+      <td id="T_f6f38_row2_col41" class="data row2 col41" >0</td>
+      <td id="T_f6f38_row2_col42" class="data row2 col42" >0</td>
+      <td id="T_f6f38_row2_col43" class="data row2 col43" >0</td>
+      <td id="T_f6f38_row2_col44" class="data row2 col44" >0</td>
+      <td id="T_f6f38_row2_col45" class="data row2 col45" >10000</td>
+      <td id="T_f6f38_row2_col46" class="data row2 col46" >0</td>
+      <td id="T_f6f38_row2_col47" class="data row2 col47" >0</td>
+      <td id="T_f6f38_row2_col48" class="data row2 col48" >0</td>
+      <td id="T_f6f38_row2_col49" class="data row2 col49" >0</td>
+    </tr>
+    <tr>
+      <th id="T_f6f38_level0_row3" class="row_heading level0 row3" >17</th>
+      <td id="T_f6f38_row3_col0" class="data row3 col0" >0</td>
+      <td id="T_f6f38_row3_col1" class="data row3 col1" >0</td>
+      <td id="T_f6f38_row3_col2" class="data row3 col2" >0</td>
+      <td id="T_f6f38_row3_col3" class="data row3 col3" >10000</td>
+      <td id="T_f6f38_row3_col4" class="data row3 col4" >0</td>
+      <td id="T_f6f38_row3_col5" class="data row3 col5" >0</td>
+      <td id="T_f6f38_row3_col6" class="data row3 col6" >0</td>
+      <td id="T_f6f38_row3_col7" class="data row3 col7" >0</td>
+      <td id="T_f6f38_row3_col8" class="data row3 col8" >0</td>
+      <td id="T_f6f38_row3_col9" class="data row3 col9" >0</td>
+      <td id="T_f6f38_row3_col10" class="data row3 col10" >0</td>
+      <td id="T_f6f38_row3_col11" class="data row3 col11" >0</td>
+      <td id="T_f6f38_row3_col12" class="data row3 col12" >0</td>
+      <td id="T_f6f38_row3_col13" class="data row3 col13" >0</td>
+      <td id="T_f6f38_row3_col14" class="data row3 col14" >0</td>
+      <td id="T_f6f38_row3_col15" class="data row3 col15" >0</td>
+      <td id="T_f6f38_row3_col16" class="data row3 col16" >0</td>
+      <td id="T_f6f38_row3_col17" class="data row3 col17" >0</td>
+      <td id="T_f6f38_row3_col18" class="data row3 col18" >0</td>
+      <td id="T_f6f38_row3_col19" class="data row3 col19" >0</td>
+      <td id="T_f6f38_row3_col20" class="data row3 col20" >10000</td>
+      <td id="T_f6f38_row3_col21" class="data row3 col21" >0</td>
+      <td id="T_f6f38_row3_col22" class="data row3 col22" >0</td>
+      <td id="T_f6f38_row3_col23" class="data row3 col23" >0</td>
+      <td id="T_f6f38_row3_col24" class="data row3 col24" >0</td>
+      <td id="T_f6f38_row3_col25" class="data row3 col25" >0</td>
+      <td id="T_f6f38_row3_col26" class="data row3 col26" >0</td>
+      <td id="T_f6f38_row3_col27" class="data row3 col27" >0</td>
+      <td id="T_f6f38_row3_col28" class="data row3 col28" >0</td>
+      <td id="T_f6f38_row3_col29" class="data row3 col29" >0</td>
+      <td id="T_f6f38_row3_col30" class="data row3 col30" >0</td>
+      <td id="T_f6f38_row3_col31" class="data row3 col31" >0</td>
+      <td id="T_f6f38_row3_col32" class="data row3 col32" >0</td>
+      <td id="T_f6f38_row3_col33" class="data row3 col33" >0</td>
+      <td id="T_f6f38_row3_col34" class="data row3 col34" >0</td>
+      <td id="T_f6f38_row3_col35" class="data row3 col35" >0</td>
+      <td id="T_f6f38_row3_col36" class="data row3 col36" >0</td>
+      <td id="T_f6f38_row3_col37" class="data row3 col37" >10000</td>
+      <td id="T_f6f38_row3_col38" class="data row3 col38" >0</td>
+      <td id="T_f6f38_row3_col39" class="data row3 col39" >0</td>
+      <td id="T_f6f38_row3_col40" class="data row3 col40" >0</td>
+      <td id="T_f6f38_row3_col41" class="data row3 col41" >0</td>
+      <td id="T_f6f38_row3_col42" class="data row3 col42" >0</td>
+      <td id="T_f6f38_row3_col43" class="data row3 col43" >0</td>
+      <td id="T_f6f38_row3_col44" class="data row3 col44" >0</td>
+      <td id="T_f6f38_row3_col45" class="data row3 col45" >0</td>
+      <td id="T_f6f38_row3_col46" class="data row3 col46" >0</td>
+      <td id="T_f6f38_row3_col47" class="data row3 col47" >0</td>
+      <td id="T_f6f38_row3_col48" class="data row3 col48" >0</td>
+      <td id="T_f6f38_row3_col49" class="data row3 col49" >0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Grafické znázornění.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span>
+                      <span class="mi">2</span><span class="p">,</span>
+                      <span class="mi">2</span><span class="p">,</span>
+                      <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span> 
+                      <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                      <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span>
+                      <span class="p">)</span>
+<span class="n">D</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">],</span> <span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">reseni</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+      <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">D</span><span class="o">*</span><span class="mf">1.1</span><span class="p">),</span>
+      <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Cikády s periodou &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/c2a551abc813619037e3ec20d5f409f4c2b8a2e04f79d5619e33da767699e581.png" src="../_images/c2a551abc813619037e3ec20d5f409f4c2b8a2e04f79d5619e33da767699e581.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="diskretni-modely-dvou-populaci">
+<h2><span class="section-number">11.2. </span>Diskrétní modely dvou populací<a class="headerlink" href="#diskretni-modely-dvou-populaci" title="Permalink to this heading">#</a></h2>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="10.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">předchozí</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Modely dravce a kořisti</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="12.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">další</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Difuzní rovnice</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Obsah
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diskretni-modely-jednodruhove-populace">11.1. Diskrétní modely jednodruhové populace</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zakladni-diskretni-modely">11.1.1. Základní diskrétní modely</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#periodicke-cikady">11.1.2. Periodické cikády</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diskretni-modely-dvou-populaci">11.2. Diskrétní modely dvou populací</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Autor Robert Mařík
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+  All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
+</p>
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

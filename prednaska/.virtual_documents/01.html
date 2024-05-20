@@ -1,0 +1,701 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="cs" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Vykreslení dat z tabulky, dva grafy vedle sebe &#8212; Dynamické modely populací</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'prednaska/.virtual_documents/01';</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.jscustom.js"></script>
+    <link rel="index" title="Rejstřík" href="../../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="cs"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Hledat v knize..."
+         aria-label="Hledat v knize..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Dynamické modely populací</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Vyhledávání</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../uvod.html">Úvodní slovo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Přednášky</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01.html">1. Funkce a vlastnosti funkcí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02.html">2. Derivace a integrál</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03.html">3. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04.html">4. Autonomní diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05.html">5. Bifurkace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06.html">6. Lineární algebra, matice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07.html">7. Parciální derivace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08.html">8. Autonomní systémy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../09.html">9. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10.html">10. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11.html">11. Diskrétní populační modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../12.html">12. Difuzní rovnice</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cvičení</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../Prvni_kroky.html">1. První kroky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cviceni/cviceni_01.html">2. Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cviceni/cviceni_02.html">3. Práce s funkcemi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cviceni/cviceni_03.html">4. Diferenciální rovnice 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cviceni/cviceni_04.html">5. Diferenciální rovnice 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cviceni/cviceni_05.html">6. Diferenciální rovnice 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cviceni/cviceni_06.html">7. LaTeX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cviceni/cviceni_07.html">8. Maticové modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cviceni/cviceni_08.html">9. Levinsův model metapopulací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cviceni/cviceni_09.html">10. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cviceni/cviceni_10.html">11. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cviceni/cviceni_11.html">12. Samostatná práce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Různá zadání</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../enzymy.html">1. Enzymy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../allee.html">2. Silný Alleeho efekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chovani.html">3. Model soupeření jestřábí a holubičí povahy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Beverton-Holt.html">4. Model populace ryb</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Kombinovaní</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../kombi/01.html">1. Data a grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../kombi/02.html">2. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../kombi/III_01.html">3. Lov v populaci - fázový portrét</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../kombi/III_02.html">4. Lov v populaci - časový vývoj</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../kombi/III_03_Lotka_Volterra.html">5. Model dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../kombi/III_04_konkurence.html">6. Model konkurence</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python konstrukce a ukázky</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../snippety/python_zakladni_konstrukce.html">Základní konstrukce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../snippety/cykly.html">Cykly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../snippety/grafy_amateri.html">Kreslení funkcí jednoduše</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../snippety/grafy_pokrocili.html">Kreslení funkcí pro pokročilé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../snippety/diferencialni_rovnice_amateri.html">Diferenciální rovnice pro začátečníky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../snippety/diferencialni_rovnice_pokrocili.html">Diferenciální rovnice pro pokročilejší</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../snippety/python_tabulky.html">Tabulky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../snippety/python_grafy.html">Obrázky, grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../snippety/reseni_ODR.html">Řešení diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../snippety/tabulky_none.html">Tabulky s None a NaN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../snippety/multiindex.html">Tabulky s hierarchickým indexem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../snippety/multiindex-pokrocili.html">Hierarchický index (pokročilí)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../snippety/reseni_rovnice.html">Numerické řešení rovnice</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Literatura a rejstřík</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../literatura.html">Literatura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">Rejstřík</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">e-opora</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://robert-marik.github.io/moodle-python">Python</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/robert-marik/dmp" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Zdrojové úložiště"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Stáhněte si tuto stránku">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/prednaska/.virtual_documents/01.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Stáhněte si zdrojový soubor"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Tisk do PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Režim celé obrazovky"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Vykreslení dat z tabulky, dva grafy vedle sebe</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Obsah </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Vykreslení dat z tabulky, dva grafy vedle sebe</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#popisky-a-rozsahy-os-nalevo">Popisky a rozsahy os nalevo</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#popisky-a-rozsahy-os-napravo">Popisky a rozsahy os napravo</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#spolecny-nadpis">Společný nadpis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dopocitani-funkcnich-hodnot">dopocitani funkcnich hodnot</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-ruzne-nastaveni-r">pro ruzne nastaveni r</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#jde-udelat-i-bez-pouziti-cyklu-ale-o-tom-jindy">jde udelat i bez pouziti cyklu, ale o tom jindy</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">dopocitani funkcnich hodnot</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-ruzne-nastaveni-k">pro ruzne nastaveni K</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#trosku-namahy-da-pripsat-k-bodum-cisla">Trosku namahy da pripsat k bodum cisla</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#body-pro-kresleni">Body pro kresleni</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#komponenty-vektoroveho-pole">Komponenty vektoroveho pole</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>import numpy as np  # knihovna pro numerické výpočty
+import matplotlib.pyplot as plt  # knihovna pro grafiku
+import pandas as pd # knihovna pro práci s tabulkami</p>
+<p>t = np.linspace(0,4*np.pi,1000)  # interval a počet bodů použitých pro kreslení grafu
+y = np.sin(t)  # výpočet funkčních hodnot
+plt.plot(t,y)  # vykreslení grafu
+plt.show();</p>
+<p>N = 1000
+x = np.linspace(0,10,N)
+mocniny = np.array([1,2,3,4])</p>
+<p>x_sloupec = x.reshape((-1,1))
+data = x_sloupec**mocniny
+df = pd.DataFrame(data, index=x, columns=mocniny)</p>
+<section class="tex2jax_ignore mathjax_ignore" id="vykresleni-dat-z-tabulky-dva-grafy-vedle-sebe">
+<h1>Vykreslení dat z tabulky, dva grafy vedle sebe<a class="headerlink" href="#vykresleni-dat-z-tabulky-dva-grafy-vedle-sebe" title="Permalink to this heading">#</a></h1>
+<p>fig,ax = plt.subplots(1,2)  # grafy do jednoho řádku a dvou sloupců
+df.plot(ax=ax[0])     # levý graf
+df.plot(ax=ax[1],legend=False) # pravý graf</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="popisky-a-rozsahy-os-nalevo">
+<h1>Popisky a rozsahy os nalevo<a class="headerlink" href="#popisky-a-rozsahy-os-nalevo" title="Permalink to this heading">#</a></h1>
+<p>ax[0].legend(title=r“Hodnota <span class="math notranslate nohighlight">\(n\)</span>“)
+ax[0].set(
+xlim=(0,1),
+ylim=(0,1),
+title=“Chování v okolí počátku“)</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="popisky-a-rozsahy-os-napravo">
+<h1>Popisky a rozsahy os napravo<a class="headerlink" href="#popisky-a-rozsahy-os-napravo" title="Permalink to this heading">#</a></h1>
+<p>ax[1].set(
+ylim=(0,100),
+title=“Chování v nekonečnu“)</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="spolecny-nadpis">
+<h1>Společný nadpis<a class="headerlink" href="#spolecny-nadpis" title="Permalink to this heading">#</a></h1>
+<p>fig.suptitle(r“Grafy funkcí <span class="math notranslate nohighlight">\(y=x^n\)</span>.“);</p>
+<p>K = 1
+x = np.linspace(0,1,1000)  # interval a počet bodů použitých pro kreslení<br />
+df = pd.DataFrame(index=x) # nova tabulka
+seznam_r = [1,2,3]</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="dopocitani-funkcnich-hodnot">
+<h1>dopocitani funkcnich hodnot<a class="headerlink" href="#dopocitani-funkcnich-hodnot" title="Permalink to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="pro-ruzne-nastaveni-r">
+<h1>pro ruzne nastaveni r<a class="headerlink" href="#pro-ruzne-nastaveni-r" title="Permalink to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="jde-udelat-i-bez-pouziti-cyklu-ale-o-tom-jindy">
+<h1>jde udelat i bez pouziti cyklu, ale o tom jindy<a class="headerlink" href="#jde-udelat-i-bez-pouziti-cyklu-ale-o-tom-jindy" title="Permalink to this heading">#</a></h1>
+<p>for r in seznam_r:
+df[r] = r<em>x</em>(1-x/K)
+df  # tisk tabulky pro kontrolu</p>
+<p>ax = df.plot() # vykresleni dat z tabulky
+ax.grid() # vylepseni obrazku
+ax.set(title=r“Graf funkce <span class="math notranslate nohighlight">\(y=rx(1-\frac {x}{K})\)</span>“)
+ax.legend(title=r“Hodnota <span class="math notranslate nohighlight">\(r\)</span>“);</p>
+<p>r = 1
+x = np.linspace(0,3,1000)  # interval a počet bodů použitých pro kreslení<br />
+df = pd.DataFrame(index=x) # nova tabulka</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>dopocitani funkcnich hodnot<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="pro-ruzne-nastaveni-k">
+<h1>pro ruzne nastaveni K<a class="headerlink" href="#pro-ruzne-nastaveni-k" title="Permalink to this heading">#</a></h1>
+<p>for K in [1,2,3]:
+df[K] = r<em>x</em>(1-x/K)</p>
+<p>ax = df.plot() # vykresleni dat z tabulky
+ax.grid() # vylepseni obrazku
+ax.set(title=r“Graf funkce <span class="math notranslate nohighlight">\(y=rx(1-\frac {x}{K})\)</span>“)
+ax.legend(title=r“Hodnota <span class="math notranslate nohighlight">\(K\)</span>“)
+ax.set(ylim=(0,None));</p>
+<p>x = np.linspace(0,10,100)
+a = 2
+df = pd.DataFrame(index=x)</p>
+<p>df[„Holling II“] = x/(x+a)
+df[„Holling III“] = x<strong>2/(x</strong>2+a**2)</p>
+<p>df.plot()
+plt.grid();</p>
+<p>fig, ax = plt.subplots(1)
+x = np.linspace(-2,2,100)
+df = pd.DataFrame(index=x)</p>
+<p>for k in [1,2,3]:
+df[k] = np.exp(k*x)</p>
+<p>df.plot(ax=ax)
+ax.set(ylim = (0,10),
+title = r“Graf funkce <span class="math notranslate nohighlight">\(y=e^{kx}\)</span>“)
+plt.legend(title=r“Hodnota <span class="math notranslate nohighlight">\(k\)</span>“)<br />
+plt.grid();</p>
+<p>fig, ax = plt.subplots(1)
+x = np.linspace(0,5,100)
+df = pd.DataFrame(index=x)</p>
+<p>for k in [1,2,3]:
+df[k] = 1-np.exp(-k*x)</p>
+<p>df.plot(ax=ax) # kreslení do souřadné soustavy ax
+ax.set(ylim = (0,1.2),
+title = r“Graf funkce <span class="math notranslate nohighlight">\(y=1-e^{-kx}\)</span>“)
+plt.legend(title=r“Hodnota <span class="math notranslate nohighlight">\(k\)</span>“)<br />
+plt.grid();</p>
+<p>x = np.linspace(0,4,100)
+df = pd.DataFrame(index=x)
+df[„Holling II“] = 1-np.exp(-x)
+df[„Holling III“] = 1-np.exp(-x**2)</p>
+<p>df.plot()
+plt.grid();</p>
+<p>x = np.linspace(-3,3,100)
+df = pd.DataFrame(index=x)
+df[„1“]=np.exp(-x<strong>2)
+df[„2“]=np.exp(-(3<em>x)**2)
+df[„3“]=3</em>np.exp(-x</strong>2)
+df[„4“]=3<em>np.exp(-(3</em>x)**2)
+ax = df.plot(
+subplots=True,
+layout=(2,2),
+sharex=True,
+sharey=True,
+legend=False,
+title=“Efekt lineární transformace na graf“,
+grid=True
+)
+ax[0,0].set(title=r“<span class="math notranslate nohighlight">\(e^{-x^2}\)</span>“)
+ax[0,1].set(title=r“<span class="math notranslate nohighlight">\(e^{-(3x)^2}\)</span>“)
+ax[1,0].set(title=r“<span class="math notranslate nohighlight">\(3e^{-x^2}\)</span>“)
+ax[1,1].set(title=r“<span class="math notranslate nohighlight">\(3e^{-(3x)^2}\)</span>“);</p>
+<p>x = np.linspace(-4,4,100)
+df = pd.DataFrame()
+df[„x“]=x
+df[„1“]=np.exp(-x**2)
+df[„2“]=np.exp(-(x-1)<strong>2)
+df[„3“]=np.exp(-x</strong>2)+1
+df[„4“]=np.exp(-(x-1)**2)+1
+ax = df.plot(
+x=“x“,
+subplots=True,
+layout=(2,2),
+sharex=True,
+sharey=True,
+legend=False,
+title=“Efekt posunutí na graf“,
+grid=True
+)
+ax[0,0].set(title=r“<span class="math notranslate nohighlight">\(e^{-x^2}\)</span>“)
+ax[0,1].set(title=r“<span class="math notranslate nohighlight">\(e^{-(x-1)^2}\)</span>“)
+ax[1,0].set(title=r“<span class="math notranslate nohighlight">\(e^{-x^2}+1\)</span>“)
+ax[1,1].set(title=r“<span class="math notranslate nohighlight">\(e^{-(x-1)^2}+1\)</span>“);</p>
+<p>zdroj = „https://raw.githubusercontent.com/robert-marik/dmp/main/data/hudson_bay_lynx_hare.csv“
+df = pd.read_csv(zdroj, skiprows=2)
+df.Year = pd.to_datetime(df.Year, format=‘%Y‘)
+df.head()</p>
+<p>df.plot(x=“Year“);</p>
+<p>df.plot(x=“Hare“,y=“Lynx“, ylabel=“Lynx“, style=“o-“, legend=False)</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="trosku-namahy-da-pripsat-k-bodum-cisla">
+<h1>Trosku namahy da pripsat k bodum cisla<a class="headerlink" href="#trosku-namahy-da-pripsat-k-bodum-cisla" title="Permalink to this heading">#</a></h1>
+<p>ax = plt.gca()<br />
+df.apply(
+lambda row: ax.text(row[2],row[1],row[0].year),
+axis=1
+);</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="body-pro-kresleni">
+<h1>Body pro kresleni<a class="headerlink" href="#body-pro-kresleni" title="Permalink to this heading">#</a></h1>
+<p>x, y = np.meshgrid(np.linspace(-5, 5, 10),
+np.linspace(-5, 5, 10))</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="komponenty-vektoroveho-pole">
+<h1>Komponenty vektoroveho pole<a class="headerlink" href="#komponenty-vektoroveho-pole" title="Permalink to this heading">#</a></h1>
+<p>u = -y/(1 + x<strong>2 + y</strong>2)
+v = x/(1 + x<strong>2 + y</strong>2)</p>
+<p>M = np.sqrt(u<strong>2+v</strong>2) # velikost vektoru
+qq=plt.quiver(x,y,u/M,v/M,M,cmap=plt.cm.jet, angles=“xy“) # vykresleni s jednotkovou delkou
+plt.colorbar(qq) # barevna skala pro delku vektoru
+plt.gca().set_aspect(1) # stejne meritko na obou osach
+plt.show();</p>
+<p>plt.streamplot(x,y,u,v) # vykresleni toku
+plt.gca().set_aspect(1) # stejne meritko na obou osach
+plt.show();</p>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Obsah
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Vykreslení dat z tabulky, dva grafy vedle sebe</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#popisky-a-rozsahy-os-nalevo">Popisky a rozsahy os nalevo</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#popisky-a-rozsahy-os-napravo">Popisky a rozsahy os napravo</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#spolecny-nadpis">Společný nadpis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dopocitani-funkcnich-hodnot">dopocitani funkcnich hodnot</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-ruzne-nastaveni-r">pro ruzne nastaveni r</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#jde-udelat-i-bez-pouziti-cyklu-ale-o-tom-jindy">jde udelat i bez pouziti cyklu, ale o tom jindy</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">dopocitani funkcnich hodnot</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-ruzne-nastaveni-k">pro ruzne nastaveni K</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#trosku-namahy-da-pripsat-k-bodum-cisla">Trosku namahy da pripsat k bodum cisla</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#body-pro-kresleni">Body pro kresleni</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#komponenty-vektoroveho-pole">Komponenty vektoroveho pole</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Podle Robert Mařík
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+  All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
+</p>
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

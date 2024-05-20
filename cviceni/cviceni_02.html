@@ -1,0 +1,1340 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="cs" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>3. Práce s funkcemi &#8212; Dynamické modely populací</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cviceni/cviceni_02';</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.jscustom.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="4. Diferenciální rovnice 1" href="cviceni_03.html" />
+    <link rel="prev" title="2. Úvod do jazyka Python" href="cviceni_01.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="cs"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Hledat v knize..."
+         aria-label="Hledat v knize..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Dynamické modely populací</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Vyhledávání</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvodní slovo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Přednášky</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/01.html">1. Funkce a vlastnosti funkcí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/02.html">2. Derivace a integrál</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/03.html">3. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/04.html">4. Autonomní diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/05.html">5. Bifurkace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/06.html">6. Lineární algebra, matice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/07.html">7. Parciální derivace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/08.html">8. Autonomní systémy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/09.html">9. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/10.html">10. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/11.html">11. Diskrétní populační modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/12.html">12. Difuzní rovnice</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cvičení</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">1. První kroky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_01.html">2. Úvod do jazyka Python</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Práce s funkcemi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_03.html">4. Diferenciální rovnice 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_04.html">5. Diferenciální rovnice 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_05.html">6. Diferenciální rovnice 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_06.html">7. LaTeX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_07.html">8. Maticové modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_08.html">9. Levinsův model metapopulací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_09.html">10. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_10.html">11. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_11.html">12. Samostatná práce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Různá zadání</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">1. Enzymy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../allee.html">2. Silný Alleeho efekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chovani.html">3. Model soupeření jestřábí a holubičí povahy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">4. Model populace ryb</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Kombinovaní</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">1. Data a grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">2. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">3. Lov v populaci - fázový portrét</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">4. Lov v populaci - časový vývoj</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">5. Model dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">6. Model konkurence</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python konstrukce a ukázky</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_zakladni_konstrukce.html">Základní konstrukce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/cykly.html">Cykly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/grafy_amateri.html">Kreslení funkcí jednoduše</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/grafy_pokrocili.html">Kreslení funkcí pro pokročilé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/diferencialni_rovnice_amateri.html">Diferenciální rovnice pro začátečníky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/diferencialni_rovnice_pokrocili.html">Diferenciální rovnice pro pokročilejší</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_tabulky.html">Tabulky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_grafy.html">Obrázky, grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/reseni_ODR.html">Řešení diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/tabulky_none.html">Tabulky s None a NaN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/multiindex.html">Tabulky s hierarchickým indexem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/multiindex-pokrocili.html">Hierarchický index (pokročilí)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/reseni_rovnice.html">Numerické řešení rovnice</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Literatura a rejstřík</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../literatura.html">Literatura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Rejstřík</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">e-opora</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://robert-marik.github.io/moodle-python">Python</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/robert-marik/dmp/blob/main/cviceni/cviceni_02.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://github.com/robert-marik/dmp" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Zdrojové úložiště"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Stáhněte si tuto stránku">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/cviceni/cviceni_02.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Stáhněte si zdrojový soubor"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Tisk do PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Režim celé obrazovky"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Práce s funkcemi</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Obsah </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obrazek-se-tremi-funkcemi">3.1. Obrázek se třemi funkcemi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definice-vlastni-funkce">3.2. Definice vlastní funkce</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#volitelna-cast-samostudium-pro-zajemce">3.3. Volitelná část, samostudium, pro zájemce</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rovnice-ochlazovani">3.3.1. Rovnice ochlazování</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jednoducha-numericka-simulace">3.3.2. Jednoduchá numerická simulace</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numericka-simulace-po-krocich-konecne-delky-a-srovnani-s-presnym-resenim">3.3.3. Numerická simulace po krocích konečné délky a srovnání s přesným řešením</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulace-pro-vice-pocatecnich-podminek">3.3.4. Simulace pro více počátečních podmínek</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ukol-simulace-pro-menici-se-koeficient-umernosti">3.3.4.1. Úkol: simulace pro měnící se koeficient úměrnosti</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulace-pro-model-se-zpozdenim">3.3.5. Simulace pro model se zpožděním</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="prace-s-funkcemi">
+<h1><span class="section-number">3. </span>Práce s funkcemi<a class="headerlink" href="#prace-s-funkcemi" title="Permalink to this heading">#</a></h1>
+<p>Zopakujeme si vytváření tabulky a kreslení dat z tabulky z minulého cvičení.
+Poté si ukážeme, jak je možné definovat novou funkci.</p>
+<section id="obrazek-se-tremi-funkcemi">
+<h2><span class="section-number">3.1. </span>Obrázek se třemi funkcemi<a class="headerlink" href="#obrazek-se-tremi-funkcemi" title="Permalink to this heading">#</a></h2>
+<p>V článku Consequences of the <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0169534799016845">Allee effect for behaviour, ecology and conservation (Stephens, Sutherland, 1999)</a> autoři pracují s modelem Alleeho efektu v populaci a modelují jej funkcí <div class="math notranslate nohighlight">
+\[p=\frac{n}{n+\theta}\]</div>
+ pro hodnoty <span class="math notranslate nohighlight">\(\theta\)</span> postupně 2,15 a 50. Pokusíme se překreslit jejich obrázek této funkce pro dané tři parametry.</p>
+<p><img alt="" src="https://ars.els-cdn.com/content/image/1-s2.0-S0169534799016845-gr1.gif" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">seznam_parametru</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">50</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">parametr</span> <span class="ow">in</span> <span class="n">seznam_parametru</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">parametr</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="o">/</span><span class="p">(</span><span class="n">parametr</span><span class="o">+</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Vliv Alleeho efektu na růst populace&quot;</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;velikost populace&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;relativní fitness&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Hodnota parametru&quot;</span><span class="p">)</span>    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f6c90c07da0&gt;
+</pre></div>
+</div>
+<img alt="../_images/2577570bc39c02034abac80f36e247c9bce8f5a7f70c9d5d88c5bddb8f75f18d.png" src="../_images/2577570bc39c02034abac80f36e247c9bce8f5a7f70c9d5d88c5bddb8f75f18d.png" />
+</div>
+</div>
+<p>Není ani nutné tvořit tabulku sloupec po sloupci (operace je pomalá), ale je možné využít datový typ dictionary. Každý si může vybrat, co je pro něj čtivější.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">seznam_parametru</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">50</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="n">parametr</span> <span class="p">:</span> <span class="n">x</span><span class="o">/</span><span class="p">(</span><span class="n">parametr</span><span class="o">+</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">parametr</span> <span class="ow">in</span> <span class="n">seznam_parametru</span><span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Vliv Alleeho efektu na růst populace&quot;</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;velikost populace&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;relativní fitness&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Hodnota parametru&quot;</span><span class="p">)</span>    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f6c90b42660&gt;
+</pre></div>
+</div>
+<img alt="../_images/2577570bc39c02034abac80f36e247c9bce8f5a7f70c9d5d88c5bddb8f75f18d.png" src="../_images/2577570bc39c02034abac80f36e247c9bce8f5a7f70c9d5d88c5bddb8f75f18d.png" />
+</div>
+</div>
+</section>
+<section id="definice-vlastni-funkce">
+<h2><span class="section-number">3.2. </span>Definice vlastní funkce<a class="headerlink" href="#definice-vlastni-funkce" title="Permalink to this heading">#</a></h2>
+<p>Delší úseky kódu zpravidla kumulujeme do funkcí. Tím se výsledný skript
+zjednoduší a je lépe srozumitelný.</p>
+<p>Příklad definice funkce s povinnými a nepovinnými parametry</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mocnina</span><span class="p">(</span><span class="n">zaklad</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Funkce vrací n-tou mocninu zadaného čísla. </span>
+<span class="sd">    Pokud není hodnota n zadána, použije se 2.</span>
+<span class="sd">    </span>
+<span class="sd">    Důležitá je i dokumentace k funkci. V době pořizování kódu zpravidla chápeme, </span>
+<span class="sd">    co funkce dělá a jak funguje, ale pokud se k funkci vrátíte za několik</span>
+<span class="sd">    let, može u komplikovanějších funkcí být problém. Také je dobré udržovat </span>
+<span class="sd">    dokumentaci funkce aktuální pro případné spolupracovníky nebo následovníky.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">vysledek</span> <span class="o">=</span> <span class="n">zaklad</span><span class="o">**</span><span class="n">n</span>
+    <span class="k">return</span> <span class="n">vysledek</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ukázky volání. V prvním případě se použije přednastavená hodnota exponentu, ve
+druhém případě se umocňuje na čtvrtou.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mocnina</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mocnina</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="n">n</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>625
+</pre></div>
+</div>
+</div>
+</div>
+<p>Následující volání je zapoznámkováno, protože vyvolá chybu. Nebyl zadán základ a
+ten je povinným parametrem. Můžete zrušit zapoznámkování a příkaz si zkusit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#mocnina()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pokud zadáváme všechny volitelné parametry, není nutné psát jejich jméno. Níže
+je <span class="math notranslate nohighlight">\(6^7\)</span> (šest na sedmou).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mocnina</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>279936
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Nápověda</span>
+<span class="o">?</span>mocnina
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="volitelna-cast-samostudium-pro-zajemce">
+<h2><span class="section-number">3.3. </span>Volitelná část, samostudium, pro zájemce<a class="headerlink" href="#volitelna-cast-samostudium-pro-zajemce" title="Permalink to this heading">#</a></h2>
+<p>Vyzkoušejte si samostatně, pokud jste rychlejší než jak běží výuka. Ukazuje, jak vyřešit model založený na derivacích primitivními prostředky. To se někdy hodí, ale my se příště naučíme používat vyspělejší nástroje.</p>
+<section id="rovnice-ochlazovani">
+<h3><span class="section-number">3.3.1. </span>Rovnice ochlazování<a class="headerlink" href="#rovnice-ochlazovani" title="Permalink to this heading">#</a></h3>
+<p>Studujme úlohu ochlazování kávy o teplotě <span class="math notranslate nohighlight">\(T\)</span> z počáteční teploty <span class="math notranslate nohighlight">\(T_0\)</span> v
+prostředí s teplotou <span class="math notranslate nohighlight">\(T_\infty\)</span> a koeficientem <span class="math notranslate nohighlight">\(k\)</span> charakterizujícím intenzitu tepelné
+výměny podle Newtonova zákona tepelné výměny. Matematický model děje má tvar ve tvaru <div class="math notranslate nohighlight">
+\[\frac{\mathrm dT}{\mathrm dt} = - k (T-T_\infty), \quad T(0)=T_0.\]</div>
+
+Pokusíme se odhadnout po malých krůčcích chování řešení. Uvnitř každého krůčku
+budeme rychlost považovat za konstantní a změnu teploty určíme jako součin</p>
+<p>rychlosti a času (délky časového intervalu).</p>
+</section>
+<section id="jednoducha-numericka-simulace">
+<h3><span class="section-number">3.3.2. </span>Jednoduchá numerická simulace<a class="headerlink" href="#jednoducha-numericka-simulace" title="Permalink to this heading">#</a></h3>
+<p>Vyřešíme rovnici pro počáteční teplotu <span class="math notranslate nohighlight">\(T_0=100^\circ\mathrm{C}\)</span>,
+okolní teplotu <span class="math notranslate nohighlight">\(T_\infty=20^\circ\mathrm{C}\)</span>, koeficient přímé úměrnosti
+<span class="math notranslate nohighlight">\(k=0.1 \,\mathrm{min}^{-1}\)</span> a časový krok <span class="math notranslate nohighlight">\(\Delta t=2\,\mathrm
+{min}.\)</span></p>
+<p>Data budeme sestavovat do tabulky s časem a teplotou. První řádek je dán
+počáteční teplotou, časový sloupec je dán časovým krokem a musíme dopočítat teplotu.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-right head"><p>t</p></th>
+<th class="text-right head"><p>T</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>0</p></td>
+<td class="text-right"><p>100</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>2</p></td>
+<td class="text-right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>4</p></td>
+<td class="text-right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>6</p></td>
+<td class="text-right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>8</p></td>
+<td class="text-right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>…</p></td>
+<td class="text-right"><p></p></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>Výpočet teploty v čase <span class="math notranslate nohighlight">\(2\,\mathrm {min}\)</span></p>
+<ul>
+<li><p>Rozdíl teplot je <div class="math notranslate nohighlight">
+\[\Delta T = 100^{\circ}\mathrm C - 20^{\circ}\mathrm C =
+80^{\circ}\mathrm C.\]</div>
+</p></li>
+<li><p>Rychlost ochlazování je <div class="math notranslate nohighlight">
+\[k(T-T_\infty)=0.1\,\mathrm{min}^{-1} \times
+80^{\circ}\mathrm C = 8^{\circ}\mathrm C/\mathrm{min}.\]</div>
+</p></li>
+<li><p>Změna teploty je <div class="math notranslate nohighlight">
+\[\Delta T = - k (T-T_\infty)\Delta t = -
+8^{\circ}\mathrm C/\mathrm{min} \times 2\,\mathrm {min} =
+-16^{\circ}\mathrm C.\]</div>
+</p></li>
+<li><p>Teplota v čase <span class="math notranslate nohighlight">\(t=2\,\mathrm{min}\)</span> je součtem teploty v předešlém čase a
+změny teploty, tj.
+<div class="math notranslate nohighlight">
+\[T(2) = T(0)+\Delta T = 100^{\circ}\mathrm C - 16^{\circ}\mathrm C = 84^{\circ}\mathrm C.\]</div>
+</p>
+<p>Nová tabulka je následující</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-right head"><p>t</p></th>
+<th class="text-right head"><p>T</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>0</p></td>
+<td class="text-right"><p>100</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>2</p></td>
+<td class="text-right"><p>84</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>4</p></td>
+<td class="text-right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>6</p></td>
+<td class="text-right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>8</p></td>
+<td class="text-right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>…</p></td>
+<td class="text-right"><p></p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li><p>Výpočet teploty v čase <span class="math notranslate nohighlight">\(4\,\mathrm {min}\)</span></p>
+<ul>
+<li><p>Rozdíl teplot je <div class="math notranslate nohighlight">
+\[\Delta T = 84^{\circ}\mathrm C - 20^{\circ}\mathrm C =
+64^{\circ}\mathrm C.\]</div>
+</p></li>
+<li><p>Rychlost ochlazování je <div class="math notranslate nohighlight">
+\[k(T-T_\infty)=0.1\,\mathrm{min}^{-1} \times
+64^{\circ}\mathrm C = 6.4^{\circ}\mathrm C/\mathrm{min}.\]</div>
+</p></li>
+<li><p>Změna teploty je <div class="math notranslate nohighlight">
+\[\Delta T = - k (T-T_\infty)\Delta t = -
+6.4^{\circ}\mathrm C/\mathrm{min} \times 12\,\mathrm {min} =
+-12.8^{\circ}\mathrm C.\]</div>
+</p></li>
+<li><p>Teplota v čase <span class="math notranslate nohighlight">\(t=4\mathrm{min}\)</span> je součtem teploty v předešlém čase a
+změny teploty, tj.
+<div class="math notranslate nohighlight">
+\[T(4) = T(2)+\Delta T = 84^{\circ}\mathrm C - 12.8^{\circ}\mathrm C = 71.2^{\circ}\mathrm C.\]</div>
+</p>
+<p>Nová tabulka je následující</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-right head"><p>t</p></th>
+<th class="text-right head"><p>T</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>0</p></td>
+<td class="text-right"><p>100</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>2</p></td>
+<td class="text-right"><p>84</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>4</p></td>
+<td class="text-right"><p>71.2</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>6</p></td>
+<td class="text-right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>8</p></td>
+<td class="text-right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>…</p></td>
+<td class="text-right"><p></p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li><p>Analogicky pokračujeme a dopočítáváme teplotu v dalších časech.</p></li>
+</ul>
+</section>
+<section id="numericka-simulace-po-krocich-konecne-delky-a-srovnani-s-presnym-resenim">
+<h3><span class="section-number">3.3.3. </span>Numerická simulace po krocích konečné délky a srovnání s přesným řešením<a class="headerlink" href="#numericka-simulace-po-krocich-konecne-delky-a-srovnani-s-presnym-resenim" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Nastavení parametrů</span>
+<span class="n">tmin</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">tmax</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">T0</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">T_inf</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="c1"># Pomocné proměnné</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">tmin</span><span class="p">,</span><span class="n">tmax</span><span class="p">,</span><span class="n">N</span><span class="p">)</span> <span class="c1"># časová osa pro simulaci</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Počáteční nastavení</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>  <span class="c1"># pole pro ukládání teplot</span>
+<span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">T0</span>  <span class="c1"># počáteční teplota</span>
+
+<span class="c1"># Simulace po časových krocích</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">rozdil_teplot</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">T_inf</span>
+    <span class="n">rychlost_ochlazovani</span> <span class="o">=</span> <span class="n">k</span><span class="o">*</span><span class="n">rozdil_teplot</span>
+    <span class="n">zmena_teploty</span> <span class="o">=</span> <span class="o">-</span> <span class="n">dt</span><span class="o">*</span><span class="n">rychlost_ochlazovani</span>
+    <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">zmena_teploty</span>
+
+<span class="c1"># Uložení do tabulky</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;T&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>T</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.0</th>
+      <td>100.000</td>
+    </tr>
+    <tr>
+      <th>2.0</th>
+      <td>84.000</td>
+    </tr>
+    <tr>
+      <th>4.0</th>
+      <td>71.200</td>
+    </tr>
+    <tr>
+      <th>6.0</th>
+      <td>60.960</td>
+    </tr>
+    <tr>
+      <th>8.0</th>
+      <td>52.768</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>V tomto případě máme k dispozici i analytické řešení. To má tvar
+<div class="math notranslate nohighlight">
+\[T(t)=T_\infty + (T_0-T_\infty)e^{-kt}.\]</div>
+</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Analytické přesné řešení</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;analyticky&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">T_inf</span> <span class="o">+</span> <span class="p">(</span><span class="n">T0</span><span class="o">-</span><span class="n">T_inf</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">k</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>   
+    
+<span class="c1"># Vykreslení tabulky    </span>
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;čas&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;teplota&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Ochlazování rychlostí úměrnou teplotnímu rozdílu&quot;</span><span class="p">,</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;numericky&#39;</span><span class="p">,</span><span class="s1">&#39;analyticky&#39;</span><span class="p">],</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Výpočet&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/cbbfe7574c8b7139f87b91fdbf5e68037bdf9792b7dac7cd895764522b389f2a.png" src="../_images/cbbfe7574c8b7139f87b91fdbf5e68037bdf9792b7dac7cd895764522b389f2a.png" />
+</div>
+</div>
+<p>Abychom mohli pohodlně řešit modely pro různé parametry, můžeme příkazy z buňky,
+kde se v cyklu <code class="docutils literal notranslate"><span class="pre">for</span></code> počítají teploty pro jednotlivé okamžiky, seskupit do
+funkce a poté volat jedním příkazem. Modifikace spočívá v následujícím.</p>
+<ul class="simple">
+<li><p>Definice hlavičky funkce a popis činnosti funkce. Hlavička obsahuje volitelné
+parametry s přednastavenými hodnotami.</p></li>
+<li><p>Odsazení bloku s tělem funkce (označit blok a všechny řádky posunout naráz tabelátorem).</p></li>
+<li><p>Klíčové slovo <code class="docutils literal notranslate"><span class="pre">return</span></code> definující výstup.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">numericke_reseni</span><span class="p">(</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">T0</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="n">T_inf</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Naivní simulace Newtonova modelu ochlazování. Derivace je nahrazena</span>
+<span class="sd">    dopřednou diferencí.</span>
+
+<span class="sd">    Na vstupu funkce jsou volitelné parametry nastavující časový interval</span>
+<span class="sd">    pro simulaci, dělení intervalu udávající jemnost skoků, koeficient </span>
+<span class="sd">    úměrnosti, počáteční teplota a koncová teplota.</span>
+
+<span class="sd">    Výstupem je pole teplot.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Počáteční nastavení</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">T0</span><span class="p">)</span>  <span class="c1"># pole pro ukládání teplot a počáteční teplota</span>
+
+    <span class="c1"># Simulace po časových krocích</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">T</span><span class="p">)):</span>
+        <span class="n">rozdil_teplot</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">T_inf</span>
+        <span class="n">rychlost_ochlazovani</span> <span class="o">=</span> <span class="n">k</span><span class="o">*</span><span class="n">rozdil_teplot</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">zmena_teploty</span> <span class="o">=</span> <span class="o">-</span> <span class="n">dt</span><span class="o">*</span><span class="n">rychlost_ochlazovani</span>
+        <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">zmena_teploty</span>
+
+    <span class="k">return</span> <span class="n">T</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ukázka volání, všechny parametry necháme na defaultních hodnotách.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numericke_reseni</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([100.      ,  60.      ,  40.      ,  30.      ,  25.      ,
+        22.5     ,  21.25    ,  20.625   ,  20.3125  ,  20.15625 ,
+        20.078125])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Úkol</strong> Experimentujte s počtem bodů <span class="math notranslate nohighlight">\(N\)</span> a tím i s délkou kroku. Sledujte hladkost numerického řešení a jeho odchylku od přesného analytického řešení.</p>
+<p>V praxi musíme mít krok dostatečně malý, aby řešení bylo hladké a přesné, ale ne
+moc malý, aby nás to nestálo hodně paměti, výpočetního výkonu, času a aby
+nehrozilo, že se při mnoha výpočtech akumulují zaokrouhlovací chyby. Zpravidla
+nám toto obstarají procedury pro řešení automaticky.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Měňte délku kroku a sledujte výstup (méně zdatní), nebo vykreslete do jednoho</span>
+<span class="c1"># obrázku průběh pro více kroků (zdatnější - stačí opakovat tři řádky s</span>
+<span class="c1"># jinou hodnotou N, s výpočtem řešení a vykreslením)</span>
+
+<span class="c1"># Nastavení parametrů</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">T_inf</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">T0</span> <span class="o">=</span> <span class="mi">60</span>
+
+
+<span class="c1"># Numerické řešení</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">numericke_reseni</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">T0</span><span class="o">=</span><span class="n">T0</span><span class="p">,</span>  <span class="n">T_inf</span><span class="o">=</span><span class="n">T_inf</span><span class="p">)</span>  <span class="c1"># vyřešení modelu</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">r</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="si">}</span><span class="s2"> kroků&quot;</span><span class="p">)</span>     <span class="c1"># vykreslení řešení</span>
+
+<span class="c1"># Analytické řešení</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">T_inf</span> <span class="o">+</span> <span class="p">(</span><span class="n">T0</span><span class="o">-</span><span class="n">T_inf</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">k</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;analyticky&quot;</span><span class="p">)</span>
+
+<span class="c1"># Úpravy grafu</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>              <span class="c1"># uložení souřadné soustavy do vlastní proměnné pro kosmetiku</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>                     <span class="c1"># modifikace souřadné soustavy, kosmetické úpravy</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;čas&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;teplota&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Ochlazování rychlostí úměrnou teplotnímu rozdílu&quot;</span><span class="p">,</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Výpočet&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f6abd83a4ab006c8bd9e637474830cbd44bbe2ffa1a13026aa9bc9ff59a7ead6.png" src="../_images/f6abd83a4ab006c8bd9e637474830cbd44bbe2ffa1a13026aa9bc9ff59a7ead6.png" />
+</div>
+</div>
+</section>
+<section id="simulace-pro-vice-pocatecnich-podminek">
+<h3><span class="section-number">3.3.4. </span>Simulace pro více počátečních podmínek<a class="headerlink" href="#simulace-pro-vice-pocatecnich-podminek" title="Permalink to this heading">#</a></h3>
+<p>Vyjdeme z předchozí simulace, ale novou simulaci spustíme v cyklu. Jeden průběh
+cyklu pro každou počáteční podmínku. Výstup budeme ukládat do nové tabulky a tu
+potom vykreslíme.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tip: vygenerovaný obrázek nepotřebuje legendu ani změnu barev. Zkuste legendu</span>
+<span class="c1"># vypnout a zakreslit všechny křivky stejnou barvou. Například barvou C0</span>
+<span class="c1"># (základní barva pro první křivku obrázku).</span>
+<span class="c1"># https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.html</span>
+<span class="c1"># https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html</span>
+
+<span class="c1"># Příprava proměnných</span>
+<span class="n">T0_seznam</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span> 
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">101</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">T0_seznam</span><span class="p">)</span>
+
+<span class="c1"># Výpočet</span>
+<span class="k">for</span> <span class="n">T0</span> <span class="ow">in</span> <span class="n">T0_seznam</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">T0</span><span class="p">]</span> <span class="o">=</span> <span class="n">numericke_reseni</span><span class="p">(</span><span class="n">T0</span><span class="o">=</span><span class="n">T0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
+
+<span class="c1"># Vykreslení tabulky    </span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+
+<span class="c1"># Kosmetika</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;čas&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;teplota&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Ochlazování rychlostí úměrnou teplotnímu rozdílu&quot;</span><span class="p">,</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Počáteční podmínka&quot;</span><span class="p">);</span> <span class="c1"># nadpis pro legendu</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/737dd2ca4eeb476664048f79adc9bd3bf1085e1bd2af805b08633dc56fc8bda9.png" src="../_images/737dd2ca4eeb476664048f79adc9bd3bf1085e1bd2af805b08633dc56fc8bda9.png" />
+</div>
+</div>
+<section id="ukol-simulace-pro-menici-se-koeficient-umernosti">
+<h4><span class="section-number">3.3.4.1. </span>Úkol: simulace pro měnící se koeficient úměrnosti<a class="headerlink" href="#ukol-simulace-pro-menici-se-koeficient-umernosti" title="Permalink to this heading">#</a></h4>
+<p>Udělejte simulaci s jednou počáteční podmínkou a měnící se hodnotu koeficientu <span class="math notranslate nohighlight">\(k\)</span>. Nakopírujte si sem předchozí buňku a modifikujte tak, aby byla počáteční podmínka pořád stejná a měnil se koeficient <span class="math notranslate nohighlight">\(k\)</span>. Musíte sestavit seznam hodnot pro proměnnou <span class="math notranslate nohighlight">\(k\)</span>, změnit cyklování a změnit jméno sloupce v tabulce tak, aby zachycovalo hodnotu <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Jako výchozí sem nakopírujte obsah buňky, která kreslí řešení pro různé</span>
+<span class="c1"># počáteční podmínky. Tento kód modifikujte tak, aby počáteční podmínka byla</span>
+<span class="c1"># stále stejná, ale měnila se hodnota k.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="simulace-pro-model-se-zpozdenim">
+<h3><span class="section-number">3.3.5. </span>Simulace pro model se zpožděním<a class="headerlink" href="#simulace-pro-model-se-zpozdenim" title="Permalink to this heading">#</a></h3>
+<p>Uvedené simulace jsou naivní metodou řešení úlohy modelující pomocí derivací
+nějaký proces. Pro řešení modelů s derivacemi existují mnohem vyspělejší metody,
+které si představíme příště. V praxi se zpravidla spoléháme na tyto metody,
+které jsou naprogramované profesionály.</p>
+<p>Dovednost umět si implementovat jednoduchý řešič může sloužit pro orientační
+první nástřel výpočtu, nebo při potřebě řešení
+nějaké speciální úlohy. Jedním takovým speciálním postupem může být snaha
+započítat do rovnice ochlazování zpoždění. V  takovém případě rychlost změny
+není dána aktuálními hodnotami, ale hodnotami ve minulosti. To by mohlo odpovídat regulaci
+teploty, kdy se změna v nastavení neprojeví okamžitě. Všichni takovou situaci
+známe při nastavování teploty ve sprše.</p>
+<p>Model ochlazování se zpožděním <span class="math notranslate nohighlight">\(\theta\)</span> má tvar
+<div class="math notranslate nohighlight">
+\[\frac{\mathrm dT}{\mathrm dt} = - k (T(t-\theta)-T_\infty), \quad T(0)=T_0\]</div>
+
+a při numerickém řešení je jediný rozdíl v tom, že rychlost nestanovujeme podle
+teploty na předešlém řádku tabulky, ale používáme některý z předešlých řádků, v
+závislosti na velikosti zpoždění.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">numericke_reseni_se_zpozdenim</span><span class="p">(</span>  <span class="c1"># !!! jiné jméno funkce</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">T0</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="n">T_inf</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="n">zpozdeni</span> <span class="o">=</span> <span class="mi">0</span>     <span class="c1"># !!! další parametr</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Stejná funkce jako numericke_reseni s dodatečným parametrem pro zpoždění.</span>
+<span class="sd">    Rozdíly jsou vyznačeny třemi vykřičníky.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+    <span class="c1"># Počáteční nastavení</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>  <span class="c1"># pole pro ukládání teplot</span>
+    <span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">T0</span>        <span class="c1"># počáteční teplota</span>
+
+    <span class="c1"># Simulace po časových krocích</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">rozdil_teplot</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">zpozdeni</span><span class="p">)]</span> <span class="o">-</span> <span class="n">T_inf</span>
+        <span class="n">rychlost_ochlazovani</span> <span class="o">=</span> <span class="n">k</span><span class="o">*</span><span class="n">rozdil_teplot</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">zmena_teploty</span> <span class="o">=</span> <span class="o">-</span> <span class="n">dt</span><span class="o">*</span><span class="n">rychlost_ochlazovani</span>
+        <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">zmena_teploty</span>
+
+    <span class="k">return</span> <span class="n">T</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seznam_zpozdeni</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">]</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1001</span><span class="p">)</span>
+<span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">seznam_zpozdeni</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">zpozdeni</span> <span class="ow">in</span> <span class="n">seznam_zpozdeni</span><span class="p">:</span>
+    <span class="n">df3</span><span class="p">[</span><span class="n">zpozdeni</span><span class="p">]</span> <span class="o">=</span> <span class="n">numericke_reseni_se_zpozdenim</span><span class="p">(</span><span class="n">zpozdeni</span><span class="o">=</span><span class="n">zpozdeni</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
+
+<span class="n">df3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>10</th>
+      <th>50</th>
+      <th>100</th>
+      <th>200</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.00</th>
+      <td>100.000000</td>
+      <td>100.000000</td>
+      <td>100.000000</td>
+      <td>100.000000</td>
+      <td>100.000000</td>
+    </tr>
+    <tr>
+      <th>0.01</th>
+      <td>99.600000</td>
+      <td>99.600000</td>
+      <td>99.600000</td>
+      <td>99.600000</td>
+      <td>99.600000</td>
+    </tr>
+    <tr>
+      <th>0.02</th>
+      <td>99.202000</td>
+      <td>99.200000</td>
+      <td>99.200000</td>
+      <td>99.200000</td>
+      <td>99.200000</td>
+    </tr>
+    <tr>
+      <th>0.03</th>
+      <td>98.805990</td>
+      <td>98.800000</td>
+      <td>98.800000</td>
+      <td>98.800000</td>
+      <td>98.800000</td>
+    </tr>
+    <tr>
+      <th>0.04</th>
+      <td>98.411960</td>
+      <td>98.400000</td>
+      <td>98.400000</td>
+      <td>98.400000</td>
+      <td>98.400000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>9.96</th>
+      <td>20.543098</td>
+      <td>20.414553</td>
+      <td>20.067920</td>
+      <td>20.022809</td>
+      <td>33.232923</td>
+    </tr>
+    <tr>
+      <th>9.97</th>
+      <td>20.540383</td>
+      <td>20.412368</td>
+      <td>20.067433</td>
+      <td>20.022420</td>
+      <td>33.150496</td>
+    </tr>
+    <tr>
+      <th>9.98</th>
+      <td>20.537681</td>
+      <td>20.410194</td>
+      <td>20.066950</td>
+      <td>20.022033</td>
+      <td>33.067710</td>
+    </tr>
+    <tr>
+      <th>9.99</th>
+      <td>20.534992</td>
+      <td>20.408032</td>
+      <td>20.066471</td>
+      <td>20.021650</td>
+      <td>32.984570</td>
+    </tr>
+    <tr>
+      <th>10.00</th>
+      <td>20.532317</td>
+      <td>20.405881</td>
+      <td>20.065994</td>
+      <td>20.021271</td>
+      <td>32.901082</td>
+    </tr>
+  </tbody>
+</table>
+<p>1001 rows × 5 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Zpoždění&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Rovnice ochlazování se zpožděním&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Rovnice ochlazování se zpožděním&#39;)
+</pre></div>
+</div>
+<img alt="../_images/93ff66399261e60bb0aa4ba3469723b7010d38fea3b8f4bb25acc6623933f55b.png" src="../_images/93ff66399261e60bb0aa4ba3469723b7010d38fea3b8f4bb25acc6623933f55b.png" />
+</div>
+</div>
+<p><strong>Úkol</strong> Předchozí buňky vytvoří tabulku s daty a poté vykreslí graf. To dá přehled o
+tom, že opravdu vzniká tabulka tak jak má. Pokud chceme sledovat, jaký mají
+změny dalších parametrů vliv na graf, je lepší obě buňky spojit, aby se
+generování tabulky i grafu spouštělo současně. Vyzkoušete to. Například tak, že
+se nastavíte na horní buňku a stisknete Shift+M. (Pozor na to, bez shiftu byste
+buňku přepnuli na textovou.)</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="cviceni_01.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">předchozí</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Úvod do jazyka Python</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="cviceni_03.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">další</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Diferenciální rovnice 1</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Obsah
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obrazek-se-tremi-funkcemi">3.1. Obrázek se třemi funkcemi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definice-vlastni-funkce">3.2. Definice vlastní funkce</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#volitelna-cast-samostudium-pro-zajemce">3.3. Volitelná část, samostudium, pro zájemce</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rovnice-ochlazovani">3.3.1. Rovnice ochlazování</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jednoducha-numericka-simulace">3.3.2. Jednoduchá numerická simulace</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numericka-simulace-po-krocich-konecne-delky-a-srovnani-s-presnym-resenim">3.3.3. Numerická simulace po krocích konečné délky a srovnání s přesným řešením</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulace-pro-vice-pocatecnich-podminek">3.3.4. Simulace pro více počátečních podmínek</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ukol-simulace-pro-menici-se-koeficient-umernosti">3.3.4.1. Úkol: simulace pro měnící se koeficient úměrnosti</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simulace-pro-model-se-zpozdenim">3.3.5. Simulace pro model se zpožděním</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Autor Robert Mařík
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+  All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
+</p>
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

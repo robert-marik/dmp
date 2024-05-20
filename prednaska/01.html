@@ -1,0 +1,1583 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="cs" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>1. Funkce a vlastnosti funkcí &#8212; Dynamické modely populací</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'prednaska/01';</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.jscustom.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="2. Derivace a integrál" href="02.html" />
+    <link rel="prev" title="Úvodní slovo" href="../uvod.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="cs"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Hledat v knize..."
+         aria-label="Hledat v knize..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Dynamické modely populací</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Vyhledávání</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvodní slovo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Přednášky</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Funkce a vlastnosti funkcí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02.html">2. Derivace a integrál</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03.html">3. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04.html">4. Autonomní diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05.html">5. Bifurkace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06.html">6. Lineární algebra, matice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07.html">7. Parciální derivace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08.html">8. Autonomní systémy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09.html">9. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10.html">10. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11.html">11. Diskrétní populační modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12.html">12. Difuzní rovnice</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cvičení</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">1. První kroky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_01.html">2. Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_02.html">3. Práce s funkcemi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_03.html">4. Diferenciální rovnice 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_04.html">5. Diferenciální rovnice 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_05.html">6. Diferenciální rovnice 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_06.html">7. LaTeX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_07.html">8. Maticové modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_08.html">9. Levinsův model metapopulací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_09.html">10. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_10.html">11. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_11.html">12. Samostatná práce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Různá zadání</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">1. Enzymy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../allee.html">2. Silný Alleeho efekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chovani.html">3. Model soupeření jestřábí a holubičí povahy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">4. Model populace ryb</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Kombinovaní</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">1. Data a grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">2. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">3. Lov v populaci - fázový portrét</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">4. Lov v populaci - časový vývoj</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">5. Model dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">6. Model konkurence</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python konstrukce a ukázky</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_zakladni_konstrukce.html">Základní konstrukce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/cykly.html">Cykly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/grafy_amateri.html">Kreslení funkcí jednoduše</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/grafy_pokrocili.html">Kreslení funkcí pro pokročilé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/diferencialni_rovnice_amateri.html">Diferenciální rovnice pro začátečníky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/diferencialni_rovnice_pokrocili.html">Diferenciální rovnice pro pokročilejší</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_tabulky.html">Tabulky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_grafy.html">Obrázky, grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/reseni_ODR.html">Řešení diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/tabulky_none.html">Tabulky s None a NaN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/multiindex.html">Tabulky s hierarchickým indexem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/multiindex-pokrocili.html">Hierarchický index (pokročilí)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/reseni_rovnice.html">Numerické řešení rovnice</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Literatura a rejstřík</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../literatura.html">Literatura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Rejstřík</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">e-opora</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://robert-marik.github.io/moodle-python">Python</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/robert-marik/dmp/blob/gh-pages/_sources/prednaska/01.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://github.com/robert-marik/dmp" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Zdrojové úložiště"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Stáhněte si tuto stránku">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/prednaska/01.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Stáhnout soubor poznámkového bloku"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../_sources/prednaska/01.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Stáhněte si zdrojový soubor"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Tisk do PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Režim celé obrazovky"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Funkce a vlastnosti funkcí</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Obsah </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funkce-jedne-promenne">1.1. Funkce jedné proměnné</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vlastnosti-funkci">1.2. Vlastnosti funkcí</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elementarni-funkce">1.3. Elementární funkce</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prima-a-neprima-umernost">1.3.1. Přímá a nepřímá úměrnost</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocninne-funkce">1.3.2. Mocninné funkce</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomy">1.3.3. Polynomy</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kvadraticke-funkce">1.3.3.1. Kvadratické funkce</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#logisticky-rust">1.3.3.1.1. Logistický růst</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#racionalni-funkce">1.3.4. Racionální funkce</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exponencialni-funkce-a-logaritmus">1.3.5. Exponenciální funkce a logaritmus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slozene-funkce">1.3.6. Složené funkce</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funkce-vice-promennych-a-vektorove-funkce">1.4. Funkce více proměnných a vektorové funkce</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skalarni-funkce-vice-promennych">1.4.1. Skalární funkce více proměnných</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vektorova-funkce-jedne-promenne">1.4.2. Vektorová funkce jedné proměnné</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vektorove-pole">1.4.3. Vektorové pole</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="funkce-a-vlastnosti-funkci">
+<h1><span class="section-number">1. </span>Funkce a vlastnosti funkcí<a class="headerlink" href="#funkce-a-vlastnosti-funkci" title="Permalink to this heading">#</a></h1>
+<div class="admonition-co-se-dozvite-v-tomto-textu admonition">
+<p class="admonition-title">Co se dozvíte v tomto textu</p>
+<p><img alt="" src="../_images/Lynx_Canadensis.jpg" /></p>
+<p>Při studiu libovolného fenoménu dříve či později skončíme u snahy kvantifikovat velikosti znaků, které nás zajímají a sledovat vztahy mezi jednotlivými znaky. Jinými slovy, sledujeme vybrané veličiny a pomocí funkcí vyjadřujeme vztahy mezi těmito veličinami navzájem, nebo mezi těmito veličinami a parametry prostředí. Typickým případem je sledování velikosti populace a jejího vývoje v čase. Tím je možné odhalit některé děje, jako například periodické kolísání populace rysa a zajíce v okolí Hudsonova zálivu.</p>
+<p>V úvodním textu si zopakujeme pojmy potřebné pro práci s funkcemi a v některých částech si pojmy rozšíříme nad úroveň střední školy.</p>
+<p><em>Foto: Rys kanadský (Lynx canadensis). Pravidelné fluktuace populací rysa a zajíce slouží v literatuře k vysvětlení dynamiky společenstva dravce a kořisti. Autor Keith Williams, <a class="reference external" href="https://commons.wikimedia.org">https://commons.wikimedia.org</a></em></p>
+</div>
+<p>Při studiu přírodních dějů a jevů sledujeme vybrané charakteristiky, kterým je
+možno přiřadit číselné hodnoty spojené s jednotkou. Například velikost populace
+v kusech jedinců. Takové charakteristiky se nazývají veličiny.</p>
+<p>Pokud u dané populace sledujeme více veličin, mohou mezi těmito veličinami být
+jisté vztahy. Takové vztahy vyjadřujeme pomocí funkcí. Jednou z veličin může být
+třeba čas v letech a druhou z veličin velikost populace. Funkce potom udává
+souvislost mezi velikostí populace a časem. Může například jít o vzorec, do
+kterého dosadíme čas a vzorec nám ukáže velikost populace.</p>
+<section id="funkce-jedne-promenne">
+<h2><span class="section-number">1.1. </span>Funkce jedné proměnné<a class="headerlink" href="#funkce-jedne-promenne" title="Permalink to this heading">#</a></h2>
+<p>Formální definice funkce je v následujícím odstavci. Zpravidla nebývá pro
+pochopení práce s funkcemi nutná a postačí intuitivní chápání tohoto pojmu jako
+vztahu mezi dvěma veličinami nebo mezi dvěma proměnnými.</p>
+<div class="proof definition admonition" id="definition-0">
+<p class="admonition-title"><span>Definice </span> (Funkce)</p>
+<section class="definition-content" id="proof-content">
+<p>Buďte <span class="math notranslate nohighlight">\(A\)</span> a <span class="math notranslate nohighlight">\(B\)</span> neprázdné podmnožiny množiny reálných čísel.
+Pravidlo <span class="math notranslate nohighlight">\(f\)</span>, které každému prvku množiny <span class="math notranslate nohighlight">\(A\)</span> přiřadí jediný prvek
+množiny <span class="math notranslate nohighlight">\(B\)</span> se nazývá <em>funkce</em> (přesněji: <em>reálná
+funkce jedné reálné proměnné</em>).  Zapisujeme
+<span class="math notranslate nohighlight">\(f:A\to B\)</span>.  Skutečnost, že prvku <span class="math notranslate nohighlight">\(a\in A\)</span> je přiřazen
+prvek <span class="math notranslate nohighlight">\(b\in B\)</span> zapisujeme  <span class="math notranslate nohighlight">\(f(a)=b\)</span>. Přitom říkáme,
+že <span class="math notranslate nohighlight">\(b\)</span> je <em>obrazem prvku</em> <span class="math notranslate nohighlight">\(a\)</span> při zobrazení <span class="math notranslate nohighlight">\(f\)</span>, resp. že <span class="math notranslate nohighlight">\(a\)</span>
+je <em>vzorem prvku</em> <span class="math notranslate nohighlight">\(b\)</span> při zobrazení <span class="math notranslate nohighlight">\(f\)</span>.</p>
+<p>Hodnoty <span class="math notranslate nohighlight">\(x\)</span>, pro které je jejich obraz roven nule, se nazývají <em>kořeny</em> funkce.</p>
+</section>
+</div><p>Zjednodušeně řečeno, funkce je pravidlo, které zadanému číslu na vstupu dokáže přiřadit pevně definované číslo na výstupu.</p>
+<p>Funkce vizualizujeme pomocí grafu v kartézské soustavě souřadnic. Na vodorovnou
+osu vynášíme vzory, na svislou obrazy. V prakticky zajímavých a využívaných
+případech zpravidla body grafu vyplní křivku v rovině.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>  <span class="c1"># knihovna pro numerické výpočty</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>  <span class="c1"># knihovna pro grafiku</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1"># knihovna pro práci s tabulkami</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>  <span class="c1"># interval a počet bodů použitých pro kreslení grafu</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>  <span class="c1"># výpočet funkčních hodnot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>  <span class="c1"># vykreslení grafu</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/0828507236926c31ec3bfd7c0c3d42dce0ea86988a00729133142aa9a8c65b83.png" src="../_images/0828507236926c31ec3bfd7c0c3d42dce0ea86988a00729133142aa9a8c65b83.png" />
+</div>
+</div>
+</section>
+<section id="vlastnosti-funkci">
+<h2><span class="section-number">1.2. </span>Vlastnosti funkcí<a class="headerlink" href="#vlastnosti-funkci" title="Permalink to this heading">#</a></h2>
+<p>Pro práci s funkcemi si všímáme vlastností, které jsou určitým způsobem
+vypovídající o tom, jak se funkce chová na definičním oboru nebo na jeho podmnožině. Zajímá nás zejména</p>
+<ul class="simple">
+<li><p>jestli při seřazení vstupních dat podle velikosti jsou výstupy seřazeny
+stejným způsobem (rostoucí funkce) nebo naopak (klesající funkce),</p></li>
+<li><p>jestli výsledek na výstupu funkce jednoznačně determinuje data na vstupu (prostá funkce),</p></li>
+<li><p>jak určit data na vstupu z výsledku na výstupu, pokud tato data určit jdou (inverzní funkce),</p></li>
+<li><p>jestli data na výstupu funkce nutně zůstávají mezi nějakými pevnými hodnotami (ohraničenost)</p></li>
+<li><p>a jestli se funkce pro hodně velká data chovají přibližně stejně jako nějaké jednodušší funkce (asymptotika).</p></li>
+</ul>
+<p>To bylo neformální představení základních vlastností, kterých si všímáme u
+funkcí. Taková představa většinou stačí. Přesné definice jsou následující.</p>
+<div class="proof definition admonition" id="definition-1">
+<p class="admonition-title"><span>Definice </span> (Monotonie funkce)</p>
+<section class="definition-content" id="proof-content">
+<p>Nechť <span class="math notranslate nohighlight">\(f\)</span> je funkce a <span class="math notranslate nohighlight">\(M\subseteq \mathrm{Dom}(f)\)</span> podmnožina definičního oboru   funkce
+<span class="math notranslate nohighlight">\(f\)</span></p>
+<ul class="simple">
+<li><p>Řekneme, že funkce <span class="math notranslate nohighlight">\(f\)</span> je na množině <span class="math notranslate nohighlight">\(M\)</span> <em>rostoucí</em>
+jestliže pro každé <span class="math notranslate nohighlight">\(x_1, x_2\in M\)</span> s vlastností <span class="math notranslate nohighlight">\(x_1&lt;x_2\)</span>, platí
+<span class="math notranslate nohighlight">\(f(x_1)&lt;f(x_2)\)</span>.</p></li>
+<li><p>Řekneme, že funkce <span class="math notranslate nohighlight">\(f\)</span> je na množině <span class="math notranslate nohighlight">\(M\)</span> <em>klesající</em>
+jestliže pro každé <span class="math notranslate nohighlight">\(x_1, x_2\in M\)</span> s vlastností <span class="math notranslate nohighlight">\(x_1&lt;x_2\)</span>, platí
+<span class="math notranslate nohighlight">\(f(x_1)&gt;f(x_2)\)</span>.</p></li>
+<li><p>Řekneme, že funkce <span class="math notranslate nohighlight">\(f\)</span> je na množině <span class="math notranslate nohighlight">\(M\)</span> <em>(ryze) monotonní</em>
+je-li buď rostoucí, nebo klesající na <span class="math notranslate nohighlight">\(M\)</span>.</p></li>
+</ul>
+<p>Nespecifikujeme-li množinu <span class="math notranslate nohighlight">\(M\)</span>, máme na mysli, že uvedená vlastnost platí na celém definičním oboru funkce <span class="math notranslate nohighlight">\(f\)</span>.</p>
+</section>
+</div><p>Následující definice zavádí třídu funkcí, u kterých se z výsledku dají
+zrekonstruovat vstupní data.</p>
+<div class="proof definition admonition" id="definition-2">
+<p class="admonition-title"><span>Definice </span> (Prostá funkce)</p>
+<section class="definition-content" id="proof-content">
+<p>Nechť <span class="math notranslate nohighlight">\(f\)</span> je funkce a <span class="math notranslate nohighlight">\(M\subseteq \mathrm{Dom}(f)\)</span> podmnožina definičního oboru funkce <span class="math notranslate nohighlight">\(f\)</span>.   Řekneme, že funkce <span class="math notranslate nohighlight">\(f\)</span> je <em>prostá</em>,
+jestliže každý obraz má jen jediný vzor, tj. pro každé <span class="math notranslate nohighlight">\(y_0\in f(M)\)</span>
+existuje jediné <span class="math notranslate nohighlight">\(x\in M\)</span> s vlastností <span class="math notranslate nohighlight">\(f(x)=y_0\)</span>.
+Nespecifikujeme-li množinu <span class="math notranslate nohighlight">\(M\)</span>, máme na mysli, že uvedená vlastnost
+platí na celém definičním oboru funkce <span class="math notranslate nohighlight">\(f\)</span>.</p>
+</section>
+</div><p>Následující věta vyjadřuje, že pokud je funkce prostá, je možno ji odebrat z
+obou stran rovnice a výsledkem je rovnice ekvivalentní.</p>
+<div class="proof theorem admonition" id="theorem-3">
+<p class="admonition-title"><span>Věta </span> (Rovnice s prostou funkcí)</p>
+<section class="theorem-content" id="proof-content">
+<p>Pokud je <span class="math notranslate nohighlight">\(f\)</span> prostá funkce a platí <div class="math notranslate nohighlight">
+\[f(x)=f(a),\]</div>
+ potom platí <span class="math notranslate nohighlight">\(x=a.\)</span></p>
+</section>
+</div><p>Pokud je funkce prostá, je možné z výsledku zrekonstruovat vstupní data. Následující definice dává název funkci, která toto přiřazení vstupních dat k výsledkům realizuje.</p>
+<div class="proof definition admonition" id="definition-4">
+<p class="admonition-title"><span>Definice </span> (Inverzní funkce)</p>
+<section class="definition-content" id="proof-content">
+<p>Nechť funkce <span class="math notranslate nohighlight">\(f: A\to B\)</span> je prostá. Pravidlo, které každému <span class="math notranslate nohighlight">\(x\)</span>   z množiny <span class="math notranslate nohighlight">\(f(A)\)</span> přiřadí to (jediné) <span class="math notranslate nohighlight">\(y\)</span>, pro které platí <span class="math notranslate nohighlight">\(f(y)=x\)</span> se nazývá <em>inverzní funkce</em> k funkci <span class="math notranslate nohighlight">\(f\)</span>, označujeme   <span class="math notranslate nohighlight">\(f^{-1}\)</span>.</p>
+</section>
+</div><p>Například k druhé odmocnině je inverzní funkcí druhá mocnina. K násobení dvojkou
+je inverzní funkcí dělení dvojkou.</p>
+<div class="proof definition admonition" id="definition-5">
+<p class="admonition-title"><span>Definice </span> (Ohraničená funkce)</p>
+<section class="definition-content" id="proof-content">
+<p>Funkce se nazývá <em>shora ohraničená na množině <span class="math notranslate nohighlight">\(M\)</span></em>, pokud existuje reálné číslo <span class="math notranslate nohighlight">\(K\)</span> takové,
+že platí <div class="math notranslate nohighlight">
+\[f(x)&lt;K\]</div>
+ pro všechna <span class="math notranslate nohighlight">\(x\)</span> z množiny <span class="math notranslate nohighlight">\(M\)</span>.</p>
+<p>Analogicky pomocí opačné nerovnosti definujeme ohraničenost na množině <span class="math notranslate nohighlight">\(M\)</span> zdola.</p>
+<p>Funkce je ohraničená na množině <span class="math notranslate nohighlight">\(M\)</span>, pokud je ohraničená současně shora i zdola.</p>
+<p>Pokud množinu <span class="math notranslate nohighlight">\(M\)</span> vynecháme, máme na mysli ohraničenost na celém maximálním definičním oboru.</p>
+</section>
+</div><div class="proof example admonition" id="example-6">
+<p class="admonition-title"><span class="caption-number">Příklad 1.1 </span></p>
+<section class="example-content" id="proof-content">
+<p>Sinus a kosinus jsou ohraničené funkce. Exponenciální funkce je zdola ohraničená a není shora ohraničená. Na intervalu konečné délky je ohraničená i exponenciální funkce.</p>
+</section>
+</div><div class="proof definition admonition" id="definition-7">
+<p class="admonition-title"><span>Definice </span> (Landauova notace)</p>
+<section class="definition-content" id="proof-content">
+<p>Nechť <span class="math notranslate nohighlight">\(g\)</span> je funkce kladná pro velká <span class="math notranslate nohighlight">\(x\)</span>. Řekneme, že funkce <span class="math notranslate nohighlight">\(f\)</span> je třídy
+<span class="math notranslate nohighlight">\(\mathcal O(g)\)</span>, píšeme <div class="math notranslate nohighlight">
+\[f(x)=\mathcal O(g(x)),\]</div>
+ pokud je funkce  <span class="math notranslate nohighlight">\(|f(x)|/g(x)\)</span>
+ohraničená pro velká <span class="math notranslate nohighlight">\(x\)</span>, tj. pokud pro nějakou konstantu <span class="math notranslate nohighlight">\(M\)</span>
+platí <div class="math notranslate nohighlight">
+\[|f(x)|\leq M g(x)\]</div>
+ pro velká <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>Řekneme, že funkce <span class="math notranslate nohighlight">\(f\)</span> je třídy <span class="math notranslate nohighlight">\(O(g)\)</span> v okolí bodu <span class="math notranslate nohighlight">\(a\)</span>, pokud uvedené vztahy
+platí na nějakém intervalu obsahujícím ve svém vnitřku bod <span class="math notranslate nohighlight">\(a\)</span>.</p>
+</section>
+</div><p>Je-li funkce <span class="math notranslate nohighlight">\(f(x)=O(x^2)\)</span>, existuje konstanta <span class="math notranslate nohighlight">\(K\)</span> s vlastností <div class="math notranslate nohighlight">
+\[|f(x)|\leq
+Kx^2\]</div>
+ pro velká <span class="math notranslate nohighlight">\(x\)</span>.</p>
+</section>
+<section id="elementarni-funkce">
+<h2><span class="section-number">1.3. </span>Elementární funkce<a class="headerlink" href="#elementarni-funkce" title="Permalink to this heading">#</a></h2>
+<p>Shrneme si nejdůležitější pojmy spojené s elementárními funkcemi. Jedná se o
+znalosti ze střední školy a možná jejich mírné rozšíření. Proto není potřeba
+vždy tyto funkce na současném místě formálně přesně definovat.</p>
+<section id="prima-a-neprima-umernost">
+<h3><span class="section-number">1.3.1. </span>Přímá a nepřímá úměrnost<a class="headerlink" href="#prima-a-neprima-umernost" title="Permalink to this heading">#</a></h3>
+<p>Je to až k nevíře, ale k popisu obrovského množství dějů stačí čtyři základní
+operace: sčítání, odčítání, násobení a dělení. Vzhledem k požadavku na
+konzistenci fyzikálních jednotek se nejčastěji setkáváme s násobením a dělením a
+proto funkce pracující s těmito operacemi mají výsadní postavení. Dokonce si
+vysloužily pojmenování běžně užívané i mezi nematematiky: přímá a nepřímá
+úměrnost. Je to formální popis situace, kdy souvislost mezi dvěma veličinami je
+zprostředkována násobením konstantou (přímá úměrnost), nebo kdy je násobením
+konstantou zprostředkována souvislost mezi jednou veličinou a převrácenou
+hodnotou druhé veličiny (nepřímá úměrnost).</p>
+<div class="proof definition admonition" id="definition-8">
+<p class="admonition-title"><span>Definice </span> (Přímá a nepřímá úměrnost)</p>
+<section class="definition-content" id="proof-content">
+<p>Veličina <span class="math notranslate nohighlight">\(y\)</span> je <em>přímo úměrná</em> veličině <span class="math notranslate nohighlight">\(x\)</span> jestliže existuje konstanta <span class="math notranslate nohighlight">\(k\)</span> taková, že platí
+<div class="math notranslate nohighlight">
+\[  y=kx.  \]</div>
+
+Veličina <span class="math notranslate nohighlight">\(y\)</span> je <em>nepřímo úměrná</em> veličině <span class="math notranslate nohighlight">\(x\)</span> jestliže existuje konstanta <span class="math notranslate nohighlight">\(k\)</span> taková, že platí
+<div class="math notranslate nohighlight">
+\[y =\frac kx. \]</div>
+</p>
+</section>
+</div><p>Je-li veličina <span class="math notranslate nohighlight">\(y\)</span> úměrná veličině <span class="math notranslate nohighlight">\(x\)</span>, píšeme <span class="math notranslate nohighlight">\(y\sim x\)</span> nebo <span class="math notranslate nohighlight">\(y\propto x.\)</span>
+Je-li navíc konstanta úměrnosti blízká jedničce, tj. <span class="math notranslate nohighlight">\(x\)</span> a <span class="math notranslate nohighlight">\(y\)</span> jsou blízké,
+píšeme <span class="math notranslate nohighlight">\(y\approx x.\)</span></p>
+<p>Pro nepřímou úměrnost píšeme podobně <span class="math notranslate nohighlight">\(y\sim \frac 1x\)</span>, <span class="math notranslate nohighlight">\(y\propto \frac 1x\)</span> a
+<span class="math notranslate nohighlight">\(y\approx \frac 1x\)</span> s využitím toho, že nepřímá úměrnost mezi dvěma veličinami
+je vlastně přímá úměrnost mezi jednou veličinou a převrácenou hodnotou veličiny
+druhé.</p>
+<p>Grafem přímé úměrnosti je přímka procházející počátkem. Přímá úměrnost může být i klesající, je-li konstanta <span class="math notranslate nohighlight">\(k\)</span> záporná.</p>
+</section>
+<section id="mocninne-funkce">
+<h3><span class="section-number">1.3.2. </span>Mocninné funkce<a class="headerlink" href="#mocninne-funkce" title="Permalink to this heading">#</a></h3>
+<p>Mocninná funkce je funkce ve tvaru
+<div class="math notranslate nohighlight">
+\[y=x^k, \]</div>
+
+kde <span class="math notranslate nohighlight">\(x\)</span> je proměnná (základ mocniny) a <span class="math notranslate nohighlight">\(k\)</span> číselný parametr (exponent). Exponent
+nemusí být celé číslo.</p>
+<p>Chování mocninných funkcí je určeno exponentem. Pro kladné exponenty vyšší
+exponent znamená rychlejší růst pro velké hodnoty argumentu a rychlejší pokles k
+nule v okolí počátku.</p>
+<p>Nakreslíme grafy mocninných funkcí. Pro názornost je vykreslíme dvakrát vedle sebe a jednou omezíme grafy na okolí počátku. Níže si můžete rozkliknout skript pto výpočet funkčních hodnot a vykreslení obrázku.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="n">mocniny</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+
+<span class="n">x_sloupec</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">x_sloupec</span><span class="o">**</span><span class="n">mocniny</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">mocniny</span><span class="p">)</span>
+
+<span class="c1"># Vykreslení dat z tabulky, dva grafy vedle sebe</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># grafy do jednoho řádku a dvou sloupců</span>
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>     <span class="c1"># levý graf</span>
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># pravý graf</span>
+
+<span class="c1"># Popisky a rozsahy os nalevo</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Hodnota $n$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> 
+    <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> 
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Chování v okolí počátku&quot;</span><span class="p">)</span>
+<span class="c1"># Popisky a rozsahy os napravo</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span> 
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Chování v nekonečnu&quot;</span><span class="p">)</span>
+<span class="c1"># Společný nadpis  </span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Grafy funkcí $y=x^n$.&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/8d4d6408a0dcd3fd3a8f77fcdda707246b29b016cb298fad16b278e1d6a68a84.png" src="../_images/8d4d6408a0dcd3fd3a8f77fcdda707246b29b016cb298fad16b278e1d6a68a84.png" />
+</div>
+</div>
+</section>
+<section id="polynomy">
+<h3><span class="section-number">1.3.3. </span>Polynomy<a class="headerlink" href="#polynomy" title="Permalink to this heading">#</a></h3>
+<p>Polynom je součet násobků mocninných funkcí s celočíselným exponentem. Stupněm
+polynomu rozumíme hodnotu největšího exponentu. Například
+<div class="math notranslate nohighlight">
+\[ f(x)=x^3-2x^2+1\]</div>
+
+je polynom třetího stupně. Polynomy druhého stupně se nazývají kvadratické
+funkce, polynomy třetího stupně se nazývají kubické funkce.</p>
+<p>Chování polynomu v nekonečnu určuje člen s nejvyšší mocninou. Například polynom
+<div class="math notranslate nohighlight">
+\[y=-2x^4+3x^3+5x+2 \]</div>
+
+je pro velká <span class="math notranslate nohighlight">\(x\)</span> záporný, stejně jako funkce <span class="math notranslate nohighlight">\(y=-2x^4\)</span>. Pro <span class="math notranslate nohighlight">\(x\)</span> jdoucí k
+nekonečnu jdou funkční hodnoty do mínus nekonečna.</p>
+<section id="kvadraticke-funkce">
+<h4><span class="section-number">1.3.3.1. </span>Kvadratické funkce<a class="headerlink" href="#kvadraticke-funkce" title="Permalink to this heading">#</a></h4>
+<p>Kvadratickou funkcí rozumíme funkci ve tvaru polynumu druhého stupně
+<div class="math notranslate nohighlight">
+\[
+y=ax^2+bx+c, 
+\]</div>
+
+kde <span class="math notranslate nohighlight">\(a\neq 0\)</span>.
+Je-li výraz <span class="math notranslate nohighlight">\(b^2-4ac\)</span> kladný, má polynom dva reálné kořeny
+<div class="math notranslate nohighlight">
+\[
+x_{1,2}=\frac{-b\pm\sqrt{b^2-4ac}}{2a}.
+\]</div>
+
+a platí
+<div class="math notranslate nohighlight">
+\[
+y=a(x-x_1)(x-x_2).,
+\]</div>
+</p>
+<p>Grafem kvadratické funkce je parabola s průsečíky na ose v bodech <span class="math notranslate nohighlight">\(x=x_1\)</span> a
+<span class="math notranslate nohighlight">\(x=x_2\)</span>. Pro <span class="math notranslate nohighlight">\(a&gt;0\)</span> je otočená vrcholem dolů, v opačném případě vrcholem nahoru.</p>
+<p>Vrchol paraboly, která má dva reálné kořeny, má <span class="math notranslate nohighlight">\(x\)</span>-ovou souřadnici uprostřed
+mezi kořeny, tj.
+<div class="math notranslate nohighlight">
+\[
+x_{\text{vrchol}}=\frac{x_1+x_2}{2}=-\frac{b}{2a}.
+\]</div>
+
+Vzorec
+<div class="math notranslate nohighlight">
+\[
+x_{\text{vrchol}}=-\frac{b}{2a}.
+\]</div>
+
+platí i když parabola nemá reálné nulové body a je celá nad vodorovnou nebo pod
+vodorovnou osou.</p>
+<section id="logisticky-rust">
+<h5><span class="section-number">1.3.3.1.1. </span>Logistický růst<a class="headerlink" href="#logisticky-rust" title="Permalink to this heading">#</a></h5>
+<p>Kvadratická funkce se v modelech populací vyskytuje často v modelech
+zohledňujících vnitrodruhovou konkurenci. V takovém případě zpravidla předpokládáme, že
+rychlost růstu populace je úměrná velikosti populace a volnému místu v prostředí
+s konečnou nosnou kapacitou. Toto volné místo zpravidla vyjadřujeme procentem obsazenosti prostředí. Jednoduchým matematickým modelem rychlosti takového růstu je
+funkce
+<div class="math notranslate nohighlight">
+\[
+f(x)=rx\left(1-\frac xK\right),
+\]</div>
+
+kde <span class="math notranslate nohighlight">\(K\)</span> je <em>nosná kapacita prostředí</em> a <span class="math notranslate nohighlight">\(r\)</span> je <em>invazní parametr</em> (specifická
+rychlost růstu pro malé velikosti populace). Tato kvadratická funkce proměnné <span class="math notranslate nohighlight">\(x\)</span>
+s parametry <span class="math notranslate nohighlight">\(r\)</span> a <span class="math notranslate nohighlight">\(K\)</span> má graf parabolu otočenou vrcholem nahoru s nulovými body
+<span class="math notranslate nohighlight">\(x=0\)</span> a <span class="math notranslate nohighlight">\(x=K\)</span>.</p>
+<p>Pro rostoucí <span class="math notranslate nohighlight">\(r\)</span> a pevné <span class="math notranslate nohighlight">\(K\)</span> se nemění poloha nulových bodů funkce, ale rostou
+její funkční hodnoty.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>  <span class="c1"># interval a počet bodů použitých pro kreslení         </span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">x</span><span class="p">)</span> <span class="c1"># nova tabulka</span>
+<span class="n">seznam_r</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="c1"># dopocitani funkcnich hodnot</span>
+<span class="c1"># pro ruzne nastaveni r</span>
+<span class="c1"># jde udelat i bez pouziti cyklu, ale o tom jindy</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">seznam_r</span><span class="p">:</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">K</span><span class="p">)</span>
+<span class="n">df</span>  <span class="c1"># tisk tabulky pro kontrolu</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.000000</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>0.001001</th>
+      <td>0.001000</td>
+      <td>0.002000</td>
+      <td>0.003000</td>
+    </tr>
+    <tr>
+      <th>0.002002</th>
+      <td>0.001998</td>
+      <td>0.003996</td>
+      <td>0.005994</td>
+    </tr>
+    <tr>
+      <th>0.003003</th>
+      <td>0.002994</td>
+      <td>0.005988</td>
+      <td>0.008982</td>
+    </tr>
+    <tr>
+      <th>0.004004</th>
+      <td>0.003988</td>
+      <td>0.007976</td>
+      <td>0.011964</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>0.995996</th>
+      <td>0.003988</td>
+      <td>0.007976</td>
+      <td>0.011964</td>
+    </tr>
+    <tr>
+      <th>0.996997</th>
+      <td>0.002994</td>
+      <td>0.005988</td>
+      <td>0.008982</td>
+    </tr>
+    <tr>
+      <th>0.997998</th>
+      <td>0.001998</td>
+      <td>0.003996</td>
+      <td>0.005994</td>
+    </tr>
+    <tr>
+      <th>0.998999</th>
+      <td>0.001000</td>
+      <td>0.002000</td>
+      <td>0.003000</td>
+    </tr>
+    <tr>
+      <th>1.000000</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>1000 rows × 3 columns</p>
+</div></div></div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span> <span class="c1"># vykresleni dat z tabulky</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span> <span class="c1"># vylepseni obrazku</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Graf funkce $y=rx(1-\frac </span><span class="si">{x}{K}</span><span class="s2">)$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Hodnota $r$&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/16db02ee302a94172fc22c8fd8d91ca2d62ba126a775a1d3e34ec6ca1bd897b3.png" src="../_images/16db02ee302a94172fc22c8fd8d91ca2d62ba126a775a1d3e34ec6ca1bd897b3.png" />
+</div>
+</div>
+<p>Pro rostoucí <span class="math notranslate nohighlight">\(K\)</span> a pevné <span class="math notranslate nohighlight">\(r\)</span> se nemění směr růstu paraboly v okolí počátku, ale
+roste se kladný kořen a rostou i funkční hodnoty.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>  <span class="c1"># interval a počet bodů použitých pro kreslení         </span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">x</span><span class="p">)</span> <span class="c1"># nova tabulka</span>
+<span class="c1"># dopocitani funkcnich hodnot</span>
+<span class="c1"># pro ruzne nastaveni K</span>
+<span class="k">for</span> <span class="n">K</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]:</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">K</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">K</span><span class="p">)</span>
+    
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span> <span class="c1"># vykresleni dat z tabulky</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span> <span class="c1"># vylepseni obrazku</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Graf funkce $y=rx(1-\frac </span><span class="si">{x}{K}</span><span class="s2">)$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Hodnota $K$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="kc">None</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/3f8e41e6fc739b814ab4618240da74123e839c06af24654e094b88e8b160607c.png" src="../_images/3f8e41e6fc739b814ab4618240da74123e839c06af24654e094b88e8b160607c.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="racionalni-funkce">
+<h3><span class="section-number">1.3.4. </span>Racionální funkce<a class="headerlink" href="#racionalni-funkce" title="Permalink to this heading">#</a></h3>
+<p>Racionální funkce jsou podílem dvou polynomů.</p>
+<ul class="simple">
+<li><p>Pokud je stupeň polynomu v čitateli menší než stupeň polynomu ve jmenovateli,
+funkce se v nekonečnu blíží k nule.</p></li>
+<li><p>Pokud mají čitatel i jmenovatel stejný stupeň, funkce má v nekonečnu
+vodorovnou asymptotu různou od nuly.</p></li>
+</ul>
+<p>V ekologii se často používají funkce, modelující specifickou funckionální
+odezvu. Setkáme se s nimi pozěji v modelech dravce a kořisti <span id="id1">[<a class="reference internal" href="../literatura.html#id2" title="D. Dykyjová. Metody studia ekosystémů. Academia, 1989.">7</a>]</span>,
+<span id="id2">[<a class="reference internal" href="../literatura.html#id3" title="M. Begon, C.R. Townsend, and J.L. Harper. Ekologie: jedinci, populace a společenstva. Vydavatelství Univerzity Palackého, 1997. ISBN 9788070676950.">3</a>]</span>. Významnými funkcemi jsou takzvané funkce Hollingova typu, z nichž
+zmíníme typ Holling II a Holling III.  V obou případech se jedná o kladné
+rostoucí funkce vycházející z počátku souřadné soustavy a konvergující k
+vodorovné asymptotě, přičemž Holling II vychází z počátku souřadnic pod ostrým
+úhlem a Holling III s vodorovnou tečnou a má tedy pomalejší náběh. Matematickými
+modely ve formě racionálních funkcí pro odezvu tohoto typu mohou být funkce
+<div class="math notranslate nohighlight">
+\[f(x)=\frac{x}{x+a}\]</div>
+
+pro Holling II a
+<div class="math notranslate nohighlight">
+\[f(x)=\frac{x^k}{x^k+a^k}, \quad k&gt;1\]</div>
+
+pro Holling III. (V případě vzorce pro typ Holling III číslo <span class="math notranslate nohighlight">\(k\)</span> nemusí být celé a formálně se tedy nebude jednat o podíl dvou polynomů.)</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Holling II&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">a</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Holling III&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">a</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/5317210d5e1401f348fa6217cf3da7b325106df78cd091c2bde108d2c3058c78.png" src="../_images/5317210d5e1401f348fa6217cf3da7b325106df78cd091c2bde108d2c3058c78.png" />
+</div>
+</div>
+</section>
+<section id="exponencialni-funkce-a-logaritmus">
+<h3><span class="section-number">1.3.5. </span>Exponenciální funkce a logaritmus<a class="headerlink" href="#exponencialni-funkce-a-logaritmus" title="Permalink to this heading">#</a></h3>
+<p>Exponenciální funkce je mocnina s pevným základem a proměnným exponentem.
+Exponenciální funkce je prostá a její inverze je logaritmická funkce. V modelech
+nejčastěji pracujeme s přirozenými logaritmy a exponenciální funkcí o základu
+<span class="math notranslate nohighlight">\(e\)</span>. Vzhledem k rovnosti
+<div class="math notranslate nohighlight">
+\[ a^x = e^{x\ln a}\]</div>
+
+základ exponenciální funkce není podstatný a libovolnou exponenciální funkci je
+možné přepsat na exponenciální funkci o libovolném základě.</p>
+<p>Funkce <span class="math notranslate nohighlight">\(y=e^{kx}\)</span> pro <span class="math notranslate nohighlight">\(k\)</span> kladné je rostoucí v nekonečnu (roste rychleji než
+polynom libovolného stupně) a klesající v mínus nekonečnu (klesá k nule rychleji
+než libovolná racionální funkce). Hodnota <span class="math notranslate nohighlight">\(k\)</span> reguluje rychlost růstu do
+nekonečna a poklesu k vodorovné asymptotě.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">seznam_k</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">seznam_k</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># hodnoty parameru do sloupce</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="c1"># vypocet vsech hodnot</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># sestaveni tabulky, data z radku do sloupcu</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span>
+       <span class="n">title</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;Graf funkce $y=e^</span><span class="si">{kx}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Hodnota $k$&quot;</span><span class="p">)</span>       
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/5ed46ea4014dd1151cffd72e738a65829c33b7818ade74e2db3b9e298a369507.png" src="../_images/5ed46ea4014dd1151cffd72e738a65829c33b7818ade74e2db3b9e298a369507.png" />
+</div>
+</div>
+<p>Funkce <span class="math notranslate nohighlight">\(y=a+e^{-kx}\)</span> (kde <span class="math notranslate nohighlight">\(k\)</span> je kladné) klesá shora k vodorovné asymptotě <span class="math notranslate nohighlight">\(y=a\)</span>
+tím rychleji, čím je vyšší hodnota <span class="math notranslate nohighlight">\(k\)</span>. Funkce <span class="math notranslate nohighlight">\(y=a-e^{-kx}\)</span> se chová
+analogicky, ale k asymptotě roste.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">seznam_k</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">seznam_k</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># hodnoty parameru do sloupce</span>
+<span class="n">data</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">k</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="c1"># vypocet vsech hodnot</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># sestaveni tabulky, data z radku do sloupcu</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.2</span><span class="p">),</span>
+       <span class="n">title</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;Graf funkce $y=1-e^{-kx}$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Hodnota $k$&quot;</span><span class="p">)</span>       
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/1e6a8daa6bcfbbb6bf05b166941cfa8e0eedaa18cecec1a3acf61ba4cfcea529.png" src="../_images/1e6a8daa6bcfbbb6bf05b166941cfa8e0eedaa18cecec1a3acf61ba4cfcea529.png" />
+</div>
+</div>
+<p>Pomocí exponenciálních funkcí je možno modelovat funkce Hollingova typu II a III
+například vztahy <div class="math notranslate nohighlight">
+\[y=1-e^{-kx}\]</div>
+ pro typ Holling II a <div class="math notranslate nohighlight">
+\[y=1-e^{-kx^2}\]</div>
+ pro typ
+Holling III.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Holling II&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Holling III&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/a121faaf9d53cfb81fb6c5a77cd4bb64d556da86023f6f9a2754a951a5606023.png" src="../_images/a121faaf9d53cfb81fb6c5a77cd4bb64d556da86023f6f9a2754a951a5606023.png" />
+</div>
+</div>
+<p>Tyto funkce mají podobný tvar jako analogické funkce uvedené v kapitole o
+racionálních funkcích, ale charakter závislosti je poněkud jiný a na základě
+empirických dat se zpravidla rozhodujeme, který způsob popisu nejlépe vyhovuje
+zkoumané realitě.</p>
+<p>Exponenciální funkce s kladným koeficientem v exponentu modeluje růst, kdy
+rychlost růstu veličiny je úměrná velikosti této veličiny, tj. s tím jak
+veličina roste se zrychluje i rychlost jejího růstu. Exponenciální funkce se
+záporným koeficientem v exponentu se vyskytuje často tam kde systém konverguje
+do stacionárního stavu. Potom často vzdálenost od stacionárního stavu
+exponenciálně klesá s časem.</p>
+</section>
+<section id="slozene-funkce">
+<h3><span class="section-number">1.3.6. </span>Složené funkce<a class="headerlink" href="#slozene-funkce" title="Permalink to this heading">#</a></h3>
+<p>Často je nutné modifikovat chování funkce podle aktuální potřeby. Například
+zařídit, aby funkce nerostla k jedničce, ale k jiné hodnotě. Někdy
+potřebných požadavků můžeme dosáhnout tak, že namísto s funkcí pracujeme s
+jejím násobkem, nebo do ní namísto proměnné dosazujeme násobek proměnné. Tedy
+namísto s funkcí <span class="math notranslate nohighlight">\(y=f(x)\)</span> pracujeme s funkcí <span class="math notranslate nohighlight">\(y=k_1f(k_2x)\)</span>, jejíž graf
+dostaneme z grafu funkce <span class="math notranslate nohighlight">\(y=f(x)\)</span> natažením <span class="math notranslate nohighlight">\(k_1\)</span>-krát ve svislém směru a
+zúžením <span class="math notranslate nohighlight">\(k_2\)</span>-krát ve vodorovném směru. Viz následující obrázek.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;2&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;3&quot;</span><span class="p">]</span><span class="o">=</span><span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;4&quot;</span><span class="p">]</span><span class="o">=</span><span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+    <span class="n">layout</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+    <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Efekt lineární transformace na graf&quot;</span><span class="p">,</span>
+    <span class="n">grid</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$e^{-x^2}$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$e^{-(3x)^2}$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$3e^{-x^2}$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$3e^{-(3x)^2}$&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/bee0dcbdfd687a15be2fd7f54f31cf4dc786c4c9e66c78d15576b533d9dce995.png" src="../_images/bee0dcbdfd687a15be2fd7f54f31cf4dc786c4c9e66c78d15576b533d9dce995.png" />
+</div>
+</div>
+<p>Podobně je možno sledovat vliv posunutí. Přičtení konstantní hodnoty k funkci
+značí posun grafu ve vertikálním směru, přičtení konstantní hodnoty k argumentu
+posun ve vodorovném směru. Přičtení kladné hodnoty způsobí posun grafu nahoru
+resp. doleva, přičtení záporné hodnoty posun na opačnou stranu.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">x</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;2&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;3&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;4&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> 
+    <span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+    <span class="n">layout</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+    <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Efekt posunutí na graf&quot;</span><span class="p">,</span>
+    <span class="n">grid</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$e^{-x^2}$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$e^{-(x-1)^2}$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$e^{-x^2}+1$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$e^{-(x-1)^2}+1$&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/1a0dce1e108967fd3c126acbb3fd449d1b440339598d8443f68dd4b431bc344c.png" src="../_images/1a0dce1e108967fd3c126acbb3fd449d1b440339598d8443f68dd4b431bc344c.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="funkce-vice-promennych-a-vektorove-funkce">
+<h2><span class="section-number">1.4. </span>Funkce více proměnných a vektorové funkce<a class="headerlink" href="#funkce-vice-promennych-a-vektorove-funkce" title="Permalink to this heading">#</a></h2>
+<p>V praxi se neomezujeme na funkce, které mají na vstupu jedno číslo a vracejí
+jako funkční hodnotu opět jedno číslo, ale proměnných na vstupu i na výstupu
+může být více.</p>
+<section id="skalarni-funkce-vice-promennych">
+<h3><span class="section-number">1.4.1. </span>Skalární funkce více proměnných<a class="headerlink" href="#skalarni-funkce-vice-promennych" title="Permalink to this heading">#</a></h3>
+<p>Typickým případem kdy na vstupu funkce je více veličin a na výstupu veličina
+jediná je rychlost růstu populace, jejíž nosná kapacita je ovlivněna jinou
+populací. Jsou-li velikost populace <span class="math notranslate nohighlight">\(x\)</span> a velikost populace konkurenta <span class="math notranslate nohighlight">\(y\)</span>,
+můžeme k modelování takové rychlosti růstu použít funkce
+<div class="math notranslate nohighlight">
+\[ f(x,y)=rx\left(1-\frac x{K+\alpha y} \right) \]</div>
+
+nebo
+<div class="math notranslate nohighlight">
+\[ f(x,y)=rx\left(1-\frac xK - \alpha y \right),\]</div>
+
+kde nám kromě invazního parametru <span class="math notranslate nohighlight">\(r\)</span> a nosné kapacity prostředí <span class="math notranslate nohighlight">\(K\)</span> přibyl
+parametr <span class="math notranslate nohighlight">\(\alpha\)</span> charakterizující sílu mezidruhové konkurence. Je-li <span class="math notranslate nohighlight">\(f\)</span> funkce
+dvou proměnných, píšeme <span class="math notranslate nohighlight">\(f\colon \mathbb{ R^2}\to\mathbb{R}.\)</span></p>
+<p>Vizualizace funkce dvou proměnných může být realizována jako plocha ve 3D
+prostoru, což však někdy nedává zcela názornou představu. Další možností je s
+druhou proměnnou zacházet jako s parametrem a kreslit graf funkce jedné proměnné
+pro vybrané pevné hodnoty druhé proměnné.</p>
+</section>
+<section id="vektorova-funkce-jedne-promenne">
+<h3><span class="section-number">1.4.2. </span>Vektorová funkce jedné proměnné<a class="headerlink" href="#vektorova-funkce-jedne-promenne" title="Permalink to this heading">#</a></h3>
+<p>Vektorová funkce jedné proměnné je funkce, která má na vstupu jednu proměnnou a
+na výstupu více proměnných, které zpravidla uvažujeme jako komponenty vektoru.
+Typickým případem je časový průběh velikosti dvou populací.</p>
+<p>Vizualizovat funkci můžeme tak, že nakreslíme graf každé komponenty samostatně
+(pokud kreslíme do jednoho obrázku, můžeme použít dvě osy <span class="math notranslate nohighlight">\(y\)</span>). Je-li výstupem
+vektor v rovině, můžeme funkci vizualizovat tak, že kreslíme uspořádané dvojice
+pro různé hodnoty vstupních dat.</p>
+<aside class="margin sidebar">
+<p class="sidebar-title">Upozornění.</p>
+<p>Představené datové řady je nutné brát jenom ilustrativně. Nejedná se o
+data se spolehlivou interpretací (namísto velikosti populací se pravděpodobně
+jedná o množství vykoupených kožešin), pravděpodobně byla získána z grafů v
+dřívějších publikacích a nejsou ani stejná napříč různými publikacemi.</p>
+</aside>
+<p>Na obrázku je vektorová funkce, kde vstupem je rok a výstupem je velikost
+populace zajíce běláka (angl. hare) a sněžného rysa (angl. lynx) v oblasti
+Hudsonova zálivu. V matematické biologii je to jeden z nejznámějších modelů
+vzájemného působení populací. Data stáhneme ve formě csv souboru do tabulky a
+pro kontrolu vytiskneme začátek tabulky.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zdroj</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/robert-marik/dmp/main/data/hudson_bay_lynx_hare.csv&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">zdroj</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">Year</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Year</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>Lynx</th>
+      <th>Hare</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1900-01-01</td>
+      <td>4.0</td>
+      <td>30.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1901-01-01</td>
+      <td>6.1</td>
+      <td>47.2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1902-01-01</td>
+      <td>9.8</td>
+      <td>70.2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1903-01-01</td>
+      <td>35.2</td>
+      <td>77.4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1904-01-01</td>
+      <td>59.4</td>
+      <td>36.3</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Vykreslení dat pro jednotlivé druhy je snadné, stačí zadat, jaká veličina má být na vodorovné ose.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;Year&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/b5aaf8b4a4d261012fc22e6b8b8b81d6518ecf4f5a2b8ca3bba6e1486ba8c98f.png" src="../_images/b5aaf8b4a4d261012fc22e6b8b8b81d6518ecf4f5a2b8ca3bba6e1486ba8c98f.png" />
+</div>
+</div>
+<p>Znázornění v rovině zajíc–rys je také snadné, zadáme veličiny pro vodorovnou a svislou osu a malinko graf vylepšíme přidáním teček, letopočtů a popisku.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;Hare&quot;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">&quot;Lynx&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Lynx&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Hare&#39;</span><span class="p">],</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Lynx&#39;</span><span class="p">],</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/9f1432fc326645c5be2afb0d49b43888b4dbbd6d300a4cbff043e897fbfc433a.png" src="../_images/9f1432fc326645c5be2afb0d49b43888b4dbbd6d300a4cbff043e897fbfc433a.png" />
+</div>
+</div>
+<p>V tomto případě v rovině zajíc–rys vektorová funkce představuje parametricky
+zadanou křivku, resp. pokud je funkce dána jenom hodnotami z tabulky, potom se
+křivka redukuje na lomenou čáru. Podobně je možno chápat libovolnou vektorovou
+funkci jedné proměnné jako parametrickou křivku v prostoru příslušné dimenze.</p>
+</section>
+<section id="vektorove-pole">
+<h3><span class="section-number">1.4.3. </span>Vektorové pole<a class="headerlink" href="#vektorove-pole" title="Permalink to this heading">#</a></h3>
+<p>Vektorové pole je funkce, která má na vstupu vektor a na výstupu opět vektor,
+zpravidla stejné dimenze jako vektor na vstupu. Potom je obvyklé chápat vektor
+na vstupu jako bod a vektor na výstupu jako vektor s počátkem v uvedeném bodě.
+Při takovém chápání je poměrně účinné vizualizovat vektorové pole v rovině, tj.
+funkci, mající na vstupu i na výstupu dvě proměnné. Proměnné na vstupu chápeme
+jako body v rovině a proměnné na výstupu chápeme jako komponenty orientované
+úsečky s počátkem v uvažovaném bodě. (Odsud je i název vektorové pole, protože
+při vizualizaci obdržíme systém orientovaných úseček v rovině. Protože by
+zpravidla byl výsledný obrázek nepřehledný, délku vektorů můžeme v obrázku
+sjednotit a informaci o původní délce vyjádřit barevně.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Body pro kresleni</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> 
+                   <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># Komponenty vektoroveho pole</span>
+<span class="n">u</span> <span class="o">=</span> <span class="o">-</span><span class="n">y</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">x</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">u</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># velikost vektoru</span>
+<span class="n">qq</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">u</span><span class="o">/</span><span class="n">M</span><span class="p">,</span><span class="n">v</span><span class="o">/</span><span class="n">M</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">jet</span><span class="p">,</span> <span class="n">angles</span><span class="o">=</span><span class="s2">&quot;xy&quot;</span><span class="p">)</span> <span class="c1"># vykresleni s jednotkovou delkou</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">qq</span><span class="p">)</span> <span class="c1"># barevna skala pro delku vektoru</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># stejne meritko na obou osach</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/0e99560fbf4dc628797986c3d763e33217fcf0b5270b8f230c1d9b65d0b7c2dc.png" src="../_images/0e99560fbf4dc628797986c3d763e33217fcf0b5270b8f230c1d9b65d0b7c2dc.png" />
+</div>
+</div>
+<p>Někdy může být ilustrativnější chápat vektorové pole jako rychlostní pole a
+vykreslit si příslušný tok.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">streamplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="c1"># vykresleni toku</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># stejne meritko na obou osach</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/68f07cc403c924b1fd87a1be5f4b7416e6c69ee66e4bf92a20e2ccafb6e1164d.png" src="../_images/68f07cc403c924b1fd87a1be5f4b7416e6c69ee66e4bf92a20e2ccafb6e1164d.png" />
+</div>
+</div>
+<p>Tento způsob vizualizace budeme používat při modelování vývoje dvoudruhových
+populací, například při modelování konkurence nebo vztahu dravce a kořisti.
+Vektorové pole bude udávat trend, jakým směrem se bude systém vyvíjet a řešením
+budou parametrické křivky, podobné výše uvedenému příkladu s rysem a zajícem.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../uvod.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">předchozí</p>
+        <p class="prev-next-title">Úvodní slovo</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">další</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Derivace a integrál</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Obsah
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funkce-jedne-promenne">1.1. Funkce jedné proměnné</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vlastnosti-funkci">1.2. Vlastnosti funkcí</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#elementarni-funkce">1.3. Elementární funkce</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prima-a-neprima-umernost">1.3.1. Přímá a nepřímá úměrnost</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mocninne-funkce">1.3.2. Mocninné funkce</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomy">1.3.3. Polynomy</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kvadraticke-funkce">1.3.3.1. Kvadratické funkce</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#logisticky-rust">1.3.3.1.1. Logistický růst</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#racionalni-funkce">1.3.4. Racionální funkce</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exponencialni-funkce-a-logaritmus">1.3.5. Exponenciální funkce a logaritmus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slozene-funkce">1.3.6. Složené funkce</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funkce-vice-promennych-a-vektorove-funkce">1.4. Funkce více proměnných a vektorové funkce</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skalarni-funkce-vice-promennych">1.4.1. Skalární funkce více proměnných</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vektorova-funkce-jedne-promenne">1.4.2. Vektorová funkce jedné proměnné</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vektorove-pole">1.4.3. Vektorové pole</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Autor Robert Mařík
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+  All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
+</p>
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
