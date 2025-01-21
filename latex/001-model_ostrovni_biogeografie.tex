@@ -1,25 +1,18 @@
 \documentclass[handouts]{beamer}
 \usepackage[orientation=portrait,size=a4, scale=2]{beamerposter}
-\beamertemplatenavigationsymbolsempty
 
-\usepackage[czech]{babel}
-\usepackage{booktabs}
+\input preamble.tex
 
 \title{Ostrovní biogeografie}
-\author{Robert Mařík}
-\usetheme{CambridgeUS}
-\usecolortheme{crane}
 
-\def\subsection#1{\par\medskip \textbf{#1}\par\medskip}
 \begin{document}
 
 \begin{frame}
 
   \begin{center}
-    \large Ostrovní biogeografie 
+    \Large Ostrovní biogeografie 
   \end{center}
-
-
+  
   Teorii ostrovní biogegrafie vytvořili R. H. Mac Arthur a
   E. O. Wilson pro vysvětlení odlišné dynamiky populací na
   ostrovech. Jejich teorie byla později rozšířena na obecné lokality
@@ -34,17 +27,13 @@
   \begin{columns}
     \begin{column}[t]{0.48\hsize}
       \begin{block}{Rychlost kolonizace}
-Počet druhů, které v čase
-$t$ proniknou na ostrov a úspěšně se zde zabydlí, roste s počtem
-imigrantů a klesá s počtem druhů, které na ostrově  již žijí.
 \begin{itemize}
-\item První
-  předpoklad je zcela přirozený.
-\item Druhý předpoklad vyjadřuje v ekologii obvyklé
-tvrzení, že komplexnější společenstva organismů jsou stabilnější a lépe
-odolávají invazi nových druhů.
-\item  Předpoklad, že počet imigrantů klesá s rostoucí
-vzdáleností ostrova od pevniny, což je opět přirozený  předpoklad.
+\item Počet druhů, které v čase
+$t$ proniknou na ostrov a úspěšně se zde zabydlí, roste s počtem
+imigrantů  a klesá s počtem druhů, které na ostrově  již žijí (komplexnější společenstva organismů jsou stabilnější a lépe
+odolávají invazi nových druhů).
+\item  Počet imigrantů klesá s rostoucí
+vzdáleností ostrova od pevniny.
 \item  Uvedené předpoklady splňuje funkce
 $$
  \frac b{D(N+\beta)},
@@ -56,14 +45,13 @@ pevniny, $\beta$ je nezáporná a  $b$ kladná konstanta.
 \end{column}
 \begin{column}[t]{0.48\hsize}
   \begin{block}{Rychlost vymírání  druhů}
-Rychlost vymírání  druhů, které v minulosti již úspěšně
-kolonizovaly ostrov, ale neobstály v konkurenci pozdějších kolonizátorů,
-roste s klesající rozlohou ostrova a s rostoucím počtem druhů na
-ostrově.
+
 \begin{itemize}
-\item Tento předpoklad
-je opět přirozený, vzhledem k tomu, že ostrov menší rozlohy má menší nosnou
-kapacitu.
+\item Rychlost vymírání  druhů, které v minulosti již úspěšně
+kolonizovaly ostrov, ale neobstály v~ konkurenci pozdějších kolonizátorů,
+roste s~ klesající rozlohou ostrova a s rostoucím počtem druhů na
+ostrově (ostrov menší rozlohy má menší nosnou
+kapacitu).
 \item Rychlost vymírání druhů je možné modelovat funkcí
 $$
  a\frac {N^k}S,
