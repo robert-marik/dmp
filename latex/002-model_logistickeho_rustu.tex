@@ -32,7 +32,7 @@ jednoduchostí je Verhulst-Pearlův model růstu.
 \item Rychlost růstu populace vztažená na jedince (per-capita) klesá
   vlivem vnitrodruhové konkurence.  
 \item Pro jednoduchost předpokládáme
-  lineární pokles, který se zastaví při dosažení nosné kapacity.  
+  lineární pokles. Růst se zastaví při dosažení nosné kapacity.  
 \item 
   Jinými slovy toto znamená, že rychlost růstu populace v prostředí s
   omezenou nosnou kapacitou je úměrná současně velikosti této populace
@@ -75,8 +75,8 @@ Lov s konstantním úsilím & $\frac{\mathrm dx}{\mathrm dt}=rx\left(1-\frac xK\
 Populace vystavená predaci & $\frac{\mathrm dx}{\mathrm dt}=rx\left(1-\frac xK\right)-f(x)y$\\[5mm]
   Konkurence populací & $\begin{cases}
                         \begin{aligned}
-           \frac{\mathrm dx}{\mathrm dt}=rx\left(1-\frac {x-\alpha y}K\right)\\
-           \frac{\mathrm dy}{\mathrm dt}=ry\left(1-\frac {y-\beta x}K\right)
+           \frac{\mathrm dx}{\mathrm dt}=rx\left(1-\frac {x+\alpha y}K\right)\\
+           \frac{\mathrm dy}{\mathrm dt}=ry\left(1-\frac {y+\beta x}K\right)
                         \end{aligned}
 \end{cases}
 $\\
