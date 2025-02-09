@@ -12,6 +12,7 @@ nb_execution_allow_errors = False
 nb_execution_excludepatterns = []
 nb_execution_in_temp = False
 nb_execution_timeout = 30
+nb_execution_show_code = False
 extensions = [
     'sphinx_togglebutton', 
     'sphinx_copybutton', 
@@ -60,6 +61,7 @@ html_theme_options = {
 html_title = 'Dynamické modely populací'
 nb_execution_cache_path = ''
 nb_execution_mode = 'auto'
+nb_execution_show_code = False
 latex_engine = 'xelatex'
 myst_enable_extensions = ['amsmath', 'dollarmath']
 myst_url_schemes = ['mailto', 'http', 'https']

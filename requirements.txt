@@ -5,4 +5,3 @@ scipy
 jupytext
 sphinx-proof
 pandas
-intersect
