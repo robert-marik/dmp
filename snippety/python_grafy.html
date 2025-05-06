@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="cs" data-content_root="" >
+<html lang="cs" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Obrázky, grafy &#8212; Dynamické modely populací</title>
   
@@ -29,35 +28,34 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a771f39c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../_static/documentation_options.js?v=4cdba38b"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/translations.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=0f3dec7d"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'snippety/python_grafy';</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.jscustom.js"></script>
     <link rel="index" title="Rejstřík" href="../genindex.html" />
@@ -437,12 +435,12 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="obrazky-grafy">
-<h1>Obrázky, grafy<a class="headerlink" href="#obrazky-grafy" title="Permalink to this heading">#</a></h1>
+<h1>Obrázky, grafy<a class="headerlink" href="#obrazky-grafy" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 </pre></div>
 </div>
 </div>
@@ -464,10 +462,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f6c0589f200&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7efe43fba490&gt;]
 </pre></div>
 </div>
-<img alt="../_images/d4474dfd1eef10910722b1e9af7d6875eb508cf8b59b1c90822089e9bfcc773e.png" src="../_images/d4474dfd1eef10910722b1e9af7d6875eb508cf8b59b1c90822089e9bfcc773e.png" />
+<img alt="../_images/342d7d2884a20f867f29a3eac69021e530fcadd3e6f48742bb45adece6e18faf.png" src="../_images/342d7d2884a20f867f29a3eac69021e530fcadd3e6f48742bb45adece6e18faf.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -493,7 +491,7 @@ document.write(`
  (-2.0, 4.0)]
 </pre></div>
 </div>
-<img alt="../_images/8e62706ad29f4176ee36bc8ba7753ef7012abd81a1996732b7dbdddb4d3a246c.png" src="../_images/8e62706ad29f4176ee36bc8ba7753ef7012abd81a1996732b7dbdddb4d3a246c.png" />
+<img alt="../_images/a95a452b0375a8690e24ef20ac2af200c69be946195a17533eea5b179f877a37.png" src="../_images/a95a452b0375a8690e24ef20ac2af200c69be946195a17533eea5b179f877a37.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -506,7 +504,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9e6867d4022e8b94551ef28aab4a9a7af1d8213749f8ce7b3bda993e37c08c1a.png" src="../_images/9e6867d4022e8b94551ef28aab4a9a7af1d8213749f8ce7b3bda993e37c08c1a.png" />
+<img alt="../_images/75dcfc350492f471666b13973aefac36c39cbc2eeaecde118c11aa75a062f725.png" src="../_images/75dcfc350492f471666b13973aefac36c39cbc2eeaecde118c11aa75a062f725.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -521,7 +519,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4e217e82494f7efe28219203edc2f21cbf58ecfc647217f27b94b6c9bf81be3d.png" src="../_images/4e217e82494f7efe28219203edc2f21cbf58ecfc647217f27b94b6c9bf81be3d.png" />
+<img alt="../_images/79d8d07cc77b67360ccd748aa1c8143cd463674673f1cf553530194c29ebc4bc.png" src="../_images/79d8d07cc77b67360ccd748aa1c8143cd463674673f1cf553530194c29ebc4bc.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -537,10 +535,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f6c0580b6b0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7efe3bc35bd0&gt;
 </pre></div>
 </div>
-<img alt="../_images/6ce6c03c33a20c4ca82b69276d333a8c2f88fa3f8d9cd613b38d540e53f802a3.png" src="../_images/6ce6c03c33a20c4ca82b69276d333a8c2f88fa3f8d9cd613b38d540e53f802a3.png" />
+<img alt="../_images/7dc30686702514b4588bb1d91498479177da7bb8f5570a5450237223b860c07c.png" src="../_images/7dc30686702514b4588bb1d91498479177da7bb8f5570a5450237223b860c07c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -556,10 +554,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f6bfd6b1970&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7efe3ba19f90&gt;]
 </pre></div>
 </div>
-<img alt="../_images/56371bb3070090f0a459ef46c8e005f93a8c2a05b7f7ba60962c68fbf55ad143.png" src="../_images/56371bb3070090f0a459ef46c8e005f93a8c2a05b7f7ba60962c68fbf55ad143.png" />
+<img alt="../_images/ddfb599d6f4f6c194451ae396c517e9ebedd054ed38ac56264da1aec9d4b1e79.png" src="../_images/ddfb599d6f4f6c194451ae396c517e9ebedd054ed38ac56264da1aec9d4b1e79.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -580,10 +578,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f6bfd5cba70&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7efe3ba53d90&gt;]
 </pre></div>
 </div>
-<img alt="../_images/8ba478a3f5e97d961878cc50d93f38eb431dc15176b4e7fb270a7df3c951482e.png" src="../_images/8ba478a3f5e97d961878cc50d93f38eb431dc15176b4e7fb270a7df3c951482e.png" />
+<img alt="../_images/43237af8d5d4feecdb0372a038f39d35177b96b8ce6c1626542b4aa223465e16.png" src="../_images/43237af8d5d4feecdb0372a038f39d35177b96b8ce6c1626542b4aa223465e16.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -609,7 +607,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="../_images/227b9a422fd02b4ae12fa527a4ddb9201190a715b7435a64b01be097f40fda4f.png" src="../_images/227b9a422fd02b4ae12fa527a4ddb9201190a715b7435a64b01be097f40fda4f.png" />
+<img alt="../_images/ba8e7ceeb26b898d2ddc7f1be332fdb0b65171d44324daf6a22dc777dca34b6f.png" src="../_images/ba8e7ceeb26b898d2ddc7f1be332fdb0b65171d44324daf6a22dc777dca34b6f.png" />
 </div>
 </div>
 </section>

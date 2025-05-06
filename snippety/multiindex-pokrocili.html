@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="cs" data-content_root="" >
+<html lang="cs" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Hierarchický index (pokročilí) &#8212; Dynamické modely populací</title>
   
@@ -29,35 +28,34 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a771f39c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../_static/documentation_options.js?v=4cdba38b"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/translations.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=0f3dec7d"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'snippety/multiindex-pokrocili';</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.jscustom.js"></script>
     <link rel="index" title="Rejstřík" href="../genindex.html" />
@@ -449,7 +447,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="hierarchicky-index-pokrocili">
-<h1>Hierarchický index (pokročilí)<a class="headerlink" href="#hierarchicky-index-pokrocili" title="Permalink to this heading">#</a></h1>
+<h1>Hierarchický index (pokročilí)<a class="headerlink" href="#hierarchicky-index-pokrocili" title="Link to this heading">#</a></h1>
 <p>Pokročilejší práce s multiindexem (hierarchický index).</p>
 <ul class="simple">
 <li><p>Vyřešíme soustavu rovnic. Naučíme se uložit data do tabulky, kde budou přístupné výsledky pro jednotlivá nastavení modelu (datasety) a pro vývoj jednotlivých populací.</p></li>
@@ -458,12 +456,12 @@ document.write(`
 <p>Nejprve import knihoven a nastavení.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_ivp</span>
 
-<span class="k">def</span> <span class="nf">konkurence</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">beta</span><span class="o">=</span><span class="mf">.2</span><span class="p">,</span><span class="n">gamma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">konkurence</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">beta</span><span class="o">=</span><span class="mf">.2</span><span class="p">,</span><span class="n">gamma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">X</span>
     <span class="k">return</span> <span class="p">[(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">alpha</span><span class="o">-</span><span class="n">beta</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">gamma</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">]</span>
 
@@ -475,7 +473,7 @@ document.write(`
 </div>
 </div>
 <section id="tvorba-tabulky-s-hierarchickym-indexem">
-<h2>Tvorba tabulky s hierarchickým indexem<a class="headerlink" href="#tvorba-tabulky-s-hierarchickym-indexem" title="Permalink to this heading">#</a></h2>
+<h2>Tvorba tabulky s hierarchickým indexem<a class="headerlink" href="#tvorba-tabulky-s-hierarchickym-indexem" title="Link to this heading">#</a></h2>
 <p>Vytvoříme tabulku se sloupcovým indexem obsahujícím dvě úrovně. Pro začátek uložíme pouze sloupec s časem jako index. Ideální z hlediska rychlosti je vytvořit sloupce současně s tabulkou a poté do nich jenom vkládat data, ale je možné sloupce vytvářet i později.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -666,7 +664,7 @@ document.write(`
 </div>
 </section>
 <section id="pouziti-dat-z-tabulky">
-<h2>Použití dat z tabulky<a class="headerlink" href="#pouziti-dat-z-tabulky" title="Permalink to this heading">#</a></h2>
+<h2>Použití dat z tabulky<a class="headerlink" href="#pouziti-dat-z-tabulky" title="Link to this heading">#</a></h2>
 <p>Na řadě je vykreslení dat ze sloupců tak, aby byly v jednom obrázku všechna data pro jednotlivé datasety a poté v jedno obrázku všechna data pro jednotlivé populace.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -686,7 +684,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/efb6b1cb9bfee786d297193291789cabc6229d616b68a40a90bad8577d541f61.png" src="../_images/efb6b1cb9bfee786d297193291789cabc6229d616b68a40a90bad8577d541f61.png" />
+<img alt="../_images/37bbc3337fb5090f778051eb9a21abbc10c03db2bbe941273dfefd7002b52a6f.png" src="../_images/37bbc3337fb5090f778051eb9a21abbc10c03db2bbe941273dfefd7002b52a6f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -704,7 +702,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/cff65af00516dd23b5ff514c56142ae74b2c26aca8cdb4d13e69bf7a7f8451c9.png" src="../_images/cff65af00516dd23b5ff514c56142ae74b2c26aca8cdb4d13e69bf7a7f8451c9.png" />
+<img alt="../_images/0213768a0b073704ebb5dff56e7b53bdbb4f9fd1f083b4e4b3fa0d4889aad3e6.png" src="../_images/0213768a0b073704ebb5dff56e7b53bdbb4f9fd1f083b4e4b3fa0d4889aad3e6.png" />
 </div>
 </div>
 <p>Mírnou modifikací kódu je možné vykreslit trajektorie řešení. (Pozor na to, jedná se o trajektorie pro čtyři různé autonomní systémy, proto trajektorie mohou vycházet z jednoho bodu por různými směry.)</p>
@@ -720,12 +718,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6c6be43dc961bbbb4e4a446371c39033d2a64e68440335ce13d5af1457c5956a.png" src="../_images/6c6be43dc961bbbb4e4a446371c39033d2a64e68440335ce13d5af1457c5956a.png" />
+<img alt="../_images/1dacf0afcbceaeb600da437cf1c5745ae5997121e6cdb56c6f9800374b2a3c40.png" src="../_images/1dacf0afcbceaeb600da437cf1c5745ae5997121e6cdb56c6f9800374b2a3c40.png" />
 </div>
 </div>
 </section>
 <section id="ukazky-selekce-sloupcu">
-<h2>Ukázky selekce sloupců<a class="headerlink" href="#ukazky-selekce-sloupcu" title="Permalink to this heading">#</a></h2>
+<h2>Ukázky selekce sloupců<a class="headerlink" href="#ukazky-selekce-sloupcu" title="Link to this heading">#</a></h2>
 <p>Výběr podle hodnoty první úrově indexu je jednoduchý. Vlastně to je stejné jako pro klasické indexy.</p>
 <p>Nejprve jak vypadá naše tabulka (začátek).</p>
 <div class="cell docutils container">

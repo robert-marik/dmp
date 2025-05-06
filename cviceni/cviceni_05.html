@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="cs" data-content_root="" >
+<html lang="cs" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>6. Diferenciální rovnice 3 &#8212; Dynamické modely populací</title>
   
@@ -29,35 +28,34 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a771f39c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../_static/documentation_options.js?v=4cdba38b"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/translations.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=0f3dec7d"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'cviceni/cviceni_05';</script>
@@ -455,21 +453,21 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="diferencialni-rovnice-3">
-<h1><span class="section-number">6. </span>Diferenciální rovnice 3<a class="headerlink" href="#diferencialni-rovnice-3" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">6. </span>Diferenciální rovnice 3<a class="headerlink" href="#diferencialni-rovnice-3" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_ivp</span>
 </pre></div>
 </div>
 </div>
 </div>
 <section id="lov-v-logisticke-rovnici">
-<h2><span class="section-number">6.1. </span>Lov v logistické rovnici<a class="headerlink" href="#lov-v-logisticke-rovnici" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.1. </span>Lov v logistické rovnici<a class="headerlink" href="#lov-v-logisticke-rovnici" title="Link to this heading">#</a></h2>
 <section id="konstantni-uzitek">
-<h3><span class="section-number">6.1.1. </span>Konstantní užitek<a class="headerlink" href="#konstantni-uzitek" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.1.1. </span>Konstantní užitek<a class="headerlink" href="#konstantni-uzitek" title="Link to this heading">#</a></h3>
 <p>V logistické rovnici nakreslíme pro tři různé intenzity lovu průběh řešení. Prorovnejte následující kód s kódem pro kreslení řešení jedné sady pro jednu intenzitu lovu.</p>
 <p>Zpravidla netriviální kód nenapíšeme napoprvé, ale musíme příkazy ladit. V následujícím jsou rozděleny fáze řešení rovnice a vykreslení řešení. Pro potřeby spouštění je po odladění vhodné buňky sloučit.</p>
 <ul class="simple">
@@ -482,11 +480,11 @@ document.write(`
 <span class="n">meze</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">meze</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">destrukce_populace</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>  <span class="c1"># Pokud x klesne na nulu, zastavíme výpočet</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">destrukce_populace</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>  <span class="c1"># Pokud x klesne na nulu, zastavíme výpočet</span>
     <span class="k">return</span> <span class="n">x</span>
 <span class="n">destrukce_populace</span><span class="o">.</span><span class="n">terminal</span> <span class="o">=</span> <span class="kc">True</span>
 
-<span class="k">def</span> <span class="nf">rovnice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">0.15</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">rovnice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">0.15</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">r</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">K</span><span class="p">)</span><span class="o">-</span><span class="n">h</span>
 
 <span class="n">lovy</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">]</span>
@@ -527,7 +525,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/574344d5cb254b924d82479cb09f12d91c8ff7189de9cb957c5990f5f075c244.png" src="../_images/574344d5cb254b924d82479cb09f12d91c8ff7189de9cb957c5990f5f075c244.png" />
+<img alt="../_images/a097a0a178e99884d7eb8f302809042a4f9000c9da414bb861a9523f88db26ba.png" src="../_images/a097a0a178e99884d7eb8f302809042a4f9000c9da414bb861a9523f88db26ba.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -547,15 +545,15 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f7f0f485550&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe139d01f90&gt;
 </pre></div>
 </div>
-<img alt="../_images/4349ffad30dd8f1a1c072d4734d8c2c86f78422af40682f45c4da47a3c562040.png" src="../_images/4349ffad30dd8f1a1c072d4734d8c2c86f78422af40682f45c4da47a3c562040.png" />
+<img alt="../_images/ac9018d931b07ef55c5ebf9952a45381902013975a72e3f423ac9d84ae1e3945.png" src="../_images/ac9018d931b07ef55c5ebf9952a45381902013975a72e3f423ac9d84ae1e3945.png" />
 </div>
 </div>
 </section>
 <section id="konstantni-usili">
-<h3><span class="section-number">6.1.2. </span>Konstantní úsilí<a class="headerlink" href="#konstantni-usili" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.1.2. </span>Konstantní úsilí<a class="headerlink" href="#konstantni-usili" title="Link to this heading">#</a></h3>
 <p>Modifikujte předchozí kód s vykreslením časového vývoje populace vystavené lovu.
 Lov konstantní intenzitou nahraďte lovem s konstantním úsilím. Zkuste nejprve minimální úprava kódu.
 Bez ohledu na efektivitu, vyjděte z předchozího a snažte se co nejméně
@@ -575,7 +573,7 @@ toho, že žádné řešení neskončí v konečném čase.</p>
 <span class="n">meze</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">meze</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">rovnice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">0.15</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">rovnice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">0.15</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">r</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">K</span><span class="p">)</span><span class="o">-</span><span class="n">h</span><span class="o">*</span><span class="n">x</span>
 
 <span class="n">lovy</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.6</span><span class="p">]</span>
@@ -960,7 +958,7 @@ toho, že žádné řešení neskončí v konečném čase.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03a90c083c67c49a59308368b74d1b2a321cae2e930ecd55946de5f8d6708c17.png" src="../_images/03a90c083c67c49a59308368b74d1b2a321cae2e930ecd55946de5f8d6708c17.png" />
+<img alt="../_images/fdde7a608dd2d020fa56820f9e2aa06026ae6c70c861364150fdeb5c1536c97f.png" src="../_images/fdde7a608dd2d020fa56820f9e2aa06026ae6c70c861364150fdeb5c1536c97f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -981,16 +979,16 @@ toho, že žádné řešení neskončí v konečném čase.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f7f055e5550&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fe1301bf110&gt;
 </pre></div>
 </div>
-<img alt="../_images/f06b523127217f882df774b35653f8492c8a400640e731357aee997a59548500.png" src="../_images/f06b523127217f882df774b35653f8492c8a400640e731357aee997a59548500.png" />
+<img alt="../_images/8cdb62709228e2c26343c12e234a84cab98026bb56bfa10edb7d61b36fc12a2d.png" src="../_images/8cdb62709228e2c26343c12e234a84cab98026bb56bfa10edb7d61b36fc12a2d.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="alleeho-efekt">
-<h2><span class="section-number">6.2. </span>Alleeho efekt<a class="headerlink" href="#alleeho-efekt" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.2. </span>Alleeho efekt<a class="headerlink" href="#alleeho-efekt" title="Link to this heading">#</a></h2>
 <p>Nakreslete model řešení rovnice modelující lov konstantním úsilím v populaci s
 Alleeho efektem. Můžete uvažovat slabý Aleeho efekt (pro malé velikosti
 populace se dynamika růstu výrazně zpomalí) nebo silný Alleeho efekt  (pro malé
@@ -1022,7 +1020,7 @@ diferenciální rovnice pro různé intenzity lovu a různé počáteční podm�
 </div>
 </section>
 <section id="populace-pod-predacnim-tlakem">
-<h2><span class="section-number">6.3. </span>Populace pod predačním tlakem<a class="headerlink" href="#populace-pod-predacnim-tlakem" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.3. </span>Populace pod predačním tlakem<a class="headerlink" href="#populace-pod-predacnim-tlakem" title="Link to this heading">#</a></h2>
 <p>Vykreslete model pro populaci pro predačním tlakem <a class="reference external" href="https://robert-marik.github.io/dmp/prednaska/05.html#populace-pod-predacnim-tlakem">https://robert-marik.github.io/dmp/prednaska/05.html#populace-pod-predacnim-tlakem</a>. Použijte bezrozměnrou formulaci, tj. rovnici  <div class="math notranslate nohighlight">
 \[\frac{ \mathrm dx}{ \mathrm d\tau}=\alpha\left(1-\frac {x}{\beta}\right)x-\frac
    {x^2}{x^2+1}.\]</div>

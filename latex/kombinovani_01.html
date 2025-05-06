@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="cs" data-content_root="" >
+<html lang="cs" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>&lt;!—fit—&gt; Funkce, derivace funkcí &#8212; Dynamické modely populací</title>
   
@@ -29,35 +28,34 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a771f39c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../_static/documentation_options.js?v=4cdba38b"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/translations.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=0f3dec7d"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'latex/kombinovani_01';</script>
@@ -436,16 +434,16 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="fit-funkce-derivace-funkci">
-<h1>&lt;!—fit—&gt; Funkce, derivace funkcí<a class="headerlink" href="#fit-funkce-derivace-funkci" title="Permalink to this heading">#</a></h1>
+<h1>&lt;!—fit—&gt; Funkce, derivace funkcí<a class="headerlink" href="#fit-funkce-derivace-funkci" title="Link to this heading">#</a></h1>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="fit-diferencialni-rovnice">
-<h1>&lt;!—fit—&gt; Diferenciální rovnice<a class="headerlink" href="#fit-diferencialni-rovnice" title="Permalink to this heading">#</a></h1>
+<h1>&lt;!—fit—&gt; Diferenciální rovnice<a class="headerlink" href="#fit-diferencialni-rovnice" title="Link to this heading">#</a></h1>
 <p>Robert Mařík
 <code class="docutils literal notranslate"><span class="pre">robert-marik.github.io</span></code></p>
 <p>11.2.2025</p>
 <hr class="docutils" />
 <section id="funkce-jedna-funkce-jedne-promenne">
-<h2>Funkce (jedna funkce jedné proměnné)<a class="headerlink" href="#funkce-jedna-funkce-jedne-promenne" title="Permalink to this heading">#</a></h2>
+<h2>Funkce (jedna funkce jedné proměnné)<a class="headerlink" href="#funkce-jedna-funkce-jedne-promenne" title="Link to this heading">#</a></h2>
 <p>Funkce (reálná funkce jedné reálné proměnné): zobrazení z množiny reálných čísel (vstup, nezávislá proměnná) do množiny reálných čísel (výstup, závislá proměnná).</p>
 <p><em>Příklady funkcí v ekologii:</em></p>
 <ul class="simple">
@@ -455,7 +453,7 @@ document.write(`
 </section>
 <hr class="docutils" />
 <section id="funkce-zobecneni-predchoziho-pristupu">
-<h2>Funkce (zobecnění předchozího přístupu)<a class="headerlink" href="#funkce-zobecneni-predchoziho-pristupu" title="Permalink to this heading">#</a></h2>
+<h2>Funkce (zobecnění předchozího přístupu)<a class="headerlink" href="#funkce-zobecneni-predchoziho-pristupu" title="Link to this heading">#</a></h2>
 <p>Můžeme pracovat s funkcemi více proměnných (více hodnot na vstupu) a vektorovými funkcemi (více hodnot na výstupu):</p>
 <ul class="simple">
 <li><p>velikosti populace dravce a populace kořisti v závislosti na čase,</p></li>
@@ -467,13 +465,13 @@ jednorozměrná pole (<code class="docutils literal notranslate"><span class="pr
 </section>
 <hr class="docutils" />
 <section id="zavisla-a-nezavisla-promenna">
-<h2>Závislá a nezávislá proměnná<a class="headerlink" href="#zavisla-a-nezavisla-promenna" title="Permalink to this heading">#</a></h2>
+<h2>Závislá a nezávislá proměnná<a class="headerlink" href="#zavisla-a-nezavisla-promenna" title="Link to this heading">#</a></h2>
 <p>Zpravidla funkce zapisujeme ve tvaru <span class="math notranslate nohighlight">\(y=f(x)\)</span>, kde <span class="math notranslate nohighlight">\(x\)</span> je nezávislá proměnná (vstup) a <span class="math notranslate nohighlight">\(y\)</span> je závislá proměnná (výstup, funkční hodnota)</p>
 </section>
 <hr class="docutils" />
 <section id="prima-a-neprima-umernost">
-<h2>Přímá a nepřímá úměrnost<a class="headerlink" href="#prima-a-neprima-umernost" title="Permalink to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="colwidths-auto table">
+<h2>Přímá a nepřímá úměrnost<a class="headerlink" href="#prima-a-neprima-umernost" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Název</p></th>
 <th class="head"><p>Funkční předpis</p></th>
@@ -498,8 +496,8 @@ jednorozměrná pole (<code class="docutils literal notranslate"><span class="pr
 </section>
 <hr class="docutils" />
 <section id="exponencialni-funkce">
-<h2>Exponenciální funkce<a class="headerlink" href="#exponencialni-funkce" title="Permalink to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="colwidths-auto table">
+<h2>Exponenciální funkce<a class="headerlink" href="#exponencialni-funkce" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Název</p></th>
 <th class="head"><p>Funkční předpis</p></th>
@@ -524,7 +522,7 @@ jednorozměrná pole (<code class="docutils literal notranslate"><span class="pr
 </section>
 <hr class="docutils" />
 <section id="derivace-funkce-rychlost-rustu">
-<h2>Derivace funkce, rychlost růstu<a class="headerlink" href="#derivace-funkce-rychlost-rustu" title="Permalink to this heading">#</a></h2>
+<h2>Derivace funkce, rychlost růstu<a class="headerlink" href="#derivace-funkce-rychlost-rustu" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Okamžitá rychlost růstu funkce.</p></li>
 <li><p>Derivace funkce <span class="math notranslate nohighlight">\(f\)</span> proměnné <span class="math notranslate nohighlight">\(x\)</span> se značí <span class="math notranslate nohighlight">\(\displaystyle \frac{\mathrm
@@ -539,7 +537,7 @@ ubyli.</p></li>
 </section>
 <hr class="docutils" />
 <section id="derivace-funkce-detekce-zmen-funkce-pomoci-derivace">
-<h2>Derivace funkce, detekce změn funkce pomocí derivace<a class="headerlink" href="#derivace-funkce-detekce-zmen-funkce-pomoci-derivace" title="Permalink to this heading">#</a></h2>
+<h2>Derivace funkce, detekce změn funkce pomocí derivace<a class="headerlink" href="#derivace-funkce-detekce-zmen-funkce-pomoci-derivace" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Kladná derivace detekuje růst, záporná pokles.</p></li>
 <li><p>Nulová derivace souvisí s nulovou rychlostí růstu. Nulovou derivaci podel času
@@ -551,7 +549,7 @@ mají funkce v čase konstantní.</p></li>
 </section>
 <hr class="docutils" />
 <section id="diferencialni-rovnice">
-<h2>Diferenciální rovnice<a class="headerlink" href="#diferencialni-rovnice" title="Permalink to this heading">#</a></h2>
+<h2>Diferenciální rovnice<a class="headerlink" href="#diferencialni-rovnice" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Rovnice, ve kterých jako neznámá figuruje funkce a v rovnici je i derivace
 této funkce.
@@ -564,7 +562,7 @@ této funkce.
 </section>
 <hr class="docutils" />
 <section id="nejbeznejsi-diferencialni-rovnice-v-ekologii">
-<h2>Nejběžnější diferenciální rovnice v ekologii<a class="headerlink" href="#nejbeznejsi-diferencialni-rovnice-v-ekologii" title="Permalink to this heading">#</a></h2>
+<h2>Nejběžnější diferenciální rovnice v ekologii<a class="headerlink" href="#nejbeznejsi-diferencialni-rovnice-v-ekologii" title="Link to this heading">#</a></h2>
 <p>Rovnice logistického růstu</p>
 <div class="math notranslate nohighlight">
 \[\frac{\mathrm dN}{\mathrm dt} = r N \left(1-\frac NK\right)\]</div>
@@ -572,10 +570,10 @@ této funkce.
 </section>
 <hr class="docutils" />
 <section id="obecny-tvar-diferencialni-rovnice-v-ekologii">
-<h2>Obecný tvar diferenciální rovnice v ekologii<a class="headerlink" href="#obecny-tvar-diferencialni-rovnice-v-ekologii" title="Permalink to this heading">#</a></h2>
+<h2>Obecný tvar diferenciální rovnice v ekologii<a class="headerlink" href="#obecny-tvar-diferencialni-rovnice-v-ekologii" title="Link to this heading">#</a></h2>
 <div class="math notranslate nohighlight">
 \[\frac{\mathrm dx}{\mathrm dt} = b(t,x) - d(t,h) \]</div>
-<div class="pst-scrollable-table-container"><table class="colwidths-auto table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>označení</p></th>
 <th class="head"><p>interpretace</p></th>
@@ -597,7 +595,7 @@ této funkce.
 </section>
 <hr class="docutils" />
 <section id="autonomni-diferencialni-rovnice">
-<h2>Autonomní diferenciální rovnice<a class="headerlink" href="#autonomni-diferencialni-rovnice" title="Permalink to this heading">#</a></h2>
+<h2>Autonomní diferenciální rovnice<a class="headerlink" href="#autonomni-diferencialni-rovnice" title="Link to this heading">#</a></h2>
 <p>Pravá strana je nezávislá na čase.</p>
 <div class="math notranslate nohighlight">
 \[\frac{\mathrm dx}{\mathrm dt} = f(x) \]</div>
@@ -612,7 +610,7 @@ této funkce.
 </section>
 <hr class="docutils" />
 <section id="reseni-rovnice-logistickeho-rustu-v-pythonu">
-<h2>Řešení rovnice logistického růstu v Pythonu<a class="headerlink" href="#reseni-rovnice-logistickeho-rustu-v-pythonu" title="Permalink to this heading">#</a></h2>
+<h2>Řešení rovnice logistického růstu v Pythonu<a class="headerlink" href="#reseni-rovnice-logistickeho-rustu-v-pythonu" title="Link to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Program řeší numericky diferenciální rovnici logistického růstu populace pomocí </span>
 <span class="sd">knihovny scipy. Výstupem je tabulka velikostí populace jako funkce času a graf </span>
@@ -622,10 +620,10 @@ této funkce.
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="c1"># Import knihoven</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_ivp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="c1"># Nastavení parametrů</span>
 <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span>
@@ -636,7 +634,7 @@ této funkce.
 <span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
 
 <span class="c1"># Definice diferenciální rovnice</span>
-<span class="k">def</span> <span class="nf">logistic</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">logistic</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">r</span> <span class="o">*</span> <span class="n">N</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">N</span> <span class="o">/</span> <span class="n">K</span><span class="p">)</span>
 
 <span class="c1"># Řešení diferenciální rovnice</span>
@@ -662,12 +660,12 @@ této funkce.
 </section>
 <hr class="docutils" />
 <section id="vystup-programu-v-jupyter-notebooku">
-<h2>Výstup programu v Jupyter Notebooku<a class="headerlink" href="#vystup-programu-v-jupyter-notebooku" title="Permalink to this heading">#</a></h2>
+<h2>Výstup programu v Jupyter Notebooku<a class="headerlink" href="#vystup-programu-v-jupyter-notebooku" title="Link to this heading">#</a></h2>
 <p><img alt="" src="../_images/logisticka_jupyter.png" /></p>
 </section>
 <hr class="docutils" />
 <section id="dynamika-rovnice-logistickeho-rustu">
-<h2>Dynamika rovnice logistického růstu<a class="headerlink" href="#dynamika-rovnice-logistickeho-rustu" title="Permalink to this heading">#</a></h2>
+<h2>Dynamika rovnice logistického růstu<a class="headerlink" href="#dynamika-rovnice-logistickeho-rustu" title="Link to this heading">#</a></h2>
 <div class="math notranslate nohighlight">
 \[\frac{\mathrm dN}{\mathrm dt} = r N \left(1-\frac NK\right)\]</div>
 <ul class="simple">

@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="cs" data-content_root="" >
+<html lang="cs" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Kreslení funkcí jednoduše &#8212; Dynamické modely populací</title>
   
@@ -29,35 +28,34 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a771f39c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../_static/documentation_options.js?v=4cdba38b"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/translations.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=0f3dec7d"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'snippety/grafy_amateri';</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.jscustom.js"></script>
     <link rel="index" title="Rejstřík" href="../genindex.html" />
@@ -438,14 +436,14 @@ document.write(`
                   
   <p><a href="https://colab.research.google.com/github/robert-marik/dmp/blob/main/snippety/grafy_amateri.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="kresleni-funkci-jednoduse">
-<h1>Kreslení funkcí jednoduše<a class="headerlink" href="#kresleni-funkci-jednoduse" title="Permalink to this heading">#</a></h1>
+<h1>Kreslení funkcí jednoduše<a class="headerlink" href="#kresleni-funkci-jednoduse" title="Link to this heading">#</a></h1>
 <p>Jednoduché úkoly je vhodné řešit jednoduše. Například pokud chceme vykreslit několik funkcí do jednoho grafu, prostě postupně voláme příkazy kreslící jednotlivé funkce.</p>
 <p>Je dobré nejprve zavolat knihovny a nastavit proměnné, poté vykrelist grafy a poté dodělat kosmetické úpravy. To je v jednotlivých políčkách. Na konci práce bude asi vhodné poslední čtyři políčka spojit. Zkontrolujte, že jste v příkazovém modu (needitujete políčko, nalevo je modrá čára a ne zelená), označte spojované buňky (shift plus šipky) a spojte (shift + M). Případně neznačujte a shift+M připojí následující buňku. Stejnou práci odvede Menu -&gt; Edit -&gt; Merge Cell Bellow).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 </pre></div>
 </div>
 </div>
@@ -462,7 +460,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">meze</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">logisticky_rust</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">logisticky_rust</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Funkce definuje pravou stranu logisticke rovnice s pridanym lovem konstantni intenzity.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -482,7 +480,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/903298bc259b2ee3488e90ecdbb4a43bca4f99398cfa73b06cea36c6ee50026d.png" src="../_images/903298bc259b2ee3488e90ecdbb4a43bca4f99398cfa73b06cea36c6ee50026d.png" />
+<img alt="../_images/b44b997206e76b010ef2f7ddc26640f07a9e44c1a335b1c20c79281c08808224.png" src="../_images/b44b997206e76b010ef2f7ddc26640f07a9e44c1a335b1c20c79281c08808224.png" />
 </div>
 </div>
 <p>Poznámka: Pro rychlou orientaci jak vypadají grafy funkcí často nepotřebujeme popisky, nadpis apod. Potom není nutné použít v předchozím kódu řádek s nastavením proměnných <code class="docutils literal notranslate"><span class="pre">fig</span></code> a <code class="docutils literal notranslate"><span class="pre">ax</span></code>. Na tyto proměnné se odkazujeme při přidávání popisků, mezí pro osy apod. Alternativou, pokud bychom tyto proměnné nenastavili, je použití příkazů <code class="docutils literal notranslate"><span class="pre">plt.gca()</span></code> a <code class="docutils literal notranslate"><span class="pre">plt.gcf()</span></code> („get current axes“ a „get current figure“).</p>
@@ -499,7 +497,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5355720b5e874e1d44a306761f7e96915163234f467341ebf8ec74b25495d861.png" src="../_images/5355720b5e874e1d44a306761f7e96915163234f467341ebf8ec74b25495d861.png" />
+<img alt="../_images/75225f81693eee92cdd7ce6efcdcec70dc69b1f0dc4d410369cf11af042eb469.png" src="../_images/75225f81693eee92cdd7ce6efcdcec70dc69b1f0dc4d410369cf11af042eb469.png" />
 </div>
 </div>
 </section>

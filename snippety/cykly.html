@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="cs" data-content_root="" >
+<html lang="cs" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Cykly &#8212; Dynamické modely populací</title>
   
@@ -29,35 +28,34 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a771f39c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../_static/documentation_options.js?v=4cdba38b"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/translations.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=0f3dec7d"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'snippety/cykly';</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.jscustom.js"></script>
     <link rel="index" title="Rejstřík" href="../genindex.html" />
@@ -453,11 +451,11 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="cykly">
-<h1>Cykly<a class="headerlink" href="#cykly" title="Permalink to this heading">#</a></h1>
+<h1>Cykly<a class="headerlink" href="#cykly" title="Link to this heading">#</a></h1>
 <p>Při opakování kódu většinou známe počet opakování a používáme cyklus <code class="docutils literal notranslate"><span class="pre">for</span></code>. Za deklarací použité proměnné pro řízení cyklu a za seznamem, přes který proměnná iteruje, je dvojtečka. Blok příkazů, které se opakují, je odsazen o čtyři mezery.</p>
 <p>Níže jsou základní techniky.</p>
 <section id="prosta-iterace">
-<h2>Prostá iterace<a class="headerlink" href="#prosta-iterace" title="Permalink to this heading">#</a></h2>
+<h2>Prostá iterace<a class="headerlink" href="#prosta-iterace" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
@@ -477,7 +475,7 @@ Toto se tiskne pětkrát
 </div>
 </section>
 <section id="iterace-pres-seznam">
-<h2>Iterace přes seznam<a class="headerlink" href="#iterace-pres-seznam" title="Permalink to this heading">#</a></h2>
+<h2>Iterace přes seznam<a class="headerlink" href="#iterace-pres-seznam" title="Link to this heading">#</a></h2>
 <p>Často iterujeme přes seznam hodnot.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -516,7 +514,7 @@ Můj oblíbený strom je dub.
 </div>
 </section>
 <section id="iterace-pres-vice-seznamu-soucasne">
-<h2>Iterace přes více seznamů současně<a class="headerlink" href="#iterace-pres-vice-seznamu-soucasne" title="Permalink to this heading">#</a></h2>
+<h2>Iterace přes více seznamů současně<a class="headerlink" href="#iterace-pres-vice-seznamu-soucasne" title="Link to this heading">#</a></h2>
 <p>Pomocí <code class="docutils literal notranslate"><span class="pre">zip</span></code> je možné iterovat přes více seznamů současně.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -538,7 +536,7 @@ Jiří má na zahrádce dub.
 </div>
 </section>
 <section id="iterace-se-sledovanim-pozice-v-seznamu">
-<h2>Iterace se sledováním pozice v seznamu<a class="headerlink" href="#iterace-se-sledovanim-pozice-v-seznamu" title="Permalink to this heading">#</a></h2>
+<h2>Iterace se sledováním pozice v seznamu<a class="headerlink" href="#iterace-se-sledovanim-pozice-v-seznamu" title="Link to this heading">#</a></h2>
 <p>Někdy je vhodné při iterování znát i pozici v seznamu, která je právě zpracovávána. Toho dosáhneme pomocí <code class="docutils literal notranslate"><span class="pre">enumerate</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -560,7 +558,7 @@ Jiří má na zahrádce dub.
 </div>
 </section>
 <section id="prakticka-poznamka">
-<h2>Praktická poznámka<a class="headerlink" href="#prakticka-poznamka" title="Permalink to this heading">#</a></h2>
+<h2>Praktická poznámka<a class="headerlink" href="#prakticka-poznamka" title="Link to this heading">#</a></h2>
 <p>Zpravidla nejprve odladíme jednu otočku cyklu a potom doplníme volání cyklu a odsazení těla cyklu.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -598,7 +596,7 @@ Dub zasadil Jiří.
 </div>
 </section>
 <section id="predcasne-ukonceni">
-<h2>Předčasné ukončení<a class="headerlink" href="#predcasne-ukonceni" title="Permalink to this heading">#</a></h2>
+<h2>Předčasné ukončení<a class="headerlink" href="#predcasne-ukonceni" title="Link to this heading">#</a></h2>
 <p>Cyklus je možno opustit i předčasně pomocí <code class="docutils literal notranslate"><span class="pre">break</span></code>. Použití má smysl uvnitř nějaké podmínky. Uvnitř podmínky je další odsazení.</p>
 <p>Příkaz <code class="docutils literal notranslate"><span class="pre">break</span></code> ukončí celý cyklus. Je možné použít i příkaz <code class="docutils literal notranslate"><span class="pre">continue</span></code>, který přeruší pouze danou otočku cyklu a přejde k další otočce v pořadí.</p>
 <div class="cell docutils container">
@@ -632,14 +630,14 @@ Druhá mocnina dosáhla vysokou hodnotu, končím.
 </div>
 </section>
 <section id="prakticka-ukazka">
-<h2>Praktická ukázka<a class="headerlink" href="#prakticka-ukazka" title="Permalink to this heading">#</a></h2>
+<h2>Praktická ukázka<a class="headerlink" href="#prakticka-ukazka" title="Link to this heading">#</a></h2>
 <p>Vyřešíme diferenciální rovnici logistického růstu pro různé hodnoty nosné kapacity. Data schováme v tabulce a nakonec je vykreslíme. Jednotlivé otočky cyklu jsou použity k vytvoření sloupců s daty.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_ivp</span>
 </pre></div>
 </div>
 </div>
@@ -651,7 +649,7 @@ Druhá mocnina dosáhla vysokou hodnotu, končím.
 <span class="n">pocet_hodnot</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">hodnoty_K</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">2.5</span><span class="p">]</span>
 
-<span class="k">def</span> <span class="nf">rovnice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">rovnice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">r</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">K</span><span class="p">)</span>
 
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">meze</span><span class="p">,</span><span class="n">pocet_hodnot</span><span class="p">)</span>
@@ -682,7 +680,7 @@ Druhá mocnina dosáhla vysokou hodnotu, končím.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7fb855da12a507d8a5a92773d7e2fbe4ed91be2b2e3db349417841970d336cbd.png" src="../_images/7fb855da12a507d8a5a92773d7e2fbe4ed91be2b2e3db349417841970d336cbd.png" />
+<img alt="../_images/b0eca5f518f56d32299afe0a77cff81455d1a45206d1e20343806472a982eff0.png" src="../_images/b0eca5f518f56d32299afe0a77cff81455d1a45206d1e20343806472a982eff0.png" />
 </div>
 </div>
 <p>Jinou variantou je, neukládat data do tabulky sloupec po sloupci, ale vytvoření datové struktury obsahující veškerá data a poté transformaci do tabulky.</p>
@@ -693,7 +691,7 @@ Druhá mocnina dosáhla vysokou hodnotu, končím.
 <span class="n">pocet_hodnot</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">hodnoty_K</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">2.5</span><span class="p">]</span>
 
-<span class="k">def</span> <span class="nf">rovnice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">rovnice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">r</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">K</span><span class="p">)</span>
 
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">meze</span><span class="p">,</span><span class="n">pocet_hodnot</span><span class="p">)</span>
@@ -724,7 +722,7 @@ Druhá mocnina dosáhla vysokou hodnotu, končím.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7fb855da12a507d8a5a92773d7e2fbe4ed91be2b2e3db349417841970d336cbd.png" src="../_images/7fb855da12a507d8a5a92773d7e2fbe4ed91be2b2e3db349417841970d336cbd.png" />
+<img alt="../_images/b0eca5f518f56d32299afe0a77cff81455d1a45206d1e20343806472a982eff0.png" src="../_images/b0eca5f518f56d32299afe0a77cff81455d1a45206d1e20343806472a982eff0.png" />
 </div>
 </div>
 <p>V předchozím příkladě bylo ještě nutno přeskládat data z řádků do sloupců. Tomu je možné se vyhnout pomocí datového typu dictionary.</p>
@@ -735,7 +733,7 @@ Druhá mocnina dosáhla vysokou hodnotu, končím.
 <span class="n">pocet_hodnot</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">hodnoty_K</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">2.5</span><span class="p">]</span>
 
-<span class="k">def</span> <span class="nf">rovnice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">rovnice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">r</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">K</span><span class="p">)</span>
 
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">meze</span><span class="p">,</span><span class="n">pocet_hodnot</span><span class="p">)</span>
@@ -766,7 +764,7 @@ Druhá mocnina dosáhla vysokou hodnotu, končím.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7fb855da12a507d8a5a92773d7e2fbe4ed91be2b2e3db349417841970d336cbd.png" src="../_images/7fb855da12a507d8a5a92773d7e2fbe4ed91be2b2e3db349417841970d336cbd.png" />
+<img alt="../_images/b0eca5f518f56d32299afe0a77cff81455d1a45206d1e20343806472a982eff0.png" src="../_images/b0eca5f518f56d32299afe0a77cff81455d1a45206d1e20343806472a982eff0.png" />
 </div>
 </div>
 </section>

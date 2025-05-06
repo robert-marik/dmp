@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="cs" data-content_root="" >
+<html lang="cs" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>11. Modely dravce a kořisti &#8212; Dynamické modely populací</title>
   
@@ -29,35 +28,34 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a771f39c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../_static/documentation_options.js?v=4cdba38b"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/translations.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=0f3dec7d"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'cviceni/cviceni_10';</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.jscustom.js"></script>
     <link rel="index" title="Rejstřík" href="../genindex.html" />
@@ -449,19 +447,19 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="modely-dravce-a-koristi">
-<h1><span class="section-number">11. </span>Modely dravce a kořisti<a class="headerlink" href="#modely-dravce-a-koristi" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">11. </span>Modely dravce a kořisti<a class="headerlink" href="#modely-dravce-a-koristi" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_ivp</span>
 </pre></div>
 </div>
 </div>
 </div>
 <section id="lotkuv-a-volterruv-model-dravce-a-koristi">
-<h2><span class="section-number">11.1. </span>Lotkův a Volterrův model dravce a kořisti<a class="headerlink" href="#lotkuv-a-volterruv-model-dravce-a-koristi" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">11.1. </span>Lotkův a Volterrův model dravce a kořisti<a class="headerlink" href="#lotkuv-a-volterruv-model-dravce-a-koristi" title="Link to this heading">#</a></h2>
 <p>Nakreslete řešení Lotkova a Volterrova modelu dravce a kořisti.</p>
 <p>Pokud pro nějaké nastavení parametrů není přehledné kreslit křivky pro kořist
 obě do jednoho grafu, můžeme každou křivku nakreslit do samostatného grafu.
@@ -473,13 +471,13 @@ vývoje populace kořisti. Časová osa nechť je sdílená pro oba grafy.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Prostor pro řešení</span>
 
-<span class="k">def</span> <span class="nf">prey</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">prey</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span>
 
-<span class="k">def</span> <span class="nf">predator</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">predator</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
     <span class="k">return</span> <span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">y</span><span class="o">+</span><span class="n">d</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span>
 
-<span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
     <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">X</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">prey</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">),</span><span class="n">predator</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">)]</span>
 
@@ -507,7 +505,7 @@ vývoje populace kořisti. Časová osa nechť je sdílená pro oba grafy.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e5def56e599fba190c0e0e7f00f823f932c49ef06aed71926ede0b2c52582936.png" src="../_images/e5def56e599fba190c0e0e7f00f823f932c49ef06aed71926ede0b2c52582936.png" />
+<img alt="../_images/a6e9488906bb3a5209a6002e727df2774895f6720bd9bf9c6254faec86018d78.png" src="../_images/a6e9488906bb3a5209a6002e727df2774895f6720bd9bf9c6254faec86018d78.png" />
 </div>
 </div>
 <p>Modifikujte předchozí kód tak, aby byla populace dravce i kořisti ve stejném
@@ -525,18 +523,18 @@ souvisí či nesouvisí s počáteční podmínkou. Nakreslete do stejného obr�
 řešení s další počáteční podmínkou.</p>
 </section>
 <section id="model-dravce-a-koristi-s-hollingovou-trofickou-funkci">
-<h2><span class="section-number">11.2. </span>Model dravce a kořisti s Hollingovou trofickou funkcí<a class="headerlink" href="#model-dravce-a-koristi-s-hollingovou-trofickou-funkci" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">11.2. </span>Model dravce a kořisti s Hollingovou trofickou funkcí<a class="headerlink" href="#model-dravce-a-koristi-s-hollingovou-trofickou-funkci" title="Link to this heading">#</a></h2>
 <p>Zopakujte předchozí kroky pro Rosenzweigův a MacArthurův model s Hollingovou
 trofickou funkcí.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">predator</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">predator</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
     <span class="k">return</span> <span class="o">-</span><span class="mf">0.04</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="mf">.1</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">+</span><span class="n">x</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">prey</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">prey</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="mf">.3</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">+</span><span class="n">x</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">X</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">X</span><span class="p">):</span>
     <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">X</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">prey</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span><span class="n">predator</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)]</span>
 
@@ -552,7 +550,7 @@ trofickou funkcí.</p>
 </div>
 </section>
 <section id="model-dravce-a-dvou-populaci-koristi">
-<h2><span class="section-number">11.3. </span>Model dravce a dvou populací kořisti<a class="headerlink" href="#model-dravce-a-dvou-populaci-koristi" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">11.3. </span>Model dravce a dvou populací kořisti<a class="headerlink" href="#model-dravce-a-dvou-populaci-koristi" title="Link to this heading">#</a></h2>
 <p>Pokuste se namodelovat následující situaci.</p>
 <ul class="simple">
 <li><p>V ekosystému dochází ke konkurenci dvou populací a jedna z populací je

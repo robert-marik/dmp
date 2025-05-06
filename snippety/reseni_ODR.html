@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="cs" data-content_root="" >
+<html lang="cs" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Řešení diferenciální rovnice &#8212; Dynamické modely populací</title>
   
@@ -29,35 +28,34 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a771f39c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../_static/documentation_options.js?v=4cdba38b"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/translations.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=0f3dec7d"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'snippety/reseni_ODR';</script>
@@ -451,13 +449,13 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="reseni-diferencialni-rovnice">
-<h1>Řešení diferenciální rovnice<a class="headerlink" href="#reseni-diferencialni-rovnice" title="Permalink to this heading">#</a></h1>
+<h1>Řešení diferenciální rovnice<a class="headerlink" href="#reseni-diferencialni-rovnice" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_ivp</span>
 </pre></div>
 </div>
 </div>
@@ -469,7 +467,7 @@ document.write(`
 </p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rovnice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">rovnice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">r</span><span class="o">*</span><span class="n">y</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">y</span><span class="o">/</span><span class="n">K</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -486,7 +484,7 @@ document.write(`
 </div>
 </div>
 <section id="varianta-1-chceme-funkcni-predpis">
-<h2>Varianta 1: Chceme funkční předpis<a class="headerlink" href="#varianta-1-chceme-funkcni-predpis" title="Permalink to this heading">#</a></h2>
+<h2>Varianta 1: Chceme funkční předpis<a class="headerlink" href="#varianta-1-chceme-funkcni-predpis" title="Link to this heading">#</a></h2>
 <p>Při volání funkce <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> rovnou použijeme metodu <code class="docutils literal notranslate"><span class="pre">sol</span></code>. Výsledkem je funkce, do keré můžeme dosazovat libovolný čas mezi dolní a horní mezí a získáme hodnotu řešení v daném čase. Můžeme také dosazovat několik hodnot času současně a získáme funkční hodnotu pro každý časový okamžik.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -545,12 +543,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b6cd4c5a0d0f0074feeb854ba7588673eb9e905b057c87d0e39a58627e456ee1.png" src="../_images/b6cd4c5a0d0f0074feeb854ba7588673eb9e905b057c87d0e39a58627e456ee1.png" />
+<img alt="../_images/b0a2e7a293aa23bf07ec6eee4a588f27f01e2f76bbff25230134bd17b01cfd59.png" src="../_images/b0a2e7a293aa23bf07ec6eee4a588f27f01e2f76bbff25230134bd17b01cfd59.png" />
 </div>
 </div>
 </section>
 <section id="varianta-2-chceme-data-pro-predem-zname-casy">
-<h2>Varianta 2: Chceme data pro předem známé časy<a class="headerlink" href="#varianta-2-chceme-data-pro-predem-zname-casy" title="Permalink to this heading">#</a></h2>
+<h2>Varianta 2: Chceme data pro předem známé časy<a class="headerlink" href="#varianta-2-chceme-data-pro-predem-zname-casy" title="Link to this heading">#</a></h2>
 <p>Hodnoty času, pro které se má určit funkční hodnota řešení, se zadají při volání příkazu <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> pomocí parametru <code class="docutils literal notranslate"><span class="pre">t_eval</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -579,12 +577,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b6cd4c5a0d0f0074feeb854ba7588673eb9e905b057c87d0e39a58627e456ee1.png" src="../_images/b6cd4c5a0d0f0074feeb854ba7588673eb9e905b057c87d0e39a58627e456ee1.png" />
+<img alt="../_images/b0a2e7a293aa23bf07ec6eee4a588f27f01e2f76bbff25230134bd17b01cfd59.png" src="../_images/b0a2e7a293aa23bf07ec6eee4a588f27f01e2f76bbff25230134bd17b01cfd59.png" />
 </div>
 </div>
 </section>
 <section id="ruzne-hodnoty-parametru">
-<h2>Různé hodnoty parametrů<a class="headerlink" href="#ruzne-hodnoty-parametru" title="Permalink to this heading">#</a></h2>
+<h2>Různé hodnoty parametrů<a class="headerlink" href="#ruzne-hodnoty-parametru" title="Link to this heading">#</a></h2>
 <p>Pokud chceme určit chování řešení pro různé hodnoty parametrů, je nejvýhodnější řešit rovnici v každém případě pro stejné hodnoty času a výsledek uspořádat jako sloupce tabulky. Vytvoříme tedy seznam obsahující jednotlivé funkční hodnoty, sestavíme z nich tabulku a přidáme sloupec s časem. Poté můžeme dělat cokoliv, například řešení vykreslit.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -712,7 +710,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c5b8c26b6026d3d735b313a4904d5a350596c88b7772d6bca18408c1f8f05723.png" src="../_images/c5b8c26b6026d3d735b313a4904d5a350596c88b7772d6bca18408c1f8f05723.png" />
+<img alt="../_images/fd2fc43407dbcd8cf676191621ccfc49282c5693337a73210f5a90889dd648a1.png" src="../_images/fd2fc43407dbcd8cf676191621ccfc49282c5693337a73210f5a90889dd648a1.png" />
 </div>
 </div>
 </section>

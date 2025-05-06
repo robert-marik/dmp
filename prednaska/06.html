@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="cs" data-content_root="" >
+<html lang="cs" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>6. Lineární algebra, matice &#8212; Dynamické modely populací</title>
   
@@ -29,35 +28,34 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a771f39c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../_static/documentation_options.js?v=4cdba38b"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/translations.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=0f3dec7d"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'prednaska/06';</script>
@@ -484,7 +482,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="linearni-algebra-matice">
-<h1><span class="section-number">6. </span>Lineární algebra, matice<a class="headerlink" href="#linearni-algebra-matice" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">6. </span>Lineární algebra, matice<a class="headerlink" href="#linearni-algebra-matice" title="Link to this heading">#</a></h1>
 <div class="admonition-co-se-dozvite-v-tomto-textu admonition">
 <p class="admonition-title">Co se dozvíte v tomto textu</p>
 <p><img alt="" src="../_images/grey-seal.jpg" /></p>
@@ -501,9 +499,9 @@ mnohorozměrnými veličinami.</p>
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -511,7 +509,7 @@ mnohorozměrnými veličinami.</p>
 </details>
 </div>
 <section id="vektory">
-<h2><span class="section-number">6.1. </span>Vektory<a class="headerlink" href="#vektory" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.1. </span>Vektory<a class="headerlink" href="#vektory" title="Link to this heading">#</a></h2>
 <p>Vektorem rozumíme uspořádanou <span class="math notranslate nohighlight">\(n\)</span>-tici objektů, pro které má smysl operace
 sčítání a násobení číslem. Počet komponent v této <span class="math notranslate nohighlight">\(n\)</span>-tici se nazývá dimenze
 vektoru. Tyto komponenty jsou zpravidla čísla nebo skalární funkce. Aby se s
@@ -543,7 +541,7 @@ a_n\)</span> nazýváme <em>složky vektoru</em> <span class="math notranslate n
 </div><p>Často pracujeme se sloupcovými vektory. Zápis je potom přehlednější.</p>
 </section>
 <section id="linearni-kombinace">
-<h2><span class="section-number">6.2. </span>Lineární kombinace<a class="headerlink" href="#linearni-kombinace" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.2. </span>Lineární kombinace<a class="headerlink" href="#linearni-kombinace" title="Link to this heading">#</a></h2>
 <div class="proof definition admonition" id="definition-1">
 <p class="admonition-title"><span>Definice </span> (Lineární kombinace)</p>
 <section class="definition-content" id="proof-content">
@@ -579,7 +577,7 @@ V opačném případě říkáme, že vektory jsou <em>lineárně nezávislé</e
 písmenem označujícím jméno proměnné vynechávat.</p>
 </section>
 <section id="matice">
-<h2><span class="section-number">6.3. </span>Matice<a class="headerlink" href="#matice" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.3. </span>Matice<a class="headerlink" href="#matice" title="Link to this heading">#</a></h2>
 <div class="proof definition admonition" id="definition-3">
 <p class="admonition-title"><span>Definice </span> (Matice)</p>
 <section class="definition-content" id="proof-content">
@@ -654,7 +652,7 @@ kde <span class="math notranslate nohighlight">\(\lambda\)</span> je reálné č
 pořadí matic při násobení.</p>
 </section>
 <section id="jednotkova-matice-a-matice-inverzni">
-<h2><span class="section-number">6.4. </span>Jednotková matice a matice inverzní<a class="headerlink" href="#jednotkova-matice-a-matice-inverzni" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.4. </span>Jednotková matice a matice inverzní<a class="headerlink" href="#jednotkova-matice-a-matice-inverzni" title="Link to this heading">#</a></h2>
 <p>V tomto pododdíle si představíme maticovou obdobu jedničky jako neutrálního prvku vzhledem k násobení a převrácené hodnoty.</p>
 <div class="proof definition admonition" id="definition-5">
 <p class="admonition-title"><span>Definice </span> (Jednotková matice)</p>
@@ -676,7 +674,7 @@ pořadí matic při násobení.</p>
 </section>
 </div></section>
 <section id="matice-jako-zobrazeni">
-<h2><span class="section-number">6.5. </span>Matice jako zobrazení<a class="headerlink" href="#matice-jako-zobrazeni" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.5. </span>Matice jako zobrazení<a class="headerlink" href="#matice-jako-zobrazeni" title="Link to this heading">#</a></h2>
 <p>Součin matice a vektoru je možno chápat jako zobrazení, které vektor zobrazuje
 na vektor. Vektorem bývá kvantitativní charakteristika populace v nějakém roce
 (rozebereme níže) a obrazem vektoru charakteristika v následujícím roce. Tímto
@@ -684,7 +682,7 @@ způsobem je možné stav v jednom roce projektovat na stav v roce následujíc�
 proto se v tomto kontextu matice použitá v součinu nazývá matice projekce.</p>
 </section>
 <section id="vlastni-cisla-a-smery">
-<h2><span class="section-number">6.6. </span>Vlastní čísla a směry<a class="headerlink" href="#vlastni-cisla-a-smery" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.6. </span>Vlastní čísla a směry<a class="headerlink" href="#vlastni-cisla-a-smery" title="Link to this heading">#</a></h2>
 <p>U zobrazování vektorů pomocí maticového násobení nás velice zajímá, které směry se zachovávají, tj. kdy bude obrazem vektoru jeho násobek.</p>
 <div class="proof definition admonition" id="definition-8">
 <p class="admonition-title"><span>Definice </span> (Vlastní vektor a vlastní hodnota matice)</p>
@@ -707,7 +705,7 @@ věkově strukturované populace a při hledání řešení speciálních sousta
 lineárních rovnic, při hledání řešení autonomních systémů.</p>
 </section>
 <section id="markovuv-retezec-model-skladby-lesa">
-<h2><span class="section-number">6.7. </span>Markovův řetězec, model skladby lesa<a class="headerlink" href="#markovuv-retezec-model-skladby-lesa" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.7. </span>Markovův řetězec, model skladby lesa<a class="headerlink" href="#markovuv-retezec-model-skladby-lesa" title="Link to this heading">#</a></h2>
 <p>Markovův řetězec je jeden z nejjednodušších modelů popisujících systém, který se
 může nacházet v různých stavech a mezi těmito stavy se náhodně přepíná podle
 předem daných pravděpodobností. Pro jeho popis je vhodný matematický aparát
@@ -729,13 +727,13 @@ na této lokalitě může objevit.</p>
   }
 </style>  
 <div class="tabulka">
-<div class="pst-scrollable-table-container"><table class="colwidths-auto table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
-<th class="text-right head"><p>Bříza topololistá</p></th>
-<th class="text-right head"><p>Tupela lesní</p></th>
-<th class="text-right head"><p>Javor červený</p></th>
-<th class="text-right head"><p>Buk</p></th>
+<th class="head text-right"><p>Bříza topololistá</p></th>
+<th class="head text-right"><p>Tupela lesní</p></th>
+<th class="head text-right"><p>Javor červený</p></th>
+<th class="head text-right"><p>Buk</p></th>
 </tr>
 </thead>
 <tbody>
@@ -857,7 +855,7 @@ všech druhů. Vývoj jednotlivých dřevin zachytíme graficky.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: title={&#39;center&#39;: &#39;Vývoj procentuálního zastoupení jednotlivých druhů&#39;}, xlabel=&#39;čas/rok&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/861506c1af9e50b5ac6014e7b6d2c37fa88750e4bf47bf872e25d1074b5709e6.png" src="../_images/861506c1af9e50b5ac6014e7b6d2c37fa88750e4bf47bf872e25d1074b5709e6.png" />
+<img alt="../_images/4054b9aea3acb12b1fb7706f966d2f3e5802f8d72dbc3170a15c8863eaf7a91e.png" src="../_images/4054b9aea3acb12b1fb7706f966d2f3e5802f8d72dbc3170a15c8863eaf7a91e.png" />
 </div>
 </div>
 <p>Ze simulace se zdá, že poměr dřevin se postupně stabilizuje.
@@ -917,7 +915,7 @@ zpřesněním na lokální úroveň. Používá informace o tom, s jakou pravdě
 je jeden druh počasí zachován či vystřídán druhým.</p>
 </section>
 <section id="leslieho-model-rustu-populace-s-vekovou-strukturou">
-<h2><span class="section-number">6.8. </span>Leslieho model růstu populace s věkovou strukturou<a class="headerlink" href="#leslieho-model-rustu-populace-s-vekovou-strukturou" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.8. </span>Leslieho model růstu populace s věkovou strukturou<a class="headerlink" href="#leslieho-model-rustu-populace-s-vekovou-strukturou" title="Link to this heading">#</a></h2>
 <p id="index-0">Britský ekolog Patrick H. Leslie použil maticový součin v roce 1945 k formulaci
 modelu, sledujícího růst populace s definovanou věkovou strukturou. Model
 sleduje růst jednotlivých věkových skupin a přechod jedinců z jedné skupiny do
@@ -983,9 +981,9 @@ jednotlivých věkových tříd poté, co se toto rozložení ustálí.</p></li>
 </ul>
 </section>
 <section id="zobecneni-leslieho-modelu">
-<h2><span class="section-number">6.9. </span>Zobecnění Leslieho modelu<a class="headerlink" href="#zobecneni-leslieho-modelu" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.9. </span>Zobecnění Leslieho modelu<a class="headerlink" href="#zobecneni-leslieho-modelu" title="Link to this heading">#</a></h2>
 <section id="agregace-nejstarsich-vekovych-kategorii">
-<h3><span class="section-number">6.9.1. </span>Agregace nejstarších věkových kategorií<a class="headerlink" href="#agregace-nejstarsich-vekovych-kategorii" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.9.1. </span>Agregace nejstarších věkových kategorií<a class="headerlink" href="#agregace-nejstarsich-vekovych-kategorii" title="Link to this heading">#</a></h3>
 <p>Pro praktické využití Leslieho modelu je někdy vhodné redukovat počet
 uvažovaných věkových tříd tak, že nejstarší věkové třídy shrneme do třídy
 jediné. Poté tedy členové nejstarší věkové třídy automaticky v dalším časovém
@@ -993,7 +991,7 @@ kroku nevymírají, ale určité procento jich pouze zestárne a zůstávají ve
 nejstarší kategorii. V Leslieho matici se toto projeví tak, že prvek v pravém
 dolním rohu matice je nenulový.</p>
 <section id="model-populace-tulenu">
-<span id="id2"></span><h4><span class="section-number">6.9.1.1. </span>Model populace tuleňů<a class="headerlink" href="#model-populace-tulenu" title="Permalink to this heading">#</a></h4>
+<span id="id2"></span><h4><span class="section-number">6.9.1.1. </span>Model populace tuleňů<a class="headerlink" href="#model-populace-tulenu" title="Link to this heading">#</a></h4>
 <p>Následující příklad je z <span id="id3">[<a class="reference internal" href="../literatura.html#id17" title="M. Monagan. Using Leslie matrices as the application of eigenvalues and eigenvectors in a first course in linear algebra. In Jürgen Gerhard and Ilias Kotsireas, editors, Maple in Mathematics Education and Research, 279–291. Cham, 2020. Springer International Publishing. URL: https://link.springer.com/chapter/10.1007/978-3-030-41258-6_21.">13</a>]</span>.</p>
 <p>Populace samiček tuleňů je rozdělena na tři třídy: mláďata (0 až 4 roky), mladé
 tuleně (4 až 8 let) a dospělé tuleně (nad 8 let). Jednotka času budou 4 roky.
@@ -1073,7 +1071,7 @@ Příslušný vlastní směr je [0.52683575 0.2168591  0.25630515]
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/c462761576b4d73352f6f55941233db25a35a04bf7164cbd1f3005aad334eaf6.png" src="../_images/c462761576b4d73352f6f55941233db25a35a04bf7164cbd1f3005aad334eaf6.png" />
+<img alt="../_images/c7ae93b3b2919e687edc7db47607be80b51bae5659d5f1d3f40bfe335d95df82.png" src="../_images/c7ae93b3b2919e687edc7db47607be80b51bae5659d5f1d3f40bfe335d95df82.png" />
 </div>
 </div>
 <div class="admonition tip">
@@ -1098,7 +1096,7 @@ Příslušný vlastní směr je [0.52683575 0.2168591  0.25630515]
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/a72e6cf4409f955a226cbba3ebbdfbe6b66542754807cb9b45c1aa550d775286.png" src="../_images/a72e6cf4409f955a226cbba3ebbdfbe6b66542754807cb9b45c1aa550d775286.png" />
+<img alt="../_images/a7acc04de341dd09c18acc1a1a5d2238ace62bc26f5aa465e31ad603dc425e35.png" src="../_images/a7acc04de341dd09c18acc1a1a5d2238ace62bc26f5aa465e31ad603dc425e35.png" />
 </div>
 </div>
 <p>Procentuální skladba populace, ke které vývoj konverguje, je přibližně dána poslední položkou.</p>
@@ -1127,7 +1125,7 @@ Name: 40, dtype: float64
 </section>
 </section>
 <section id="lefkovitchuv-model">
-<h3><span class="section-number">6.9.2. </span>Lefkovitchův model<a class="headerlink" href="#lefkovitchuv-model" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.9.2. </span>Lefkovitchův model<a class="headerlink" href="#lefkovitchuv-model" title="Link to this heading">#</a></h3>
 <p>Anglický biolog L.P. Lefkovitch představil model analogický Leslieho modelu, ale
 namísto s věkovými kategoriemi model pracuje s vývojovými stadii. To je pro
 některé druhy přirozenější. Například rostliny v nepříznivých podmínkách mohou
@@ -1144,7 +1142,7 @@ kdy někteří jedinci vykazují zrychlený či zpomalený růst.</p>
 případem Lefkovitchova modelu.</p>
 </section>
 <section id="usheruv-model">
-<h3><span class="section-number">6.9.3. </span>Usherův model<a class="headerlink" href="#usheruv-model" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">6.9.3. </span>Usherův model<a class="headerlink" href="#usheruv-model" title="Link to this heading">#</a></h3>
 <p>S modifikací podobnou Lefkovitchově modelu přišel britský biolog Michael B.
 Usher. Namísto vývojových stadií použil jako prediktor dalšího vývoje velikost.
 To je vhodné pro některé rostliny, například pro stromy.</p>
@@ -1154,10 +1152,10 @@ na situaci po uplynutí jedné časové jednotky.</p>
 </section>
 </section>
 <section id="soustavy-linearnich-rovnic">
-<h2><span class="section-number">6.10. </span>Soustavy lineárních rovnic<a class="headerlink" href="#soustavy-linearnich-rovnic" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.10. </span>Soustavy lineárních rovnic<a class="headerlink" href="#soustavy-linearnich-rovnic" title="Link to this heading">#</a></h2>
 <p>Uvažujme soustavu lineárních rovnic</p>
 <div class="math notranslate nohighlight" id="equation-soustava">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-soustava" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-soustava" title="Link to this equation">#</a></span>\[
 \begin{aligned} a_{11} x_1+a_{12}x_2 &amp;=b_1,\cr a_{21}x_1+a_{22}x_2&amp;=b_2. \end{aligned}
 \]</div>
 <p>Tuto soustavu je možné zapsat jako jednu vektorovou rovnici ve tvaru
@@ -1176,7 +1174,7 @@ možno použít pro libovolný počet rovnic a neznámých. Maticový součin um
 snadno zapsat a pracovat se soustavami lineárních rovnic.</p>
 </section>
 <section id="linearni-autonomni-systemy">
-<h2><span class="section-number">6.11. </span>Lineární autonomní systémy<a class="headerlink" href="#linearni-autonomni-systemy" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">6.11. </span>Lineární autonomní systémy<a class="headerlink" href="#linearni-autonomni-systemy" title="Link to this heading">#</a></h2>
 <p>Lineární autonomní systémy jsou soustavy ve tvaru
 <div class="math notranslate nohighlight">
 \[\frac{\mathrm dX}{\mathrm dt}=AX+B,\]</div>

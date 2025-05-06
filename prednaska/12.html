@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="cs" data-content_root="" >
+<html lang="cs" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>12. Difuzní rovnice &#8212; Dynamické modely populací</title>
   
@@ -29,35 +28,36 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a771f39c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../_static/documentation_options.js?v=4cdba38b"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/translations.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=0f3dec7d"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'prednaska/12';</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.jscustom.js"></script>
     <link rel="index" title="Rejstřík" href="../genindex.html" />
@@ -454,7 +454,50 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="difuzni-rovnice">
-<h1><span class="section-number">12. </span>Difuzní rovnice<a class="headerlink" href="#difuzni-rovnice" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">12. </span>Difuzní rovnice<a class="headerlink" href="#difuzni-rovnice" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/John_Gordon_Skellam">John Gordon Skellam</a>
+formuloval v roce 1951 model pro difuzi populace, který je formálně stejný, jako
+model šíření genů, model vedení tepla, model difuze nebo model obecného
+transportního děje.
+Všechny tyto modely mají stejnou formu a liší se pouze
+interpretací jednotlivých proměnných.
+Všechny tyto modely mají společné to, že se jedná o parciální diferenciální
+rovnice, které popisují změnu nějaké veličiny v čase a prostoru.
+Rovnice vystupuje pod různými názvy, jako je například rovnice vedení tepla,
+difuzní rovnice nebo rovnice reakce-difuze.</p>
+<p>Označme <span class="math notranslate nohighlight">\(u(x,t)\)</span> hustotu populace v čase <span class="math notranslate nohighlight">\(t\)</span> a na místě <span class="math notranslate nohighlight">\(x\)</span>. Rychlost, s jakou
+se mění hustota populace v čase, je dána parciální derivací hustoty populace
+podle
+času <span class="math notranslate nohighlight">\(t\)</span>, tj. <div class="math notranslate nohighlight">
+\[\frac{\partial u}{\partial t}.\]</div>
+ Změna hustoty populace v daném
+místě za jednotku času je rozdílem mezi přírůstkem a úbytkem vlivem migrace a
+rozdílem mezi přírůstkem a úbytkem, který s migrací nesouvisí. Druhý z faktorů
+budeme modelovat pomocí logistické rovnice členem <div class="math notranslate nohighlight">
+\[ru(1-u).\]</div>
+
+První faktor budeme modelovat pomocí toku hustoty populace <div class="math notranslate nohighlight">
+\[j = -D
+\frac{\partial u}{\partial x}.\]</div>
+ Přírůstek v daném místě je pokles toku, tj.
+záporně vzatá derivace toku podle polohy <div class="math notranslate nohighlight">
+\[-\frac{\partial j}{\partial x}.\]</div>
+
+Výsledný model má potom tvar
+<div class="math notranslate nohighlight">
+\[\frac{\partial u}{\partial t} = \frac{\partial }{\partial x} \left(D \frac{\partial u}{\partial x}\right) + ru(1-u),\]</div>
+
+který jde pro konstantní <span class="math notranslate nohighlight">\(D\)</span> zapsat jako
+<div class="math notranslate nohighlight">
+\[\frac{\partial u}{\partial t} = D \frac{\partial^2 u}{\partial x^2} +
+ru(1-u).\]</div>
+
+Toto platí pro šíření populace v jednorozměrném prostoru. Pro šíření populace ve
+dvourozměrném prostoru má rovnice tvar
+<div class="math notranslate nohighlight">
+\[\frac{\partial u}{\partial t} = D \left( \frac{\partial^2 u}{\partial x^2} +
+\frac{\partial^2 u}{\partial y^2} \right) + ru(1-u).\]</div>
+</p>
 </section>
 
 

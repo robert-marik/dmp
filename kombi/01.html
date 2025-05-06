@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="cs" data-content_root="" >
+<html lang="cs" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>1. Data a grafy &#8212; Dynamické modely populací</title>
   
@@ -29,35 +28,34 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a771f39c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../_static/documentation_options.js?v=4cdba38b"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/translations.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=0f3dec7d"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'kombi/01';</script>
@@ -450,13 +448,13 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="data-a-grafy">
-<h1><span class="section-number">1. </span>Data a grafy<a class="headerlink" href="#data-a-grafy" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">1. </span>Data a grafy<a class="headerlink" href="#data-a-grafy" title="Link to this heading">#</a></h1>
 <section id="prvni-kroky">
-<h2><span class="section-number">1.1. </span>První kroky<a class="headerlink" href="#prvni-kroky" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.1. </span>První kroky<a class="headerlink" href="#prvni-kroky" title="Link to this heading">#</a></h2>
 <p>Komentáře budou jenom stručné, pokud chcete podrobné vysvětlení jednotlivých příkazů, můžete je vykopírovat do nějakého nástroje umělé inteligence, například ChatGPT nebo <a class="reference external" href="https://zzzcode.ai/python/code-explain">ZZZ Code AI</a>. Oba nástroje umí komunikovat i v češtině.</p>
 <p><em>Co googlit</em></p>
 <p>Klíčová slova, která se hodí pro dotazy pro vyhledávací službu. Pro potřeby nalezení návodů, tutoriálů, tipů, uživatelského manuálu apod.</p>
-<div class="pst-scrollable-table-container"><table class="colwidths-auto table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Slovo, fráze</p></th>
 <th class="head"><p>Použití</p></th>
@@ -502,9 +500,9 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># načtení knihoven</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
@@ -519,10 +517,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f863123e2d0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f8d34b78b90&gt;]
 </pre></div>
 </div>
-<img alt="../_images/579e1b7b353fb1eeed0f2a2c92bb77c39b20d82137fddcd3a8699f95e465a41a.png" src="../_images/579e1b7b353fb1eeed0f2a2c92bb77c39b20d82137fddcd3a8699f95e465a41a.png" />
+<img alt="../_images/71682f4842199aa955d3adf76457bddbaa58be3563b9423e829bc74185f698ac.png" src="../_images/71682f4842199aa955d3adf76457bddbaa58be3563b9423e829bc74185f698ac.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -537,10 +535,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f863110d220&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f8d34c52350&gt;]
 </pre></div>
 </div>
-<img alt="../_images/579e1b7b353fb1eeed0f2a2c92bb77c39b20d82137fddcd3a8699f95e465a41a.png" src="../_images/579e1b7b353fb1eeed0f2a2c92bb77c39b20d82137fddcd3a8699f95e465a41a.png" />
+<img alt="../_images/71682f4842199aa955d3adf76457bddbaa58be3563b9423e829bc74185f698ac.png" src="../_images/71682f4842199aa955d3adf76457bddbaa58be3563b9423e829bc74185f698ac.png" />
 </div>
 </div>
 <p>Při skutečné práci chceme zpravidla oddělit načtení dat, jejich zpracování a vizuální prezentaci. K tomu se hodí data ukládat do tabulek.</p>
@@ -647,7 +645,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="../_images/1f8a15156304369c0b579d3cfd8cbd7efc39ef4d1a054868b8cf1b3b0a122dd4.png" src="../_images/1f8a15156304369c0b579d3cfd8cbd7efc39ef4d1a054868b8cf1b3b0a122dd4.png" />
+<img alt="../_images/53f79fe5b9a3f2fc409cb435e3d4fdb7dda91c3be6ead478bc807eb1cde04628.png" src="../_images/53f79fe5b9a3f2fc409cb435e3d4fdb7dda91c3be6ead478bc807eb1cde04628.png" />
 </div>
 </div>
 <p>U velkých tabulek je efektivnější a pohodlnější nejprve vytvořit tabulku i se sloupci a poté do ní doplnit data. Následující kód připraví proměnné a prázdnou tabulku.</p>
@@ -878,12 +876,12 @@ document.write(`
  Text(0, 0.5, &#39;Rychlost růstu&#39;)]
 </pre></div>
 </div>
-<img alt="../_images/93538a3802febf5d0c4390ff7c8e14b48e89ba72f30c4d7575f87c4621888321.png" src="../_images/93538a3802febf5d0c4390ff7c8e14b48e89ba72f30c4d7575f87c4621888321.png" />
+<img alt="../_images/e5913a9b39deb127aa11de40bb9716d9d341ea18af42a50f82b421a58c542a11.png" src="../_images/e5913a9b39deb127aa11de40bb9716d9d341ea18af42a50f82b421a58c542a11.png" />
 </div>
 </div>
 </section>
 <section id="simulace-ochlazovani">
-<h2><span class="section-number">1.2. </span>Simulace ochlazování<a class="headerlink" href="#simulace-ochlazovani" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">1.2. </span>Simulace ochlazování<a class="headerlink" href="#simulace-ochlazovani" title="Link to this heading">#</a></h2>
 <p>Následující kód vytvoří tabulku se třemi sloupci pro tři řešení. Řádkový index bude obsahovat časové údaje.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1254,7 +1252,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(0.0, 93.49999914938851)]
 </pre></div>
 </div>
-<img alt="../_images/3f6f5635e8afa02abee216e7ef4f0620aa5945286bdba9254017a265b568036e.png" src="../_images/3f6f5635e8afa02abee216e7ef4f0620aa5945286bdba9254017a265b568036e.png" />
+<img alt="../_images/a12d3bf835cb26d5609b0130a5b0d517219c722a66950eb0ce40251dda532713.png" src="../_images/a12d3bf835cb26d5609b0130a5b0d517219c722a66950eb0ce40251dda532713.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1476,7 +1474,7 @@ document.write(`
   </tbody>
 </table>
 <p>500 rows × 3 columns</p>
-</div></div><img alt="../_images/7edf5880d60d6b134256f2e50fd01810e5135198abc892f043787811a3c94e73.png" src="../_images/7edf5880d60d6b134256f2e50fd01810e5135198abc892f043787811a3c94e73.png" />
+</div></div><img alt="../_images/6bab4cc5671adcca384536d3290d971feac2d077e2c482c9465d979a43f9b944.png" src="../_images/6bab4cc5671adcca384536d3290d971feac2d077e2c482c9465d979a43f9b944.png" />
 </div>
 </div>
 </section>

@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="cs" data-content_root="" >
+<html lang="cs" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>5. Diferenciální rovnice 2 &#8212; Dynamické modely populací</title>
   
@@ -29,35 +28,34 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a771f39c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../_static/documentation_options.js?v=4cdba38b"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/translations.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=0f3dec7d"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'cviceni/cviceni_04';</script>
@@ -461,9 +459,9 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="diferencialni-rovnice-2">
-<h1><span class="section-number">5. </span>Diferenciální rovnice 2<a class="headerlink" href="#diferencialni-rovnice-2" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">5. </span>Diferenciální rovnice 2<a class="headerlink" href="#diferencialni-rovnice-2" title="Link to this heading">#</a></h1>
 <section id="exponencialni-rust">
-<h2><span class="section-number">5.1. </span>Exponenciální růst<a class="headerlink" href="#exponencialni-rust" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">5.1. </span>Exponenciální růst<a class="headerlink" href="#exponencialni-rust" title="Link to this heading">#</a></h2>
 <p>Namodelujeme exponenciální růst
 <div class="math notranslate nohighlight">
 \[\frac{\mathrm dx}{\mathrm dt}=kx\]</div>
@@ -476,17 +474,17 @@ nezávislý na <span class="math notranslate nohighlight">\(k\)</span>, ověří
 <p>Nejprve růst pro tři různé hodnoty koeficientu <span class="math notranslate nohighlight">\(k\)</span>. Vidíme, že čím vyšší je <span class="math notranslate nohighlight">\(k\)</span>, tím rychleji velikost populace roste v čase.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_ivp</span>
 
 <span class="c1">### Příprava funkcí a parametrů</span>
 <span class="n">pocatecni_podminka</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">])</span>  <span class="c1"># počáteční podmínka</span>
 <span class="n">meze</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span> <span class="c1"># interval, na kterém hledáme řešení</span>
 <span class="n">parametry</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># seznam parametrů</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="k">def</span> <span class="nf">rovnice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">rovnice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">k</span><span class="o">*</span><span class="n">x</span>
 
 <span class="c1">### Řešení modelu</span>
@@ -619,14 +617,14 @@ nezávislý na <span class="math notranslate nohighlight">\(k\)</span>, ověří
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f6f186ce4b0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fd083316210&gt;
 </pre></div>
 </div>
-<img alt="../_images/dcaa16441ae915dd42551c1bbac9dc12ead6134a03f70109fd7f702538ba9077.png" src="../_images/dcaa16441ae915dd42551c1bbac9dc12ead6134a03f70109fd7f702538ba9077.png" />
+<img alt="../_images/6b1280c03c7c7bc995bb0d5b45bd1c7c8bae36026443ca0259051c156bd02a2a.png" src="../_images/6b1280c03c7c7bc995bb0d5b45bd1c7c8bae36026443ca0259051c156bd02a2a.png" />
 </div>
 </div>
 <section id="volitelna-cast">
-<h3><span class="section-number">5.1.1. </span>Volitelná část<a class="headerlink" href="#volitelna-cast" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.1.1. </span>Volitelná část<a class="headerlink" href="#volitelna-cast" title="Link to this heading">#</a></h3>
 <p>Po transformaci do bezrozměrného času by měly křivky splynout. Abychom to viděli graficky, budeme postupně snižovat jejich tloušťku a nastavíme částečnou průhlednost. To zajistíme volbami <code class="docutils literal notranslate"><span class="pre">lw</span></code> (zkratka za <code class="docutils literal notranslate"><span class="pre">linewidth</span></code>) a <code class="docutils literal notranslate"><span class="pre">alpha</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -645,7 +643,7 @@ nezávislý na <span class="math notranslate nohighlight">\(k\)</span>, ověří
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e376475ed602ae6045d6ea0a6fb56af7414832577530b0a17124b78ea31558f6.png" src="../_images/e376475ed602ae6045d6ea0a6fb56af7414832577530b0a17124b78ea31558f6.png" />
+<img alt="../_images/e5081d3dff41d86c70f59f40d0b86713236bc6864d81a2eacbda07cb0e5f2ece.png" src="../_images/e5081d3dff41d86c70f59f40d0b86713236bc6864d81a2eacbda07cb0e5f2ece.png" />
 </div>
 </div>
 <p><strong>Poznámka:</strong> Provnávání grafů je poměrně primitivní metoda. Lepší a jednoznačnější by bylo
@@ -653,9 +651,9 @@ vypočítat hodnoty v časech, které si odpovídají a poté ukázat, že rozd�
 </section>
 </section>
 <section id="exponencialni-rust-k-vodorovne-asymptote">
-<h2><span class="section-number">5.2. </span>Exponenciální růst k vodorovné asymptotě<a class="headerlink" href="#exponencialni-rust-k-vodorovne-asymptote" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">5.2. </span>Exponenciální růst k vodorovné asymptotě<a class="headerlink" href="#exponencialni-rust-k-vodorovne-asymptote" title="Link to this heading">#</a></h2>
 <section id="ukol">
-<h3><span class="section-number">5.2.1. </span>Úkol<a class="headerlink" href="#ukol" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.2.1. </span>Úkol<a class="headerlink" href="#ukol" title="Link to this heading">#</a></h3>
 <p>Nakreslete řešení rovnice růstu k vodorovné asymptotě (von Bertalanffyho růst)
 <div class="math notranslate nohighlight">
 \[\frac{\mathrm dx}{\mathrm dt}=k(M-x)\]</div>
@@ -677,9 +675,9 @@ pro tři různé hodnoty parametru <span class="math notranslate nohighlight">\(
 </section>
 </section>
 <section id="logisticky-rust-pro-pripadne-samostatne-pracujici-studenty">
-<h2><span class="section-number">5.3. </span>Logistický růst - pro případné samostatně pracující studenty<a class="headerlink" href="#logisticky-rust-pro-pripadne-samostatne-pracujici-studenty" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">5.3. </span>Logistický růst - pro případné samostatně pracující studenty<a class="headerlink" href="#logisticky-rust-pro-pripadne-samostatne-pracujici-studenty" title="Link to this heading">#</a></h2>
 <section id="id1">
-<h3><span class="section-number">5.3.1. </span>Úkol<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.3.1. </span>Úkol<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <p>Vykreslete řešení logistické rovnice <div class="math notranslate nohighlight">
 \[\frac{\mathrm dx}{\mathrm dt}=rx\left
 (1-\frac xK\right)\]</div>
@@ -694,7 +692,7 @@ pro cca deset počátečních podmínek rovnoměrně rozmístěných mezi <span 
 </div>
 </section>
 <section id="logisticka-rovnice-v-bezrozmernem-tvaru">
-<h3><span class="section-number">5.3.2. </span>Logistická rovnice v bezrozměrném tvaru<a class="headerlink" href="#logisticka-rovnice-v-bezrozmernem-tvaru" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">5.3.2. </span>Logistická rovnice v bezrozměrném tvaru<a class="headerlink" href="#logisticka-rovnice-v-bezrozmernem-tvaru" title="Link to this heading">#</a></h3>
 <p>Nyní si ukážeme, že v určitém smyslu stačí bez újmy na obecnosti studovat případ <span class="math notranslate nohighlight">\(K=1\)</span> a <span class="math notranslate nohighlight">\(r=1\)</span>. Na rovnici
 <div class="math notranslate nohighlight">
 \[\frac{\mathrm dy}{\mathrm d\tau}=y(1-y)\]</div>
@@ -710,7 +708,7 @@ s použitím substituce <span class="math notranslate nohighlight">\(y=\frac xK\
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pocatecni_podminka</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">])</span>
 <span class="n">meze</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
-<span class="k">def</span> <span class="nf">rovnice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">rovnice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">r</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">K</span><span class="p">)</span>
 
 <span class="c1"># r a K budou náhodná čísla z intervalu (0,0.2) a (0,10).</span>
@@ -743,7 +741,7 @@ s použitím substituce <span class="math notranslate nohighlight">\(y=\frac xK\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r=0.01785200004734735, K=9.34995584638007
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>r=0.10612541193672467, K=5.618979185026616
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -775,85 +773,85 @@ s použitím substituce <span class="math notranslate nohighlight">\(y=\frac xK\
       <th>0.000000</th>
       <td>0.100000</td>
       <td>0.100000</td>
-      <td>0.000000e+00</td>
-      <td>0.000000e+00</td>
+      <td>1.387779e-17</td>
+      <td>1.387779e-16</td>
     </tr>
     <tr>
       <th>0.909091</th>
-      <td>0.101618</td>
-      <td>0.101618</td>
-      <td>1.038216e-10</td>
-      <td>1.021682e-09</td>
+      <td>0.109930</td>
+      <td>0.109930</td>
+      <td>2.362970e-09</td>
+      <td>2.149516e-08</td>
     </tr>
     <tr>
       <th>1.818182</th>
-      <td>0.103263</td>
-      <td>0.103263</td>
-      <td>2.308810e-10</td>
-      <td>2.235862e-09</td>
+      <td>0.120825</td>
+      <td>0.120825</td>
+      <td>3.746308e-07</td>
+      <td>3.100601e-06</td>
     </tr>
     <tr>
       <th>2.727273</th>
-      <td>0.104933</td>
-      <td>0.104933</td>
-      <td>2.175440e-10</td>
-      <td>2.073166e-09</td>
+      <td>0.132774</td>
+      <td>0.132772</td>
+      <td>1.470421e-06</td>
+      <td>1.107465e-05</td>
     </tr>
     <tr>
       <th>3.636364</th>
-      <td>0.106630</td>
-      <td>0.106630</td>
-      <td>2.380631e-10</td>
-      <td>2.232598e-09</td>
+      <td>0.145871</td>
+      <td>0.145869</td>
+      <td>2.649101e-06</td>
+      <td>1.816052e-05</td>
     </tr>
     <tr>
       <th>4.545455</th>
-      <td>0.108355</td>
-      <td>0.108355</td>
-      <td>7.456501e-10</td>
-      <td>6.881554e-09</td>
+      <td>0.160224</td>
+      <td>0.160220</td>
+      <td>3.430802e-06</td>
+      <td>2.141259e-05</td>
     </tr>
     <tr>
       <th>5.454545</th>
-      <td>0.110107</td>
-      <td>0.110107</td>
-      <td>9.683541e-10</td>
-      <td>8.794675e-09</td>
+      <td>0.175943</td>
+      <td>0.175940</td>
+      <td>3.528070e-06</td>
+      <td>2.005233e-05</td>
     </tr>
     <tr>
       <th>6.363636</th>
-      <td>0.111887</td>
-      <td>0.111887</td>
-      <td>8.519553e-10</td>
-      <td>7.614438e-09</td>
+      <td>0.193152</td>
+      <td>0.193149</td>
+      <td>2.845859e-06</td>
+      <td>1.473381e-05</td>
     </tr>
     <tr>
       <th>7.272727</th>
-      <td>0.113695</td>
-      <td>0.113695</td>
-      <td>5.437781e-10</td>
-      <td>4.782771e-09</td>
+      <td>0.211979</td>
+      <td>0.211977</td>
+      <td>1.481540e-06</td>
+      <td>6.989091e-06</td>
     </tr>
     <tr>
       <th>8.181818</th>
-      <td>0.115532</td>
-      <td>0.115532</td>
-      <td>2.678369e-10</td>
-      <td>2.318283e-09</td>
+      <td>0.232564</td>
+      <td>0.232564</td>
+      <td>2.751049e-07</td>
+      <td>1.182922e-06</td>
     </tr>
     <tr>
       <th>9.090909</th>
-      <td>0.117399</td>
-      <td>0.117399</td>
-      <td>1.298148e-10</td>
-      <td>1.105757e-09</td>
+      <td>0.255053</td>
+      <td>0.255055</td>
+      <td>1.941882e-06</td>
+      <td>7.613635e-06</td>
     </tr>
     <tr>
       <th>10.000000</th>
-      <td>0.119295</td>
-      <td>0.119295</td>
-      <td>1.101789e-10</td>
-      <td>9.235812e-10</td>
+      <td>0.279602</td>
+      <td>0.279605</td>
+      <td>2.844183e-06</td>
+      <td>1.017224e-05</td>
     </tr>
   </tbody>
 </table>
@@ -866,7 +864,7 @@ s použitím substituce <span class="math notranslate nohighlight">\(y=\frac xK\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(9.683541468685775e-10)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(3.5280696396855493e-06)
 </pre></div>
 </div>
 </div>
@@ -878,7 +876,7 @@ s použitím substituce <span class="math notranslate nohighlight">\(y=\frac xK\
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(8.794674533464684e-09)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.14125932644692e-05)
 </pre></div>
 </div>
 </div>

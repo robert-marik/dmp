@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="cs" data-content_root="" >
+<html lang="cs" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>4. Lov v populaci - časový vývoj &#8212; Dynamické modely populací</title>
   
@@ -29,35 +28,34 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a771f39c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../_static/documentation_options.js?v=4cdba38b"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/translations.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=0f3dec7d"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'kombi/III_02';</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.jscustom.js"></script>
     <link rel="index" title="Rejstřík" href="../genindex.html" />
@@ -449,19 +447,19 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lov-v-populaci-casovy-vyvoj">
-<h1><span class="section-number">4. </span>Lov v populaci - časový vývoj<a class="headerlink" href="#lov-v-populaci-casovy-vyvoj" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">4. </span>Lov v populaci - časový vývoj<a class="headerlink" href="#lov-v-populaci-casovy-vyvoj" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_ivp</span>
 </pre></div>
 </div>
 </div>
 </div>
 <section id="konstantni-lov">
-<h2><span class="section-number">4.1. </span>Konstantní lov<a class="headerlink" href="#konstantni-lov" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">4.1. </span>Konstantní lov<a class="headerlink" href="#konstantni-lov" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Příprava funkcí a parametrů</span>
@@ -470,7 +468,7 @@ document.write(`
 <span class="n">parametry</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">]</span> <span class="c1"># seznam parametrů</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
 
-<span class="k">def</span> <span class="nf">rovnice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">0.15</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">rovnice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">0.15</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">x</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>  <span class="c1"># pro zaporne hodnoty vraceme nedefinovany vyraz, zaporne velikosti populaci nemaji smysl</span>
     <span class="k">return</span> <span class="n">r</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">K</span><span class="p">)</span><span class="o">-</span><span class="n">h</span>
@@ -504,10 +502,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f68707113d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb14b31ae90&gt;
 </pre></div>
 </div>
-<img alt="../_images/c5a7979e0fd5da360fd1ab00c28caf3bd33bf3eba981042e842106da3aa4a996.png" src="../_images/c5a7979e0fd5da360fd1ab00c28caf3bd33bf3eba981042e842106da3aa4a996.png" />
+<img alt="../_images/5b95ff5e476d1fb61464657746421c571c680c0628c1fc43e9f17dad81ae8072.png" src="../_images/5b95ff5e476d1fb61464657746421c571c680c0628c1fc43e9f17dad81ae8072.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -652,12 +650,12 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0, 0.5, &#39;rychlost růstu a poklesu&#39;)]
 </pre></div>
 </div>
-<img alt="../_images/e26a82a97cbaa0e5f323b2d1581ee8d69236d8142b54cb3993a87f619f29467f.png" src="../_images/e26a82a97cbaa0e5f323b2d1581ee8d69236d8142b54cb3993a87f619f29467f.png" />
+<img alt="../_images/a09bc21593cc5d3345bfd11eb469ab35d1b50ba8b5532f8b9e2f523ee583a491.png" src="../_images/a09bc21593cc5d3345bfd11eb469ab35d1b50ba8b5532f8b9e2f523ee583a491.png" />
 </div>
 </div>
 </section>
 <section id="lov-konstantnim-usilim">
-<h2><span class="section-number">4.2. </span>Lov konstantním úsilím<a class="headerlink" href="#lov-konstantnim-usilim" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">4.2. </span>Lov konstantním úsilím<a class="headerlink" href="#lov-konstantnim-usilim" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
@@ -673,10 +671,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f686f7ce150&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb1427dd310&gt;
 </pre></div>
 </div>
-<img alt="../_images/f16b17a234b66592f60472326c004c49428169b99bd7579c552d7a3672bfcf9e.png" src="../_images/f16b17a234b66592f60472326c004c49428169b99bd7579c552d7a3672bfcf9e.png" />
+<img alt="../_images/c4d711b65c601255a36367e3f15e085d3999e557038b30e23fad7041e1fefb59.png" src="../_images/c4d711b65c601255a36367e3f15e085d3999e557038b30e23fad7041e1fefb59.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -687,7 +685,7 @@ document.write(`
 <span class="n">parametry</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">]</span> <span class="c1"># seznam parametrů</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
 
-<span class="k">def</span> <span class="nf">rovnice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">0.15</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">rovnice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">0.15</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">r</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">K</span><span class="p">)</span><span class="o">-</span><span class="n">h</span><span class="o">*</span><span class="n">x</span>
 
 
@@ -720,15 +718,15 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f68707b68d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb14aae3610&gt;
 </pre></div>
 </div>
-<img alt="../_images/eb25efc892de48cf59cff1995ddf7e212c06a9f950b0d936809aff035cf95558.png" src="../_images/eb25efc892de48cf59cff1995ddf7e212c06a9f950b0d936809aff035cf95558.png" />
+<img alt="../_images/e77d3d099355f848953f5c29901d0581af4b7a3d58c9ae263cfcf02828388337.png" src="../_images/e77d3d099355f848953f5c29901d0581af4b7a3d58c9ae263cfcf02828388337.png" />
 </div>
 </div>
 </section>
 <section id="lov-populace-se-slabym-a-silnym-aleeho-efektem">
-<h2><span class="section-number">4.3. </span>Lov populace se slabým a silným Aleeho efektem<a class="headerlink" href="#lov-populace-se-slabym-a-silnym-aleeho-efektem" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">4.3. </span>Lov populace se slabým a silným Aleeho efektem<a class="headerlink" href="#lov-populace-se-slabym-a-silnym-aleeho-efektem" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
@@ -743,10 +741,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f6867391880&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb1426f3ed0&gt;
 </pre></div>
 </div>
-<img alt="../_images/132362957072719d019949887af5051a759bc5c1d6723b1a0c6e78cbc8bc6b01.png" src="../_images/132362957072719d019949887af5051a759bc5c1d6723b1a0c6e78cbc8bc6b01.png" />
+<img alt="../_images/91e37aebe55a20c392f78da18fc08afd375056f9aa0e1bfef8315b6fe86e7904.png" src="../_images/91e37aebe55a20c392f78da18fc08afd375056f9aa0e1bfef8315b6fe86e7904.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -763,10 +761,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f68720e02c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb1427af9d0&gt;
 </pre></div>
 </div>
-<img alt="../_images/443808960c73d606bd12f9619f2043aa40ad5cbb038023bedf977f629a56e092.png" src="../_images/443808960c73d606bd12f9619f2043aa40ad5cbb038023bedf977f629a56e092.png" />
+<img alt="../_images/3e6b2866eb9ee9c46fc1ad8bb3dc1d1b0b08e969a9ee489cfa1ed942633b92de.png" src="../_images/3e6b2866eb9ee9c46fc1ad8bb3dc1d1b0b08e969a9ee489cfa1ed942633b92de.png" />
 </div>
 </div>
 </section>

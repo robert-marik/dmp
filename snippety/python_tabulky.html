@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="cs" data-content_root="" >
+<html lang="cs" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Tabulky &#8212; Dynamické modely populací</title>
   
@@ -29,35 +28,34 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a771f39c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../_static/documentation_options.js?v=4cdba38b"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/translations.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=0f3dec7d"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'snippety/python_tabulky';</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.jscustom.js"></script>
     <link rel="index" title="Rejstřík" href="../genindex.html" />
@@ -454,19 +452,19 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="tabulky">
-<h1>Tabulky<a class="headerlink" href="#tabulky" title="Permalink to this heading">#</a></h1>
+<h1>Tabulky<a class="headerlink" href="#tabulky" title="Link to this heading">#</a></h1>
 <p>S tabulkami se pracuje pomocí knihovny Pandas. Narozdíl od Excelu při práci data v tabulce nevidíme, dokud si je nenecháme vypsat. To ale nevadí. A při rozsáhlých tabulkách to je stejně jedno.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
 </div>
 <section id="tabulky-z-externiho-souboru">
-<h2>Tabulky z externího souboru<a class="headerlink" href="#tabulky-z-externiho-souboru" title="Permalink to this heading">#</a></h2>
+<h2>Tabulky z externího souboru<a class="headerlink" href="#tabulky-z-externiho-souboru" title="Link to this heading">#</a></h2>
 <p>Častým zdrojem dat je externí soubor. Je možné importovat sešity Excelu, ale nejrychlejší a nejphodlnější je pracovat s csv soubory, což jsou textové soubory s daty oddělenými čárkami. Mohou být na lokálním disku nebo je možné je stáhnout z URL. Po stažení je vhodné si prohlédnout, co máme za data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -812,7 +810,7 @@ document.write(`
 </div>
 </section>
 <section id="grafy">
-<h2>Grafy<a class="headerlink" href="#grafy" title="Permalink to this heading">#</a></h2>
+<h2>Grafy<a class="headerlink" href="#grafy" title="Link to this heading">#</a></h2>
 <p>Dobrý přehled o datech v tabulce dávají grafy. Zpravidla jeden sloupec tabulky obsahuje data pro vodorovnou osu a další sloupce pro svislou osu.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -824,7 +822,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Year&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/188af5bb2241efc2a6aaa11a3996ad36f7503d061810c58a110888b2b959758d.png" src="../_images/188af5bb2241efc2a6aaa11a3996ad36f7503d061810c58a110888b2b959758d.png" />
+<img alt="../_images/f1f172bb27c201d324fecd42a6e3e127ff1aa1b16317610003583e50c26c1341.png" src="../_images/f1f172bb27c201d324fecd42a6e3e127ff1aa1b16317610003583e50c26c1341.png" />
 </div>
 </div>
 <p>Někdy je vhodné ručně nastavit typ dat ve sloupcích. Například roky neni vhodné brát jako čísla, ale jako časový údaj. Popisky os jsou potom rozumnější.</p>
@@ -870,12 +868,12 @@ dtype: object
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Year&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/b210bec15fa836b9ae3ca25907520e71d0eab4b935184dc8b045918e58dd8a58.png" src="../_images/b210bec15fa836b9ae3ca25907520e71d0eab4b935184dc8b045918e58dd8a58.png" />
+<img alt="../_images/10a8021e8f3a4f6f715cae3db0ed24797dda4c7156c3c52d148fbbea09ad8a6a.png" src="../_images/10a8021e8f3a4f6f715cae3db0ed24797dda4c7156c3c52d148fbbea09ad8a6a.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">MultipleLocator</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="kn">import</span> <span class="n">MultipleLocator</span>
 
 <span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span> <span class="n">subplots</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ax</span><span class="p">:</span>
@@ -886,15 +884,15 @@ dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ace906e2823ca495ba002aa4a11b63fbe08a2f04717970e82f24f0d7990f0288.png" src="../_images/ace906e2823ca495ba002aa4a11b63fbe08a2f04717970e82f24f0d7990f0288.png" />
+<img alt="../_images/6bf5eba79d980c043982a8d22a0123695ed9dd5ee21ab6e75dd15851608e2ae2.png" src="../_images/6bf5eba79d980c043982a8d22a0123695ed9dd5ee21ab6e75dd15851608e2ae2.png" />
 </div>
 </div>
 </section>
 <section id="tvorba-tabulek">
-<h2>Tvorba tabulek<a class="headerlink" href="#tvorba-tabulek" title="Permalink to this heading">#</a></h2>
+<h2>Tvorba tabulek<a class="headerlink" href="#tvorba-tabulek" title="Link to this heading">#</a></h2>
 <p>Možností jak vytvořit tabulku je celá řada. Taždá možnost se hodí v jiné situaci. V zásadě můžeme buď přidávat sloupec po sloupci, nebo sestavit nějakou strukturu obsahující všechna data a z nich poté sestavit tabulku. Pokud uvedená struktura neumí pracovat se jmény sloupců. je nutné jména sloupců nastavit po vytvoření tabulky.</p>
 <section id="moznost-1">
-<h3>Možnost 1<a class="headerlink" href="#moznost-1" title="Permalink to this heading">#</a></h3>
+<h3>Možnost 1<a class="headerlink" href="#moznost-1" title="Link to this heading">#</a></h3>
 <p>Je možné nejprve vytvořit prázdnou tabulku a po sloupcích připojovat data. Sloupce musí být stejně dlouhé. Jméno sloupce definujeme při jeho vzniku.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -936,48 +934,48 @@ dtype: object
   </thead>
   <tbody>
     <tr>
-      <th>38</th>
-      <td>2.411728</td>
-      <td>0.666769</td>
-      <td>-0.745264</td>
+      <th>83</th>
+      <td>5.267721</td>
+      <td>-0.849725</td>
+      <td>0.527225</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>48</th>
-      <td>3.046393</td>
-      <td>0.095056</td>
-      <td>-0.995472</td>
+      <th>45</th>
+      <td>2.855993</td>
+      <td>0.281733</td>
+      <td>-0.959493</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>64</th>
-      <td>4.061857</td>
-      <td>-0.795762</td>
-      <td>-0.605610</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>96</th>
-      <td>6.092786</td>
-      <td>-0.189251</td>
+      <th>3</th>
+      <td>0.190400</td>
+      <td>0.189251</td>
       <td>0.981929</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>75</th>
-      <td>4.759989</td>
-      <td>-0.998867</td>
-      <td>0.047582</td>
+      <th>87</th>
+      <td>5.521587</td>
+      <td>-0.690079</td>
+      <td>0.723734</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>0.761598</td>
+      <td>0.690079</td>
+      <td>0.723734</td>
       <td>1.0</td>
     </tr>
   </tbody>
 </table>
-</div></div><img alt="../_images/d088c863567d24c8dddbf3d59bef9cbda1fec9c1c3911215c5d5bed0e916d04c.png" src="../_images/d088c863567d24c8dddbf3d59bef9cbda1fec9c1c3911215c5d5bed0e916d04c.png" />
+</div></div><img alt="../_images/8d5744aede5f95199fc44d8658b93609886e95ce434f06cc7ebb62519ffc4c60.png" src="../_images/8d5744aede5f95199fc44d8658b93609886e95ce434f06cc7ebb62519ffc4c60.png" />
 </div>
 </div>
 </section>
 <section id="moznost-2">
-<h3>Možnost 2<a class="headerlink" href="#moznost-2" title="Permalink to this heading">#</a></h3>
+<h3>Možnost 2<a class="headerlink" href="#moznost-2" title="Link to this heading">#</a></h3>
 <p>Další možnost je načíst data ze seznamu. Pokud jsou v seznamu data po řádcích, je nutné je převést do sloupců transponováním. Poté nastavíme jména sloupců.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1022,43 +1020,43 @@ dtype: object
   </thead>
   <tbody>
     <tr>
-      <th>6.219719</th>
-      <td>-0.063424</td>
+      <th>0.063467</th>
+      <td>0.063424</td>
       <td>0.997987</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>5.965853</th>
-      <td>-0.312033</td>
-      <td>0.950071</td>
+      <th>2.157862</th>
+      <td>0.832570</td>
+      <td>-0.553920</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>3.236792</th>
-      <td>-0.095056</td>
-      <td>-0.995472</td>
+      <th>1.078931</th>
+      <td>0.881453</td>
+      <td>0.472271</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>1.332797</th>
-      <td>0.971812</td>
-      <td>0.235759</td>
+      <th>4.696522</th>
+      <td>-0.999874</td>
+      <td>-0.015866</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>1.142397</th>
-      <td>0.909632</td>
-      <td>0.415415</td>
+      <th>4.886922</th>
+      <td>-0.984808</td>
+      <td>0.173648</td>
       <td>1.0</td>
     </tr>
   </tbody>
 </table>
-</div></div><img alt="../_images/e5ddbd29625cd12d134d32d6053d5262154405a43a51585bb9932e0d5d9181de.png" src="../_images/e5ddbd29625cd12d134d32d6053d5262154405a43a51585bb9932e0d5d9181de.png" />
+</div></div><img alt="../_images/cd8ed7c1fd750ee71c6dbaba6e10668cbdd337c43ee1bdac154940868e994590.png" src="../_images/cd8ed7c1fd750ee71c6dbaba6e10668cbdd337c43ee1bdac154940868e994590.png" />
 </div>
 </div>
 </section>
 <section id="moznost-3">
-<h3>Možnost 3<a class="headerlink" href="#moznost-3" title="Permalink to this heading">#</a></h3>
+<h3>Možnost 3<a class="headerlink" href="#moznost-3" title="Link to this heading">#</a></h3>
 <p>Jiná možnost je použitím datového typu dictionary. Jména sloupců nastavujeme při tvorbě dictionary. Data do dictionary je možné nastavit najednou, nebo položku po položce.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1100,15 +1098,27 @@ dtype: object
   </thead>
   <tbody>
     <tr>
+      <th>3.617592</th>
+      <td>-0.458227</td>
+      <td>-0.888835</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
       <th>2.665594</th>
       <td>0.458227</td>
       <td>-0.888835</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>3.300259</th>
-      <td>-0.158001</td>
-      <td>-0.987439</td>
+      <th>0.507732</th>
+      <td>0.486197</td>
+      <td>0.873849</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1.078931</th>
+      <td>0.881453</td>
+      <td>0.472271</td>
       <td>1.0</td>
     </tr>
     <tr>
@@ -1117,21 +1127,9 @@ dtype: object
       <td>0.805270</td>
       <td>1.0</td>
     </tr>
-    <tr>
-      <th>2.538661</th>
-      <td>0.567060</td>
-      <td>-0.823677</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>0.698132</th>
-      <td>0.642788</td>
-      <td>0.766044</td>
-      <td>1.0</td>
-    </tr>
   </tbody>
 </table>
-</div></div><img alt="../_images/e5ddbd29625cd12d134d32d6053d5262154405a43a51585bb9932e0d5d9181de.png" src="../_images/e5ddbd29625cd12d134d32d6053d5262154405a43a51585bb9932e0d5d9181de.png" />
+</div></div><img alt="../_images/cd8ed7c1fd750ee71c6dbaba6e10668cbdd337c43ee1bdac154940868e994590.png" src="../_images/cd8ed7c1fd750ee71c6dbaba6e10668cbdd337c43ee1bdac154940868e994590.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1174,38 +1172,38 @@ dtype: object
   </thead>
   <tbody>
     <tr>
-      <th>0.063467</th>
-      <td>0.063424</td>
-      <td>0.997987</td>
+      <th>6.029319</th>
+      <td>-0.251148</td>
+      <td>0.967949</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>2.602127</th>
-      <td>0.513677</td>
-      <td>-0.857983</td>
+      <th>1.459730</th>
+      <td>0.993838</td>
+      <td>0.110838</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>1.713596</th>
-      <td>0.989821</td>
-      <td>-0.142315</td>
+      <th>0.698132</th>
+      <td>0.642788</td>
+      <td>0.766044</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>0.825065</th>
-      <td>0.734592</td>
-      <td>0.678509</td>
+      <th>1.142397</th>
+      <td>0.909632</td>
+      <td>0.415415</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>3.554125</th>
-      <td>-0.400931</td>
-      <td>-0.916108</td>
+      <th>1.586663</th>
+      <td>0.999874</td>
+      <td>-0.015866</td>
       <td>1.0</td>
     </tr>
   </tbody>
 </table>
-</div></div><img alt="../_images/e5ddbd29625cd12d134d32d6053d5262154405a43a51585bb9932e0d5d9181de.png" src="../_images/e5ddbd29625cd12d134d32d6053d5262154405a43a51585bb9932e0d5d9181de.png" />
+</div></div><img alt="../_images/cd8ed7c1fd750ee71c6dbaba6e10668cbdd337c43ee1bdac154940868e994590.png" src="../_images/cd8ed7c1fd750ee71c6dbaba6e10668cbdd337c43ee1bdac154940868e994590.png" />
 </div>
 </div>
 </section>

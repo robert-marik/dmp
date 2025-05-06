@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="cs" data-content_root="" >
+<html lang="cs" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Vykreslení dat z tabulky, dva grafy vedle sebe &#8212; Dynamické modely populací</title>
   
@@ -29,35 +28,34 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=a771f39c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../../_static/documentation_options.js?v=4cdba38b"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
-    <script src="../../_static/translations.js"></script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/translations.js?v=0f3dec7d"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'prednaska/.virtual_documents/01';</script>
@@ -443,13 +441,13 @@ mocniny = np.array([1,2,3,4])</p>
 data = x_sloupec**mocniny
 df = pd.DataFrame(data, index=x, columns=mocniny)</p>
 <section class="tex2jax_ignore mathjax_ignore" id="vykresleni-dat-z-tabulky-dva-grafy-vedle-sebe">
-<h1>Vykreslení dat z tabulky, dva grafy vedle sebe<a class="headerlink" href="#vykresleni-dat-z-tabulky-dva-grafy-vedle-sebe" title="Permalink to this heading">#</a></h1>
+<h1>Vykreslení dat z tabulky, dva grafy vedle sebe<a class="headerlink" href="#vykresleni-dat-z-tabulky-dva-grafy-vedle-sebe" title="Link to this heading">#</a></h1>
 <p>fig,ax = plt.subplots(1,2)  # grafy do jednoho řádku a dvou sloupců
 df.plot(ax=ax[0])     # levý graf
 df.plot(ax=ax[1],legend=False) # pravý graf</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="popisky-a-rozsahy-os-nalevo">
-<h1>Popisky a rozsahy os nalevo<a class="headerlink" href="#popisky-a-rozsahy-os-nalevo" title="Permalink to this heading">#</a></h1>
+<h1>Popisky a rozsahy os nalevo<a class="headerlink" href="#popisky-a-rozsahy-os-nalevo" title="Link to this heading">#</a></h1>
 <p>ax[0].legend(title=r“Hodnota <span class="math notranslate nohighlight">\(n\)</span>“)
 ax[0].set(
 xlim=(0,1),
@@ -457,13 +455,13 @@ ylim=(0,1),
 title=“Chování v okolí počátku“)</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="popisky-a-rozsahy-os-napravo">
-<h1>Popisky a rozsahy os napravo<a class="headerlink" href="#popisky-a-rozsahy-os-napravo" title="Permalink to this heading">#</a></h1>
+<h1>Popisky a rozsahy os napravo<a class="headerlink" href="#popisky-a-rozsahy-os-napravo" title="Link to this heading">#</a></h1>
 <p>ax[1].set(
 ylim=(0,100),
 title=“Chování v nekonečnu“)</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="spolecny-nadpis">
-<h1>Společný nadpis<a class="headerlink" href="#spolecny-nadpis" title="Permalink to this heading">#</a></h1>
+<h1>Společný nadpis<a class="headerlink" href="#spolecny-nadpis" title="Link to this heading">#</a></h1>
 <p>fig.suptitle(r“Grafy funkcí <span class="math notranslate nohighlight">\(y=x^n\)</span>.“);</p>
 <p>K = 1
 x = np.linspace(0,1,1000)  # interval a počet bodů použitých pro kreslení<br />
@@ -471,13 +469,13 @@ df = pd.DataFrame(index=x) # nova tabulka
 seznam_r = [1,2,3]</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="dopocitani-funkcnich-hodnot">
-<h1>dopocitani funkcnich hodnot<a class="headerlink" href="#dopocitani-funkcnich-hodnot" title="Permalink to this heading">#</a></h1>
+<h1>dopocitani funkcnich hodnot<a class="headerlink" href="#dopocitani-funkcnich-hodnot" title="Link to this heading">#</a></h1>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="pro-ruzne-nastaveni-r">
-<h1>pro ruzne nastaveni r<a class="headerlink" href="#pro-ruzne-nastaveni-r" title="Permalink to this heading">#</a></h1>
+<h1>pro ruzne nastaveni r<a class="headerlink" href="#pro-ruzne-nastaveni-r" title="Link to this heading">#</a></h1>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="jde-udelat-i-bez-pouziti-cyklu-ale-o-tom-jindy">
-<h1>jde udelat i bez pouziti cyklu, ale o tom jindy<a class="headerlink" href="#jde-udelat-i-bez-pouziti-cyklu-ale-o-tom-jindy" title="Permalink to this heading">#</a></h1>
+<h1>jde udelat i bez pouziti cyklu, ale o tom jindy<a class="headerlink" href="#jde-udelat-i-bez-pouziti-cyklu-ale-o-tom-jindy" title="Link to this heading">#</a></h1>
 <p>for r in seznam_r:
 df[r] = r<em>x</em>(1-x/K)
 df  # tisk tabulky pro kontrolu</p>
@@ -490,10 +488,10 @@ x = np.linspace(0,3,1000)  # interval a počet bodů použitých pro kreslení<b
 df = pd.DataFrame(index=x) # nova tabulka</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>dopocitani funkcnich hodnot<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<h1>dopocitani funkcnich hodnot<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="pro-ruzne-nastaveni-k">
-<h1>pro ruzne nastaveni K<a class="headerlink" href="#pro-ruzne-nastaveni-k" title="Permalink to this heading">#</a></h1>
+<h1>pro ruzne nastaveni K<a class="headerlink" href="#pro-ruzne-nastaveni-k" title="Link to this heading">#</a></h1>
 <p>for K in [1,2,3]:
 df[K] = r<em>x</em>(1-x/K)</p>
 <p>ax = df.plot() # vykresleni dat z tabulky
@@ -582,7 +580,7 @@ df.head()</p>
 <p>df.plot(x=“Hare“,y=“Lynx“, ylabel=“Lynx“, style=“o-“, legend=False)</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="trosku-namahy-da-pripsat-k-bodum-cisla">
-<h1>Trosku namahy da pripsat k bodum cisla<a class="headerlink" href="#trosku-namahy-da-pripsat-k-bodum-cisla" title="Permalink to this heading">#</a></h1>
+<h1>Trosku namahy da pripsat k bodum cisla<a class="headerlink" href="#trosku-namahy-da-pripsat-k-bodum-cisla" title="Link to this heading">#</a></h1>
 <p>ax = plt.gca()<br />
 df.apply(
 lambda row: ax.text(row[2],row[1],row[0].year),
@@ -590,12 +588,12 @@ axis=1
 );</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="body-pro-kresleni">
-<h1>Body pro kresleni<a class="headerlink" href="#body-pro-kresleni" title="Permalink to this heading">#</a></h1>
+<h1>Body pro kresleni<a class="headerlink" href="#body-pro-kresleni" title="Link to this heading">#</a></h1>
 <p>x, y = np.meshgrid(np.linspace(-5, 5, 10),
 np.linspace(-5, 5, 10))</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="komponenty-vektoroveho-pole">
-<h1>Komponenty vektoroveho pole<a class="headerlink" href="#komponenty-vektoroveho-pole" title="Permalink to this heading">#</a></h1>
+<h1>Komponenty vektoroveho pole<a class="headerlink" href="#komponenty-vektoroveho-pole" title="Link to this heading">#</a></h1>
 <p>u = -y/(1 + x<strong>2 + y</strong>2)
 v = x/(1 + x<strong>2 + y</strong>2)</p>
 <p>M = np.sqrt(u<strong>2+v</strong>2) # velikost vektoru

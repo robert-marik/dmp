@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="cs" data-content_root="" >
+<html lang="cs" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>&lt;no title&gt; &#8212; Dynamické modely populací</title>
   
@@ -29,35 +28,34 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a771f39c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../_static/documentation_options.js?v=4cdba38b"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/translations.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=0f3dec7d"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'latex/tuleni';</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.jscustom.js"></script>
     <link rel="index" title="Rejstřík" href="../genindex.html" />
@@ -448,9 +446,9 @@ document.write(`
                   
   <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
 
 
@@ -488,12 +486,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1355f7a1065388e30b9d145d3f2f2b13d87195f0cd5ac71958e82b4c74e21421.png" src="../_images/1355f7a1065388e30b9d145d3f2f2b13d87195f0cd5ac71958e82b4c74e21421.png" />
+<img alt="../_images/2a3568a8dd88844b0c0a312d2609585d451b14137ec5029e3c50cf219077978e.png" src="../_images/2a3568a8dd88844b0c0a312d2609585d451b14137ec5029e3c50cf219077978e.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> 
                   <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;mláďata&quot;</span><span class="p">,</span><span class="s2">&quot;mladí tuleni&quot;</span><span class="p">,</span><span class="s2">&quot;staří tuleni&quot;</span><span class="p">],</span> 
                   <span class="n">index</span><span class="o">=</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
@@ -613,7 +611,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c462761576b4d73352f6f55941233db25a35a04bf7164cbd1f3005aad334eaf6.png" src="../_images/c462761576b4d73352f6f55941233db25a35a04bf7164cbd1f3005aad334eaf6.png" />
+<img alt="../_images/c7ae93b3b2919e687edc7db47607be80b51bae5659d5f1d3f40bfe335d95df82.png" src="../_images/c7ae93b3b2919e687edc7db47607be80b51bae5659d5f1d3f40bfe335d95df82.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -637,7 +635,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8c78a708a983baa656fba5e19fab2bed502571a3dd04b94f17aacfe6802191dd.png" src="../_images/8c78a708a983baa656fba5e19fab2bed502571a3dd04b94f17aacfe6802191dd.png" />
+<img alt="../_images/d0cad43d4a01ecda923750e8cc2fe02ba8bdc46f7620bed02f062e20bea324c4.png" src="../_images/d0cad43d4a01ecda923750e8cc2fe02ba8bdc46f7620bed02f062e20bea324c4.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -650,7 +648,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: title={&#39;center&#39;: &#39;Vývoj počtu tuleňů&#39;}, xlabel=&#39;čas/rok&#39;, ylabel=&#39;počet jedinců&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/341391f170bf96e551a6f4bf3ff81d9cd59751c32c52afbddc390d6972e7ab1c.png" src="../_images/341391f170bf96e551a6f4bf3ff81d9cd59751c32c52afbddc390d6972e7ab1c.png" />
+<img alt="../_images/77c045ffcf21c31b5a5f91a18397dedaaa4215514090c704e3921a56ad763919.png" src="../_images/77c045ffcf21c31b5a5f91a18397dedaaa4215514090c704e3921a56ad763919.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -663,7 +661,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: title={&#39;center&#39;: &#39;Vývoj počtu tuleňů&#39;}, xlabel=&#39;čas/rok&#39;, ylabel=&#39;počet jedinců&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/341391f170bf96e551a6f4bf3ff81d9cd59751c32c52afbddc390d6972e7ab1c.png" src="../_images/341391f170bf96e551a6f4bf3ff81d9cd59751c32c52afbddc390d6972e7ab1c.png" />
+<img alt="../_images/77c045ffcf21c31b5a5f91a18397dedaaa4215514090c704e3921a56ad763919.png" src="../_images/77c045ffcf21c31b5a5f91a18397dedaaa4215514090c704e3921a56ad763919.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -702,7 +700,7 @@ dtype: float64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: title={&#39;center&#39;: &#39;Procentuální zastoupení věkových tříd&#39;}, xlabel=&#39;čas/rok&#39;, ylabel=&#39;procento z celkového počtu&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/070236f41e798c7ab07e9ca32079f47050c3a65716e6796c8683e48dc885d60d.png" src="../_images/070236f41e798c7ab07e9ca32079f47050c3a65716e6796c8683e48dc885d60d.png" />
+<img alt="../_images/bd602350a770abcbf4228cbc07422b44c16cebed6b265cc86ae1029b88eb91b3.png" src="../_images/bd602350a770abcbf4228cbc07422b44c16cebed6b265cc86ae1029b88eb91b3.png" />
 </div>
 </div>
 

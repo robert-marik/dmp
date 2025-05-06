@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="cs" data-content_root="" >
+<html lang="cs" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Ovládání JupyterLab &#8212; Dynamické modely populací</title>
   
@@ -29,35 +28,34 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=a771f39c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js"></script>
+    <script src="_static/documentation_options.js?v=4cdba38b"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="_static/translations.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/translations.js?v=0f3dec7d"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ovladani';</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.jscustom.js"></script>
     <link rel="index" title="Rejstřík" href="genindex.html" />
@@ -283,6 +281,37 @@
 <div class="article-header-buttons">
 
 
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/robert-marik/dmp/blob/main/ovladani.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
 <a href="https://github.com/robert-marik/dmp" target="_blank"
    class="btn btn-sm btn-source-repository-button"
    title="Zdrojové úložiště"
@@ -309,7 +338,7 @@
       
       
       
-      <li><a href="_sources/ovladani.md" target="_blank"
+      <li><a href="_sources/ovladani.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Stáhněte si zdrojový soubor"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -319,7 +348,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -418,15 +447,15 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ovladani-jupyterlab">
-<h1>Ovládání JupyterLab<a class="headerlink" href="#ovladani-jupyterlab" title="Permalink to this heading">#</a></h1>
+<h1>Ovládání JupyterLab<a class="headerlink" href="#ovladani-jupyterlab" title="Link to this heading">#</a></h1>
 <p>Jedná se o překlad dokumentu publikovaného <a class="reference external" href="https://gist.github.com/discdiver/9e00618756d120a8c9fa344ac1c375ac">zde</a>.</p>
 <p>V zápisníku jsou buňky několika druhů. Budeme používat Code pro kód v Pythonu a Markdown pro doprovodné texty.<br />
 Můžete se nacházet buď v režimu editace obsahu buněk, tj. v takzvaném <em>editačním režimu</em>, nebo v <em>příkazovém režimu</em>.</p>
 <p>V editačním režimu píšete příkazy nebo doprovodný text, v příkazovém režimu nastavujete typ buněk, spouštíte příkazy v buňkách, kopírujete či přesunujete buňky, vkládáte nové nebo mažete nepotřebné buňky a podobně.</p>
 <section id="zkratky-v-prikazovem-rezimu-i-v-editacnim-rezimu">
-<h2>Zkratky v <em>příkazovém režimu</em> i v <em>editačním režimu</em><a class="headerlink" href="#zkratky-v-prikazovem-rezimu-i-v-editacnim-rezimu" title="Permalink to this heading">#</a></h2>
+<h2>Zkratky v <em>příkazovém režimu</em> i v <em>editačním režimu</em><a class="headerlink" href="#zkratky-v-prikazovem-rezimu-i-v-editacnim-rezimu" title="Link to this heading">#</a></h2>
 <p>(Znak plus znamená současný stisk kláves.)</p>
-<div class="pst-scrollable-table-container"><table class="colwidths-auto table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Zkratka</p></th>
 <th class="head"><p>Akce</p></th>
@@ -459,8 +488,8 @@ Můžete se nacházet buď v režimu editace obsahu buněk, tj. v takzvaném <em
 </div>
 </section>
 <section id="zkratky-v-prikazovem-rezimu">
-<h2>Zkratky v <em>příkazovém režimu</em><a class="headerlink" href="#zkratky-v-prikazovem-rezimu" title="Permalink to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="colwidths-auto table">
+<h2>Zkratky v <em>příkazovém režimu</em><a class="headerlink" href="#zkratky-v-prikazovem-rezimu" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Zkratka</p></th>
 <th class="head"><p>Akce</p></th>
@@ -471,7 +500,7 @@ Můžete se nacházet buď v režimu editace obsahu buněk, tj. v takzvaném <em
 <td><p>vstoupit do <em>editačního režimu</em> v aktivní buňce</p></td>
 </tr>
 <tr class="row-odd"><td><p>Šipky nahoru a dolů</p></td>
-<td><p>Pohyb příslušným směrem.</p></td>
+<td><p>pohyb příslušným směrem.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">A</span></code></p></td>
 <td><p>vložit buňku nad aktivní buňku (Above)</p></td>
@@ -520,8 +549,8 @@ Můžete se nacházet buď v režimu editace obsahu buněk, tj. v takzvaném <em
 </div>
 </section>
 <section id="zkratky-v-editacnim-rezimu">
-<h2>Zkratky v <em>editačním režimu</em><a class="headerlink" href="#zkratky-v-editacnim-rezimu" title="Permalink to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="colwidths-auto table">
+<h2>Zkratky v <em>editačním režimu</em><a class="headerlink" href="#zkratky-v-editacnim-rezimu" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Zkratka</p></th>
 <th class="head"><p>Akce</p></th>

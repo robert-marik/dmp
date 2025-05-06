@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="cs" data-content_root="" >
+<html lang="cs" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Derivace a modely založené na derivaci &#8212; Dynamické modely populací</title>
   
@@ -29,35 +28,34 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a771f39c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../_static/documentation_options.js?v=4cdba38b"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/translations.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=0f3dec7d"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'cviceni/reseni_02';</script>
@@ -459,24 +457,24 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="derivace-a-modely-zalozene-na-derivaci">
-<h1>Derivace a modely založené na derivaci<a class="headerlink" href="#derivace-a-modely-zalozene-na-derivaci" title="Permalink to this heading">#</a></h1>
+<h1>Derivace a modely založené na derivaci<a class="headerlink" href="#derivace-a-modely-zalozene-na-derivaci" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="numericka-simulace-v-rovnici-ochlazovani">
-<h1>Numerická simulace v rovnici ochlazování<a class="headerlink" href="#numericka-simulace-v-rovnici-ochlazovani" title="Permalink to this heading">#</a></h1>
+<h1>Numerická simulace v rovnici ochlazování<a class="headerlink" href="#numericka-simulace-v-rovnici-ochlazovani" title="Link to this heading">#</a></h1>
 <p>Studujeme úlohu <div class="math notranslate nohighlight">
 \[\frac{\mathrm dT}{\mathrm dt} = - k (T-T_\infty), \quad T(0)=T_0.\]</div>
  Pokusíme se odhadnout po malých krůčcích chování řešení. Uvnitř každého krůčku budeme rychlost považovat za konstantní a změnu teploty určíme jako součin rychlosti a času (délky časového intervalu).</p>
 <section id="srovnani-presneho-analytickeho-reseni-s-numerickou-simulaci-po-krocich-konecne-delky">
-<h2>Srovnání přesného analytického řešení s numerickou simulací po krocích konečné délky.<a class="headerlink" href="#srovnani-presneho-analytickeho-reseni-s-numerickou-simulaci-po-krocich-konecne-delky" title="Permalink to this heading">#</a></h2>
+<h2>Srovnání přesného analytického řešení s numerickou simulací po krocích konečné délky.<a class="headerlink" href="#srovnani-presneho-analytickeho-reseni-s-numerickou-simulaci-po-krocich-konecne-delky" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Nastavení parametrů</span>
@@ -520,14 +518,14 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6914a1246aaebb3e8382b36bfde07cc3c0bd35298ccea482051acfa4548dd206.png" src="../_images/6914a1246aaebb3e8382b36bfde07cc3c0bd35298ccea482051acfa4548dd206.png" />
+<img alt="../_images/a90dfaa82b57f2738090f2b3e93f8fb142ba070dc12ebd41c500cbd271f39b82.png" src="../_images/a90dfaa82b57f2738090f2b3e93f8fb142ba070dc12ebd41c500cbd271f39b82.png" />
 </div>
 </div>
 <p><strong>Úkol</strong> Experimentujte s délkou kroku <code class="docutils literal notranslate"><span class="pre">dt</span></code> a sledujte hladkost numerického řešení a jeho odchylku od přesného analytického řešení.</p>
 <p>V praxi musíme mít krok dostatečně malý, aby řešení bylo hladké a přesné, ale ne moc malý, aby nás to nestálo hodně paměti, výpočetního výkonu, času a aby nehrozilo, že se při mnoha výpočtech akumulují zaokrouhlovací chyby. Zpravidla nám toto obstarají procedury pro řešení automaticky.</p>
 </section>
 <section id="simlace-pro-vice-pocatecnich-podminek">
-<h2>Simlace pro více počátečních podmínek<a class="headerlink" href="#simlace-pro-vice-pocatecnich-podminek" title="Permalink to this heading">#</a></h2>
+<h2>Simlace pro více počátečních podmínek<a class="headerlink" href="#simlace-pro-vice-pocatecnich-podminek" title="Link to this heading">#</a></h2>
 <p>Vyjdeme z předchozí simulace, ale novou simulaci spustíme v cyklu. Jeden průběh cyklu pro každou počáteční podmínku.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -585,16 +583,16 @@ document.write(`
 4  0.4   85.1605  68.870375  52.58025  36.290125
 </pre></div>
 </div>
-<img alt="../_images/58856d50cdbc93e0444a74242492bd06ee17352a8d15e8efe9933230d1087894.png" src="../_images/58856d50cdbc93e0444a74242492bd06ee17352a8d15e8efe9933230d1087894.png" />
+<img alt="../_images/31dd25ee207f1160267f70f14098ef0ad892a64e8b9b49cd4078eb14457c60f6.png" src="../_images/31dd25ee207f1160267f70f14098ef0ad892a64e8b9b49cd4078eb14457c60f6.png" />
 </div>
 </div>
 <section id="ukol-simulace-pro-menici-se-koeficient-umernosti">
-<h3>Úkol - simulace pro měnící se koeficient úměrnosti<a class="headerlink" href="#ukol-simulace-pro-menici-se-koeficient-umernosti" title="Permalink to this heading">#</a></h3>
+<h3>Úkol - simulace pro měnící se koeficient úměrnosti<a class="headerlink" href="#ukol-simulace-pro-menici-se-koeficient-umernosti" title="Link to this heading">#</a></h3>
 <p>Udělejte simulaci s jednou počáteční podmínkou a měnící se hodnotu koeficientu <span class="math notranslate nohighlight">\(k\)</span>. Nakopírujte si sem předchozí buňku a modifikujte tak, aby byla počáteční podmínka pořád stejná a měnil se koeficient <span class="math notranslate nohighlight">\(k\)</span>. Musíte sestavit seznam hodnot pro proměnnou <span class="math notranslate nohighlight">\(k\)</span>, změnit cyklování a změnit jméno sloupce v tabulce tak, aby zachycovalo hodnotu <span class="math notranslate nohighlight">\(k\)</span>.</p>
 </section>
 </section>
 <section id="simulace-pro-model-se-zpozdenim">
-<h2>Simulace pro model se zpožděním<a class="headerlink" href="#simulace-pro-model-se-zpozdenim" title="Permalink to this heading">#</a></h2>
+<h2>Simulace pro model se zpožděním<a class="headerlink" href="#simulace-pro-model-se-zpozdenim" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Nastavení parametrů</span>
@@ -641,7 +639,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1ffe35017ee959189e5629d599effa7b8b40340f4448ddc570875cb5e698dac7.png" src="../_images/1ffe35017ee959189e5629d599effa7b8b40340f4448ddc570875cb5e698dac7.png" />
+<img alt="../_images/adbc9fa7cf4cc3d911f2a8606a8186b7e1924849b56e9c8bd85bd407b3815689.png" src="../_images/adbc9fa7cf4cc3d911f2a8606a8186b7e1924849b56e9c8bd85bd407b3815689.png" />
 </div>
 </div>
 </section>

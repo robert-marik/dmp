@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="cs" data-content_root="" >
+<html lang="cs" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>8. Autonomní systémy &#8212; Dynamické modely populací</title>
   
@@ -29,35 +28,34 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a771f39c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../_static/documentation_options.js?v=4cdba38b"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/translations.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=0f3dec7d"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'prednaska/08';</script>
@@ -473,7 +471,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="autonomni-systemy">
-<h1><span class="section-number">8. </span>Autonomní systémy<a class="headerlink" href="#autonomni-systemy" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">8. </span>Autonomní systémy<a class="headerlink" href="#autonomni-systemy" title="Link to this heading">#</a></h1>
 <div class="admonition-co-se-dozvite-v-tomto-textu admonition">
 <p class="admonition-title">Co se dozvíte v tomto textu</p>
 <p><img alt="" src="../_images/bear.jpg" /></p>
@@ -487,11 +485,11 @@ document.write(`
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
-<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">find_peaks</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_ivp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.signal</span><span class="w"> </span><span class="kn">import</span> <span class="n">find_peaks</span>
 </pre></div>
 </div>
 </div>
@@ -504,7 +502,7 @@ zpravidla čas. To znamená, že pravá strana nezávisí na čase. V případě
 dvourozměrného autonomního systému se tedy jedná o soustavu diferenciálních
 rovnic ve tvaru</p>
 <div class="math notranslate nohighlight" id="equation-as-rovina">
-<span class="eqno">(8.1)<a class="headerlink" href="#equation-as-rovina" title="Permalink to this equation">#</a></span>\[\begin{aligned} \frac{\mathrm dx}{\mathrm dt}&amp;= f(x,y), \\ \frac{\mathrm dy}{\mathrm dt}&amp;= g(x,y), \end{aligned}
+<span class="eqno">(8.1)<a class="headerlink" href="#equation-as-rovina" title="Link to this equation">#</a></span>\[\begin{aligned} \frac{\mathrm dx}{\mathrm dt}&amp;= f(x,y), \\ \frac{\mathrm dy}{\mathrm dt}&amp;= g(x,y), \end{aligned}
 \]</div>
 <p>kde <span class="math notranslate nohighlight">\(f\)</span> a <span class="math notranslate nohighlight">\(g\)</span> jsou funkce dvou proměnných. Řešením je dvojice funkcí <span class="math notranslate nohighlight">\(x(t)\)</span> a
 <span class="math notranslate nohighlight">\(y(t)\)</span>, které vyhovují těmto rovnicím. Počáteční podmínku zpravidla formulujeme
@@ -512,7 +510,7 @@ ve tvaru <span class="math notranslate nohighlight">\(x(0)=x_0\)</span> a <span 
 <p>Nejprve se seznámíme s jedním ze základních autonomních systémů používaných v
 ekologii a poté si zformalizujeme obecný přístup.</p>
 <section id="lotkuvvolterruv-model-dravce-a-koristi">
-<h2><span class="section-number">8.1. </span>Lotkův–Volterrův model dravce a kořisti<a class="headerlink" href="#lotkuvvolterruv-model-dravce-a-koristi" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">8.1. </span>Lotkův–Volterrův model dravce a kořisti<a class="headerlink" href="#lotkuvvolterruv-model-dravce-a-koristi" title="Link to this heading">#</a></h2>
 <p>Jednoduchým modelem dravce a kořisti je Lotkův–Volterrův model, který byl
 sestaven k vysvětlení fenoménu, že při omezení rybolovu během první světové
 války se v úlovcích zvýšilo procento dravých ryb. Tedy, že omezení rybolovu
@@ -556,7 +554,7 @@ cyklus uzavře.</p>
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lotkavolterra</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">lotkavolterra</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">z</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">a</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">,</span> <span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="n">d</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">]</span>
 
@@ -578,7 +576,7 @@ cyklus uzavře.</p>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/7be74f3a29e16730de7a0666b3321d2febdf65390cc5e53986a5262b78f15da8.png" src="../_images/7be74f3a29e16730de7a0666b3321d2febdf65390cc5e53986a5262b78f15da8.png" />
+<img alt="../_images/332c1a8e9f2a478736696f45c28fcfd6bec078931365dfb09ff8c9960497eaac.png" src="../_images/332c1a8e9f2a478736696f45c28fcfd6bec078931365dfb09ff8c9960497eaac.png" />
 </div>
 </div>
 <p>Rovnovážný stav systému je řešením soustavy rovnic
@@ -621,13 +619,13 @@ Nulklinou dravce (křivka kdy je růst dravce nulový) je přímka <span class="
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">korist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">korist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span>
 
-<span class="k">def</span> <span class="nf">dravec</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">dravec</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
     <span class="k">return</span> <span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">y</span><span class="o">+</span><span class="n">d</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span>
 
-<span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
     <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">X</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">korist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">),</span><span class="n">dravec</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">)]</span>
 <span class="n">meze</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
@@ -671,12 +669,12 @@ Nulklinou dravce (křivka kdy je růst dravce nulový) je přímka <span class="
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/cc8f6672f972535e097013334b7eb560047ef499e7cbed868ef64bbc9faba2dd.png" src="../_images/cc8f6672f972535e097013334b7eb560047ef499e7cbed868ef64bbc9faba2dd.png" />
+<img alt="../_images/1cb8ac578accfae0a424ffb9a70218967d745930d79cf10174b4d0be481eae5c.png" src="../_images/1cb8ac578accfae0a424ffb9a70218967d745930d79cf10174b4d0be481eae5c.png" />
 </div>
 </div>
 </section>
 <section id="volterruv-efekt">
-<h2><span class="section-number">8.2. </span>Volterrův efekt<a class="headerlink" href="#volterruv-efekt" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">8.2. </span>Volterrův efekt<a class="headerlink" href="#volterruv-efekt" title="Link to this heading">#</a></h2>
 <p>Na uvedeném modelu si můžeme demonstrovat Volterrův efekt. Toto je situace, kdy
 zásah proti škůdcům s cílem redukovat jejich populaci může v dlouhodobém měřítku
 paradoxně vyvolat přemnožení těchto škůdců. Například použití insekticidu nebo
@@ -711,7 +709,7 @@ světové války Volterru upozornil jeho zeť, biolog Umberto d’Ancona.</p>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/92234c981598e7bca9ded2965f9fd21f0efefe2c29d853e37ee50a1f5ea45396.png" src="../_images/92234c981598e7bca9ded2965f9fd21f0efefe2c29d853e37ee50a1f5ea45396.png" />
+<img alt="../_images/d26909953d2d7d3a0b994e66e0553f59ebc6a8e6a048e67b186d49528cfc6a5f.png" src="../_images/d26909953d2d7d3a0b994e66e0553f59ebc6a8e6a048e67b186d49528cfc6a5f.png" />
 </div>
 </div>
 <p>Budeme základní model modifikovat tak, že do populace kořisti i dravce přidáme
@@ -749,13 +747,13 @@ populací kořisti a menší populací dravce.</p>
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">predator</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">predator</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="k">return</span> <span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="n">d</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="n">h</span><span class="o">*</span><span class="n">y</span>
 
-<span class="k">def</span> <span class="nf">prey</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">prey</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="n">h</span><span class="o">*</span><span class="n">x</span>
 
-<span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">X</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">prey</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">h</span><span class="p">),</span><span class="n">predator</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">h</span><span class="p">)]</span>
 
@@ -792,7 +790,7 @@ populací kořisti a menší populací dravce.</p>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/d5973f101c6151c63a8339d39a0df6caba24c7ca5df1809ef874ddd890450ad6.png" src="../_images/d5973f101c6151c63a8339d39a0df6caba24c7ca5df1809ef874ddd890450ad6.png" />
+<img alt="../_images/0bbdfb975b06d6c5bd9661e1f50016562d58b4efcff30b230918e10b976dace0.png" src="../_images/0bbdfb975b06d6c5bd9661e1f50016562d58b4efcff30b230918e10b976dace0.png" />
 </div>
 </div>
 <p>Pro kontrolu ještě prozkoumáme časový vývoj populací pro různé intenzity lovu.
@@ -804,13 +802,13 @@ Výpočty uložíme do tabulky s hierarchickým indexováním sloupců a poté v
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">predator</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">predator</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="k">return</span> <span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="n">d</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="n">h</span><span class="o">*</span><span class="n">y</span>
 
-<span class="k">def</span> <span class="nf">prey</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">prey</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="n">h</span><span class="o">*</span><span class="n">x</span>
 
-<span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">X</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">prey</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">h</span><span class="p">),</span><span class="n">predator</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">h</span><span class="p">)]</span>
 
@@ -957,14 +955,14 @@ systému může lišit.</p>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/30f40bdecf226e1236e037dcfdf5b9a41bd02bfbb7c26fd79edd2c0b1d3703d5.png" src="../_images/30f40bdecf226e1236e037dcfdf5b9a41bd02bfbb7c26fd79edd2c0b1d3703d5.png" />
+<img alt="../_images/3493b9c35bfefe621f7cd87a09df3384a91d89dd68e4466dd3012febfa494d2e.png" src="../_images/3493b9c35bfefe621f7cd87a09df3384a91d89dd68e4466dd3012febfa494d2e.png" />
 </div>
 </div>
 </section>
 <section id="stripky-z-obecne-teorie-autonomnich-systemu">
-<h2><span class="section-number">8.3. </span>Střípky z obecné teorie autonomních systémů<a class="headerlink" href="#stripky-z-obecne-teorie-autonomnich-systemu" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">8.3. </span>Střípky z obecné teorie autonomních systémů<a class="headerlink" href="#stripky-z-obecne-teorie-autonomnich-systemu" title="Link to this heading">#</a></h2>
 <section id="linearni-autonomni-systemy">
-<h3><span class="section-number">8.3.1. </span>Lineární autonomní systémy<a class="headerlink" href="#linearni-autonomni-systemy" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">8.3.1. </span>Lineární autonomní systémy<a class="headerlink" href="#linearni-autonomni-systemy" title="Link to this heading">#</a></h3>
 <p>Soustava <span class="math notranslate nohighlight">\(n\)</span> diferenciálních rovnic tvaru <div class="math notranslate nohighlight">
 \[\frac{\mathrm dX}{\mathrm dt}=AX + B,\]</div>
  kde <span class="math notranslate nohighlight">\(X\)</span> a <span class="math notranslate nohighlight">\(B\)</span> jsou <span class="math notranslate nohighlight">\(n\)</span>-rozměrné sloupcové vektory a <span class="math notranslate nohighlight">\(A\)</span> je <span class="math notranslate nohighlight">\(n\)</span>-rozměrná čtvercová matice je lineární autonomní systém.</p>
@@ -975,7 +973,7 @@ systému může lišit.</p>
 \[\frac{\mathrm dY}{\mathrm dt}=AY,\]</div>
  můžeme bez újmy na obecnosti předpokládat, že <span class="math notranslate nohighlight">\(B\)</span> je nulový vektor a studovat rovnici ve tvaru</p>
 <div class="math notranslate nohighlight" id="equation-as-hom">
-<span class="eqno">(8.2)<a class="headerlink" href="#equation-as-hom" title="Permalink to this equation">#</a></span>\[
+<span class="eqno">(8.2)<a class="headerlink" href="#equation-as-hom" title="Link to this equation">#</a></span>\[
 \frac{\mathrm dX}{\mathrm dt}=AX
 \]</div>
 <p>se stacionárním bodem v počátku. Rovnice má následující vlastnosti.</p>
@@ -1006,7 +1004,7 @@ konverguje k nule buď monotonně (reálná vlastní hodnota) nebo v oscilacích
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/deca1d21255f09093b7b5ba622f21fc87d7796674f82c2d406db438d31b9143c.png" src="../_images/deca1d21255f09093b7b5ba622f21fc87d7796674f82c2d406db438d31b9143c.png" />
+<img alt="../_images/0496a5bbc84a4f823693e8964a64d2a119a5b24e62357cca7274e8c9baf2f3d5.png" src="../_images/0496a5bbc84a4f823693e8964a64d2a119a5b24e62357cca7274e8c9baf2f3d5.png" />
 </div>
 </div>
 <p>Experimentem s uvedeným kódem je možné ověřit, že vetší imaginární část se
@@ -1016,7 +1014,7 @@ vlastní hodnotu s kladnou reálnou částí. Rozdíl je v tom, že v takovém p
 řešení buď roste do nekonečna, nebo osciluje se stále větší amplitudou.</p>
 </section>
 <section id="nelinearni-autonomni-systemy">
-<h3><span class="section-number">8.3.2. </span>Nelineární autonomní systémy<a class="headerlink" href="#nelinearni-autonomni-systemy" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">8.3.2. </span>Nelineární autonomní systémy<a class="headerlink" href="#nelinearni-autonomni-systemy" title="Link to this heading">#</a></h3>
 <p>Soustava <div class="math notranslate nohighlight">
 \[X'=F(X)\]</div>
  diferenciálních rovnic, kde pravé strany nezávisí na čase,
@@ -1049,7 +1047,7 @@ vlastních hodnot a řešení oscilují směrem ke stacionárnímu bodu nebo
 od něj.</p>
 </section>
 <section id="autonomni-systemy-v-rovine">
-<h3><span class="section-number">8.3.3. </span>Autonomní systémy v rovině<a class="headerlink" href="#autonomni-systemy-v-rovine" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">8.3.3. </span>Autonomní systémy v rovině<a class="headerlink" href="#autonomni-systemy-v-rovine" title="Link to this heading">#</a></h3>
 <p>Pro autonomní systém v rovině <a class="reference internal" href="#equation-as-rovina">(8.1)</a> je možné chápat řešení jako
 parametricky zadané rovinné křivky. Tyto křivky se nazývají trajektorie.
 Trajektorie buď konvergují do nějakého stacionárního bodu, nebo mají alespoň

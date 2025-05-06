@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="cs" data-content_root="" >
+<html lang="cs" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>8. Maticové modely &#8212; Dynamické modely populací</title>
   
@@ -29,35 +28,34 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a771f39c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../_static/documentation_options.js?v=4cdba38b"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/translations.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=0f3dec7d"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'cviceni/cviceni_07';</script>
@@ -457,21 +455,21 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="maticove-modely">
-<h1><span class="section-number">8. </span>Maticové modely<a class="headerlink" href="#maticove-modely" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">8. </span>Maticové modely<a class="headerlink" href="#maticove-modely" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="c1">#from scipy.integrate import solve_ivp</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">optimize</span>
 <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <section id="rozcvicka-s-maticemi-a-dvourozmernymi-poli">
-<h2><span class="section-number">8.1. </span>Rozcvička s maticemi a dvourozměrnými poli<a class="headerlink" href="#rozcvicka-s-maticemi-a-dvourozmernymi-poli" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">8.1. </span>Rozcvička s maticemi a dvourozměrnými poli<a class="headerlink" href="#rozcvicka-s-maticemi-a-dvourozmernymi-poli" title="Link to this heading">#</a></h2>
 <p>Matice jsou dvourozměrná pole s některými dodatečnými vlastnostmi, jako například to, že je na nich definován maticový součin. Na prvky dvourozměrného pole se odkazujeme pomocí dvou indexů, první index je řádkový a druhý je sloupcový. Pokud je místo některého z indexů dvojtečka, je tím označen celý řádek nebo celý sloupec.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -531,7 +529,7 @@ proto, že nevzniká nová matice, ale jenom nový odkaz na matici původní.</p
 </div>
 </section>
 <section id="leslieho-model">
-<h2><span class="section-number">8.2. </span>Leslieho model<a class="headerlink" href="#leslieho-model" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">8.2. </span>Leslieho model<a class="headerlink" href="#leslieho-model" title="Link to this heading">#</a></h2>
 <p>Nejprve prozkoumáme Lesliseho model populace tuleňů z přednášky.
 Prvotní informace se týká vývoje populace. Rychlou představu si uděláme z grafu sledujícího vývoj jednotlivých věkových skupin v čase. Řešením jsou křivky rostoucí geometrickou řadou. Kvocient této řady je maximální vlastní číslo Leslieho matice.</p>
 <div class="cell docutils container">
@@ -583,7 +581,7 @@ Prvotní informace se týká vývoje populace. Rychlou představu si uděláme z
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1355f7a1065388e30b9d145d3f2f2b13d87195f0cd5ac71958e82b4c74e21421.png" src="../_images/1355f7a1065388e30b9d145d3f2f2b13d87195f0cd5ac71958e82b4c74e21421.png" />
+<img alt="../_images/2a3568a8dd88844b0c0a312d2609585d451b14137ec5029e3c50cf219077978e.png" src="../_images/2a3568a8dd88844b0c0a312d2609585d451b14137ec5029e3c50cf219077978e.png" />
 </div>
 </div>
 <p>Ověříme, že věková struktura konverguje ke stálému složení populace.</p>
@@ -608,7 +606,7 @@ Prvotní informace se týká vývoje populace. Rychlou představu si uděláme z
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/642ae6d7f9c02c28196b1d3c756f6f1d158aa26bbef314ed215502f89a4ee12e.png" src="../_images/642ae6d7f9c02c28196b1d3c756f6f1d158aa26bbef314ed215502f89a4ee12e.png" />
+<img alt="../_images/28762c5be27b48c8d52b0a84943d5db39ac64d5559d8cc82378327eaa2e510ca.png" src="../_images/28762c5be27b48c8d52b0a84943d5db39ac64d5559d8cc82378327eaa2e510ca.png" />
 </div>
 </div>
 <p>Numerické hodnoty určující procentuální zastoupení jednotlivých věkových skupin získáme z konce simulace.</p>
@@ -691,7 +689,7 @@ Příslušný vlastní směr/směry je/jsou  [0.52683575 0.2168591  0.25630515]
 </div>
 </div>
 <section id="parametr-pro-zastaveni-rustu">
-<h3><span class="section-number">8.2.1. </span>Parametr pro zastavení růstu<a class="headerlink" href="#parametr-pro-zastaveni-rustu" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">8.2.1. </span>Parametr pro zastavení růstu<a class="headerlink" href="#parametr-pro-zastaveni-rustu" title="Link to this heading">#</a></h3>
 <p>Budeme hledat, jak je potřeba změnit parametry populace tak, aby se růst populace zastavil. K zastavení vybereme vhodný parametr.  Například parametr ve druhém řádku a prvním sloupci. Tento parametr udává, jaká je pravděpodobnost, že se nejmladší věková kategorie dožije přestupu do starší kategorie. Budeme se tedy snažit lovit nejmladší jedince v populaci. Otázkou je, jak intenzivně musíme lovit, aby se růst populace zastavil.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -700,7 +698,7 @@ Příslušný vlastní směr/směry je/jsou  [0.52683575 0.2168591  0.25630515]
 <span class="c1"># Potřebujeme, aby největší vlastní číslo bylo rovno jedné. </span>
 <span class="c1"># K tomu nadefinujeme funkci, která nám toto vlastní číslo vypočítá </span>
 <span class="c1"># v závislosti na tom, jak se změní prvek, se kterým manipulujeme. </span>
-<span class="k">def</span> <span class="nf">nejvetsi_vlastni_cislo</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">M</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">nejvetsi_vlastni_cislo</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">M</span><span class="p">):</span>
     <span class="n">M</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># x je převedeno na array</span>
     <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
     <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">real</span>
@@ -752,12 +750,12 @@ Příslušný vlastní směr/směry je/jsou  [0.52683575 0.2168591  0.25630515]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f8fe199e3a695cccd0cbdddfbd82966a084d49ce86fb1dff65629e7143192c19.png" src="../_images/f8fe199e3a695cccd0cbdddfbd82966a084d49ce86fb1dff65629e7143192c19.png" />
+<img alt="../_images/3c4a21d20846b9614785df9f4ffe32add7c6e12b99c379af92936eb97c73f0e8.png" src="../_images/3c4a21d20846b9614785df9f4ffe32add7c6e12b99c379af92936eb97c73f0e8.png" />
 </div>
 </div>
 </section>
 <section id="matice-sensitivity-a-elasticity">
-<h3><span class="section-number">8.2.2. </span>Matice sensitivity a elasticity<a class="headerlink" href="#matice-sensitivity-a-elasticity" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">8.2.2. </span>Matice sensitivity a elasticity<a class="headerlink" href="#matice-sensitivity-a-elasticity" title="Link to this heading">#</a></h3>
 <p>Výpočet matice elasticity pomocí levých a pravých vlastních vektorů. Pro násobení matic po složkách (Hadamardův součin) převedeme matice na dvourozměrná pole.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -862,7 +860,7 @@ Příslušný vlastní směr/směry je/jsou  [0.52683575 0.2168591  0.25630515]
 </section>
 </section>
 <section id="model-jelena-evropskeho-red-deer-cervus-elaphus">
-<h2><span class="section-number">8.3. </span>Model jelena evropského (red deer, <em>Cervus elaphus</em>)<a class="headerlink" href="#model-jelena-evropskeho-red-deer-cervus-elaphus" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">8.3. </span>Model jelena evropského (red deer, <em>Cervus elaphus</em>)<a class="headerlink" href="#model-jelena-evropskeho-red-deer-cervus-elaphus" title="Link to this heading">#</a></h2>
 <p>Model je představen a studován ve výukovém materiálu
 <a class="reference external" href="https://www.youtube.com/watch?v=cMQd-okvS_M">https://www.youtube.com/watch?v=cMQd-okvS_M</a>
 Populace laní jelena evropského je rozdělena na rok staré laně, dva roky staré
@@ -1023,7 +1021,7 @@ parciální derivaci nahradíme centrální diferencí.</p>
 </div>
 </section>
 <section id="tropicky-strom">
-<h2><span class="section-number">8.4. </span>Tropický strom<a class="headerlink" href="#tropicky-strom" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">8.4. </span>Tropický strom<a class="headerlink" href="#tropicky-strom" title="Link to this heading">#</a></h2>
 <p>Model je studován ve výukovém materiálu <a class="reference external" href="https://www.youtube.com/watch?v=cMQd-okvS_M">https://www.youtube.com/watch?v=cMQd-okvS_M</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1128,7 +1126,7 @@ parciální derivaci nahradíme centrální diferencí.</p>
 </div>
 </section>
 <section id="kareta-obecna-loggerhead-sea-turtle">
-<h2><span class="section-number">8.5. </span>Kareta obecná (Loggerhead sea turtle)<a class="headerlink" href="#kareta-obecna-loggerhead-sea-turtle" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">8.5. </span>Kareta obecná (Loggerhead sea turtle)<a class="headerlink" href="#kareta-obecna-loggerhead-sea-turtle" title="Link to this heading">#</a></h2>
 <p>Model života Karety obecné je podle <a class="reference external" href="https://www.jstor.org/stable/1939225">publikace</a>  Deborah T. Crouse, Larry B.
 Crowder, Hal Caswell: A Stage-Based Population Model for Loggerhead Sea Turtles
 and Implications for Conservation, Ecology, Vol. 68, No. 5 (Oct., 1987), pp.
@@ -1291,7 +1289,7 @@ matice vyjádřen i graficky. Pokusíme se tento obrázek zreprodukovat.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9a37c9e87501c4c2dd9dcdbf997fcc50d83e275663bdabb7f5f1f5e7776fed3e.png" src="../_images/9a37c9e87501c4c2dd9dcdbf997fcc50d83e275663bdabb7f5f1f5e7776fed3e.png" />
+<img alt="../_images/e16fd3d2368eddc53b877cc83cfe2c4d9426963e807e886fed53b00a4c4b3798.png" src="../_images/e16fd3d2368eddc53b877cc83cfe2c4d9426963e807e886fed53b00a4c4b3798.png" />
 </div>
 </div>
 <p>Výstupem z modelu je skutečnost, že při snaze zachránit populaci karety má

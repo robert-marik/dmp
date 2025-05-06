@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="cs" data-content_root="" >
+<html lang="cs" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>7. Parciální derivace &#8212; Dynamické modely populací</title>
   
@@ -29,35 +28,34 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a771f39c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../_static/documentation_options.js?v=4cdba38b"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/translations.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=0f3dec7d"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'prednaska/07';</script>
@@ -470,7 +468,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="parcialni-derivace">
-<h1><span class="section-number">7. </span>Parciální derivace<a class="headerlink" href="#parcialni-derivace" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">7. </span>Parciální derivace<a class="headerlink" href="#parcialni-derivace" title="Link to this heading">#</a></h1>
 <div class="admonition-co-se-dozvite-v-tomto-textu admonition">
 <p class="admonition-title">Co se dozvíte v tomto textu</p>
 <p><img alt="" src="../_images/muskrat.jpg" /></p>
@@ -503,7 +501,7 @@ nezávislou proměnnou byl zpravidla čas. Nyní však je nezávislých
 proměnných hned několik. Rychlost růstu se v tkaových případech
 modeluje pomocí parciální derivace.</p>
 <section id="zavedeni-parcialni-derivace">
-<h2><span class="section-number">7.1. </span>Zavedení parciální derivace<a class="headerlink" href="#zavedeni-parcialni-derivace" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">7.1. </span>Zavedení parciální derivace<a class="headerlink" href="#zavedeni-parcialni-derivace" title="Link to this heading">#</a></h2>
 <p>Změna funkce více proměnných může být způsobena změnou libovolné nezávislé
 proměnné. Pokud sledujeme například rychlost růstu populace popsané Leslieho
 maticí, může nás zajímat, jak tato rychlost růstu souvisí s jednotlivými prvky
@@ -544,7 +542,7 @@ přírodních vědách často pracujeme se záporně vzatým gradientem, který 
 a intenzitu maximálního poklesu funkčních hodnot funkce <span class="math notranslate nohighlight">\(f\)</span>.</p>
 </section>
 <section id="sensitivita-a-elasticita-projekcni-matice">
-<h2><span class="section-number">7.2. </span>Sensitivita a elasticita projekční matice<a class="headerlink" href="#sensitivita-a-elasticita-projekcni-matice" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">7.2. </span>Sensitivita a elasticita projekční matice<a class="headerlink" href="#sensitivita-a-elasticita-projekcni-matice" title="Link to this heading">#</a></h2>
 <p>Zkoumejme model <div class="math notranslate nohighlight">
 \[x(n+1)=Ax(n)\]</div>
  věkově nebo jinak strukturované populace, kde
@@ -596,9 +594,9 @@ růstu populace. Bývá výhodné elasticity uspořádat do matice <div class="m
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span>
@@ -737,7 +735,7 @@ jednotlivé věkové kategorie podílejí na celkovém růstu.</p>
 </div>
 </section>
 <section id="linearni-aproximace">
-<h2><span class="section-number">7.3. </span>Lineární aproximace<a class="headerlink" href="#linearni-aproximace" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">7.3. </span>Lineární aproximace<a class="headerlink" href="#linearni-aproximace" title="Link to this heading">#</a></h2>
 <p>Jedna z úspěšných inženýrských metod je nahrazení nelineární funkce
 pomocí funkce lineární. Linearizace nám objasní, proč je v naprosté
 většině fyzikálních zákonů přímá úměrnost resp. přímá úměrnost nějaké
@@ -797,7 +795,7 @@ důvod, proč se v konstitučních vztazích tak často přímá úměrnost
 vyskytuje.</p>
 </section>
 <section id="rovnice-vedeni-tepla">
-<h2><span class="section-number">7.4. </span>Rovnice vedení tepla<a class="headerlink" href="#rovnice-vedeni-tepla" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">7.4. </span>Rovnice vedení tepla<a class="headerlink" href="#rovnice-vedeni-tepla" title="Link to this heading">#</a></h2>
 <p>Rovnice vedení tepla popisuje vedení tepla v jednorozměrném objektu, například v
 tyči. Teplo se předává z teplejšího místa do místa o nižší teplotě a tím se v
 čase teplejší místo ochlazuje a chladnější otepluje.</p>
@@ -842,7 +840,7 @@ kde <span class="math notranslate nohighlight">\(\frac{\partial^2 T}{\partial x^
 \left(\frac{\partial T}{\partial x}\right)\)</span> je druhá derivace teploty podle polohy.</p>
 </section>
 <section id="fisherovakpp-rovnice">
-<h2><span class="section-number">7.5. </span>Fisherova–KPP rovnice<a class="headerlink" href="#fisherovakpp-rovnice" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">7.5. </span>Fisherova–KPP rovnice<a class="headerlink" href="#fisherovakpp-rovnice" title="Link to this heading">#</a></h2>
 <p>Analogický postup jako u vedení tepla funguje pro libovolný transportní děj. Používá se například pro model šíření živočišného druhu v životním prostředí nebo šíření genu v populaci. Ukážeme si zde lineární verzi pro jednorozměrné životní prostředí, například podél řeky. Vícerozměrné zobecnění si uvedeme na konci semestru.</p>
 <p>Tento model se nazývá Fisherova–KPP rovnice a jedná se vlastně o rovnici vedení tepla, do které jsou doplněny zdroje.</p>
 <aside class="margin sidebar">

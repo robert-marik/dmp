@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="cs" data-content_root="" >
+<html lang="cs" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>2. Diferenciální rovnice &#8212; Dynamické modely populací</title>
   
@@ -29,35 +28,34 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a771f39c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script src="../_static/documentation_options.js?v=4cdba38b"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/translations.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=0f3dec7d"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'kombi/02';</script>
@@ -456,19 +454,19 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="diferencialni-rovnice">
-<h1><span class="section-number">2. </span>Diferenciální rovnice<a class="headerlink" href="#diferencialni-rovnice" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">2. </span>Diferenciální rovnice<a class="headerlink" href="#diferencialni-rovnice" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span>  <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w">  </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_ivp</span>
 </pre></div>
 </div>
 </div>
 </div>
 <section id="reseni-rovnice-a-vizualizace-reseni">
-<h2><span class="section-number">2.1. </span>Řešení rovnice a vizualizace řešení.<a class="headerlink" href="#reseni-rovnice-a-vizualizace-reseni" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.1. </span>Řešení rovnice a vizualizace řešení.<a class="headerlink" href="#reseni-rovnice-a-vizualizace-reseni" title="Link to this heading">#</a></h2>
 <p>Rychlost růstu populace o velikosti <span class="math notranslate nohighlight">\(N\)</span> v lokalitě s nosnou kapacitou <span class="math notranslate nohighlight">\(K\)</span> je možno popsat diferenciální rovnicí
 <div class="math notranslate nohighlight">
 \[\frac{\mathrm dN}{\mathrm dt}=rN\left(1-\frac NK\right),
@@ -482,7 +480,7 @@ kde <span class="math notranslate nohighlight">\(r\)</span> je rychlost růstu p
 <span class="n">meze</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">15</span><span class="p">]</span>  <span class="c1"># interval, na kterém hledáme řešení</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># počet bodů, ve kterých budeme počítat řešení</span>
 
-<span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Funkce definující rychlost růstu.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -512,7 +510,7 @@ kde <span class="math notranslate nohighlight">\(r\)</span> je rychlost růstu p
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a99d3dd99dd33b4d601b0e9f1e837fcc68d54e01ed8160b9719ba06a8cdbf490.png" src="../_images/a99d3dd99dd33b4d601b0e9f1e837fcc68d54e01ed8160b9719ba06a8cdbf490.png" />
+<img alt="../_images/015ed5242c63e4909177eb65382f89ffaa103aceb86beaf175edc2c179f656e8.png" src="../_images/015ed5242c63e4909177eb65382f89ffaa103aceb86beaf175edc2c179f656e8.png" />
 </div>
 </div>
 <p>Následující kód vyřeší rovnici <div class="math notranslate nohighlight">
@@ -521,7 +519,7 @@ b{D(N+\beta)}-a\frac {N^k}S\]</div>
  dynamické rovnováhy na ostrově s nulovou počáteční
 podmínkou.</p>
 <section id="ukoly">
-<h3><span class="section-number">2.1.1. </span>Úkoly:<a class="headerlink" href="#ukoly" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.1.1. </span>Úkoly:<a class="headerlink" href="#ukoly" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Vyzkoušejte si. Zkuste i zadání více počátečních podmínek, například
 řádek <code class="docutils literal notranslate"><span class="pre">pocatecni_podminka</span> <span class="pre">=</span> <span class="pre">[0]</span></code> vyměňte za <code class="docutils literal notranslate"><span class="pre">pocatecni_podminka</span> <span class="pre">=</span> <span class="pre">[0,5,10,20]</span></code>. Tím získáte řešení pro několik počátečních podmínek současně.</p></li>
@@ -538,7 +536,7 @@ ochlazováním kávy. I zde zkuste více počátečních podmínek.</p></li>
 <span class="n">meze</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">15</span><span class="p">]</span>  <span class="c1"># interval, na kterém hledáme řešení</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># počet dělících bodů</span>
 
-<span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">1.3</span><span class="p">,</span> <span class="n">S</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">1.3</span><span class="p">,</span> <span class="n">S</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Funkce z pravé strany modelu dynamické rovnováhy počtu druhů na ostrovech, </span>
 <span class="sd">    podle McArthura a Wilsona. </span>
@@ -580,13 +578,13 @@ ochlazováním kávy. I zde zkuste více počátečních podmínek.</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1528072ab78e200162ce3a312bb5da7520a59dde5d74627f2e30658560138028.png" src="../_images/1528072ab78e200162ce3a312bb5da7520a59dde5d74627f2e30658560138028.png" />
+<img alt="../_images/dd741ea7c94869db9ee0df54d8373b063d53aaacfe26034c6099b393da03c292.png" src="../_images/dd741ea7c94869db9ee0df54d8373b063d53aaacfe26034c6099b393da03c292.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="reseni-pro-sadu-parametru">
-<h2><span class="section-number">2.2. </span>Řešení pro sadu parametrů<a class="headerlink" href="#reseni-pro-sadu-parametru" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.2. </span>Řešení pro sadu parametrů<a class="headerlink" href="#reseni-pro-sadu-parametru" title="Link to this heading">#</a></h2>
 <p>Následující kód řeší vícekrát rovnici dynamické rovnováhy pro několik různých
 vzdálenosti ostrova od pevniny.</p>
 <p>V čem se kód změnil od předchozího? Prohlédněgte si <a class="reference external" href="https://gist.github.com/robert-marik/186cb003476f88526455af53d0121adc/revisions?diff=split&amp;amp;w=">diff</a> obou kódů.</p>
@@ -606,7 +604,7 @@ vzdálenosti ostrova od pevniny.</p>
 <span class="n">parametry</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># seznam parametrů</span>
 
 
-<span class="k">def</span> <span class="nf">model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">1.3</span><span class="p">,</span> <span class="n">S</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">1.3</span><span class="p">,</span> <span class="n">S</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Funkce z pravé strany modelu dynamické rovnováhy počtu druhů na ostrovech, </span>
 <span class="sd">    podle McArthura a Wilsona. </span>
@@ -654,11 +652,11 @@ vzdálenosti ostrova od pevniny.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/54edc7ef8dce803682e5612abf433e208dda20a7b257267808c0ccf09a766ac4.png" src="../_images/54edc7ef8dce803682e5612abf433e208dda20a7b257267808c0ccf09a766ac4.png" />
+<img alt="../_images/cec7b5da36fb2a64a36e8fef88cf18d384795473b7fc9902fa6154ce57f52d42.png" src="../_images/cec7b5da36fb2a64a36e8fef88cf18d384795473b7fc9902fa6154ce57f52d42.png" />
 </div>
 </div>
 <section id="id1">
-<h3><span class="section-number">2.2.1. </span>Úkoly<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<h3><span class="section-number">2.2.1. </span>Úkoly<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Vyzkoušejte si kód.</p></li>
 <li><p>V nové buňce sledujte vliv rozlohy ostrova (vzdálenost je stejná) na druhovu
