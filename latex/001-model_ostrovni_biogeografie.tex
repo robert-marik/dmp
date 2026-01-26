@@ -29,8 +29,7 @@
     \begin{column}[t]{0.48\hsize}
       \begin{block}{Rychlost kolonizace}
 \begin{itemize}
-\item Počet druhů, které v čase
-$t$ proniknou na ostrov a úspěšně se zde zabydlí, roste s počtem
+\item Počet druhů, které za jednotku času proniknou na ostrov a úspěšně se zde zabydlí, roste s počtem
 imigrantů  a klesá s počtem druhů, které na ostrově  již žijí (komplexnější společenstva organismů jsou stabilnější a lépe
 odolávají invazi nových druhů).
 \item  Počet imigrantů klesá s rostoucí
@@ -48,11 +47,13 @@ pevniny, $\beta$ je nezáporná a  $b$ kladná konstanta.
   \begin{block}{Rychlost vymírání  druhů}
 
 \begin{itemize}
-\item Rychlost vymírání  druhů, které v minulosti již úspěšně
-kolonizovaly ostrov, ale neobstály v~ konkurenci pozdějších kolonizátorů,
+\item Některé druhy v minulosti již úspěšně
+kolonizovaly ostrov, ale neobstály v~ konkurenci 
+pozdějších kolonizátorů a na ostrově vymřely.
+\item Rychlost vymírání, tj. počet druhů, které za jednotku času na ostrově vymřou,
 roste s~ klesající rozlohou ostrova a s rostoucím počtem druhů na
 ostrově (ostrov menší rozlohy má menší nosnou
-kapacitu).
+kapacitu a mezi mnoha druhy je více kandidátů na vyhynutí).
 \item Rychlost vymírání druhů je možné modelovat funkcí
 $$
  a\frac {N^k}S,
@@ -66,6 +67,10 @@ kde $S$ je rozloha ostrova a $a$ a $k$ jsou kladné konstanty.
 \bigskip
 \subsection{Model}
 
+Derivace $\frac{\mathrm dN}{\mathrm dt}$ je rychlost růstu počtu druhů, tj. nárůst za 
+jednotku času.
+Tento nárůst je rozdílem rychlosti kolonizace a rychlosti
+vymírání.
 Počet druhů na ostrově rozlohy $S$ ve
 vzdálenosti $D$ od pevniny vyhovuje diferenciální rovnici
 $$
@@ -83,8 +88,9 @@ podmínku $N(0)=0$.
   \includegraphics[width=\linewidth]{ostrov2.pdf}
 \end{minipage}
 
-Model vysvětluje, proč souvisí velikost 
-lokality s počtem druhů, které trvale obývají danou lokalitu.
+Model vysvětluje souvislost velikosti a polohy 
+lokality s počtem druhů, které danou lokalitu 
+trvale obývají.
 Předpoklady a~závěry teorie jsou ověřeny 
 pozorováními i cílenými experimenty.
 
