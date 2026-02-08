@@ -1,0 +1,109 @@
+\documentclass[handouts]{beamer}
+\usepackage[orientation=portrait,size=a4, scale=2]{beamerposter}
+\beamertemplatenavigationsymbolsempty
+
+\usepackage[czech]{babel}
+\usepackage{booktabs}
+
+
+
+\title{Funkce používané v ekologii}
+\author{Robert Mařík}
+\usetheme{CambridgeUS}
+\usecolortheme{crane}
+
+\def\subsection#1{\par\medskip \textbf{#1}\par\medskip}
+\begin{document}
+
+% \setbeamercolor{block title}{bg=white, fg=black}
+% \setbeamercolor{block body}{bg=white, fg=black}
+
+\begin{frame}
+
+  
+  \begin{center}
+    \large Funkce používané v ekologii
+  \end{center}
+Stavební kameny vstupující do modelů. Je vhodné je umět identifikovat a znát jejich vlastnosti.    
+
+    \begin{columns}
+    \begin{column}{0.35\textwidth}
+
+\begin{block}{Přímá úměrnost}
+
+        \begin{itemize}
+        \item Růst konstantní rychlostí. Používá se jako výchozí předpoklad, 
+        pokud nejsou důvody domnívat se, že se rychlost mění. 
+        \item Matematický předpis je $$y = kx.$$ 
+        \item Grafem funkce je přímka, která
+         prochází počátkem 
+         a bodem $[1, k]$.
+        \item Je-li $k > 0$, pak funkce roste rychleji pro vyšší hodnoty $k$.
+        \end{itemize}
+        \includegraphics[width=\linewidth]{prima_umernost.pdf}
+    
+\end{block}
+      \end{column}
+
+    \begin{column}{0.6\textwidth}
+\begin{block}{Kvadratická funkce}
+      \begin{itemize}
+      \item Růst rychlostí úměrnou velikosti populace a volnému místu v~životním prostředí. Používá se pro modelování růstu populace, pokud se předpokládá, že růst je rychlejší pro větší populace.
+      \item Používá se, pokud se dynamika růstu zpomaluje a
+       po překročení nosné kapacity prostředí dochází k poklesu.
+      \item Matematický předpis je $$y = rx\left(1-\frac{x}{K}\right).$$
+      \item Grafem funkce je parabola, která prochází počátkem a body $[0, 0]$ a 
+      $[0, K]$ a je otočena vrcholem nahoru.
+      \item V počátku roste rychlostí $r$.
+      \end{itemize}
+
+      \centering
+    \includegraphics[width=0.55\textwidth]{kvadraticka_funkce.pdf}
+
+\end{block}
+    \end{column}
+    \end{columns}
+
+    \begin{columns}
+        \begin{column}{0.48\textwidth}
+\begin{block}{Mocninná funkce}
+        \begin{itemize}
+        \item Kombinuje jednoduchost s flexibilitou, je oblíbená 
+        při formulaci alometrických vztahů.
+        \item Matematický předpis je $$y = x^k.$$ Rychlost růstu se mění, pro $k>1$ rychlost růstu roste s $x$.
+        \item Funkce prochází počátkem a bodem $[1,1]$, 
+        pro $k>1$ má vodorovnou tečnu a pro větší $k$ je na intervalu $[0,1]$ menší a na intervalu $[1,+\infty)$ větší
+        a na intervalu $[1, +\infty)$ větší. Pro $0<k<1$ má funkce v počátku svislou tečnu.
+        \item Pro logaritmicky škálované osy přechází na přímou úměrnost.
+        \end{itemize}
+
+            \centering
+        \includegraphics[width=.7\linewidth]{mocnina.pdf}
+\end{block}
+            
+        \end{column}
+        \begin{column}{0.46\textwidth}
+
+\begin{block}{Lomená funkce}
+    \begin{itemize}
+        \item Používá se pro růst k saturované hodnotě. Například při modelování působení predátorů.
+        \item Matematický předpis je $$y = \frac{x}{x+a}\quad \text{nebo}\quad y=\frac{x^k}{x^k+a^k}.$$
+        \item V okolí počátku se funkce chová jako funkce $y=\frac xa$ resp. $y=\frac{x^k}{a^k}$. Pro $k>1$ má v počátku vodorovnou tečnu.
+        \item Prochází bodem $[a,\frac 12]$ a zdola se blíží k vodorovné asymptotě $y=1$.
+    \end{itemize}
+
+    \centering
+    \includegraphics[width=.99\linewidth]{lomena.pdf}
+\end{block}
+        \end{column}
+
+        \end{columns}
+
+\end{frame}
+\end{document}
+
+
+%%% Local Variables: 
+%%% TeX-command-extra-options: "-shell-escape"
+%%% TeX-engine: xetex
+%%% End:
