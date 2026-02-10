@@ -5,3 +5,4 @@ scipy
 jupytext
 sphinx-proof
 pandas
+openpyxl
