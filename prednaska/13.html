@@ -1,0 +1,1798 @@
+
+<!DOCTYPE html>
+
+
+<html lang="cs" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>13. Agentní modely &#8212; Dynamické modely populací</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=8c6b312c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a771f39c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=4cdba38b"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=0f3dec7d"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'prednaska/13';</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.jscustom.js"></script>
+    <link rel="index" title="Rejstřík" href="../genindex.html" />
+    <link rel="search" title="Vyhledávání" href="../search.html" />
+    <link rel="next" title="14. První kroky" href="../Prvni_kroky.html" />
+    <link rel="prev" title="12. Difuzní rovnice" href="12.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="cs"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Přejít k hlavnímu obsahu</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Zpět na začátek</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Hledat v knize..."
+         aria-label="Hledat v knize..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Dynamické modely populací</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Vyhledávání</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../uvod.html">Úvodní slovo</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Přednášky</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01.html">1. Funkce a vlastnosti funkcí</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02.html">2. Derivace a integrál</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03.html">3. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04.html">4. Autonomní diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05.html">5. Bifurkace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06.html">6. Lineární algebra, matice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07.html">7. Parciální derivace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08.html">8. Autonomní systémy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09.html">9. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10.html">10. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11.html">11. Diskrétní populační modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12.html">12. Difuzní rovnice</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">13. Agentní modely</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Cvičení</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">14. První kroky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_01.html">15. Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_02.html">16. Práce s funkcemi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_03.html">17. Diferenciální rovnice 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_04.html">18. Diferenciální rovnice 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_05.html">19. Diferenciální rovnice 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_06.html">20. LaTeX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_07.html">21. Maticové modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_08.html">22. Levinsův model metapopulací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_09.html">23. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_10.html">24. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_11.html">25. Samostatná práce</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Různá zadání</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">26. Enzymy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../allee.html">27. Silný Alleeho efekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chovani.html">28. Model soupeření jestřábí a holubičí povahy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">29. Model populace ryb</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Kombinovaní</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">30. Data a grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">31. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">32. Lov v populaci - fázový portrét</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">33. Lov v populaci - časový vývoj</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">34. Model dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">35. Model konkurence</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python konstrukce a ukázky</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_zakladni_konstrukce.html">Základní konstrukce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/cykly.html">Cykly</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/grafy_amateri.html">Kreslení funkcí jednoduše</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/grafy_pokrocili.html">Kreslení funkcí pro pokročilé</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/diferencialni_rovnice_amateri.html">Diferenciální rovnice pro začátečníky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/diferencialni_rovnice_pokrocili.html">Diferenciální rovnice pro pokročilejší</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_tabulky.html">Tabulky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/python_grafy.html">Obrázky, grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/reseni_ODR.html">Řešení diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/tabulky_none.html">Tabulky s None a NaN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/multiindex.html">Tabulky s hierarchickým indexem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/multiindex-pokrocili.html">Hierarchický index (pokročilí)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snippety/reseni_rovnice.html">Numerické řešení rovnice</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Literatura a rejstřík</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../literatura.html">Literatura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Rejstřík</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">e-opora</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://robert-marik.github.io/moodle-python">Python</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/robert-marik/dmp/blob/gh-pages/_sources/prednaska/13.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+<a href="https://github.com/robert-marik/dmp" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Zdrojové úložiště"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Stáhněte si tuto stránku">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/prednaska/13.ipynb" target="_blank"
+   class="btn btn-sm btn-download-notebook-button dropdown-item"
+   title="Stáhnout soubor poznámkového bloku"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="../_sources/prednaska/13.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Stáhněte si zdrojový soubor"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Tisk do PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Režim celé obrazovky"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Světlý"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Tmavý"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Agentní modely</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Obsah </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#princip-agentniho-modelu">13.1. Princip agentního modelu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dva-zpusoby-programovani-numpy-a-knihovna-mesa">13.2. Dva způsoby programování: NumPy a knihovna Mesa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nahodne-rozeni-a-umirani">13.3. Náhodné rození a umírání</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stejny-model-v-knihovne-mesa">13.3.1. Stejný model v knihovně Mesa</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logisticky-rust-z-pravidel-pro-jedince">13.4. Logistický růst z pravidel pro jedince</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">13.4.1. Stejný model v knihovně Mesa</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prostorovy-model-dravce-a-koristi">13.5. Prostorový model dravce a kořisti</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">13.5.1. Stejný model v knihovně Mesa</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nahodna-prochazka-a-difuze">13.6. Náhodná procházka a difuze</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">13.6.1. Stejný model v knihovně Mesa</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shrnuti">13.7. Shrnutí</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="agentni-modely">
+<h1><span class="section-number">13. </span>Agentní modely<a class="headerlink" href="#agentni-modely" title="Link to this heading">#</a></h1>
+<div class="admonition-co-se-dozvite-v-tomto-textu admonition" id="index-1">
+<span id="index-0"></span><p class="admonition-title">Co se dozvíte v tomto textu</p>
+<p><img alt="" src="../_images/agenti.png" /></p>
+<p>Dosud jsme populaci popisovali jedním číslem (případně několika čísly), které
+vyjadřovalo velikost nebo hustotu populace, a vývoj tohoto čísla jsme popsali
+diferenciální nebo diferenční rovnicí. V této kapitole půjdeme opačnou cestou.
+Budeme sledovat jednotlivé jedince, takzvané agenty, a jejich chování popíšeme
+jednoduchými pravidly, ve kterých hraje důležitou roli náhoda. Chování celé
+populace potom nebude dáno rovnicí, ale vynoří se ze vzájemného působení mnoha
+jedinců.</p>
+<p>Uvidíme, že pro velké populace se agentní modely chovají podobně jako modely
+založené na diferenciálních rovnicích. Agentní modely však navíc umožní sledovat
+jevy, které deterministické rovnice nepostihnou: náhodné vymření malé populace,
+kolísání velikosti populace kolem nosné kapacity nebo vznik prostorových struktur.</p>
+<p><em>Obrázek: Snímek simulace prostorového modelu dravce a kořisti z této kapitoly.
+Modré body jsou jedinci kořisti, červené body jsou dravci.</em></p>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_ivp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Knihovna Mesa pro agentní modely. V Google Colab není předinstalovaná,</span>
+<span class="c1"># proto ji v případě potřeby doinstalujeme.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">importlib.util</span>
+<span class="k">if</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">find_spec</span><span class="p">(</span><span class="s2">"mesa"</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="o">%</span><span class="k">pip</span> install -q mesa
+<span class="kn">import</span><span class="w"> </span><span class="nn">mesa</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mesa.discrete_space</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrthogonalMooreGrid</span><span class="p">,</span> <span class="n">CellAgent</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<section id="princip-agentniho-modelu">
+<h2><span class="section-number">13.1. </span>Princip agentního modelu<a class="headerlink" href="#princip-agentniho-modelu" title="Link to this heading">#</a></h2>
+<p>Agentní modely (anglicky <em>agent-based models</em>, v ekologii častěji
+<em>individual-based models</em>) jsou počítačové simulace, ve kterých sledujeme
+každého jedince zvlášť. Každý jedinec má svůj stav (například polohu, věk,
+zásobu energie nebo pohlaví) a v každém časovém kroku se podle předem daných
+pravidel rozhoduje, co udělá. Může se přemístit, rozmnožit, ulovit kořist nebo
+uhynout. Pravidla bývají formulována pomocí pravděpodobností, a proto dvě
+simulace se stejnými parametry nedají stejný výsledek.</p>
+<div class="proof definition admonition" id="definition-0">
+<p class="admonition-title"><span class="caption-number">Definice 13.1 </span> (Agentní model)</p>
+<section class="definition-content" id="proof-content">
+<p>Agentní model je tvořen</p>
+<ul class="simple">
+<li><p><em>agenty</em>, tj. jedinci s vlastním stavem (poloha, věk, energie, …),</p></li>
+<li><p><em>prostředím</em>, ve kterém se agenti nacházejí (mřížka, souvislá oblast,
+zdroje potravy, …),</p></li>
+<li><p><em>pravidly</em>, podle kterých agenti mění svůj stav, rodí se, umírají a ovlivňují
+sebe navzájem i prostředí,</p></li>
+<li><p><em>časovým krokem</em>, ve kterém jsou pravidla aplikována.</p></li>
+</ul>
+<p>Výstupem modelu jsou souhrnné veličiny, například velikost populace v čase,
+které získáme sečtením nebo zprůměrováním stavu všech agentů.</p>
+</section>
+</div><p>Výpočet probíhá v cyklu, který se opakuje pro každý časový krok.</p>
+<ol class="arabic simple">
+<li><p>Pro každého agenta vyhodnoť pravidla (pohyb, rozmnožování, interakce, smrt).</p></li>
+<li><p>Odstraň uhynulé agenty a přidej nově narozené.</p></li>
+<li><p>Zaznamenej souhrnné veličiny (velikost populace, rozmístění, …).</p></li>
+</ol>
+<p>Vlastnosti celé populace nejsou v modelu zadány přímo. Vynoří se ze vzájemného
+působení jedinců. Tento jev se nazývá <em>emergence</em>.</p>
+<div class="proof remark admonition" id="remark-1">
+<span id="index-3"></span><span id="index-2"></span><p class="admonition-title"><span class="caption-number">Poznámka 13.1 </span> (Srovnání s modely založenými na rovnicích)</p>
+<section class="remark-content" id="proof-content">
+<ul class="simple">
+<li><p>Diferenciální a diferenční rovnice popisují populaci jako celek. Pracují s
+velikostí nebo hustotou populace a předpokládají, že všichni jedinci jsou
+stejní a populace je dobře promíchaná. Agentní modely umožňují snadno zahrnout
+rozdíly mezi jedinci, prostorovou strukturu a lokální interakce.</p></li>
+<li><p>Deterministický model dává jedno řešení. Agentní model dává při každém
+spuštění jiný výsledek a proto jej spouštíme mnohokrát a výsledky
+zpracováváme statisticky (průměr, rozptyl, pravděpodobnost vymření).</p></li>
+<li><p>Náhodné kolísání způsobené tím, že se jedinci rodí a umírají jednotlivě a
+náhodně, se nazývá <em>demografická stochasticita</em>. Ve velkých populacích se
+ztrácí, v malých populacích je rozhodující.</p></li>
+<li><p>Nevýhodou agentních modelů je, že je obtížné je matematicky analyzovat. Nelze
+například jednoduše najít stacionární body a určit jejich stabilitu. Navíc
+jsou výpočetně náročné.</p></li>
+</ul>
+</section>
+</div><p>V praxi oba přístupy kombinujeme. Agentní model umožní formulovat realistická
+pravidla na úrovni jedinců a model založený na rovnicích pomůže výsledkům
+porozumět. Podrobný úvod do agentních modelů v ekologii je v knihách
+<span class="bibtex-citation" id="id1">[<a class="reference internal" href="../literatura.html#id18" title="V. Grimm and S.F. Railsback. Individual-based Modeling and Ecology. Princeton University Press, 2005.">10</a>]</span> a <span class="bibtex-citation" id="id2">[<a class="reference internal" href="../literatura.html#id19" title="S.F. Railsback and V. Grimm. Agent-Based and Individual-Based Modeling: A Practical Introduction. Princeton University Press, 2 edition, 2019.">17</a>]</span>.</p>
+</section>
+<section id="dva-zpusoby-programovani-numpy-a-knihovna-mesa">
+<h2><span class="section-number">13.2. </span>Dva způsoby programování: NumPy a knihovna Mesa<a class="headerlink" href="#dva-zpusoby-programovani-numpy-a-knihovna-mesa" title="Link to this heading">#</a></h2>
+<p id="index-4">Každý model v této kapitole naprogramujeme dvakrát.</p>
+<ul class="simple">
+<li><p><strong>Nízkoúrovňově v knihovně NumPy.</strong> Stav všech agentů uchováváme v polích
+(například pole souřadnic všech jedinců) a pravidla aplikujeme na celá pole
+najednou. Kód je krátký a rychlý, ale méně názorný. Pravidla pro jedince nejsou
+na první pohled vidět a přidání dalšího druhu nebo vlastnosti vyžaduje zásah
+do mnoha míst programu.</p></li>
+<li><p><strong>V knihovně <a class="reference external" href="https://mesa.readthedocs.io/">Mesa</a>,</strong> která je určena
+právě pro agentní modely. Agenta popíšeme jako objekt, který má své vlastnosti
+a metody (pravidla chování). Kód přímo odpovídá slovnímu popisu modelu a snadno
+se rozšiřuje. Cenou je pomalejší výpočet, protože Python zpracovává každého
+agenta zvlášť.</p></li>
+</ul>
+<p>Model v knihovně Mesa se skládá z následujících částí.</p>
+<ul class="simple">
+<li><p><strong>Agent</strong> je třída odvozená od <code class="docutils literal notranslate"><span class="pre">mesa.Agent</span></code>. Ve funkci <code class="docutils literal notranslate"><span class="pre">__init__</span></code> nastavíme
+vlastnosti agenta (například energii) a v dalších metodách, nejčastěji v metodě
+<code class="docutils literal notranslate"><span class="pre">step</span></code>, popíšeme jeho chování. Nový agent vznikne příkazem <code class="docutils literal notranslate"><span class="pre">Trida(model)</span></code>,
+agent uhyne příkazem <code class="docutils literal notranslate"><span class="pre">self.remove()</span></code>. Agent má přístup k modelu (<code class="docutils literal notranslate"><span class="pre">self.model</span></code>)
+a ke generátoru náhodných čísel (<code class="docutils literal notranslate"><span class="pre">self.random</span></code>).</p></li>
+<li><p><strong>Model</strong> je třída odvozená od <code class="docutils literal notranslate"><span class="pre">mesa.Model</span></code>. Ve funkci <code class="docutils literal notranslate"><span class="pre">__init__</span></code> vytvoří
+prostředí a počáteční agenty, metoda <code class="docutils literal notranslate"><span class="pre">step</span></code> popisuje jeden časový krok.
+Všichni agenti jsou dostupní jako <code class="docutils literal notranslate"><span class="pre">self.agents</span></code>, agenti jednoho druhu jako
+<code class="docutils literal notranslate"><span class="pre">self.agents_by_type[Trida]</span></code>. Příkaz <code class="docutils literal notranslate"><span class="pre">self.agents.shuffle_do(&quot;step&quot;)</span></code> zavolá
+metodu <code class="docutils literal notranslate"><span class="pre">step</span></code> všech agentů v náhodném pořadí.</p></li>
+<li><p><strong>Prostředí</strong>, například čtvercová mřížka <code class="docutils literal notranslate"><span class="pre">OrthogonalMooreGrid</span></code>, na které se
+pohybují agenti odvození od třídy <code class="docutils literal notranslate"><span class="pre">CellAgent</span></code>. Každý takový agent zná své
+políčko <code class="docutils literal notranslate"><span class="pre">self.cell</span></code>, a tím i ostatní agenty na stejném políčku a sousední
+políčka.</p></li>
+<li><p><strong>Sběr dat</strong> <code class="docutils literal notranslate"><span class="pre">mesa.DataCollector</span></code> v každém kroku zaznamená zvolené veličiny
+(například velikosti populací) a na konci je vrátí jako tabulku knihovny pandas.</p></li>
+</ul>
+</section>
+<section id="nahodne-rozeni-a-umirani">
+<h2><span class="section-number">13.3. </span>Náhodné rození a umírání<a class="headerlink" href="#nahodne-rozeni-a-umirani" title="Link to this heading">#</a></h2>
+<p id="index-5">Začneme nejjednodušším modelem. Populace je tvořena jedinci, kteří se navzájem
+neovlivňují. V každém krátkém časovém intervalu délky <span class="math notranslate nohighlight">\(\Delta t\)</span> se každý jedinec
+nezávisle na ostatních</p>
+<ul class="simple">
+<li><p>rozmnoží (přidá do populace jednoho potomka) s pravděpodobností <span class="math notranslate nohighlight">\(b\,\Delta t\)</span>,</p></li>
+<li><p>uhyne s pravděpodobností <span class="math notranslate nohighlight">\(d\,\Delta t\)</span>.</p></li>
+</ul>
+<p>Parametry <span class="math notranslate nohighlight">\(b\)</span> a <span class="math notranslate nohighlight">\(d\)</span> jsou porodnost a úmrtnost na jednoho jedince za jednotku
+času. Je-li v populaci <span class="math notranslate nohighlight">\(N\)</span> jedinců, je za čas <span class="math notranslate nohighlight">\(\Delta t\)</span> očekávaný počet narozených
+<span class="math notranslate nohighlight">\(bN\Delta t\)</span> a očekávaný počet uhynulých <span class="math notranslate nohighlight">\(dN\Delta t\)</span>. Střední hodnota velikosti
+populace se tedy mění rychlostí <span class="math notranslate nohighlight">\((b-d)N\)</span> a pro velké populace očekáváme chování
+popsané rovnicí exponenciálního růstu
+<div class="math notranslate nohighlight">
+\[\frac{\mathrm dN}{\mathrm dt}=(b-d)N,\]</div>
+
+s řešením <span class="math notranslate nohighlight">\(N(t)=N_0e^{(b-d)t}\)</span>.</p>
+<p>Pravidla v Pythonu realizujeme tak, že každému jedinci vygenerujeme náhodné
+číslo z intervalu <span class="math notranslate nohighlight">\((0,1)\)</span>. Pokud je toto číslo menší než daná
+pravděpodobnost, příslušná událost nastane. Protože jsou si v tomto modelu
+všichni jedinci rovni, stačí uchovávat jejich počet. Rozhodování ale probíhá
+pro každého jedince zvlášť.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span> <span class="c1"># generátor náhodných čísel</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">rozeni_umirani</span><span class="p">(</span><span class="n">N0</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Agentní model náhodného rození a umírání.</span>
+<span class="sd">    Vrací velikosti populace v časových krocích.</span>
+<span class="sd">    """</span>
+    <span class="n">kroky</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">kroky</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">N0</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">kroky</span><span class="p">):</span>
+        <span class="n">nahoda_rozeni</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>  <span class="c1"># jedno číslo pro každého jedince</span>
+        <span class="n">nahoda_umirani</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+        <span class="n">narozeni</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">nahoda_rozeni</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span>
+        <span class="n">uhynuli</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">nahoda_umirani</span> <span class="o">&lt;</span> <span class="n">d</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span>
+        <span class="n">N</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">narozeni</span> <span class="o">-</span> <span class="n">uhynuli</span>
+    <span class="k">return</span> <span class="n">N</span>
+
+<span class="n">T</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">N0</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.8</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="n">dt</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">realizace</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">rozeni_umirani</span><span class="p">(</span><span class="n">N0</span><span class="o">=</span><span class="n">N0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">)</span>
+                      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">)])</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">N</span> <span class="ow">in</span> <span class="n">realizace</span><span class="p">[:</span><span class="mi">30</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"gray"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">realizace</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"průměr 200 simulací"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">N0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">b</span><span class="o">-</span><span class="n">d</span><span class="p">)</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="s2">"--"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"exponenciální růst"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"čas"</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"velikost populace"</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">"Náhodné rození a umírání"</span><span class="p">,</span>
+    <span class="n">yscale</span><span class="o">=</span><span class="s2">"log"</span><span class="p">,</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/fe5f7bd774837872752e9807b690d7f15e53b73a12f216ca4fe54a037229cc7b.png" src="../_images/fe5f7bd774837872752e9807b690d7f15e53b73a12f216ca4fe54a037229cc7b.png" />
+</div>
+</div>
+<p>Šedé křivky jsou jednotlivé simulace. Průměr mnoha simulací kopíruje řešení
+diferenciální rovnice exponenciálního růstu. Jednotlivé simulace se ale od sebe
+liší a některé populace vymřely, přestože porodnost je větší než úmrtnost. To
+deterministický model nedokáže popsat. (V grafu s logaritmickou osou jsou
+vymřelé populace mimo zobrazovanou oblast.)</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vymrele</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">realizace</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Vymřelo </span><span class="si">{</span><span class="n">vymrele</span><span class="si">}</span><span class="s2"> populací z </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">realizace</span><span class="p">)</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vymřelo 22 populací z 200.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="proof remark admonition" id="remark-2">
+<p class="admonition-title"><span class="caption-number">Poznámka 13.2 </span> (Pravděpodobnost vymření)</p>
+<section class="remark-content" id="proof-content">
+<p>Pro model náhodného rození a umírání se spojitým časem je možné odvodit, že
+pokud <span class="math notranslate nohighlight">\(b&gt;d\)</span>, populace s počáteční velikostí <span class="math notranslate nohighlight">\(N_0\)</span> vymře s pravděpodobností
+<div class="math notranslate nohighlight">
+\[P=\left(\frac db\right)^{N_0}.\]</div>
+
+Pravděpodobnost vymření tedy rychle klesá s velikostí počáteční populace. Toto
+je jeden z důvodů, proč jsou reintrodukce a záchranné programy úspěšnější, pokud
+se vypouští větší počet jedinců najednou.</p>
+</section>
+</div><p>Ověříme tento vztah simulací. Pro různé počáteční velikosti populace spustíme
+model mnohokrát a spočítáme, jaký podíl populací vymřel. Simulaci ukončíme,
+jakmile populace vymře nebo naopak dosáhne velikosti 200 jedinců. Taková
+populace už prakticky nemá šanci vymřít.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">vymre</span><span class="p">(</span><span class="n">N0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">N_max</span><span class="o">=</span><span class="mi">200</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Vrací True, pokud populace vymře dříve, než dosáhne velikosti N_max."""</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">N0</span>
+    <span class="k">while</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">N</span> <span class="o">&lt;</span> <span class="n">N_max</span><span class="p">:</span>
+        <span class="n">narozeni</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span>
+        <span class="n">uhynuli</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">d</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="n">N</span> <span class="o">+</span> <span class="n">narozeni</span> <span class="o">-</span> <span class="n">uhynuli</span>
+    <span class="k">return</span> <span class="n">N</span> <span class="o">==</span> <span class="mi">0</span>
+
+<span class="n">opakovani</span> <span class="o">=</span> <span class="mi">400</span>
+<span class="n">pocatecni</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<span class="n">vysledky</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">"simulace"</span><span class="p">:</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">vymre</span><span class="p">(</span><span class="n">N0</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">opakovani</span><span class="p">)])</span>
+                  <span class="k">for</span> <span class="n">N0</span> <span class="ow">in</span> <span class="n">pocatecni</span><span class="p">],</span>
+     <span class="s2">"teorie (d/b)^N0"</span><span class="p">:</span> <span class="p">[(</span><span class="n">d</span><span class="o">/</span><span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="n">N0</span> <span class="k">for</span> <span class="n">N0</span> <span class="ow">in</span> <span class="n">pocatecni</span><span class="p">]},</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">pocatecni</span><span class="p">)</span>
+<span class="n">vysledky</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">"N0"</span>
+<span class="n">vysledky</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_a0ab8">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_a0ab8_level0_col0" class="col_heading level0 col0" >simulace</th>
+      <th id="T_a0ab8_level0_col1" class="col_heading level0 col1" >teorie (d/b)^N0</th>
+    </tr>
+    <tr>
+      <th class="index_name level0" >N0</th>
+      <th class="blank col0" >&nbsp;</th>
+      <th class="blank col1" >&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_a0ab8_level0_row0" class="row_heading level0 row0" >1</th>
+      <td id="T_a0ab8_row0_col0" class="data row0 col0" >0.812</td>
+      <td id="T_a0ab8_row0_col1" class="data row0 col1" >0.800</td>
+    </tr>
+    <tr>
+      <th id="T_a0ab8_level0_row1" class="row_heading level0 row1" >2</th>
+      <td id="T_a0ab8_row1_col0" class="data row1 col0" >0.610</td>
+      <td id="T_a0ab8_row1_col1" class="data row1 col1" >0.640</td>
+    </tr>
+    <tr>
+      <th id="T_a0ab8_level0_row2" class="row_heading level0 row2" >3</th>
+      <td id="T_a0ab8_row2_col0" class="data row2 col0" >0.500</td>
+      <td id="T_a0ab8_row2_col1" class="data row2 col1" >0.512</td>
+    </tr>
+    <tr>
+      <th id="T_a0ab8_level0_row3" class="row_heading level0 row3" >5</th>
+      <td id="T_a0ab8_row3_col0" class="data row3 col0" >0.335</td>
+      <td id="T_a0ab8_row3_col1" class="data row3 col1" >0.328</td>
+    </tr>
+    <tr>
+      <th id="T_a0ab8_level0_row4" class="row_heading level0 row4" >8</th>
+      <td id="T_a0ab8_row4_col0" class="data row4 col0" >0.175</td>
+      <td id="T_a0ab8_row4_col1" class="data row4 col1" >0.168</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<section id="stejny-model-v-knihovne-mesa">
+<h3><span class="section-number">13.3.1. </span>Stejný model v knihovně Mesa<a class="headerlink" href="#stejny-model-v-knihovne-mesa" title="Link to this heading">#</a></h3>
+<p>V knihovně Mesa popíšeme nejprve jedince. V každém kroku se s pravděpodobností
+<span class="math notranslate nohighlight">\(b\,\Delta t\)</span> rozmnoží a s pravděpodobností <span class="math notranslate nohighlight">\(d\,\Delta t\)</span> uhyne. Parametry
+modelu a aktuální úmrtnost si jedinec přečte z modelu. Úmrtnost nastavuje
+model na začátku každého kroku v metodě <code class="docutils literal notranslate"><span class="pre">nastav_umrtnost</span></code>. Zatím je konstantní,
+ale v dalším příkladu ji snadno změníme. Potomci narození v daném kroku se
+v tomto kroku ještě nerozhodují, metoda <code class="docutils literal notranslate"><span class="pre">shuffle_do</span></code> prochází jen agenty
+existující na začátku kroku.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Jedinec</span><span class="p">(</span><span class="n">mesa</span><span class="o">.</span><span class="n">Agent</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Jedinec, který se může rozmnožit nebo uhynout."""</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">m</span><span class="o">.</span><span class="n">b</span><span class="o">*</span><span class="n">m</span><span class="o">.</span><span class="n">dt</span><span class="p">:</span>
+            <span class="n">Jedinec</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>          <span class="c1"># narodí se potomek</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">m</span><span class="o">.</span><span class="n">umrtnost</span><span class="o">*</span><span class="n">m</span><span class="o">.</span><span class="n">dt</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>       <span class="c1"># jedinec uhyne</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">RozeniUmirani</span><span class="p">(</span><span class="n">mesa</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N0</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">rng</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">dt</span>
+        <span class="n">Jedinec</span><span class="o">.</span><span class="n">create_agents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N0</span><span class="p">)</span>      <span class="c1"># počáteční populace</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datacollector</span> <span class="o">=</span> <span class="n">mesa</span><span class="o">.</span><span class="n">DataCollector</span><span class="p">(</span>
+            <span class="n">model_reporters</span><span class="o">=</span><span class="p">{</span><span class="s2">"N"</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">agents</span><span class="p">)})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datacollector</span><span class="o">.</span><span class="n">collect</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">nastav_umrtnost</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">umrtnost</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">d</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nastav_umrtnost</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="o">.</span><span class="n">shuffle_do</span><span class="p">(</span><span class="s2">"step"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datacollector</span><span class="o">.</span><span class="n">collect</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+
+<span class="n">T</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">N0</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.8</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="n">dt</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">realizace_mesa</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">RozeniUmirani</span><span class="p">(</span><span class="n">N0</span><span class="o">=</span><span class="n">N0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">dt</span><span class="p">)):</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+    <span class="n">realizace_mesa</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">datacollector</span><span class="o">.</span><span class="n">get_model_vars_dataframe</span><span class="p">()[</span><span class="s2">"N"</span><span class="p">])</span>
+<span class="n">realizace_mesa</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">realizace_mesa</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">N</span> <span class="ow">in</span> <span class="n">realizace_mesa</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"gray"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">realizace_mesa</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"průměr 30 simulací (Mesa)"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">realizace</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"průměr 200 simulací (NumPy)"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">N0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">b</span><span class="o">-</span><span class="n">d</span><span class="p">)</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="s2">"--"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"exponenciální růst"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"čas"</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"velikost populace"</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">"Náhodné rození a umírání v knihovně Mesa"</span><span class="p">,</span>
+    <span class="n">yscale</span><span class="o">=</span><span class="s2">"log"</span><span class="p">,</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/796f2c58603c2226244cf963159d0e1e6d4cbffe4f8ba6a49f88f0540ddd04ef.png" src="../_images/796f2c58603c2226244cf963159d0e1e6d4cbffe4f8ba6a49f88f0540ddd04ef.png" />
+</div>
+</div>
+<p>Také pravděpodobnost vymření dostaneme stejnou jako v předchozí variantě.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">vymre_mesa</span><span class="p">(</span><span class="n">N0</span><span class="p">,</span> <span class="n">seed</span><span class="p">,</span> <span class="n">N_max</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">RozeniUmirani</span><span class="p">(</span><span class="n">N0</span><span class="o">=</span><span class="n">N0</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+    <span class="k">while</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">agents</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">N_max</span><span class="p">:</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">agents</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+
+<span class="n">pocatecni</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">vysledky_mesa</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">"simulace Mesa"</span><span class="p">:</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">vymre_mesa</span><span class="p">(</span><span class="n">N0</span><span class="p">,</span> <span class="n">seed</span><span class="p">)</span> <span class="k">for</span> <span class="n">seed</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">)])</span>
+                       <span class="k">for</span> <span class="n">N0</span> <span class="ow">in</span> <span class="n">pocatecni</span><span class="p">],</span>
+     <span class="s2">"teorie (d/b)^N0"</span><span class="p">:</span> <span class="p">[(</span><span class="n">d</span><span class="o">/</span><span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="n">N0</span> <span class="k">for</span> <span class="n">N0</span> <span class="ow">in</span> <span class="n">pocatecni</span><span class="p">]},</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">pocatecni</span><span class="p">)</span>
+<span class="n">vysledky_mesa</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">"N0"</span>
+<span class="n">vysledky_mesa</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_f1d83">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_f1d83_level0_col0" class="col_heading level0 col0" >simulace Mesa</th>
+      <th id="T_f1d83_level0_col1" class="col_heading level0 col1" >teorie (d/b)^N0</th>
+    </tr>
+    <tr>
+      <th class="index_name level0" >N0</th>
+      <th class="blank col0" >&nbsp;</th>
+      <th class="blank col1" >&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_f1d83_level0_row0" class="row_heading level0 row0" >1</th>
+      <td id="T_f1d83_row0_col0" class="data row0 col0" >0.775</td>
+      <td id="T_f1d83_row0_col1" class="data row0 col1" >0.800</td>
+    </tr>
+    <tr>
+      <th id="T_f1d83_level0_row1" class="row_heading level0 row1" >3</th>
+      <td id="T_f1d83_row1_col0" class="data row1 col0" >0.520</td>
+      <td id="T_f1d83_row1_col1" class="data row1 col1" >0.512</td>
+    </tr>
+    <tr>
+      <th id="T_f1d83_level0_row2" class="row_heading level0 row2" >5</th>
+      <td id="T_f1d83_row2_col0" class="data row2 col0" >0.340</td>
+      <td id="T_f1d83_row2_col1" class="data row2 col1" >0.328</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+</section>
+<section id="logisticky-rust-z-pravidel-pro-jedince">
+<h2><span class="section-number">13.4. </span>Logistický růst z pravidel pro jedince<a class="headerlink" href="#logisticky-rust-z-pravidel-pro-jedince" title="Link to this heading">#</a></h2>
+<p id="index-6">Aby populace nerostla neomezeně, musí se v modelu projevit vnitrodruhová
+konkurence. Předpokládejme, že porodnost je stále rovna <span class="math notranslate nohighlight">\(b\)</span>, ale úmrtnost roste
+s velikostí populace, například proto, že se jedinci více dělí o potravu. Zvolme
+úmrtnost jedince v populaci velikosti <span class="math notranslate nohighlight">\(N\)</span> ve tvaru
+<div class="math notranslate nohighlight">
+\[d(N)=d_0+(b-d_0)\frac NK.\]</div>
+
+Očekávaná rychlost změny velikosti populace potom je
+<div class="math notranslate nohighlight">
+\[bN-d(N)N=(b-d_0)N-(b-d_0)\frac{N^2}{K}=rN\left(1-\frac NK\right),\]</div>
+
+kde <span class="math notranslate nohighlight">\(r=b-d_0\)</span>. Pro velké populace tedy očekáváme chování popsané
+logistickou rovnicí, kterou známe z kapitoly o autonomních diferenciálních
+rovnicích.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">logisticky_agenti</span><span class="p">(</span><span class="n">N0</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">d0</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+    <span class="n">kroky</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">kroky</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">N0</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">kroky</span><span class="p">):</span>
+        <span class="n">umrtnost</span> <span class="o">=</span> <span class="n">d0</span> <span class="o">+</span> <span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">d0</span><span class="p">)</span><span class="o">*</span><span class="n">N</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">/</span><span class="n">K</span>   <span class="c1"># úmrtnost závisí na hustotě</span>
+        <span class="n">narozeni</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span>
+        <span class="n">uhynuli</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">umrtnost</span><span class="o">*</span><span class="n">dt</span><span class="p">)</span>
+        <span class="n">N</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">narozeni</span> <span class="o">-</span> <span class="n">uhynuli</span>
+    <span class="k">return</span> <span class="n">N</span>
+
+<span class="n">N0</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">d0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">dt</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mf">0.05</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="n">dt</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">realizace</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">logisticky_agenti</span><span class="p">(</span><span class="n">N0</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">d0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)])</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">d0</span>
+<span class="n">ode</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">N</span><span class="p">:</span> <span class="n">r</span><span class="o">*</span><span class="n">N</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">N</span><span class="o">/</span><span class="n">K</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">],</span> <span class="p">[</span><span class="n">N0</span><span class="p">],</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">N</span> <span class="ow">in</span> <span class="n">realizace</span><span class="p">[:</span><span class="mi">15</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"gray"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">realizace</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"průměr 50 simulací"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ode</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">ode</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">"--"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"logistická rovnice"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"k"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"čas"</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"velikost populace"</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">"Agentní model logistického růstu"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/90c00646d717a090c4d3247666eeae488b0a9130b28c76dad698e89448454d23.png" src="../_images/90c00646d717a090c4d3247666eeae488b0a9130b28c76dad698e89448454d23.png" />
+</div>
+</div>
+<p>Průměr simulací leží o něco níže než řešení logistické rovnice. Některé
+populace na začátku náhodou vymřou a navíc úmrtnost závisí na druhé mocnině
+velikosti populace, takže kolísání velikosti populace v průměru zvyšuje
+úmrtnost. Jednotlivé populace v agentním modelu navíc nedosáhnou nosné kapacity
+a nezůstanou v ní, jako je tomu u řešení logistické rovnice. Velikost populace kolem nosné kapacity
+neustále náhodně kolísá. Rozdělení velikostí populace v pozdějších časech
+ukazuje následující histogram.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ustalene</span> <span class="o">=</span> <span class="n">realizace</span><span class="p">[:,</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="mi">15</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">ustalene</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"k"</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"nosná kapacita K"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"velikost populace"</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"relativní četnost"</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">"Kolísání velikosti populace kolem nosné kapacity"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Průměr </span><span class="si">{</span><span class="n">ustalene</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">, směrodatná odchylka </span><span class="si">{</span><span class="n">ustalene</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Průměr 94.6, směrodatná odchylka 24.2
+</pre></div>
+</div>
+<img alt="../_images/4dd2ac8760d0c7c3700df278adb8b5a35929f5e1d3f6b148bc3e4e45529a8298.png" src="../_images/4dd2ac8760d0c7c3700df278adb8b5a35929f5e1d3f6b148bc3e4e45529a8298.png" />
+</div>
+</div>
+<p>Pro populace s malou nosnou kapacitou prostředí je kolísání velikosti populace
+relativně velké. Dříve či později nastane situace, kdy náhodně uhyne více
+jedinců, než se narodí, a populace vymře, přestože deterministický model
+předpovídá stabilní rovnováhu v bodě <span class="math notranslate nohighlight">\(N=K\)</span>. Tento jev je jedním z
+argumentů pro koncept <em>minimální životaschopné populace</em>, který se používá v
+ochraně přírody.</p>
+<div class="cell tag_hide-input docutils container" id="index-7">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T_dlouhe</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T_dlouhe</span><span class="o">+</span><span class="n">dt</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">logisticky_agenti</span><span class="p">(</span><span class="n">N0</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T_dlouhe</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"k"</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"čas"</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"velikost populace"</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">"Malá populace (K=10) dříve či později vymře"</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/a7ecc01e9cb28f235626e1303bf54b956ad93bebabe9e37fd169b58272e2788c.png" src="../_images/a7ecc01e9cb28f235626e1303bf54b956ad93bebabe9e37fd169b58272e2788c.png" />
+</div>
+</div>
+<section id="id3">
+<h3><span class="section-number">13.4.1. </span>Stejný model v knihovně Mesa<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>Zde se ukáže výhoda objektového přístupu. Jedince ani model není nutné psát
+znovu. Vytvoříme potomka třídy <code class="docutils literal notranslate"><span class="pre">RozeniUmirani</span></code>, který změní pouze způsob
+výpočtu úmrtnosti. Ta se nyní počítá z aktuálního počtu agentů
+<code class="docutils literal notranslate"><span class="pre">len(self.agents)</span></code>. Vše ostatní (rozmnožování, umírání, sběr dat) zůstává stejné.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Logisticky</span><span class="p">(</span><span class="n">RozeniUmirani</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N0</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">d0</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">K</span> <span class="o">=</span> <span class="n">K</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">N0</span><span class="o">=</span><span class="n">N0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">d0</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">nastav_umrtnost</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># úmrtnost závisí na velikosti populace</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">umrtnost</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">d</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="p">)</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span>
+
+
+<span class="n">N0</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">d0</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">dt</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mf">0.05</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="o">+</span><span class="n">dt</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">realizace_mesa</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Logisticky</span><span class="p">(</span><span class="n">N0</span><span class="o">=</span><span class="n">N0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">d0</span><span class="o">=</span><span class="n">d0</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="n">K</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">dt</span><span class="p">)):</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+    <span class="n">realizace_mesa</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">datacollector</span><span class="o">.</span><span class="n">get_model_vars_dataframe</span><span class="p">()[</span><span class="s2">"N"</span><span class="p">])</span>
+<span class="n">realizace_mesa</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">realizace_mesa</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">N</span> <span class="ow">in</span> <span class="n">realizace_mesa</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"gray"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">realizace_mesa</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"průměr 20 simulací (Mesa)"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">realizace</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"průměr 50 simulací (NumPy)"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ode</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">ode</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">"--"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"logistická rovnice"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"k"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"čas"</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"velikost populace"</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">"Agentní model logistického růstu v knihovně Mesa"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/a95ef9630f6af331ed16668230062aee9c82660c5e5549d44a0b7d2980c2a0ac.png" src="../_images/a95ef9630f6af331ed16668230062aee9c82660c5e5549d44a0b7d2980c2a0ac.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="prostorovy-model-dravce-a-koristi">
+<h2><span class="section-number">13.5. </span>Prostorový model dravce a kořisti<a class="headerlink" href="#prostorovy-model-dravce-a-koristi" title="Link to this heading">#</a></h2>
+<aside class="margin sidebar" id="index-8">
+<p class="sidebar-title">Software pro agentní modely</p>
+<p>Agentní modely je možné programovat v libovolném jazyce. Často se používá
+prostředí <a class="reference external" href="https://ccl.northwestern.edu/netlogo/">NetLogo</a>, které je určeno
+právě pro agentní modely a obsahuje knihovnu hotových modelů (včetně modelu
+vlků a ovcí). V Pythonu je k dispozici knihovna
+<a class="reference external" href="https://mesa.readthedocs.io/">Mesa</a>, kterou v této kapitole používáme vedle
+knihovny NumPy. Mesa obsahuje i nástroje pro interaktivní vizualizaci modelu
+v prohlížeči a pro hromadné spouštění simulací s různými parametry.</p>
+</aside>
+<p>Jednou ze silných stránek agentních modelů je možnost zahrnout do modelu prostor.
+V Lotkově–Volterrově modelu předpokládáme, že se každý dravec může setkat s
+každým jedincem kořisti a že počet setkání je úměrný součinu velikostí obou
+populací. Ve skutečnosti se ale dravec setká jenom s kořistí ve svém okolí.</p>
+<p>Uvažujme čtvercové území rozdělené na <span class="math notranslate nohighlight">\(L\times L\)</span> políček. Abychom se vyhnuli
+problémům na okraji, budeme předpokládat, že agent, který opustí území na jedné
+straně, se objeví na protější straně (takzvané periodické okrajové podmínky).
+Na území žijí jedinci kořisti a dravci. V každém časovém kroku platí následující
+pravidla.</p>
+<ul class="simple">
+<li><p><strong>Pohyb:</strong> Každý agent se přesune na náhodně zvolené sousední políčko (nebo
+zůstane na místě).</p></li>
+<li><p><strong>Rozmnožování kořisti:</strong> Každý jedinec kořisti se s pravděpodobností
+<span class="math notranslate nohighlight">\(p\)</span> rozmnoží, pokud je na jeho políčku méně než daný počet jedinců kořisti
+(lokální nosná kapacita, potravní zdroje políčka jsou omezené). Potomek zůstává
+na stejném políčku.</p></li>
+<li><p><strong>Energie dravce:</strong> Každý dravec spotřebuje v každém kroku jednu jednotku
+energie.</p></li>
+<li><p><strong>Lov:</strong> Pokud je na políčku s dravcem nějaká kořist, dravec jednoho jedince
+uloví a získá tím zadaný počet jednotek energie.</p></li>
+<li><p><strong>Rozmnožování dravce:</strong> Dravec, jehož energie dosáhne zadané hranice, se
+rozmnoží a rozdělí svou energii rovným dílem mezi sebe a potomka.</p></li>
+<li><p><strong>Smrt dravce:</strong> Dravec, kterému dojde energie, uhyne.</p></li>
+</ul>
+<p>Stav každého agenta je dán jeho souřadnicemi a u dravce navíc zásobou energie.
+Souřadnice všech jedinců kořisti uchováváme v polích <code class="docutils literal notranslate"><span class="pre">kx</span></code>, <code class="docutils literal notranslate"><span class="pre">ky</span></code>, souřadnice
+dravců v polích <code class="docutils literal notranslate"><span class="pre">dx</span></code>, <code class="docutils literal notranslate"><span class="pre">dy</span></code> a energii dravců v poli <code class="docutils literal notranslate"><span class="pre">energie</span></code>.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dravec_korist</span><span class="p">(</span>
+    <span class="n">L</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>            <span class="c1"># velikost území L x L</span>
+    <span class="n">n_korist</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>    <span class="c1"># počáteční počet kořisti</span>
+    <span class="n">n_dravec</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>     <span class="c1"># počáteční počet dravců</span>
+    <span class="n">kroky</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span>       <span class="c1"># délka simulace</span>
+    <span class="n">p_mnozeni</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>   <span class="c1"># pravděpodobnost rozmnožení kořisti</span>
+    <span class="n">kapacita</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>      <span class="c1"># maximální počet kořisti na políčku pro rozmnožení</span>
+    <span class="n">zisk</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>          <span class="c1"># energie získaná ulovením kořisti</span>
+    <span class="n">prah</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>          <span class="c1"># energie potřebná k rozmnožení dravce</span>
+    <span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">snimky</span><span class="o">=</span><span class="p">()</span>        <span class="c1"># časy, ve kterých si uložíme rozmístění agentů</span>
+    <span class="p">):</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="n">kx</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">n_korist</span><span class="p">)</span>
+    <span class="n">ky</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">n_korist</span><span class="p">)</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">n_dravec</span><span class="p">)</span>
+    <span class="n">dy</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">n_dravec</span><span class="p">)</span>
+    <span class="n">energie</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">prah</span><span class="p">,</span> <span class="n">n_dravec</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">historie</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">ulozene_snimky</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">krok</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">kroky</span><span class="p">):</span>
+        <span class="c1"># pohyb všech agentů o jedno políčko</span>
+        <span class="n">kx</span> <span class="o">=</span> <span class="p">(</span><span class="n">kx</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">kx</span><span class="o">.</span><span class="n">size</span><span class="p">))</span> <span class="o">%</span> <span class="n">L</span>
+        <span class="n">ky</span> <span class="o">=</span> <span class="p">(</span><span class="n">ky</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">ky</span><span class="o">.</span><span class="n">size</span><span class="p">))</span> <span class="o">%</span> <span class="n">L</span>
+        <span class="n">dx</span> <span class="o">=</span> <span class="p">(</span><span class="n">dx</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dx</span><span class="o">.</span><span class="n">size</span><span class="p">))</span> <span class="o">%</span> <span class="n">L</span>
+        <span class="n">dy</span> <span class="o">=</span> <span class="p">(</span><span class="n">dy</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dy</span><span class="o">.</span><span class="n">size</span><span class="p">))</span> <span class="o">%</span> <span class="n">L</span>
+
+        <span class="c1"># rozmnožování kořisti s lokální nosnou kapacitou</span>
+        <span class="n">policko</span> <span class="o">=</span> <span class="n">kx</span><span class="o">*</span><span class="n">L</span> <span class="o">+</span> <span class="n">ky</span>
+        <span class="n">pocet_na_policku</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">policko</span><span class="p">,</span> <span class="n">minlength</span><span class="o">=</span><span class="n">L</span><span class="o">*</span><span class="n">L</span><span class="p">)</span>
+        <span class="n">mnozi</span> <span class="o">=</span> <span class="p">((</span><span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">kx</span><span class="o">.</span><span class="n">size</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">p_mnozeni</span><span class="p">)</span>
+                 <span class="o">&amp;</span> <span class="p">(</span><span class="n">pocet_na_policku</span><span class="p">[</span><span class="n">policko</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">kapacita</span><span class="p">))</span>
+        <span class="n">kx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">kx</span><span class="p">,</span> <span class="n">kx</span><span class="p">[</span><span class="n">mnozi</span><span class="p">]])</span>
+        <span class="n">ky</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">ky</span><span class="p">,</span> <span class="n">ky</span><span class="p">[</span><span class="n">mnozi</span><span class="p">]])</span>
+
+        <span class="c1"># lov: pro každé políčko seznam jedinců kořisti, kteří na něm jsou</span>
+        <span class="n">korist_na_policku</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">kx</span><span class="o">*</span><span class="n">L</span> <span class="o">+</span> <span class="n">ky</span><span class="p">):</span>
+            <span class="n">korist_na_policku</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">ziva</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">kx</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+        <span class="n">energie</span> <span class="o">=</span> <span class="n">energie</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">rng</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">dx</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>   <span class="c1"># dravci loví v náhodném pořadí</span>
+            <span class="n">seznam</span> <span class="o">=</span> <span class="n">korist_na_policku</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">dx</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">L</span> <span class="o">+</span> <span class="n">dy</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">seznam</span><span class="p">:</span>
+                <span class="n">ziva</span><span class="p">[</span><span class="n">seznam</span><span class="o">.</span><span class="n">pop</span><span class="p">()]</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="n">energie</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">zisk</span>
+        <span class="n">kx</span><span class="p">,</span> <span class="n">ky</span> <span class="o">=</span> <span class="n">kx</span><span class="p">[</span><span class="n">ziva</span><span class="p">],</span> <span class="n">ky</span><span class="p">[</span><span class="n">ziva</span><span class="p">]</span>
+
+        <span class="c1"># rozmnožování a smrt dravců</span>
+        <span class="n">rodi</span> <span class="o">=</span> <span class="n">energie</span> <span class="o">&gt;=</span> <span class="n">prah</span>
+        <span class="n">energie</span><span class="p">[</span><span class="n">rodi</span><span class="p">]</span> <span class="o">=</span> <span class="n">energie</span><span class="p">[</span><span class="n">rodi</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span>
+        <span class="n">dx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">dx</span><span class="p">,</span> <span class="n">dx</span><span class="p">[</span><span class="n">rodi</span><span class="p">]])</span>
+        <span class="n">dy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">dy</span><span class="p">,</span> <span class="n">dy</span><span class="p">[</span><span class="n">rodi</span><span class="p">]])</span>
+        <span class="n">energie</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">energie</span><span class="p">,</span> <span class="n">energie</span><span class="p">[</span><span class="n">rodi</span><span class="p">]])</span>
+        <span class="n">zije</span> <span class="o">=</span> <span class="n">energie</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">energie</span> <span class="o">=</span> <span class="n">dx</span><span class="p">[</span><span class="n">zije</span><span class="p">],</span> <span class="n">dy</span><span class="p">[</span><span class="n">zije</span><span class="p">],</span> <span class="n">energie</span><span class="p">[</span><span class="n">zije</span><span class="p">]</span>
+
+        <span class="n">historie</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">kx</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">dx</span><span class="o">.</span><span class="n">size</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">krok</span> <span class="ow">in</span> <span class="n">snimky</span><span class="p">:</span>
+            <span class="n">ulozene_snimky</span><span class="p">[</span><span class="n">krok</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">kx</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">ky</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">dx</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">dy</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+
+    <span class="n">historie</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">historie</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"kořist"</span><span class="p">,</span> <span class="s2">"dravec"</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">historie</span><span class="p">,</span> <span class="n">ulozene_snimky</span>
+
+<span class="n">casy_snimku</span> <span class="o">=</span> <span class="p">(</span><span class="mi">420</span><span class="p">,</span> <span class="mi">435</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">465</span><span class="p">)</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">historie</span><span class="p">,</span> <span class="n">snimky</span> <span class="o">=</span> <span class="n">dravec_korist</span><span class="p">(</span><span class="n">snimky</span><span class="o">=</span><span class="n">casy_snimku</span><span class="p">)</span>
+<span class="n">cas_numpy</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Doba výpočtu (NumPy): </span><span class="si">{</span><span class="n">cas_numpy</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> s"</span><span class="p">)</span>
+<span class="n">historie</span><span class="o">.</span><span class="n">iloc</span><span class="p">[::</span><span class="mi">100</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Doba výpočtu (NumPy): 1.0 s
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>kořist</th>
+      <th>dravec</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>454</td>
+      <td>58</td>
+    </tr>
+    <tr>
+      <th>100</th>
+      <td>3064</td>
+      <td>716</td>
+    </tr>
+    <tr>
+      <th>200</th>
+      <td>4306</td>
+      <td>174</td>
+    </tr>
+    <tr>
+      <th>300</th>
+      <td>1691</td>
+      <td>58</td>
+    </tr>
+    <tr>
+      <th>400</th>
+      <td>533</td>
+      <td>347</td>
+    </tr>
+    <tr>
+      <th>500</th>
+      <td>3590</td>
+      <td>526</td>
+    </tr>
+    <tr>
+      <th>600</th>
+      <td>3369</td>
+      <td>124</td>
+    </tr>
+    <tr>
+      <th>700</th>
+      <td>1285</td>
+      <td>191</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">historie</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"čas (počet kroků)"</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"velikost populace"</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">"Časový vývoj"</span><span class="p">)</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">historie</span><span class="p">[</span><span class="s2">"kořist"</span><span class="p">],</span> <span class="n">historie</span><span class="p">[</span><span class="s2">"dravec"</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"velikost populace kořisti"</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"velikost populace dravce"</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">"Trajektorie ve fázové rovině"</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/29e01bbded06e5b1eeb12a72f4e400df01974cd5a04f31c610805785a785364c.png" src="../_images/29e01bbded06e5b1eeb12a72f4e400df01974cd5a04f31c610805785a785364c.png" />
+</div>
+</div>
+<p>Podobně jako v Lotkově–Volterrově modelu populace oscilují a maximum populace
+dravce následuje se zpožděním za maximem populace kořisti. Na rozdíl od
+deterministického modelu však amplituda i perioda oscilací náhodně kolísají a
+trajektorie ve fázové rovině není uzavřená křivka.</p>
+<p>Rozmístění agentů v území během jednoho cyklu ukazují následující snímky.
+Rozmístění agentů není rovnoměrné. Dravci se soustředí tam, kde je dostatek
+kořisti, a vylovená místa zůstávají prázdná. V místech, kde dravci kořist
+vylovili, dravci hynou hlady a tato místa později znovu osídlí kořist z okolí.
+Prostorová struktura tak přispívá k dlouhodobému soužití obou druhů.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">casy_snimku</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">),</span>
+                        <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">cas</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axs</span><span class="p">,</span> <span class="n">casy_snimku</span><span class="p">):</span>
+    <span class="n">kx</span><span class="p">,</span> <span class="n">ky</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span> <span class="o">=</span> <span class="n">snimky</span><span class="p">[</span><span class="n">cas</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kx</span><span class="p">,</span> <span class="n">ky</span><span class="p">,</span> <span class="s2">"."</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"C0"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"kořist"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="s2">"."</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"C3"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"dravec"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">"krok </span><span class="si">{</span><span class="n">cas</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s2">"equal"</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">"lower left"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/d7b349647d085d34a5129f1b2d53eba8a3a1ca3e874690b3a1c515f891c9b22f.png" src="../_images/d7b349647d085d34a5129f1b2d53eba8a3a1ca3e874690b3a1c515f891c9b22f.png" />
+</div>
+</div>
+<div class="proof remark admonition" id="remark-3">
+<p class="admonition-title"><span class="caption-number">Poznámka 13.3 </span> (Význam prostoru pro soužití dravce a kořisti)</p>
+<section class="remark-content" id="proof-content">
+<p>Pokud bychom agenty v každém kroku náhodně rozmístili po celém území (dobře
+promíchaná populace), dravec by se nejprve přemnožil, vylovil kořist a během
+několika desítek kroků vymřel. Podobně dopadne simulace se stejnými pravidly na
+příliš malém území (například <span class="math notranslate nohighlight">\(L=15\)</span>). Prostorová heterogenita, kdy se lokální
+populace v různých částech území nacházejí v různých fázích cyklu, stabilizuje
+celé společenstvo. Vyzkoušejte si to změnou parametru <code class="docutils literal notranslate"><span class="pre">L</span></code> nebo úpravou pravidla
+pro pohyb. Na podobném principu
+funguje přežívání metapopulací.</p>
+</section>
+</div><section id="id4">
+<h3><span class="section-number">13.5.1. </span>Stejný model v knihovně Mesa<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>V knihovně Mesa odpovídá každé pravidlo jedné metodě agenta. Kořist i dravec
+jsou odvozeni od třídy <code class="docutils literal notranslate"><span class="pre">CellAgent</span></code>, takže znají své políčko <code class="docutils literal notranslate"><span class="pre">self.cell</span></code>.
+Příkaz <code class="docutils literal notranslate"><span class="pre">self.cell.get_neighborhood(include_center=True).select_random_cell()</span></code>
+vybere náhodné políčko z okolí (včetně současného). Seznam agentů na políčku
+je <code class="docutils literal notranslate"><span class="pre">self.cell.agents</span></code>. Mřížka <code class="docutils literal notranslate"><span class="pre">OrthogonalMooreGrid</span></code> s parametrem <code class="docutils literal notranslate"><span class="pre">torus=True</span></code>
+má periodické okrajové podmínky. Metoda <code class="docutils literal notranslate"><span class="pre">step</span></code> modelu určuje pořadí
+pravidel v jednom časovém kroku a je stejné jako ve verzi v NumPy.</p>
+<p>Jediný drobný rozdíl je v rozmnožování kořisti. V NumPy se všichni jedinci
+rozhodují podle počtu kořisti na políčku na začátku kroku. V Mesa jedinci
+přicházejí na řadu postupně a vidí i potomky, kteří se na políčku narodili
+před nimi. Na chování modelu to nemá podstatný vliv.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Korist</span><span class="p">(</span><span class="n">CellAgent</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">cell</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cell</span> <span class="o">=</span> <span class="n">cell</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">pohyb</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cell</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">get_neighborhood</span><span class="p">(</span><span class="n">include_center</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">select_random_cell</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">mnozeni</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pocet</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">Korist</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">agents</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pocet</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">kapacita</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">p_mnozeni</span><span class="p">:</span>
+            <span class="n">Korist</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="p">)</span>        <span class="c1"># potomek na stejném políčku</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Dravec</span><span class="p">(</span><span class="n">CellAgent</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">cell</span><span class="p">,</span> <span class="n">energie</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cell</span> <span class="o">=</span> <span class="n">cell</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">energie</span> <span class="o">=</span> <span class="n">energie</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">pohyb</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cell</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">get_neighborhood</span><span class="p">(</span><span class="n">include_center</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">select_random_cell</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">lov</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">energie</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="n">korist</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">agents</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">Korist</span><span class="p">)]</span>
+        <span class="k">if</span> <span class="n">korist</span><span class="p">:</span>
+            <span class="n">korist</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>                   <span class="c1"># ulovená kořist zmizí</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">energie</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">zisk</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">mnozeni_a_smrt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">energie</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">prah</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">energie</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">energie</span><span class="o">/</span><span class="mi">2</span>
+            <span class="n">Dravec</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">energie</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">energie</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DravecKorist</span><span class="p">(</span><span class="n">mesa</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">n_korist</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">n_dravec</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">p_mnozeni</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+                 <span class="n">kapacita</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">zisk</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">prah</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">rng</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p_mnozeni</span> <span class="o">=</span> <span class="n">p_mnozeni</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kapacita</span> <span class="o">=</span> <span class="n">kapacita</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">zisk</span> <span class="o">=</span> <span class="n">zisk</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prah</span> <span class="o">=</span> <span class="n">prah</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span> <span class="o">=</span> <span class="n">OrthogonalMooreGrid</span><span class="p">((</span><span class="n">L</span><span class="p">,</span> <span class="n">L</span><span class="p">),</span> <span class="n">torus</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random</span><span class="p">)</span>
+        <span class="n">policka</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">all_cells</span><span class="o">.</span><span class="n">cells</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_korist</span><span class="p">):</span>
+            <span class="n">Korist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">policka</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_dravec</span><span class="p">):</span>
+            <span class="n">Dravec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">policka</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">prah</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datacollector</span> <span class="o">=</span> <span class="n">mesa</span><span class="o">.</span><span class="n">DataCollector</span><span class="p">(</span><span class="n">model_reporters</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">"kořist"</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">agents_by_type</span><span class="p">[</span><span class="n">Korist</span><span class="p">]),</span>
+            <span class="s2">"dravec"</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">agents_by_type</span><span class="p">[</span><span class="n">Dravec</span><span class="p">])})</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="o">.</span><span class="n">shuffle_do</span><span class="p">(</span><span class="s2">"pohyb"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">agents_by_type</span><span class="p">[</span><span class="n">Korist</span><span class="p">]</span><span class="o">.</span><span class="n">shuffle_do</span><span class="p">(</span><span class="s2">"mnozeni"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">agents_by_type</span><span class="p">[</span><span class="n">Dravec</span><span class="p">]</span><span class="o">.</span><span class="n">shuffle_do</span><span class="p">(</span><span class="s2">"lov"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">agents_by_type</span><span class="p">[</span><span class="n">Dravec</span><span class="p">]</span><span class="o">.</span><span class="n">shuffle_do</span><span class="p">(</span><span class="s2">"mnozeni_a_smrt"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datacollector</span><span class="o">.</span><span class="n">collect</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">DravecKorist</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">krok</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">800</span><span class="p">):</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+<span class="n">cas_mesa</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Doba výpočtu (Mesa): </span><span class="si">{</span><span class="n">cas_mesa</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> s"</span><span class="p">)</span>
+<span class="n">historie_mesa</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">datacollector</span><span class="o">.</span><span class="n">get_model_vars_dataframe</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">historie_mesa</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"čas (počet kroků)"</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"velikost populace"</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">"Časový vývoj (Mesa)"</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">historie_mesa</span><span class="p">[</span><span class="s2">"kořist"</span><span class="p">],</span> <span class="n">historie_mesa</span><span class="p">[</span><span class="s2">"dravec"</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Mesa"</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">historie</span><span class="p">[</span><span class="s2">"kořist"</span><span class="p">],</span> <span class="n">historie</span><span class="p">[</span><span class="s2">"dravec"</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"NumPy"</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"velikost populace kořisti"</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"velikost populace dravce"</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">"Trajektorie ve fázové rovině"</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Doba výpočtu (Mesa): 9.6 s
+</pre></div>
+</div>
+<img alt="../_images/5607f1e99e7b53ca18c9d4973427e96486579356e905bf5ae54246ab7880ac32.png" src="../_images/5607f1e99e7b53ca18c9d4973427e96486579356e905bf5ae54246ab7880ac32.png" />
+</div>
+</div>
+<p>Obě implementace dávají kvalitativně stejný výsledek. Konkrétní průběh se liší,
+protože každá verze používá jinou posloupnost náhodných čísel. Rozmístění
+agentů na konci simulace získáme přímo z políček, na kterých agenti stojí.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">druh</span><span class="p">,</span> <span class="n">barva</span><span class="p">,</span> <span class="n">velikost</span><span class="p">,</span> <span class="n">popis</span> <span class="ow">in</span> <span class="p">[(</span><span class="n">Korist</span><span class="p">,</span> <span class="s2">"C0"</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"kořist"</span><span class="p">),</span>
+                                     <span class="p">(</span><span class="n">Dravec</span><span class="p">,</span> <span class="s2">"C3"</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">"dravec"</span><span class="p">)]:</span>
+    <span class="n">souradnice</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">a</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">coordinate</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">agents_by_type</span><span class="p">[</span><span class="n">druh</span><span class="p">]])</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">souradnice</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">souradnice</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s2">"."</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="n">velikost</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">barva</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">popis</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">"Mesa, krok </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">historie_mesa</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s2">"equal"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">"lower left"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/fc93a7745a9e2fdb60770c0a834dadd23a693ed81ba8f49ad754038448050335.png" src="../_images/fc93a7745a9e2fdb60770c0a834dadd23a693ed81ba8f49ad754038448050335.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="nahodna-prochazka-a-difuze">
+<h2><span class="section-number">13.6. </span>Náhodná procházka a difuze<a class="headerlink" href="#nahodna-prochazka-a-difuze" title="Link to this heading">#</a></h2>
+<p id="index-9">V posledním příkladu ukážeme souvislost mezi pohybem jednotlivých agentů a
+difuzní rovnicí. Uvažujme agenty pohybující se po přímce. Na začátku jsou
+všichni v bodě <span class="math notranslate nohighlight">\(x=0\)</span>. V každém časovém kroku se každý agent nezávisle na
+ostatních posune o jednotku doprava nebo doleva, obě možnosti mají
+pravděpodobnost <span class="math notranslate nohighlight">\(1/2\)</span>. Takový pohyb se nazývá <em>náhodná procházka</em>.</p>
+<p>Po <span class="math notranslate nohighlight">\(t\)</span> krocích je poloha agenta součtem <span class="math notranslate nohighlight">\(t\)</span> nezávislých náhodných kroků. Podle
+centrální limitní věty má poloha přibližně normální rozdělení se střední
+hodnotou <span class="math notranslate nohighlight">\(0\)</span> a rozptylem <span class="math notranslate nohighlight">\(t\)</span>. Hustota agentů je tedy přibližně
+<div class="math notranslate nohighlight">
+\[u(x,t)=\frac{1}{\sqrt{4\pi Dt}}\,e^{-\frac{x^2}{4Dt}},\]</div>
+
+kde <span class="math notranslate nohighlight">\(D=1/2\)</span>. Tato funkce je řešením difuzní rovnice
+<div class="math notranslate nohighlight">
+\[\frac{\partial u}{\partial t}=D\frac{\partial^2 u}{\partial x^2}\]</div>
+
+z kapitoly o difuzní rovnici. Difuzní rovnice tedy popisuje průměrné chování
+velkého množství náhodně se pohybujících jedinců. Pokud k náhodnému pohybu
+přidáme rozmnožování s lokální konkurencí, dostaneme agentní analogii
+Fisherovy–KPP rovnice a populace se bude šířit ve formě postupné vlny.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pocet_agentu</span> <span class="o">=</span> <span class="mi">5000</span>
+<span class="n">kroky</span> <span class="o">=</span> <span class="mi">400</span>
+<span class="n">D</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">kroky_agentu</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">kroky</span><span class="p">,</span> <span class="n">pocet_agentu</span><span class="p">))</span>
+<span class="n">polohy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">kroky_agentu</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># poloha každého agenta v každém čase</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">70</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">400</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">polohy</span><span class="p">[</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">71</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"agenti, t=</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">D</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">D</span><span class="o">*</span><span class="n">t</span><span class="p">)),</span> <span class="n">color</span><span class="o">=</span><span class="s2">"k"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"poloha"</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"hustota agentů"</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">"Náhodná procházka a řešení difuzní rovnice"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/d913fa3168a0cde24f2867b910f34cab6a6574da7f5a7916f3dbcd00447e6198.png" src="../_images/d913fa3168a0cde24f2867b910f34cab6a6574da7f5a7916f3dbcd00447e6198.png" />
+</div>
+</div>
+<section id="id5">
+<h3><span class="section-number">13.6.1. </span>Stejný model v knihovně Mesa<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>Agent <code class="docutils literal notranslate"><span class="pre">Chodec</span></code> má jedinou vlastnost, polohu <code class="docutils literal notranslate"><span class="pre">x</span></code>, a v každém kroku ji změní o
+<span class="math notranslate nohighlight">\(\pm1\)</span>. Polohy všech agentů ve všech časech zaznamená <code class="docutils literal notranslate"><span class="pre">DataCollector</span></code>
+pomocí parametru <code class="docutils literal notranslate"><span class="pre">agent_reporters</span></code>. Výsledkem je tabulka, jejíž řádky jsou
+indexovány dvojicí (krok, číslo agenta). Polohy v daném kroku z ní vybereme
+metodou <code class="docutils literal notranslate"><span class="pre">xs</span></code>.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Chodec</span><span class="p">(</span><span class="n">mesa</span><span class="o">.</span><span class="n">Agent</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Prochazka</span><span class="p">(</span><span class="n">mesa</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pocet_agentu</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">rng</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+        <span class="n">Chodec</span><span class="o">.</span><span class="n">create_agents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pocet_agentu</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datacollector</span> <span class="o">=</span> <span class="n">mesa</span><span class="o">.</span><span class="n">DataCollector</span><span class="p">(</span><span class="n">agent_reporters</span><span class="o">=</span><span class="p">{</span><span class="s2">"x"</span><span class="p">:</span> <span class="s2">"x"</span><span class="p">})</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">agents</span><span class="o">.</span><span class="n">do</span><span class="p">(</span><span class="s2">"step"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datacollector</span><span class="o">.</span><span class="n">collect</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">Prochazka</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">400</span><span class="p">):</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+<span class="n">polohy_mesa</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">datacollector</span><span class="o">.</span><span class="n">get_agent_vars_dataframe</span><span class="p">()[</span><span class="s2">"x"</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">400</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">polohy_mesa</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">"Step"</span><span class="p">),</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">71</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"agenti (Mesa), t=</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">D</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">D</span><span class="o">*</span><span class="n">t</span><span class="p">)),</span> <span class="n">color</span><span class="o">=</span><span class="s2">"k"</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"poloha"</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"hustota agentů"</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">"Náhodná procházka v knihovně Mesa"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/d953572012de65a86492994189e1c0685f64439103eb7bdee5c35ffad7c814c3.png" src="../_images/d953572012de65a86492994189e1c0685f64439103eb7bdee5c35ffad7c814c3.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="shrnuti">
+<h2><span class="section-number">13.7. </span>Shrnutí<a class="headerlink" href="#shrnuti" title="Link to this heading">#</a></h2>
+<p>Agentní modely popisují populaci zdola, prostřednictvím pravidel pro jedince.</p>
+<ul class="simple">
+<li><p>Pro velké a dobře promíchané populace se jejich průměrné chování shoduje s
+modely založenými na diferenciálních rovnicích (exponenciální a logistický
+růst, difuze).</p></li>
+<li><p>Umožňují zachytit náhodné jevy, jako je vymření malé populace nebo kolísání
+kolem nosné kapacity, které deterministické modely nepostihnou.</p></li>
+<li><p>Umožňují snadno zahrnout prostor, individuální rozdíly mezi jedinci a lokální
+interakce. Jak jsme viděli u modelu dravce a kořisti, prostorová struktura
+může zásadně změnit chování celého společenstva.</p></li>
+<li><p>Výsledky je nutné zpracovávat statisticky z mnoha opakování simulace a modely
+je obtížné analyzovat matematickými prostředky.</p></li>
+</ul>
+<p>Srovnání obou způsobů programování ukazuje typický kompromis. Verze v NumPy
+je rychlejší, ale pravidla pro jedince jsou v ní skryta v operacích s poli.
+Verze v knihovně Mesa je pomalejší, ale její kód přímo odpovídá slovnímu popisu
+modelu: každé pravidlo je jedna metoda agenta. Model se proto snadno čte,
+kontroluje i rozšiřuje. Další druh, další vlastnost jedince nebo nové pravidlo
+znamená přidat třídu, atribut nebo metodu. U modelu logistického růstu jsme
+například využili celý model rození a umírání a změnili jen výpočet úmrtnosti.
+Pro rychlé statistické experimenty s jednoduchými pravidly je vhodnější NumPy,
+pro modely s mnoha druhy a složitým chováním jedinců knihovna Mesa.</p>
+<p>Protože agentní modely mohou obsahovat mnoho pravidel a parametrů, je důležité
+je pečlivě a srozumitelně popsat, aby je bylo možné zopakovat a zkontrolovat. K
+tomu se v ekologii používá standardizovaný popis zvaný <em>protokol ODD</em> (Overview,
+Design concepts, Details), viz <span class="bibtex-citation" id="id6">[<a class="reference internal" href="../literatura.html#id19" title="S.F. Railsback and V. Grimm. Agent-Based and Individual-Based Modeling: A Practical Introduction. Princeton University Press, 2 edition, 2019.">17</a>]</span>.</p>
+<span class="target" id="index-10"></span></section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="12.html"
+       title="předchozí stránka">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">předchozí</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Difuzní rovnice</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../Prvni_kroky.html"
+       title="další stránka">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">další</p>
+        <p class="prev-next-title"><span class="section-number">14. </span>První kroky</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Obsah
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#princip-agentniho-modelu">13.1. Princip agentního modelu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dva-zpusoby-programovani-numpy-a-knihovna-mesa">13.2. Dva způsoby programování: NumPy a knihovna Mesa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nahodne-rozeni-a-umirani">13.3. Náhodné rození a umírání</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stejny-model-v-knihovne-mesa">13.3.1. Stejný model v knihovně Mesa</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logisticky-rust-z-pravidel-pro-jedince">13.4. Logistický růst z pravidel pro jedince</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">13.4.1. Stejný model v knihovně Mesa</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prostorovy-model-dravce-a-koristi">13.5. Prostorový model dravce a kořisti</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">13.5.1. Stejný model v knihovně Mesa</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nahodna-prochazka-a-difuze">13.6. Náhodná procházka a difuze</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">13.6.1. Stejný model v knihovně Mesa</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shrnuti">13.7. Shrnutí</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Autor Robert Mařík
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+  All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
+</p>
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

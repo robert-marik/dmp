@@ -16,38 +16,41 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=8c6b312c" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a771f39c" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=4cdba38b"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -64,6 +67,7 @@
     <link rel="prev" title="Řešení diferenciální rovnice" href="reseni_ODR.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="cs"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,19 +83,8 @@
     <i class="fa-solid fa-arrow-up"></i>Zpět na začátek</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -99,7 +92,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Hledat v knize..."
          aria-label="Hledat v knize..."
          autocomplete="off"
@@ -107,8 +99,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -124,7 +116,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,15 +147,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Vyhledávání</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Vyhledávání</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="nav bd-sidenav">
@@ -182,37 +171,38 @@
 <li class="toctree-l1"><a class="reference internal" href="../prednaska/10.html">10. Modely dravce a kořisti</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../prednaska/11.html">11. Diskrétní populační modely</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../prednaska/12.html">12. Difuzní rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/13.html">13. Agentní modely</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Cvičení</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">1. První kroky</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_01.html">2. Úvod do jazyka Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_02.html">3. Práce s funkcemi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_03.html">4. Diferenciální rovnice 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_04.html">5. Diferenciální rovnice 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_05.html">6. Diferenciální rovnice 3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_06.html">7. LaTeX</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_07.html">8. Maticové modely</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_08.html">9. Levinsův model metapopulací</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_09.html">10. Modely konkurence populací</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_10.html">11. Modely dravce a kořisti</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_11.html">12. Samostatná práce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">14. První kroky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_01.html">15. Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_02.html">16. Práce s funkcemi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_03.html">17. Diferenciální rovnice 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_04.html">18. Diferenciální rovnice 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_05.html">19. Diferenciální rovnice 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_06.html">20. LaTeX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_07.html">21. Maticové modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_08.html">22. Levinsův model metapopulací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_09.html">23. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_10.html">24. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_11.html">25. Samostatná práce</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Různá zadání</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">1. Enzymy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../allee.html">2. Silný Alleeho efekt</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../chovani.html">3. Model soupeření jestřábí a holubičí povahy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">4. Model populace ryb</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">26. Enzymy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../allee.html">27. Silný Alleeho efekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chovani.html">28. Model soupeření jestřábí a holubičí povahy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">29. Model populace ryb</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Kombinovaní</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">1. Data a grafy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">2. Diferenciální rovnice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">3. Lov v populaci - fázový portrét</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">4. Lov v populaci - časový vývoj</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">5. Model dravce a kořisti</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">6. Model konkurence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">30. Data a grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">31. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">32. Lov v populaci - fázový portrét</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">33. Lov v populaci - časový vývoj</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">34. Model dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">35. Model konkurence</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python konstrukce a ukázky</span></p>
 <ul class="current nav bd-sidenav">
@@ -246,9 +236,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -377,7 +372,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Režim celé obrazovky"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -391,24 +386,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="světlý/tmavý" aria-label="světlý/tmavý" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Světlý"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Tmavý"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 
 </div></div>
       
@@ -451,17 +438,17 @@ Vhodnou výplní nedefinovaných dat jsou nuly nebo hodnoty <code class="docutil
 
 <span class="n">N</span> <span class="o">=</span> <span class="mi">11</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"a"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
 
 <span class="c1"># založíme prázdný sloupec a potom jeho začátek přepíšeme daty</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"b"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="s2">"b"</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
 
 <span class="c1"># jiná varianta je nejprve doplnit data a potom zakládat sloupec</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">15</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">9</span><span class="p">])</span>
 <span class="n">doplnena_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">))</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">doplnena_data</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"c"</span><span class="p">]</span> <span class="o">=</span> <span class="n">doplnena_data</span>
 
 <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">df</span>
@@ -561,7 +548,7 @@ Vhodnou výplní nedefinovaných dat jsou nuly nebo hodnoty <code class="docutil
     </tr>
   </tbody>
 </table>
-</div></div><img alt="../_images/e012f8f17379400cd96e1e8c1cb09c8b3e11c06ada8d076a5bce4631dc2a02a2.png" src="../_images/e012f8f17379400cd96e1e8c1cb09c8b3e11c06ada8d076a5bce4631dc2a02a2.png" />
+</div></div><img alt="../_images/b4a81535c70f20883a948f9832e0bdcaf7a95691664a89890e01031f0d4a9aa6.png" src="../_images/b4a81535c70f20883a948f9832e0bdcaf7a95691664a89890e01031f0d4a9aa6.png" />
 </div>
 </div>
 <p>Ukázkou je rovnice konstantního lovu v logistické rovnici, kdy pro některé počáteční podmínky je populace
@@ -579,13 +566,13 @@ zapsat dat do jedné tabulky, musíme neobsazená místa zaplnit nedefinovanými
     <span class="k">return</span>  <span class="n">r</span><span class="o">*</span><span class="n">N</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">N</span><span class="o">/</span><span class="n">K</span><span class="p">)</span> <span class="o">-</span> <span class="n">h</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">destrukce_populace</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">K</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="mf">0.15</span><span class="p">):</span>  <span class="c1"># Pokud x klesne na nulu, zastavíme výpočet</span>
-    <span class="k">return</span> <span class="n">x</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">destrukce_populace</span><span class="o">.</span><span class="n">terminal</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="c1">### Řešení modelu</span>
 <span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">meze</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>  <span class="c1"># definiční obor, v těchto bodech budeme hledat řešení</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Čas&quot;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">"Čas"</span>
 
 <span class="k">for</span> <span class="n">pocatecni_podminka</span> <span class="ow">in</span> <span class="n">pocatecni_podminky</span><span class="p">:</span>
     <span class="n">reseni</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span>
@@ -599,26 +586,26 @@ zapsat dat do jedné tabulky, musíme neobsazená místa zaplnit nedefinovanými
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">==</span><span class="n">N</span><span class="p">:</span>
         <span class="n">df</span><span class="p">[</span><span class="n">pocatecni_podminka</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">df</span><span class="p">[</span><span class="n">pocatecni_podminka</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">sloupec</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">pocatecni_podminka</span><span class="p">]</span>
-        <span class="n">sloupec</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)]</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">pocatecni_podminka</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="c1"># zapisujeme přímo do tabulky (df.loc), ne do kopie sloupce</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)],</span> <span class="n">pocatecni_podminka</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
         <span class="c1"># jina varianta je nejprve doplnit data a potom zakladat sloupec</span>
         <span class="c1"># doplnena_data = np.append(data,np.full(N-len(data),np.nan))</span>
         <span class="c1"># df[pocatecni_podminka] = doplnena_data</span>
 
 <span class="c1">### Vizualizace řešení</span>
 
-<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">"C0"</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
     <span class="n">ylim</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="kc">None</span><span class="p">),</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Model lovu konstantní rychlostí&quot;</span><span class="p">,</span>
-    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Velikost populace&quot;</span><span class="p">,</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s2">"Model lovu konstantní rychlostí"</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"Velikost populace"</span><span class="p">,</span>
 <span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f56f42ea4df043ebec2e0fc7aba417c5e36340dff743980e13ac7ed4cbe32d11.png" src="../_images/f56f42ea4df043ebec2e0fc7aba417c5e36340dff743980e13ac7ed4cbe32d11.png" />
+<img alt="../_images/a35c4335e48748ca3f41aea14d02b1092655a733bdaa27c842d2b9ee8ff1e0b2.png" src="../_images/a35c4335e48748ca3f41aea14d02b1092655a733bdaa27c842d2b9ee8ff1e0b2.png" />
 </div>
 </div>
 <p>Můžeme i barevně rozlišit, které křivky vedou k vymření přelovené populace.</p>
@@ -630,22 +617,22 @@ zapsat dat do jedné tabulky, musíme neobsazená místa zaplnit nedefinovanými
 <span class="k">for</span> <span class="n">pocatecni_podminka</span> <span class="ow">in</span> <span class="n">pocatecni_podminky</span><span class="p">:</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">pocatecni_podminka</span><span class="p">])</span>
     <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
-        <span class="n">barva</span> <span class="o">=</span> <span class="s2">&quot;C1&quot;</span>
+        <span class="n">barva</span> <span class="o">=</span> <span class="s2">"C1"</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">barva</span> <span class="o">=</span> <span class="s2">&quot;C0&quot;</span>
+        <span class="n">barva</span> <span class="o">=</span> <span class="s2">"C0"</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">data</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">barva</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
     <span class="n">ylim</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="kc">None</span><span class="p">),</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Model lovu konstantní rychlostí&quot;</span><span class="p">,</span>
-    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Velikost populace&quot;</span><span class="p">,</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s2">"Model lovu konstantní rychlostí"</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"Velikost populace"</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;trvalá udržitelnost při vysokých počátečních hodnotách&quot;</span><span class="p">,</span><span class="s2">&quot;přelovená populace při malých počátečních hodnotách&quot;</span><span class="p">]);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">"trvalá udržitelnost při vysokých počátečních hodnotách"</span><span class="p">,</span><span class="s2">"přelovená populace při malých počátečních hodnotách"</span><span class="p">]);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e96d9f297d4f330a0c0cd5d86848f5cf2b7fd59ea11cf85e0f8a402f3822eb60.png" src="../_images/e96d9f297d4f330a0c0cd5d86848f5cf2b7fd59ea11cf85e0f8a402f3822eb60.png" />
+<img alt="../_images/928a251ec941cb7f456511472c75e17328fbeef050f3cf2c5d1258cee16fe549.png" src="../_images/928a251ec941cb7f456511472c75e17328fbeef050f3cf2c5d1258cee16fe549.png" />
 </div>
 </div>
 <p>Místo cyklu přes všechna řešení můžeme vykreslit jednou barvou sloupce s
@@ -658,21 +645,21 @@ zejména pro rozsáhlé soubory dat.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 
 <span class="c1"># viz https://stackoverflow.com/questions/47414848/pandas-select-all-columns-without-nan</span>
-<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()])]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">"C0"</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()])]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">"C1"</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
     <span class="n">ylim</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="kc">None</span><span class="p">),</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Model lovu konstantní rychlostí&quot;</span><span class="p">,</span>
-    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;čas&quot;</span><span class="p">,</span>
-    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;velikost populace&quot;</span><span class="p">,</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s2">"Model lovu konstantní rychlostí"</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"čas"</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"velikost populace"</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;trvalá udržitelnost při vysokých počátečních hodnotách&quot;</span><span class="p">,</span><span class="s2">&quot;přelovená populace při malých počátečních hodnotách&quot;</span><span class="p">]);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">"trvalá udržitelnost při vysokých počátečních hodnotách"</span><span class="p">,</span><span class="s2">"přelovená populace při malých počátečních hodnotách"</span><span class="p">]);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9aa6006fc21852f4ab12ee57d542dab14268eae7e298564a96ae37cd879837ef.png" src="../_images/9aa6006fc21852f4ab12ee57d542dab14268eae7e298564a96ae37cd879837ef.png" />
+<img alt="../_images/975ad9525d5f8e3f4c5689e5ea8e5909fe38e6e6d3eab6d8807186651c55d011.png" src="../_images/975ad9525d5f8e3f4c5689e5ea8e5909fe38e6e6d3eab6d8807186651c55d011.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -750,15 +737,15 @@ zejména pro rozsáhlé soubory dat.</p>
   <tbody>
     <tr>
       <th>0.000000</th>
-      <td>0.1</td>
-      <td>0.12</td>
-      <td>0.14</td>
-      <td>0.16</td>
-      <td>0.18</td>
-      <td>0.2</td>
-      <td>0.22</td>
-      <td>0.24</td>
-      <td>0.26</td>
+      <td>0.100000</td>
+      <td>0.120000</td>
+      <td>0.140000</td>
+      <td>0.160000</td>
+      <td>0.180000</td>
+      <td>0.200000</td>
+      <td>0.220000</td>
+      <td>0.240000</td>
+      <td>0.260000</td>
       <td>0.280000</td>
       <td>...</td>
       <td>1.100000</td>
@@ -799,14 +786,14 @@ zejména pro rozsáhlé soubory dat.</p>
     <tr>
       <th>0.303030</th>
       <td>0.062067</td>
-      <td>0.08767</td>
+      <td>0.087670</td>
       <td>0.112927</td>
       <td>0.137843</td>
       <td>0.162424</td>
       <td>0.186676</td>
       <td>0.210605</td>
       <td>0.234217</td>
-      <td>0.25752</td>
+      <td>0.257520</td>
       <td>0.280519</td>
       <td>...</td>
       <td>1.020253</td>
@@ -823,12 +810,12 @@ zejména pro rozsáhlé soubory dat.</p>
     <tr>
       <th>0.454545</th>
       <td>0.039067</td>
-      <td>0.06827</td>
+      <td>0.068270</td>
       <td>0.096848</td>
       <td>0.124819</td>
       <td>0.152198</td>
       <td>0.179003</td>
-      <td>0.20525</td>
+      <td>0.205250</td>
       <td>0.230955</td>
       <td>0.256135</td>
       <td>0.280805</td>
@@ -894,15 +881,15 @@ zejména pro rozsáhlé soubory dat.</p>
     </tr>
     <tr>
       <th>14.393939</th>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>0.650293</td>
       <td>...</td>
       <td>0.724021</td>
@@ -918,15 +905,15 @@ zejména pro rozsáhlé soubory dat.</p>
     </tr>
     <tr>
       <th>14.545455</th>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>0.654381</td>
       <td>...</td>
       <td>0.724007</td>
@@ -942,15 +929,15 @@ zejména pro rozsáhlé soubory dat.</p>
     </tr>
     <tr>
       <th>14.696970</th>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>0.658266</td>
       <td>...</td>
       <td>0.723991</td>
@@ -966,15 +953,15 @@ zejména pro rozsáhlé soubory dat.</p>
     </tr>
     <tr>
       <th>14.848485</th>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>0.661957</td>
       <td>...</td>
       <td>0.723972</td>
@@ -990,15 +977,15 @@ zejména pro rozsáhlé soubory dat.</p>
     </tr>
     <tr>
       <th>15.000000</th>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>0.665471</td>
       <td>...</td>
       <td>0.723951</td>
@@ -1057,7 +1044,7 @@ zejména pro rozsáhlé soubory dat.</p>
   <tbody>
     <tr>
       <th>0.000000</th>
-      <td>0.24</td>
+      <td>0.240000</td>
       <td>0.500000</td>
       <td>0.800000</td>
     </tr>
@@ -1128,31 +1115,31 @@ zejména pro rozsáhlé soubory dat.</p>
   <tbody>
     <tr>
       <th>14.393939</th>
-      <td>None</td>
+      <td>NaN</td>
       <td>0.722876</td>
       <td>0.723763</td>
     </tr>
     <tr>
       <th>14.545455</th>
-      <td>None</td>
+      <td>NaN</td>
       <td>0.722922</td>
       <td>0.723753</td>
     </tr>
     <tr>
       <th>14.696970</th>
-      <td>None</td>
+      <td>NaN</td>
       <td>0.722965</td>
       <td>0.723743</td>
     </tr>
     <tr>
       <th>14.848485</th>
-      <td>None</td>
+      <td>NaN</td>
       <td>0.723006</td>
       <td>0.723734</td>
     </tr>
     <tr>
       <th>15.000000</th>
-      <td>None</td>
+      <td>NaN</td>
       <td>0.723045</td>
       <td>0.723726</td>
     </tr>
@@ -1240,8 +1227,8 @@ Autor Robert Mařík
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4. Diferenciální rovnice 1 &#8212; Dynamické modely populací</title>
+    <title>17. Diferenciální rovnice 1 &#8212; Dynamické modely populací</title>
   
   
   
@@ -16,38 +16,41 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=4cdba38b"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -62,10 +65,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.jscustom.js"></script>
     <link rel="index" title="Rejstřík" href="../genindex.html" />
     <link rel="search" title="Vyhledávání" href="../search.html" />
-    <link rel="next" title="5. Diferenciální rovnice 2" href="cviceni_04.html" />
-    <link rel="prev" title="3. Práce s funkcemi" href="cviceni_02.html" />
+    <link rel="next" title="18. Diferenciální rovnice 2" href="cviceni_04.html" />
+    <link rel="prev" title="16. Práce s funkcemi" href="cviceni_02.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="cs"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -81,19 +85,8 @@
     <i class="fa-solid fa-arrow-up"></i>Zpět na začátek</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -101,7 +94,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Hledat v knize..."
          aria-label="Hledat v knize..."
          autocomplete="off"
@@ -109,8 +101,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -126,7 +118,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -156,15 +149,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Vyhledávání</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Vyhledávání</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="nav bd-sidenav">
@@ -184,37 +173,38 @@
 <li class="toctree-l1"><a class="reference internal" href="../prednaska/10.html">10. Modely dravce a kořisti</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../prednaska/11.html">11. Diskrétní populační modely</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../prednaska/12.html">12. Difuzní rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/13.html">13. Agentní modely</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Cvičení</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">1. První kroky</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_01.html">2. Úvod do jazyka Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_02.html">3. Práce s funkcemi</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Diferenciální rovnice 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_04.html">5. Diferenciální rovnice 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_05.html">6. Diferenciální rovnice 3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_06.html">7. LaTeX</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_07.html">8. Maticové modely</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_08.html">9. Levinsův model metapopulací</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_09.html">10. Modely konkurence populací</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_10.html">11. Modely dravce a kořisti</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_11.html">12. Samostatná práce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">14. První kroky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_01.html">15. Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_02.html">16. Práce s funkcemi</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">17. Diferenciální rovnice 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_04.html">18. Diferenciální rovnice 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_05.html">19. Diferenciální rovnice 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_06.html">20. LaTeX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_07.html">21. Maticové modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_08.html">22. Levinsův model metapopulací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_09.html">23. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_10.html">24. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_11.html">25. Samostatná práce</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Různá zadání</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">1. Enzymy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../allee.html">2. Silný Alleeho efekt</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../chovani.html">3. Model soupeření jestřábí a holubičí povahy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">4. Model populace ryb</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">26. Enzymy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../allee.html">27. Silný Alleeho efekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chovani.html">28. Model soupeření jestřábí a holubičí povahy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">29. Model populace ryb</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Kombinovaní</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">1. Data a grafy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">2. Diferenciální rovnice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">3. Lov v populaci - fázový portrét</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">4. Lov v populaci - časový vývoj</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">5. Model dravce a kořisti</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">6. Model konkurence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">30. Data a grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">31. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">32. Lov v populaci - fázový portrét</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">33. Lov v populaci - časový vývoj</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">34. Model dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">35. Model konkurence</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python konstrukce a ukázky</span></p>
 <ul class="nav bd-sidenav">
@@ -248,9 +238,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -379,7 +374,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Režim celé obrazovky"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -393,25 +388,17 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="světlý/tmavý" aria-label="světlý/tmavý" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Světlý"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Tmavý"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -434,28 +421,28 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cast-a-reseni-diferencialni-rovnice-modifikace-existujiciho-kodu">4.1. Část A: Řešení diferenciální rovnice (modifikace existujícího kódu)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reseni-rovnice-a-vizualizace-reseni">4.1.1. Řešení rovnice a vizualizace řešení.</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ukoly">4.1.1.1. Úkoly:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cast-a-reseni-diferencialni-rovnice-modifikace-existujiciho-kodu">17.1. Část A: Řešení diferenciální rovnice (modifikace existujícího kódu)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reseni-rovnice-a-vizualizace-reseni">17.1.1. Řešení rovnice a vizualizace řešení.</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ukoly">17.1.1.1. Úkoly:</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reseni-pro-sadu-parametru">4.1.2. Řešení pro sadu parametrů</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.1.2.1. Úkoly</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reseni-pro-sadu-parametru">17.1.2. Řešení pro sadu parametrů</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">17.1.2.1. Úkoly</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cast-b-reseni-diferencialni-rovnice-podrobnejsi-pohled-pod-kapotu">4.2. Část B: Řešení diferenciální rovnice (podrobnější pohled pod kapotu)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ukol">4.2.1. Úkol</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reseni-hladsimi-krivkami">4.2.2. Řešení hladšími křivkami</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reseni-rovnice-pro-ruzne-hodnoty-parametru">4.2.3. Řešení rovnice pro různé hodnoty parametru</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cast-b-reseni-diferencialni-rovnice-podrobnejsi-pohled-pod-kapotu">17.2. Část B: Řešení diferenciální rovnice (podrobnější pohled pod kapotu)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ukol">17.2.1. Úkol</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reseni-hladsimi-krivkami">17.2.2. Řešení hladšími křivkami</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reseni-rovnice-pro-ruzne-hodnoty-parametru">17.2.3. Řešení rovnice pro různé hodnoty parametru</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cast-c-model-rovnovahy-poctu-druhu-na-ostrovech-volitelne-kdo-je-rychlejsi-a-samostatny">4.3. Část C: Model rovnováhy počtu druhů na ostrovech (volitelně, kdo je rychlejší a samostatný)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grafy-rychlosti-kolonizace-a-vymirani">4.3.1. Grafy rychlostí kolonizace a vymírání</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reseni-diferencialni-rovnice">4.3.2. Řešení diferenciální rovnice</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zavislost-na-pocatecni-podmince">4.3.3. Závislost na počáteční podmínce</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zavislost-na-parametru-alpha">4.3.4. Závislost na parametru <span class="math notranslate nohighlight">\(\alpha\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cast-c-model-rovnovahy-poctu-druhu-na-ostrovech-volitelne-kdo-je-rychlejsi-a-samostatny">17.3. Část C: Model rovnováhy počtu druhů na ostrovech (volitelně, kdo je rychlejší a samostatný)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grafy-rychlosti-kolonizace-a-vymirani">17.3.1. Grafy rychlostí kolonizace a vymírání</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reseni-diferencialni-rovnice">17.3.2. Řešení diferenciální rovnice</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zavislost-na-pocatecni-podmince">17.3.3. Závislost na počáteční podmínce</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zavislost-na-parametru-alpha">17.3.4. Závislost na parametru <span class="math notranslate nohighlight">\(\alpha\)</span></a></li>
 </ul>
 </li>
 </ul>
@@ -470,7 +457,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="diferencialni-rovnice-1">
-<h1><span class="section-number">4. </span>Diferenciální rovnice 1<a class="headerlink" href="#diferencialni-rovnice-1" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">17. </span>Diferenciální rovnice 1<a class="headerlink" href="#diferencialni-rovnice-1" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
@@ -493,18 +480,18 @@ prozkoumat chování modelu při různých počátečních podmínkách a různ�
 hodnotách parametru. Zájemci by měli být schopni si tyto pasáže projít sami.</p></li>
 </ul>
 <section id="cast-a-reseni-diferencialni-rovnice-modifikace-existujiciho-kodu">
-<h2><span class="section-number">4.1. </span>Část A: Řešení diferenciální rovnice (modifikace existujícího kódu)<a class="headerlink" href="#cast-a-reseni-diferencialni-rovnice-modifikace-existujiciho-kodu" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">17.1. </span>Část A: Řešení diferenciální rovnice (modifikace existujícího kódu)<a class="headerlink" href="#cast-a-reseni-diferencialni-rovnice-modifikace-existujiciho-kodu" title="Link to this heading">#</a></h2>
 <p>Pokud jste rychlejší, řešte samostatně a pokračujte samostatně k části B s
 detailnějším popisem příkazu <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>.</p>
 <section id="reseni-rovnice-a-vizualizace-reseni">
-<h3><span class="section-number">4.1.1. </span>Řešení rovnice a vizualizace řešení.<a class="headerlink" href="#reseni-rovnice-a-vizualizace-reseni" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.1.1. </span>Řešení rovnice a vizualizace řešení.<a class="headerlink" href="#reseni-rovnice-a-vizualizace-reseni" title="Link to this heading">#</a></h3>
 <p>Následující kód vyřeší rovnici <div class="math notranslate nohighlight">
 \[\frac{\mathrm dN}{\mathrm dt}= \frac
 b{D(N+\beta)}-a\frac {N^k}S\]</div>
  dynamické rovnováhy na ostrově s nulovou počáteční
 podmínkou.</p>
 <section id="ukoly">
-<h4><span class="section-number">4.1.1.1. </span>Úkoly:<a class="headerlink" href="#ukoly" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">17.1.1.1. </span>Úkoly:<a class="headerlink" href="#ukoly" title="Link to this heading">#</a></h4>
 <ol class="arabic simple">
 <li><p>Prohlédnout si kód, ujasnit si co dělá, spustit.</p></li>
 <li><p>Vyzkoušejte si zadání více počátečních podmínek, například
@@ -529,7 +516,7 @@ ochlazováním kávy. I zde zkuste více počátečních podmínek.</p></li>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># počet dělících bodů</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">1.3</span><span class="p">,</span> <span class="n">S</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Funkce z pravé strany modelu dynamické rovnováhy počtu druhů na ostrovech, </span>
 <span class="sd">    podle McArthura a Wilsona. </span>
 <span class="sd">    </span>
@@ -543,7 +530,7 @@ ochlazováním kávy. I zde zkuste více počátečních podmínek.</p></li>
 <span class="sd">    Výstup:</span>
 <span class="sd">    ------</span>
 <span class="sd">    Hodnota funkce.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">kolonizace</span> <span class="o">=</span> <span class="n">b</span><span class="o">/</span><span class="p">(</span><span class="n">D</span><span class="o">*</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="n">beta</span><span class="p">))</span>
     <span class="n">vymirani</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">N</span><span class="o">**</span><span class="n">k</span><span class="o">/</span><span class="n">S</span> 
     <span class="k">return</span>  <span class="n">kolonizace</span> <span class="o">-</span> <span class="n">vymirani</span> 
@@ -562,15 +549,15 @@ ochlazováním kávy. I zde zkuste více počátečních podmínek.</p></li>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">reseni</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
     <span class="n">ylim</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="kc">None</span><span class="p">),</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Dynamická rovnováha počtu druhů na ostrově&quot;</span><span class="p">,</span>
-    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;čas&quot;</span><span class="p">,</span>
-    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;počet druhů&quot;</span><span class="p">,</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s2">"Dynamická rovnováha počtu druhů na ostrově"</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"čas"</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"počet druhů"</span><span class="p">,</span>
 <span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/dd741ea7c94869db9ee0df54d8373b063d53aaacfe26034c6099b393da03c292.png" src="../_images/dd741ea7c94869db9ee0df54d8373b063d53aaacfe26034c6099b393da03c292.png" />
+<img alt="../_images/d331ed7db869ddb6f1b04be3dae069827200d08a8fd44084c1d594226ad12c16.png" src="../_images/d331ed7db869ddb6f1b04be3dae069827200d08a8fd44084c1d594226ad12c16.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -583,7 +570,7 @@ ochlazováním kávy. I zde zkuste více počátečních podmínek.</p></li>
 </section>
 </section>
 <section id="reseni-pro-sadu-parametru">
-<h3><span class="section-number">4.1.2. </span>Řešení pro sadu parametrů<a class="headerlink" href="#reseni-pro-sadu-parametru" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.1.2. </span>Řešení pro sadu parametrů<a class="headerlink" href="#reseni-pro-sadu-parametru" title="Link to this heading">#</a></h3>
 <p>Následující kód řeší vícekrát rovnici dynamické rovnováhy pro několik různých
 vzdálenosti ostrova od pevniny optimálním způsobem, kdy parametry získáme z předdefinovaného seznamu, nejprve vypočteme všechna řešení a data uložíme do tabulky a teprve poté data vykreslíme. Tím je jasně daná struktura, kde se připravují výpočty, kde se počítají data a kde se data prezentují. Pro malé projekty toto není tak důležité, při delším kódu to značně zvýsí přehlednost s udržovatelnost.</p>
 <p>V čem se kód změní od předchozího? Prohlédněgte si <a class="reference external" href="https://gist.github.com/robert-marik/186cb003476f88526455af53d0121adc/revisions?diff=split&amp;amp;w=">diff</a> obou kódů.</p>
@@ -604,7 +591,7 @@ vzdálenosti ostrova od pevniny optimálním způsobem, kdy parametry získáme 
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">1.3</span><span class="p">,</span> <span class="n">S</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Funkce z pravé strany modelu dynamické rovnováhy počtu druhů na ostrovech, </span>
 <span class="sd">    podle McArthura a Wilsona. </span>
 <span class="sd">    </span>
@@ -618,7 +605,7 @@ vzdálenosti ostrova od pevniny optimálním způsobem, kdy parametry získáme 
 <span class="sd">    Výstup:</span>
 <span class="sd">    ------</span>
 <span class="sd">    Hodnota funkce.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">kolonizace</span> <span class="o">=</span> <span class="n">b</span><span class="o">/</span><span class="p">(</span><span class="n">D</span><span class="o">*</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="n">beta</span><span class="p">))</span>
     <span class="n">vymirani</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">N</span><span class="o">**</span><span class="n">k</span><span class="o">/</span><span class="n">S</span> 
     <span class="k">return</span>  <span class="n">kolonizace</span> <span class="o">-</span> <span class="n">vymirani</span> 
@@ -642,20 +629,20 @@ vzdálenosti ostrova od pevniny optimálním způsobem, kdy parametry získáme 
 <span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
     <span class="n">ylim</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="kc">None</span><span class="p">),</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Dynamická rovnováha počtu druhů na ostrově&quot;</span><span class="p">,</span>
-    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;čas&quot;</span><span class="p">,</span>
-    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;počet druhů&quot;</span><span class="p">,</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s2">"Dynamická rovnováha počtu druhů na ostrově"</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"čas"</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"počet druhů"</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Vzdálenost ostrova&quot;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Vzdálenost ostrova"</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/cec7b5da36fb2a64a36e8fef88cf18d384795473b7fc9902fa6154ce57f52d42.png" src="../_images/cec7b5da36fb2a64a36e8fef88cf18d384795473b7fc9902fa6154ce57f52d42.png" />
+<img alt="../_images/836c9dd2e081ab707ce76e22b885fcdfbcf562d0c48fa9172a6c0a78def5ec8f.png" src="../_images/836c9dd2e081ab707ce76e22b885fcdfbcf562d0c48fa9172a6c0a78def5ec8f.png" />
 </div>
 </div>
 <section id="id1">
-<h4><span class="section-number">4.1.2.1. </span>Úkoly<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<h4><span class="section-number">17.1.2.1. </span>Úkoly<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Vyzkoušejte si kód.</p></li>
 <li><p>V nové buňce sledujte vliv rozlohy ostrova (vzdálenost je stejná) na druhovu
@@ -686,22 +673,22 @@ diferenciální rovnici pro obě uvažované situace. Můžete použít něco ja
 
 <span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">model</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span><span class="n">N</span><span class="p">,</span><span class="o">-</span><span class="n">model</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;kolonizace&#39;</span><span class="p">,</span><span class="s1">&#39;vymírání&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">'kolonizace'</span><span class="p">,</span><span class="s1">'vymírání'</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f720768b390&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x70bf989df590&gt;
 </pre></div>
 </div>
-<img alt="../_images/c4588415e1cdfced527551377002682e5c087028d1a9c2e273382b1bcd121611.png" src="../_images/c4588415e1cdfced527551377002682e5c087028d1a9c2e273382b1bcd121611.png" />
+<img alt="../_images/c0910a39fdeb50b35d8d20adb8488c3220cb0763279065274a773304fa577e37.png" src="../_images/c0910a39fdeb50b35d8d20adb8488c3220cb0763279065274a773304fa577e37.png" />
 </div>
 </div>
 </section>
 </section>
 </section>
 <section id="cast-b-reseni-diferencialni-rovnice-podrobnejsi-pohled-pod-kapotu">
-<h2><span class="section-number">4.2. </span>Část B: Řešení diferenciální rovnice (podrobnější pohled pod kapotu)<a class="headerlink" href="#cast-b-reseni-diferencialni-rovnice-podrobnejsi-pohled-pod-kapotu" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">17.2. </span>Část B: Řešení diferenciální rovnice (podrobnější pohled pod kapotu)<a class="headerlink" href="#cast-b-reseni-diferencialni-rovnice-podrobnejsi-pohled-pod-kapotu" title="Link to this heading">#</a></h2>
 <p>Příkaz <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> dokáže vyřešit zadanou diferenciální rovnici pro několik počátečních podmínek. Použití je možné vidět na následujícím příkladě. Pro tři počáteční podmínky <span class="math notranslate nohighlight">\(y(0)=2\)</span>, <span class="math notranslate nohighlight">\(y(0)=4\)</span> a <span class="math notranslate nohighlight">\(y(0)=8\)</span>  řešíme rovnici <div class="math notranslate nohighlight">
 \[\frac{\mathrm dy}{\mathrm dt}=-0.5 y,\]</div>
 
@@ -848,25 +835,25 @@ kterou je možno chápat jako rovnici ochlazování, nebo jako rovnici radioakti
 <p>Po vykreslení vidíme, že graf je z lomených čar. Pro výraznost jsme přidali i tečky v bodech zlomu. To proto, že řešení byla vypočtena a v několika málo bodech.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;o-&quot;</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">"o-"</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/818134bffb9843614d1a35589e30eda60e83bb0f4afb7b3b6cd7687ad664279a.png" src="../_images/818134bffb9843614d1a35589e30eda60e83bb0f4afb7b3b6cd7687ad664279a.png" />
+<img alt="../_images/8aea7a5e0d0fed05350fb3acaa2d19ef51997988627171c5d53a4b0a18953fdc.png" src="../_images/8aea7a5e0d0fed05350fb3acaa2d19ef51997988627171c5d53a4b0a18953fdc.png" />
 </div>
 </div>
 <section id="ukol">
-<h3><span class="section-number">4.2.1. </span>Úkol<a class="headerlink" href="#ukol" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.2.1. </span>Úkol<a class="headerlink" href="#ukol" title="Link to this heading">#</a></h3>
 <p>Vyzkoušejte si následující elegantnější příkazy. Pomocí nich nemusíme dělat cyklus přes jednotlivá řešení při sestavování tabulky a můžeme nakreslit všechna tři řešení jedním příkazem i bez sestavování tabulky. Snažte se zjistit, co dělá operátor <code class="docutils literal notranslate"><span class="pre">T</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="s2">&quot;o-&quot;</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="s2">"o-"</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fdaa5fd507b260e310d29dac998c4850ae04272a62e852279d3989cd28e07a57.png" src="../_images/fdaa5fd507b260e310d29dac998c4850ae04272a62e852279d3989cd28e07a57.png" />
+<img alt="../_images/2a57e05f985ca765acb3757697ebe3d98d86ae86597ac40a04d352876fa76a61.png" src="../_images/2a57e05f985ca765acb3757697ebe3d98d86ae86597ac40a04d352876fa76a61.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1112,7 +1099,7 @@ kterou je možno chápat jako rovnici ochlazování, nebo jako rovnici radioakti
 </div>
 </section>
 <section id="reseni-hladsimi-krivkami">
-<h3><span class="section-number">4.2.2. </span>Řešení hladšími křivkami<a class="headerlink" href="#reseni-hladsimi-krivkami" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.2.2. </span>Řešení hladšími křivkami<a class="headerlink" href="#reseni-hladsimi-krivkami" title="Link to this heading">#</a></h3>
 <p>Řešení z minulých ukázek se skládalo z lomených čar. Nemělo spojitou derivaci, nebylo hladké. Pro hladší řešení je možné provést jednu nebo více z následujících vylepšení.</p>
 <ul class="simple">
 <li><p>Zvolit menší krok, aby se vygenerovalo více hodnot pro čas <span class="math notranslate nohighlight">\(t\)</span>,</p></li>
@@ -1142,7 +1129,7 @@ kterou je možno chápat jako rovnici ochlazování, nebo jako rovnici radioakti
         y: [[ 2.000e+00  1.888e+00 ...  3.107e-02  1.351e-02]
             [ 4.000e+00  3.777e+00 ...  6.214e-02  2.702e-02]
             [ 8.000e+00  7.553e+00 ...  1.243e-01  5.403e-02]]
-      sol: &lt;scipy.integrate._ivp.common.OdeSolution object at 0x7f720f9852b0&gt;
+      sol: &lt;scipy.integrate._ivp.common.OdeSolution object at 0x70bf98852cc0&gt;
  t_events: None
  y_events: None
      nfev: 44
@@ -1162,7 +1149,7 @@ kterou je možno chápat jako rovnici ochlazování, nebo jako rovnici radioakti
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 
 <span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Počáteční podmínka&quot;</span><span class="p">);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Počáteční podmínka"</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -1176,12 +1163,12 @@ kterou je možno chápat jako rovnici ochlazování, nebo jako rovnici radioakti
 0.08016  1.921425  3.842850  7.685699
 </pre></div>
 </div>
-<img alt="../_images/e6cd2a43f0118bf6475a211837f55b161c3a533a0074e130d8f7d8583786bf7b.png" src="../_images/e6cd2a43f0118bf6475a211837f55b161c3a533a0074e130d8f7d8583786bf7b.png" />
+<img alt="../_images/66947fb35122fb10448a8e2a1d0cd5a02606310fbc1d2e67d4e52c22a4bda8da.png" src="../_images/66947fb35122fb10448a8e2a1d0cd5a02606310fbc1d2e67d4e52c22a4bda8da.png" />
 </div>
 </div>
 </section>
 <section id="reseni-rovnice-pro-ruzne-hodnoty-parametru">
-<h3><span class="section-number">4.2.3. </span>Řešení rovnice pro různé hodnoty parametru<a class="headerlink" href="#reseni-rovnice-pro-ruzne-hodnoty-parametru" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.2.3. </span>Řešení rovnice pro různé hodnoty parametru<a class="headerlink" href="#reseni-rovnice-pro-ruzne-hodnoty-parametru" title="Link to this heading">#</a></h3>
 <p>Někdy potřebujeme řešit rovnici a sledovat, jak se chová řešení při změně parametru. Vyjdeme ze stejné počáteční podmínky a pro nastavené hodnoty parametru najdeme řešení.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1214,7 +1201,7 @@ kterou je možno chápat jako rovnici ochlazování, nebo jako rovnici radioakti
 
 <span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Koeficient $r$&quot;</span><span class="p">);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">"Koeficient $r$"</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -1228,7 +1215,7 @@ kterou je možno chápat jako rovnici ochlazování, nebo jako rovnici radioakti
 0.08016   96.071242   92.296836   85.186977   78.622903
 </pre></div>
 </div>
-<img alt="../_images/69896224ef596c67112e200905d4a5024964293ac93a88fdd3643f763cb10f08.png" src="../_images/69896224ef596c67112e200905d4a5024964293ac93a88fdd3643f763cb10f08.png" />
+<img alt="../_images/39b0cf23f9ecf267e715034793ffdf4cba842e1cff88ed41913b143d9f76b3e6.png" src="../_images/39b0cf23f9ecf267e715034793ffdf4cba842e1cff88ed41913b143d9f76b3e6.png" />
 </div>
 </div>
 <p>Někdy se může hodit si funkci definující pravou stranu nepojmenovávat a nepředávat jí parametry. Například, pokud je její použití jednorázové. Potom je možno použít metodiku práce s <a class="reference external" href="https://www.w3schools.com/python/python_lambda.asp">nepojmenovanými funkcemi</a>, takzvané <code class="docutils literal notranslate"><span class="pre">lambda</span></code> funkce. Ta umožňuje zadat pravou stranu rovnice přímo v příkazu <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>.</p>
@@ -1250,18 +1237,18 @@ kterou je možno chápat jako rovnici ochlazování, nebo jako rovnici radioakti
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">reseni</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">hodnoty_r</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
 
 <span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Koeficient $r$&quot;</span><span class="p">);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">"Koeficient $r$"</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/69896224ef596c67112e200905d4a5024964293ac93a88fdd3643f763cb10f08.png" src="../_images/69896224ef596c67112e200905d4a5024964293ac93a88fdd3643f763cb10f08.png" />
+<img alt="../_images/39b0cf23f9ecf267e715034793ffdf4cba842e1cff88ed41913b143d9f76b3e6.png" src="../_images/39b0cf23f9ecf267e715034793ffdf4cba842e1cff88ed41913b143d9f76b3e6.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="cast-c-model-rovnovahy-poctu-druhu-na-ostrovech-volitelne-kdo-je-rychlejsi-a-samostatny">
-<h2><span class="section-number">4.3. </span>Část C: Model rovnováhy počtu druhů na ostrovech (volitelně, kdo je rychlejší a samostatný)<a class="headerlink" href="#cast-c-model-rovnovahy-poctu-druhu-na-ostrovech-volitelne-kdo-je-rychlejsi-a-samostatny" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">17.3. </span>Část C: Model rovnováhy počtu druhů na ostrovech (volitelně, kdo je rychlejší a samostatný)<a class="headerlink" href="#cast-c-model-rovnovahy-poctu-druhu-na-ostrovech-volitelne-kdo-je-rychlejsi-a-samostatny" title="Link to this heading">#</a></h2>
 <p>V této části již nebude nic nového, ale je to ukázka, jak získané znalosti
 využít při studiu modelů.</p>
 <p>Budeme studovat Mc Arthurův a Wilsonův model vývoje ostrovního společenství ve tvaru
@@ -1290,7 +1277,7 @@ se nastolí rovnováha.</p></li>
 </li>
 </ul>
 <section id="grafy-rychlosti-kolonizace-a-vymirani">
-<h3><span class="section-number">4.3.1. </span>Grafy rychlostí kolonizace a vymírání<a class="headerlink" href="#grafy-rychlosti-kolonizace-a-vymirani" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.3.1. </span>Grafy rychlostí kolonizace a vymírání<a class="headerlink" href="#grafy-rychlosti-kolonizace-a-vymirani" title="Link to this heading">#</a></h3>
 <p>Vykreslíme křivky kolonizace a vymírání (přesněji, rychlostíi těchto dějů) v závislosti na velikosti populace. Pokud některým detailům nerozumíte, hledejte vysvětlení u vyučujícího, u kolegů, pomocí Google nebo pomocí umělé inteligence. <a class="reference external" href="https://chat.openai.com/share/fc696529-1e8f-4429-9d8c-33e5d801ffd5">Takto</a> chatboot vysvětlí obrat s <code class="docutils literal notranslate"><span class="pre">&quot;k--&quot;</span></code> při kreslení jedné z křivek.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1301,19 +1288,19 @@ se nastolí rovnováha.</p></li>
     <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">N</span><span class="o">**</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="o">/</span><span class="n">S</span>
 
 <span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">kolonizace</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span><span class="s2">&quot;k-&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;kolonizace, blízký ostrov&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">kolonizace</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span><span class="s2">&quot;k--&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;kolonizace, vzdálený ostrov&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">kolonizace</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span><span class="s2">"k-"</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">"kolonizace, blízký ostrov"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">kolonizace</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span><span class="s2">"k--"</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">"kolonizace, vzdálený ostrov"</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">vymirani</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">S</span> <span class="o">=</span> <span class="mi">10</span><span class="p">),</span><span class="s2">&quot;r-&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;vymírání, velký ostrov&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">vymirani</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">S</span> <span class="o">=</span> <span class="mi">2</span><span class="p">),</span><span class="s2">&quot;r--&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;vymírání, malý ostrov&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">vymirani</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">S</span> <span class="o">=</span> <span class="mi">10</span><span class="p">),</span><span class="s2">"r-"</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">"vymírání, velký ostrov"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">vymirani</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">S</span> <span class="o">=</span> <span class="mi">2</span><span class="p">),</span><span class="s2">"r--"</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">"vymírání, malý ostrov"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
     <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> 
     <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span>
-    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Dynamika vývoje počtu druhů na ostrově&quot;</span><span class="p">,</span>
-    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;počet druhů&quot;</span><span class="p">,</span>
-    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;rychlost kolonizace a vymírání&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">"Dynamika vývoje počtu druhů na ostrově"</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"počet druhů"</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"rychlost kolonizace a vymírání"</span><span class="p">,</span>
     <span class="n">xticks</span><span class="o">=</span><span class="p">[],</span>
     <span class="n">yticks</span><span class="o">=</span><span class="p">[]</span>
     <span class="p">);</span>
@@ -1322,7 +1309,7 @@ se nastolí rovnováha.</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3a9eceb33a8e9277042634e94c129f200c7f8ea66154f63e9bd22e88f724542f.png" src="../_images/3a9eceb33a8e9277042634e94c129f200c7f8ea66154f63e9bd22e88f724542f.png" />
+<img alt="../_images/56d26489acd43019d770327ec8bf334b214471f40f93acc49c54abbc216b6aa1.png" src="../_images/56d26489acd43019d770327ec8bf334b214471f40f93acc49c54abbc216b6aa1.png" />
 </div>
 </div>
 <p>Zkusíme zafixovat rychlost kolonizace a sledovat vymírání jako funkci obsahu ostrova. Měli bychom vidět, že pro menší ostrov je větší rychlost vymírání. Rovnovážný počet druhů najdeme jako průsečík křivky vymírání s čárkovanou křivkou kolonizace. Měli bychom vidět, že první souřadnice průsečíku je pro menší ostrov menší.</p>
@@ -1337,22 +1324,22 @@ se nastolí rovnováha.</p></li>
 
 <span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">meze</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;N&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span>    
+<span class="n">df</span><span class="p">[</span><span class="s2">"N"</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span>    
 <span class="k">for</span> <span class="n">S</span> <span class="ow">in</span> <span class="n">obsahy</span><span class="p">:</span>
     <span class="n">df</span><span class="p">[</span><span class="n">S</span><span class="p">]</span> <span class="o">=</span> <span class="n">vymirani</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">S</span> <span class="o">=</span> <span class="n">S</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">kolonizace</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="s2">&quot;--&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;_nolegend_&quot;</span><span class="p">)</span> 
-<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;N&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>   
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">kolonizace</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="s2">"--"</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">"_nolegend_"</span><span class="p">)</span> 
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"N"</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>   
 
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Obsah ostrova&quot;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper left&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">kolonizace</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;kolonizace&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">&quot;top&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Obsah ostrova"</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">"upper left"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">kolonizace</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">"kolonizace"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"C0"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">"right"</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s2">"top"</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
     <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> 
     <span class="n">xlim</span><span class="o">=</span><span class="n">meze</span><span class="p">,</span>
-    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Dynamika vývoje počtu druhů na ostrově&quot;</span><span class="p">,</span>
-    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;počet druhů&quot;</span><span class="p">,</span>
-    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;rychlost kolonizace a vymírání&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">"Dynamika vývoje počtu druhů na ostrově"</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"počet druhů"</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"rychlost kolonizace a vymírání"</span><span class="p">,</span>
     <span class="n">xticks</span><span class="o">=</span><span class="p">[],</span>
     <span class="n">yticks</span><span class="o">=</span><span class="p">[]</span>
     <span class="p">);</span>
@@ -1360,18 +1347,18 @@ se nastolí rovnováha.</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7d1bb5b4b46f2a2b8c2de6fcb2370f0b0a74e10c71fc9f32eae95a28dcf2981d.png" src="../_images/7d1bb5b4b46f2a2b8c2de6fcb2370f0b0a74e10c71fc9f32eae95a28dcf2981d.png" />
+<img alt="../_images/8151e0be5c377f718c66e66b931c2eda0f0fd110b8da50a580c89cf8598227f7.png" src="../_images/8151e0be5c377f718c66e66b931c2eda0f0fd110b8da50a580c89cf8598227f7.png" />
 </div>
 </div>
 </section>
 <section id="reseni-diferencialni-rovnice">
-<h3><span class="section-number">4.3.2. </span>Řešení diferenciální rovnice<a class="headerlink" href="#reseni-diferencialni-rovnice" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.3.2. </span>Řešení diferenciální rovnice<a class="headerlink" href="#reseni-diferencialni-rovnice" title="Link to this heading">#</a></h3>
 <p>Nyní budeme diferenciální rovnici řešit. Použijeme bezrozměrný tvar <div class="math notranslate nohighlight">
 \[ \frac{\mathrm dn}{\mathrm d\tau}=\frac{1}{n+1}-\alpha n^k,\]</div>
  kde <span class="math notranslate nohighlight">\(\alpha = \frac{a\beta ^k}{S}\frac{\beta D}{b}\)</span>, <span class="math notranslate nohighlight">\(n=\frac N\beta\)</span> a <span class="math notranslate nohighlight">\(\tau = \frac{b}{\beta D} \frac t\beta\)</span>. Tedy parametr <span class="math notranslate nohighlight">\(\alpha\)</span> je nepřímo úměrný obsahu ostrova a přímo úměrný vzdálenosti od ostrova, velikost populace měříme v násobcích parametru <span class="math notranslate nohighlight">\(\beta\)</span> a rychlost plynutí času se mění se vzdáleností od ostrova.</p>
 </section>
 <section id="zavislost-na-pocatecni-podmince">
-<h3><span class="section-number">4.3.3. </span>Závislost na počáteční podmínce<a class="headerlink" href="#zavislost-na-pocatecni-podmince" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.3.3. </span>Závislost na počáteční podmínce<a class="headerlink" href="#zavislost-na-pocatecni-podmince" title="Link to this heading">#</a></h3>
 <p>Využijeme toho, že je možné zadat celou sadu počátečních podmínek a že nemusíme
 řešit rovnici pro každou počáteční podmínku samostatně. Kromě toho zafixujeme
 barvu kreslení na první barvu v sadě (<code class="docutils literal notranslate"><span class="pre">C0</span></code>), protože nemá smysl jednotlivá
@@ -1387,23 +1374,23 @@ barvu kreslení na první barvu v sadě (<code class="docutils literal notransla
 <span class="n">reseni</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">rovnice</span><span class="p">,</span> <span class="n">meze</span><span class="p">,</span> <span class="n">pocatecni_podminka</span><span class="p">,</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">reseni</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">reseni</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">"C0"</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
     <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="kc">None</span><span class="p">),</span>
-    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Diferenciální rovnice ostrovní dynamiky&quot;</span><span class="p">,</span>
-    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;bezrozměrný čas&quot;</span><span class="p">,</span>
-    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;bezrozměrný počet druhů&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">"Diferenciální rovnice ostrovní dynamiky"</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"bezrozměrný čas"</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"bezrozměrný počet druhů"</span><span class="p">,</span>
 <span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b490c2796aeaba21015f5874c765cc981ee64cfa185833fc4a980bf6ba904a4c.png" src="../_images/b490c2796aeaba21015f5874c765cc981ee64cfa185833fc4a980bf6ba904a4c.png" />
+<img alt="../_images/e434d9c5363ff4aeb5497b5c8d2532b8bda2e6e6554618d335423f18db58684e.png" src="../_images/e434d9c5363ff4aeb5497b5c8d2532b8bda2e6e6554618d335423f18db58684e.png" />
 </div>
 </div>
 </section>
 <section id="zavislost-na-parametru-alpha">
-<h3><span class="section-number">4.3.4. </span>Závislost na parametru <span class="math notranslate nohighlight">\(\alpha\)</span><a class="headerlink" href="#zavislost-na-parametru-alpha" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">17.3.4. </span>Závislost na parametru <span class="math notranslate nohighlight">\(\alpha\)</span><a class="headerlink" href="#zavislost-na-parametru-alpha" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pocatecni_podminka</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -1428,16 +1415,16 @@ barvu kreslení na první barvu v sadě (<code class="docutils literal notransla
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">reseni</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">alphas</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">t</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Diferenciální rovnice ostrovní dynamiky&quot;</span><span class="p">,</span>
-    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;bezrozměrný čas&quot;</span><span class="p">,</span>
-    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;bezrozměrný počet druhů&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">"Diferenciální rovnice ostrovní dynamiky"</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"bezrozměrný čas"</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"bezrozměrný počet druhů"</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Parametr $\alpha$&quot;</span><span class="p">);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">"Parametr $\alpha$"</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5304afccbbe35a8c3ca3b1819c6c9255652f31f1026e1e5103f76230c463b60b.png" src="../_images/5304afccbbe35a8c3ca3b1819c6c9255652f31f1026e1e5103f76230c463b60b.png" />
+<img alt="../_images/4dea97867d0f6521277633e815a337143622df71d695508f532a78a676af414d.png" src="../_images/4dea97867d0f6521277633e815a337143622df71d695508f532a78a676af414d.png" />
 </div>
 </div>
 </section>
@@ -1461,7 +1448,7 @@ barvu kreslení na první barvu v sadě (<code class="docutils literal notransla
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">předchozí</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Práce s funkcemi</p>
+        <p class="prev-next-title"><span class="section-number">16. </span>Práce s funkcemi</p>
       </div>
     </a>
     <a class="right-next"
@@ -1469,7 +1456,7 @@ barvu kreslení na první barvu v sadě (<code class="docutils literal notransla
        title="další stránka">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">další</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>Diferenciální rovnice 2</p>
+        <p class="prev-next-title"><span class="section-number">18. </span>Diferenciální rovnice 2</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1480,37 +1467,39 @@ barvu kreslení na první barvu v sadě (<code class="docutils literal notransla
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Obsah
   </div>
-  <nav class="bd-toc-nav page-toc">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cast-a-reseni-diferencialni-rovnice-modifikace-existujiciho-kodu">4.1. Část A: Řešení diferenciální rovnice (modifikace existujícího kódu)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reseni-rovnice-a-vizualizace-reseni">4.1.1. Řešení rovnice a vizualizace řešení.</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ukoly">4.1.1.1. Úkoly:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cast-a-reseni-diferencialni-rovnice-modifikace-existujiciho-kodu">17.1. Část A: Řešení diferenciální rovnice (modifikace existujícího kódu)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reseni-rovnice-a-vizualizace-reseni">17.1.1. Řešení rovnice a vizualizace řešení.</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ukoly">17.1.1.1. Úkoly:</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reseni-pro-sadu-parametru">4.1.2. Řešení pro sadu parametrů</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.1.2.1. Úkoly</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reseni-pro-sadu-parametru">17.1.2. Řešení pro sadu parametrů</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">17.1.2.1. Úkoly</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cast-b-reseni-diferencialni-rovnice-podrobnejsi-pohled-pod-kapotu">4.2. Část B: Řešení diferenciální rovnice (podrobnější pohled pod kapotu)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ukol">4.2.1. Úkol</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reseni-hladsimi-krivkami">4.2.2. Řešení hladšími křivkami</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reseni-rovnice-pro-ruzne-hodnoty-parametru">4.2.3. Řešení rovnice pro různé hodnoty parametru</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cast-b-reseni-diferencialni-rovnice-podrobnejsi-pohled-pod-kapotu">17.2. Část B: Řešení diferenciální rovnice (podrobnější pohled pod kapotu)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ukol">17.2.1. Úkol</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reseni-hladsimi-krivkami">17.2.2. Řešení hladšími křivkami</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reseni-rovnice-pro-ruzne-hodnoty-parametru">17.2.3. Řešení rovnice pro různé hodnoty parametru</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cast-c-model-rovnovahy-poctu-druhu-na-ostrovech-volitelne-kdo-je-rychlejsi-a-samostatny">4.3. Část C: Model rovnováhy počtu druhů na ostrovech (volitelně, kdo je rychlejší a samostatný)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grafy-rychlosti-kolonizace-a-vymirani">4.3.1. Grafy rychlostí kolonizace a vymírání</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reseni-diferencialni-rovnice">4.3.2. Řešení diferenciální rovnice</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zavislost-na-pocatecni-podmince">4.3.3. Závislost na počáteční podmínce</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zavislost-na-parametru-alpha">4.3.4. Závislost na parametru <span class="math notranslate nohighlight">\(\alpha\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cast-c-model-rovnovahy-poctu-druhu-na-ostrovech-volitelne-kdo-je-rychlejsi-a-samostatny">17.3. Část C: Model rovnováhy počtu druhů na ostrovech (volitelně, kdo je rychlejší a samostatný)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#grafy-rychlosti-kolonizace-a-vymirani">17.3.1. Grafy rychlostí kolonizace a vymírání</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reseni-diferencialni-rovnice">17.3.2. Řešení diferenciální rovnice</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zavislost-na-pocatecni-podmince">17.3.3. Závislost na počáteční podmínce</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#zavislost-na-parametru-alpha">17.3.4. Závislost na parametru <span class="math notranslate nohighlight">\(\alpha\)</span></a></li>
 </ul>
 </li>
 </ul>
@@ -1560,8 +1549,8 @@ Autor Robert Mařík
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2. Úvod do jazyka Python &#8212; Dynamické modely populací</title>
+    <title>15. Úvod do jazyka Python &#8212; Dynamické modely populací</title>
   
   
   
@@ -16,38 +16,41 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=4cdba38b"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -62,10 +65,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.jscustom.js"></script>
     <link rel="index" title="Rejstřík" href="../genindex.html" />
     <link rel="search" title="Vyhledávání" href="../search.html" />
-    <link rel="next" title="3. Práce s funkcemi" href="cviceni_02.html" />
-    <link rel="prev" title="1. První kroky" href="../Prvni_kroky.html" />
+    <link rel="next" title="16. Práce s funkcemi" href="cviceni_02.html" />
+    <link rel="prev" title="14. První kroky" href="../Prvni_kroky.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="cs"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -81,19 +85,8 @@
     <i class="fa-solid fa-arrow-up"></i>Zpět na začátek</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -101,7 +94,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Hledat v knize..."
          aria-label="Hledat v knize..."
          autocomplete="off"
@@ -109,8 +101,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -126,7 +118,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -156,15 +149,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Vyhledávání</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Vyhledávání</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="nav bd-sidenav">
@@ -184,37 +173,38 @@
 <li class="toctree-l1"><a class="reference internal" href="../prednaska/10.html">10. Modely dravce a kořisti</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../prednaska/11.html">11. Diskrétní populační modely</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../prednaska/12.html">12. Difuzní rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prednaska/13.html">13. Agentní modely</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Cvičení</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">1. První kroky</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Úvod do jazyka Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_02.html">3. Práce s funkcemi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_03.html">4. Diferenciální rovnice 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_04.html">5. Diferenciální rovnice 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_05.html">6. Diferenciální rovnice 3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_06.html">7. LaTeX</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_07.html">8. Maticové modely</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_08.html">9. Levinsův model metapopulací</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_09.html">10. Modely konkurence populací</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_10.html">11. Modely dravce a kořisti</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_11.html">12. Samostatná práce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">14. První kroky</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">15. Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_02.html">16. Práce s funkcemi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_03.html">17. Diferenciální rovnice 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_04.html">18. Diferenciální rovnice 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_05.html">19. Diferenciální rovnice 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_06.html">20. LaTeX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_07.html">21. Maticové modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_08.html">22. Levinsův model metapopulací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_09.html">23. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_10.html">24. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_11.html">25. Samostatná práce</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Různá zadání</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">1. Enzymy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../allee.html">2. Silný Alleeho efekt</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../chovani.html">3. Model soupeření jestřábí a holubičí povahy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">4. Model populace ryb</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">26. Enzymy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../allee.html">27. Silný Alleeho efekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chovani.html">28. Model soupeření jestřábí a holubičí povahy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">29. Model populace ryb</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Kombinovaní</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">1. Data a grafy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">2. Diferenciální rovnice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">3. Lov v populaci - fázový portrét</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">4. Lov v populaci - časový vývoj</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">5. Model dravce a kořisti</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">6. Model konkurence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">30. Data a grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">31. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">32. Lov v populaci - fázový portrét</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">33. Lov v populaci - časový vývoj</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">34. Model dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">35. Model konkurence</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python konstrukce a ukázky</span></p>
 <ul class="nav bd-sidenav">
@@ -248,9 +238,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -379,7 +374,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Režim celé obrazovky"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -393,25 +388,17 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="světlý/tmavý" aria-label="světlý/tmavý" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Světlý"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Tmavý"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -434,29 +421,29 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ke-zpusobu-prace">2.1. Ke způsobu práce</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#co-googlit">2.2. Co googlit</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-syntaxi-v-jazyce-python">2.3. K syntaxi v jazyce Python</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aritmetika-s-cisly">2.4. Aritmetika s čísly</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ukol-1">2.4.1. Úkol 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ke-zpusobu-prace">15.1. Ke způsobu práce</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#co-googlit">15.2. Co googlit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-syntaxi-v-jazyce-python">15.3. K syntaxi v jazyce Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aritmetika-s-cisly">15.4. Aritmetika s čísly</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ukol-1">15.4.1. Úkol 1</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hratky-s-textem">2.5. Hrátky s textem</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#podretezce">2.5.1. Podřetězce</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sestavovani-textovych-retezcu">2.5.2. Sestavování textových řetezců</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hratky-s-textem">15.5. Hrátky s textem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#podretezce">15.5.1. Podřetězce</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sestavovani-textovych-retezcu">15.5.2. Sestavování textových řetezců</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knihovny">2.6. Knihovny</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prace-se-seznamem-hodnot">2.7. Práce se seznamem hodnot</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prace-s-poli-np-array">2.8. Práce s poli <code class="docutils literal notranslate"><span class="pre">np.array</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ukol-3">2.8.1. Úkol 3</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hollingova-funkce">2.8.2. Hollingova funkce</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knihovny">15.6. Knihovny</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prace-se-seznamem-hodnot">15.7. Práce se seznamem hodnot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prace-s-poli-np-array">15.8. Práce s poli <code class="docutils literal notranslate"><span class="pre">np.array</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ukol-3">15.8.1. Úkol 3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hollingova-funkce">15.8.2. Hollingova funkce</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ukol-pro-samostatne-pracujici">2.9. Úkol pro samostatně pracující</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabulky-pandas">2.10. Tabulky, pandas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dva-obrazky-pod-sebou-data-z-tabulky">2.11. Dva obrázky pod sebou, data z tabulky</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-ochlazovani-kavy-volitelne">2.12. Model ochlazování kávy (volitelně)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ukol-pro-samostatne-pracujici">15.9. Úkol pro samostatně pracující</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabulky-pandas">15.10. Tabulky, pandas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dva-obrazky-pod-sebou-data-z-tabulky">15.11. Dva obrázky pod sebou, data z tabulky</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-ochlazovani-kavy-volitelne">15.12. Model ochlazování kávy (volitelně)</a></li>
 </ul>
             </nav>
         </div>
@@ -469,7 +456,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="uvod-do-jazyka-python">
-<h1><span class="section-number">2. </span>Úvod do jazyka Python<a class="headerlink" href="#uvod-do-jazyka-python" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">15. </span>Úvod do jazyka Python<a class="headerlink" href="#uvod-do-jazyka-python" title="Link to this heading">#</a></h1>
 <p>Python patří mezi nástroje pro dávkové zpracování dat. V tomto případě se nepostupuje interaktivně jako například v MS Excel, ale uživatel sestaví posloupnost příkazů a interpreter provede tyto příkazy podobně, jako spuštění programu. Výhody jsou následující.</p>
 <ul class="simple">
 <li><p>Možnost pracovat s daty neomezené velikosti.</p></li>
@@ -480,7 +467,7 @@ document.write(`
 </ul>
 <p>Nevýhoda dávkového zpracování je, že si nemůžeme požadované výstupy zajistit klikáním v menu. Jedná se však o nástroje s širokou uživatelskou základnou a v době kvalitního vyhledávání na Internetu není těžké „vygooglit“ na webech s dotazy a odpověďmi příkazy nutné pro kreslení grafů různých typů a další dílčí úkoly spojené se zpracováním dat. Výhodou jsou mnohem větší možnosti, než má Excel. Srovnatelný se skriptováním v jazyce Python je jedině program Matlab, který je na univerzitě dostupný, ale vzhledem k vysoké ceně nebývá dostupný mimo univerzity a mimo velké firmy.</p>
 <section id="ke-zpusobu-prace">
-<h2><span class="section-number">2.1. </span>Ke způsobu práce<a class="headerlink" href="#ke-zpusobu-prace" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.1. </span>Ke způsobu práce<a class="headerlink" href="#ke-zpusobu-prace" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Učíme se na příkladech.</p></li>
 <li><p>Začínáme s modifikací hotových modelů. Experimentujte. Zkoušejte příklady z nápovědy, z přednášek a cvičení.</p></li>
@@ -490,7 +477,7 @@ document.write(`
 </ul>
 </section>
 <section id="co-googlit">
-<h2><span class="section-number">2.2. </span>Co googlit<a class="headerlink" href="#co-googlit" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.2. </span>Co googlit<a class="headerlink" href="#co-googlit" title="Link to this heading">#</a></h2>
 <p>Klíčová slova, která se hodí pro dotazy pro vyhledávací službu. Pro potřeby nalezení návodů, tutoriálů, tipů, uživatelského manuálu apod.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -537,7 +524,7 @@ document.write(`
 </div>
 </section>
 <section id="k-syntaxi-v-jazyce-python">
-<h2><span class="section-number">2.3. </span>K syntaxi v jazyce Python<a class="headerlink" href="#k-syntaxi-v-jazyce-python" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.3. </span>K syntaxi v jazyce Python<a class="headerlink" href="#k-syntaxi-v-jazyce-python" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>záleží na mezerách na začátku řádku</p>
 <ul>
@@ -554,7 +541,7 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pocet_opakovani</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># promenne pojmenovavame tak, aby nazev vypovidal o obsahu dat</span>
 <span class="n">pocet_velkych_cisel</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 <span class="sd">Při práci nemusíme vypisovat celé jméno proměnné, ale můžeme používat </span>
 <span class="sd">doplňování kódu, kdy napíšeme jenom prvních několik písmen a po stisku </span>
 <span class="sd">domluvené klávesy (zpravidla tabelátor) se název buď doplní, nebo, </span>
@@ -562,18 +549,18 @@ document.write(`
 <span class="sd">V tomto textu též vidíte možnost víceřádkových komentářů. Stačí je </span>
 <span class="sd">napsat jako víceřádkové řetězce, tj. řetězce uvozené a ukončené třemi </span>
 <span class="sd">uvozovkami.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pocet_opakovani</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">:</span>
         <span class="c1"># tisk informace o cisle i</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Číslo </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> je malé&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Číslo </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> je malé"</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;Číslo </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> je velké&quot;</span>
+            <span class="sa">f</span><span class="s2">"Číslo </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> je velké"</span>
             <span class="p">)</span>
         <span class="n">pocet_velkych_cisel</span> <span class="o">=</span> <span class="n">pocet_velkych_cisel</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="nb">print</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;Vyskytlo se celkem </span><span class="si">{</span><span class="n">pocet_velkych_cisel</span><span class="si">}</span><span class="s2"> velkych cisel&quot;</span>
+    <span class="sa">f</span><span class="s2">"Vyskytlo se celkem </span><span class="si">{</span><span class="n">pocet_velkych_cisel</span><span class="si">}</span><span class="s2"> velkych cisel"</span>
 <span class="p">)</span>        
 </pre></div>
 </div>
@@ -598,7 +585,7 @@ Vyskytlo se celkem 5 velkych cisel
 <p>V argumentu příkazu <code class="docutils literal notranslate"><span class="pre">print</span></code> jsou použity takzvané f-řetězce, které usnadňují sestavení textu obsahujícího proměnné.</p>
 </section>
 <section id="aritmetika-s-cisly">
-<h2><span class="section-number">2.4. </span>Aritmetika s čísly<a class="headerlink" href="#aritmetika-s-cisly" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.4. </span>Aritmetika s čísly<a class="headerlink" href="#aritmetika-s-cisly" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1"># promenna a obsahuje nastavenou hodnotu</span>
@@ -641,7 +628,7 @@ Vyskytlo se celkem 5 velkych cisel
 </div>
 </div>
 <section id="ukol-1">
-<h3><span class="section-number">2.4.1. </span>Úkol 1<a class="headerlink" href="#ukol-1" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">15.4.1. </span>Úkol 1<a class="headerlink" href="#ukol-1" title="Link to this heading">#</a></h3>
 <p>Následující políčko s kódem <code class="docutils literal notranslate"><span class="pre">1**2</span> <span class="pre">+</span> <span class="pre">2**2</span> <span class="pre">+</span> <span class="pre">3**2</span> <span class="pre">+</span> <span class="pre">4**2</span></code>
 sčítá druhé mocniny přirozených čísel až do čísla 4. Opravte políčko tak, aby sečetlo druhou mocninu přirozených čísel až do čísla 6.</p>
 <div class="cell docutils container">
@@ -678,19 +665,19 @@ sčítá druhé mocniny přirozených čísel až do čísla 4. Opravte políčk
 </section>
 </section>
 <section id="hratky-s-textem">
-<h2><span class="section-number">2.5. </span>Hrátky s textem<a class="headerlink" href="#hratky-s-textem" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.5. </span>Hrátky s textem<a class="headerlink" href="#hratky-s-textem" title="Link to this heading">#</a></h2>
 <section id="podretezce">
-<h3><span class="section-number">2.5.1. </span>Podřetězce<a class="headerlink" href="#podretezce" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">15.5.1. </span>Podřetězce<a class="headerlink" href="#podretezce" title="Link to this heading">#</a></h3>
 <p>Textový řetezec se bere jako seznam znaků a je možné ho ukládat do proměnná, přistupovat k prvnímu nebo poslednímu znaku, k několika prvním nebo několika posledním znakům, ke skupině znaků uprostřed atd. Pozor na to, že Python indexuje od nuly a první znak má tedy index nulový. Pokud je index záporný, znamená to pořadí od konce.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">retezec</span><span class="o">=</span><span class="s2">&quot;MENDELU&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">retezec</span><span class="o">=</span><span class="s2">"MENDELU"</span>
 <span class="n">retezec</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;MENDELU&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'MENDELU'
 </pre></div>
 </div>
 </div>
@@ -702,7 +689,7 @@ sčítá druhé mocniny přirozených čísel až do čísla 4. Opravte políčk
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;M&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'M'
 </pre></div>
 </div>
 </div>
@@ -714,7 +701,7 @@ sčítá druhé mocniny přirozených čísel až do čísla 4. Opravte políčk
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;L&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'L'
 </pre></div>
 </div>
 </div>
@@ -726,7 +713,7 @@ sčítá druhé mocniny přirozených čísel až do čísla 4. Opravte políčk
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;MEND&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'MEND'
 </pre></div>
 </div>
 </div>
@@ -738,7 +725,7 @@ sčítá druhé mocniny přirozených čísel až do čísla 4. Opravte políčk
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;ELU&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'ELU'
 </pre></div>
 </div>
 </div>
@@ -750,7 +737,7 @@ sčítá druhé mocniny přirozených čísel až do čísla 4. Opravte políčk
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;ND&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>'ND'
 </pre></div>
 </div>
 </div>
@@ -773,16 +760,16 @@ několika posledním hodnotám. Analogicky jako pro řetězce indexování fungu
 </div></blockquote>
 </section>
 <section id="sestavovani-textovych-retezcu">
-<h3><span class="section-number">2.5.2. </span>Sestavování textových řetezců<a class="headerlink" href="#sestavovani-textovych-retezcu" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">15.5.2. </span>Sestavování textových řetezců<a class="headerlink" href="#sestavovani-textovych-retezcu" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Dva textové řetězce je možno spojit sečtením.</p></li>
 <li><p>Pokud potřebujeme spojit textový řetězec s číslem, je možné použít f-řetězce. Tyto řetězce mají ve složených závorkách proměnné nebo výrazy, jejichž hodnoty se mají dosadit. Před řetězcem je znak f. V možnostech f-řetězců je i formátovaná na daný počet desetinných míst, jak ukazuje následující příklad.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jedna dvě, &quot;</span><span class="o">+</span><span class="s2">&quot;Honza jde.&quot;</span><span class="p">)</span> <span class="c1"># spojení textových řetězců</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Jedna dvě, "</span><span class="o">+</span><span class="s2">"Honza jde."</span><span class="p">)</span> <span class="c1"># spojení textových řetězců</span>
 <span class="n">pocet</span> <span class="o">=</span> <span class="mi">333</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">pocet</span><span class="si">}</span><span class="s2"> střibrných stříkaček stříkalo přes </span><span class="si">{</span><span class="n">pocet</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> střech.&quot;</span><span class="p">)</span>  <span class="c1"># ukázka f-řetězce</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">pocet</span><span class="si">}</span><span class="s2"> střibrných stříkaček stříkalo přes </span><span class="si">{</span><span class="n">pocet</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> střech."</span><span class="p">)</span>  <span class="c1"># ukázka f-řetězce</span>
 </pre></div>
 </div>
 </div>
@@ -796,7 +783,7 @@ několika posledním hodnotám. Analogicky jako pro řetězce indexování fungu
 </section>
 </section>
 <section id="knihovny">
-<h2><span class="section-number">2.6. </span>Knihovny<a class="headerlink" href="#knihovny" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.6. </span>Knihovny<a class="headerlink" href="#knihovny" title="Link to this heading">#</a></h2>
 <p>Jenom základní funkce jsou v Pythonu přístupny přímo. Další funkce načítáme ve formě knihoven. Pro práci s daty zpravidla nejprve importujeme knihovny pro numeriku, práci s datovými tabulkami a pro kreslení grafů. Přitom používáme pro knihovny obvyklé zkratky, například <code class="docutils literal notranslate"><span class="pre">np</span></code> namísto <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -809,7 +796,7 @@ několika posledním hodnotám. Analogicky jako pro řetězce indexování fungu
 </div>
 </section>
 <section id="prace-se-seznamem-hodnot">
-<h2><span class="section-number">2.7. </span>Práce se seznamem hodnot<a class="headerlink" href="#prace-se-seznamem-hodnot" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.7. </span>Práce se seznamem hodnot<a class="headerlink" href="#prace-se-seznamem-hodnot" title="Link to this heading">#</a></h2>
 <p>Následující kód ukazuje</p>
 <ul class="simple">
 <li><p>jak se vytvoří seznam zadáním hodnot</p></li>
@@ -820,7 +807,7 @@ několika posledním hodnotám. Analogicky jako pro řetězce indexování fungu
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">parametry</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">]</span>
 <span class="n">seznam</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">**</span><span class="mi">3</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">parametry</span><span class="p">]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">parametry</span><span class="p">,</span> <span class="n">seznam</span><span class="p">,</span> <span class="s2">&quot;o-&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">parametry</span><span class="p">,</span> <span class="n">seznam</span><span class="p">,</span> <span class="s2">"o-"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">seznam</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -829,7 +816,7 @@ několika posledním hodnotám. Analogicky jako pro řetězce indexování fungu
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 8, 64, 216, 1000, 3375]
 </pre></div>
 </div>
-<img alt="../_images/102a931165b035c09ac7e394428e22f7055b794cae482686173df7e2d3a6d280.png" src="../_images/102a931165b035c09ac7e394428e22f7055b794cae482686173df7e2d3a6d280.png" />
+<img alt="../_images/fb285ad2465daab4b0b4fdd0803e350058c008d768cd4734151316f1e4fadf63.png" src="../_images/fb285ad2465daab4b0b4fdd0803e350058c008d768cd4734151316f1e4fadf63.png" />
 </div>
 </div>
 <p>Analogicky funguje následující trik, který ze seznamu hodnot nějakého parametru udělá seznam řetězců použitelných například pro popisky v grafu nebo pro jména sloupců.</p>
@@ -839,14 +826,14 @@ několika posledním hodnotám. Analogicky jako pro řetězce indexování fungu
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Můžete si promyslet, jak bychom zařídili, aby výsledek obsahoval všechna čísla zapsaná </span>
 <span class="c1"># s jedním místem za desetinnou tečkou. Využijte příklad s 333 stříbrnými stříkačkami výše.</span>
 <span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
-<span class="p">[</span><span class="sa">f</span><span class="s2">&quot;r=</span><span class="si">{</span><span class="n">hodnota</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">hodnota</span> <span class="ow">in</span> <span class="n">r</span><span class="p">]</span>
-<span class="c1"># Vysledek je [&#39;r=1&#39;, &#39;r=1.5&#39;, &#39;r=2&#39;, &#39;r=2.5&#39;, &#39;r=3&#39;]</span>
-<span class="c1"># Raději bychom [&#39;r=1.0&#39;, &#39;r=1.5&#39;, &#39;r=2.0&#39;, &#39;r=2.5&#39;, &#39;r=3.0&#39;]</span>
+<span class="p">[</span><span class="sa">f</span><span class="s2">"r=</span><span class="si">{</span><span class="n">hodnota</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">hodnota</span> <span class="ow">in</span> <span class="n">r</span><span class="p">]</span>
+<span class="c1"># Vysledek je ['r=1', 'r=1.5', 'r=2', 'r=2.5', 'r=3']</span>
+<span class="c1"># Raději bychom ['r=1.0', 'r=1.5', 'r=2.0', 'r=2.5', 'r=3.0']</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;r=1&#39;, &#39;r=1.5&#39;, &#39;r=2&#39;, &#39;r=2.5&#39;, &#39;r=3&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>['r=1', 'r=1.5', 'r=2', 'r=2.5', 'r=3']
 </pre></div>
 </div>
 </div>
@@ -855,7 +842,7 @@ několika posledním hodnotám. Analogicky jako pro řetězce indexování fungu
 Praktické využití je například <a class="reference external" href="https://robert-marik.github.io/moodle-python/text/03_06a.html">zde</a></p>
 </section>
 <section id="prace-s-poli-np-array">
-<h2><span class="section-number">2.8. </span>Práce s poli <code class="docutils literal notranslate"><span class="pre">np.array</span></code><a class="headerlink" href="#prace-s-poli-np-array" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.8. </span>Práce s poli <code class="docutils literal notranslate"><span class="pre">np.array</span></code><a class="headerlink" href="#prace-s-poli-np-array" title="Link to this heading">#</a></h2>
 <p>S poli typu <code class="docutils literal notranslate"><span class="pre">np.array</span></code> se pracuje podobně jako se seznamy ale dokážeme s nimi dělat rovnou matematické operace a zápis je pohodlnější.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -872,11 +859,11 @@ Praktické využití je například <a class="reference external" href="https://
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8445d4a712d85986347fe70db06d4efa00807f4cf6d286623d71212d29f11da5.png" src="../_images/8445d4a712d85986347fe70db06d4efa00807f4cf6d286623d71212d29f11da5.png" />
+<img alt="../_images/f34687c746f0186b2607a0adb6329da5f1d691972ea012a5f7a5984d09cdceae.png" src="../_images/f34687c746f0186b2607a0adb6329da5f1d691972ea012a5f7a5984d09cdceae.png" />
 </div>
 </div>
 <section id="ukol-3">
-<h3><span class="section-number">2.8.1. </span>Úkol 3<a class="headerlink" href="#ukol-3" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">15.8.1. </span>Úkol 3<a class="headerlink" href="#ukol-3" title="Link to this heading">#</a></h3>
 <p>Nakreslete graf třetí mocniny na intervalu <span class="math notranslate nohighlight">\((-1,1)\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -887,7 +874,7 @@ Praktické využití je například <a class="reference external" href="https://
 </div>
 </section>
 <section id="hollingova-funkce">
-<h3><span class="section-number">2.8.2. </span>Hollingova funkce<a class="headerlink" href="#hollingova-funkce" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">15.8.2. </span>Hollingova funkce<a class="headerlink" href="#hollingova-funkce" title="Link to this heading">#</a></h3>
 <p>Můžeme nakreslit funkce <div class="math notranslate nohighlight">
 \[y=\frac{ax}{x+b}\]</div>
  pro různé hodnoty <span class="math notranslate nohighlight">\(a\)</span>. Vyzkoušejte si následující příkazy. Pokuste se modifikovat kód tak, aby kreslil funkci <div class="math notranslate nohighlight">
@@ -900,35 +887,35 @@ Praktické využití je například <a class="reference external" href="https://
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">a_seznam</span><span class="p">:</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">a</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">b</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">a_seznam</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Hodnota a&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">a_seznam</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"Hodnota a"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f4a1c3e7a10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x73bdd97109e0&gt;
 </pre></div>
 </div>
-<img alt="../_images/07bf81b3858592bbfb099bc769641454016f25df033a23a570140fccd73fee0f.png" src="../_images/07bf81b3858592bbfb099bc769641454016f25df033a23a570140fccd73fee0f.png" />
+<img alt="../_images/b510ebecfa2d881f14101a31a82ee0cbfd377dcff0acc9397cc12d5f5ecf67d4.png" src="../_images/b510ebecfa2d881f14101a31a82ee0cbfd377dcff0acc9397cc12d5f5ecf67d4.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="ukol-pro-samostatne-pracujici">
-<h2><span class="section-number">2.9. </span>Úkol pro samostatně pracující<a class="headerlink" href="#ukol-pro-samostatne-pracujici" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.9. </span>Úkol pro samostatně pracující<a class="headerlink" href="#ukol-pro-samostatne-pracujici" title="Link to this heading">#</a></h2>
 <p>Pokuste se modifikovat kód tak, aby nadpis grafu byl „Hodnota parametru“ a popisky křivek „a=1“,  „a=2“, „a=3“. Popisky vygenerujte ze seznamu <code class="docutils literal notranslate"><span class="pre">a_seznam</span></code> tak, aby se automaticky přizpůsobily při změně parametrů, pro které křivky kreslíme.</p>
 </section>
 <section id="tabulky-pandas">
-<h2><span class="section-number">2.10. </span>Tabulky, pandas<a class="headerlink" href="#tabulky-pandas" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.10. </span>Tabulky, pandas<a class="headerlink" href="#tabulky-pandas" title="Link to this heading">#</a></h2>
 <p>Výhodné je pracovat s daty v tabulkách. Tím totiž máme k dispozici širokou škálu nástrojů pro práci s daty, od kreslení, přes filtrování atd. Zpracování tabulek je běžná činnost, ke které js spousta návodů a tutoriálů. Nám bude stačit tvorba tabulek a vykreslení dat. Následující ukázka demonstruje tvorbu tabulky sloupec po sloupci. Nejprve se nadefinuje prázdná tabulka s přednastavenými řádky podle proměnné <code class="docutils literal notranslate"><span class="pre">x</span></code> a poté se do sloupců vloží data.</p>
 <p>Pro práci používáme knihovnu <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, kterou obvykle načítámne pod zkratkou <code class="docutils literal notranslate"><span class="pre">pd</span></code>. Tabulka se v této knihovně nazývá <code class="docutils literal notranslate"><span class="pre">dataframe</span></code>. Pokud pracujeme s jednou tabulkou, nepotřebujeme v názvu proměnné obsahující tuto tabulky mít popis dat a obvykle se jako proměnná používá <code class="docutils literal notranslate"><span class="pre">df</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1001</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Holling-I&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Holling-II&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Holling-III&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;prumer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Holling-I&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Holling-II&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Holling-III&quot;</span><span class="p">])</span><span class="o">/</span><span class="mi">3</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"Holling-I"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"Holling-II"</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"Holling-III"</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">"prumer"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">"Holling-I"</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">"Holling-II"</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">"Holling-III"</span><span class="p">])</span><span class="o">/</span><span class="mi">3</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> <span class="c1"># vytiskne začátek tabulky</span>
 </pre></div>
 </div>
@@ -1033,7 +1020,7 @@ Length: 1001, dtype: float64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="../_images/b5f40e5dfda54fd50c1d3c10d0d9fe925642cfb89ec2b2971249a94a12c49cae.png" src="../_images/b5f40e5dfda54fd50c1d3c10d0d9fe925642cfb89ec2b2971249a94a12c49cae.png" />
+<img alt="../_images/e1e5604d76df1ca8602817ad5f1443e284a11f079dda0a616a8b33445378b401.png" src="../_images/e1e5604d76df1ca8602817ad5f1443e284a11f079dda0a616a8b33445378b401.png" />
 </div>
 </div>
 <p>Tabulky je možno použít k operacím se sloupci podobně jako to znáte z Excelu,
@@ -1045,7 +1032,7 @@ Využijeme u modelů, kde řešením dostaneme časový průběh pro více nasta
 </div></blockquote>
 </section>
 <section id="dva-obrazky-pod-sebou-data-z-tabulky">
-<h2><span class="section-number">2.11. </span>Dva obrázky pod sebou, data z tabulky<a class="headerlink" href="#dva-obrazky-pod-sebou-data-z-tabulky" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.11. </span>Dva obrázky pod sebou, data z tabulky<a class="headerlink" href="#dva-obrazky-pod-sebou-data-z-tabulky" title="Link to this heading">#</a></h2>
 <p>Někdy chceme nakreslit do jednoho obrázku dvě funkce se společným definičním
 oborem, ale značně rozdílnými funkčními hodnotami. Řešením je buď nakreslit
 obrázky pod sebe a se sdílenou vodorovnou osou (viz níže), nebo nakreslit do
@@ -1054,7 +1041,7 @@ použít v jednom obrázku dvě svislé osy (viz Google a hesla <code class="doc
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># vykresleni dat do obrazku</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;Holling-II&quot;</span><span class="p">,</span><span class="s2">&quot;Holling-III&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">"Holling-II"</span><span class="p">,</span><span class="s2">"Holling-III"</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># # dekorace grafu</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span> <span class="c1"># vykresleni mrizky</span>
@@ -1163,12 +1150,12 @@ použít v jednom obrázku dvě svislé osy (viz Google a hesla <code class="doc
     </tr>
   </tbody>
 </table>
-</div></div><img alt="../_images/e689585ffb263b8af495a9423de235ac43afeaed1d148e4091a97d0392b41ba7.png" src="../_images/e689585ffb263b8af495a9423de235ac43afeaed1d148e4091a97d0392b41ba7.png" />
+</div></div><img alt="../_images/94d0414c2c962fe885b8556606e268f5cd4fbc814aa8224e3bdb1df07f3106d8.png" src="../_images/94d0414c2c962fe885b8556606e268f5cd4fbc814aa8224e3bdb1df07f3106d8.png" />
 </div>
 </div>
 </section>
 <section id="model-ochlazovani-kavy-volitelne">
-<h2><span class="section-number">2.12. </span>Model ochlazování kávy (volitelně)<a class="headerlink" href="#model-ochlazovani-kavy-volitelne" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">15.12. </span>Model ochlazování kávy (volitelně)<a class="headerlink" href="#model-ochlazovani-kavy-volitelne" title="Link to this heading">#</a></h2>
 <p>V následujícícm je minimalistická verze modelu ochlazování kávy podle rovnice <div class="math notranslate nohighlight">
 \[\frac{\mathrm dT}{\mathrm dt}=-k (T-20), \quad T(0)=100\]</div>
 
@@ -1185,7 +1172,7 @@ kde <span class="math notranslate nohighlight">\(\Delta t\)</span> je zvolený �
 <span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">seznam</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
 <span class="n">teploty</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="sa">f</span><span class="s1">&#39;k=</span><span class="si">{</span><span class="n">k</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">&#39;</span> <span class="p">:</span> 
+    <span class="sa">f</span><span class="s1">'k=</span><span class="si">{</span><span class="n">k</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">'</span> <span class="p">:</span> 
     <span class="p">[</span><span class="n">T</span><span class="o">:=</span><span class="mi">100</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">T</span> <span class="o">:=</span> <span class="n">T</span> <span class="o">-</span> <span class="n">k</span> <span class="o">*</span> <span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="mi">20</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="n">N</span><span class="p">)]</span>  
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">seznam</span>
     <span class="p">}</span>
@@ -1312,7 +1299,7 @@ kde <span class="math notranslate nohighlight">\(\Delta t\)</span> je zvolený �
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="../_images/c50fd1b6fc54d34fe51c4589ee9939bc2218bd7f7c0d085dc2b313f8d27b0929.png" src="../_images/c50fd1b6fc54d34fe51c4589ee9939bc2218bd7f7c0d085dc2b313f8d27b0929.png" />
+<img alt="../_images/c496757a0e76fd62d0ed872dc865a45cb4306f2155c25f4d7b3be7b63820dc77.png" src="../_images/c496757a0e76fd62d0ed872dc865a45cb4306f2155c25f4d7b3be7b63820dc77.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1598,7 +1585,7 @@ kde <span class="math notranslate nohighlight">\(\Delta t\)</span> je zvolený �
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="../_images/6f016a15e06b8b2e10a3f9d14c3048e59fe7775921ef47664050f8f2b02b45e7.png" src="../_images/6f016a15e06b8b2e10a3f9d14c3048e59fe7775921ef47664050f8f2b02b45e7.png" />
+<img alt="../_images/37e50b64d7a834c2fad3ec485e3764c66ca7b7c4d20064803f66aba3f96e5ef5.png" src="../_images/37e50b64d7a834c2fad3ec485e3764c66ca7b7c4d20064803f66aba3f96e5ef5.png" />
 </div>
 </div>
 </section>
@@ -1621,7 +1608,7 @@ kde <span class="math notranslate nohighlight">\(\Delta t\)</span> je zvolený �
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">předchozí</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>První kroky</p>
+        <p class="prev-next-title"><span class="section-number">14. </span>První kroky</p>
       </div>
     </a>
     <a class="right-next"
@@ -1629,7 +1616,7 @@ kde <span class="math notranslate nohighlight">\(\Delta t\)</span> je zvolený �
        title="další stránka">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">další</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Práce s funkcemi</p>
+        <p class="prev-next-title"><span class="section-number">16. </span>Práce s funkcemi</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1640,38 +1627,40 @@ kde <span class="math notranslate nohighlight">\(\Delta t\)</span> je zvolený �
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Obsah
   </div>
-  <nav class="bd-toc-nav page-toc">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ke-zpusobu-prace">2.1. Ke způsobu práce</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#co-googlit">2.2. Co googlit</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-syntaxi-v-jazyce-python">2.3. K syntaxi v jazyce Python</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aritmetika-s-cisly">2.4. Aritmetika s čísly</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ukol-1">2.4.1. Úkol 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ke-zpusobu-prace">15.1. Ke způsobu práce</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#co-googlit">15.2. Co googlit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-syntaxi-v-jazyce-python">15.3. K syntaxi v jazyce Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aritmetika-s-cisly">15.4. Aritmetika s čísly</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ukol-1">15.4.1. Úkol 1</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hratky-s-textem">2.5. Hrátky s textem</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#podretezce">2.5.1. Podřetězce</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sestavovani-textovych-retezcu">2.5.2. Sestavování textových řetezců</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hratky-s-textem">15.5. Hrátky s textem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#podretezce">15.5.1. Podřetězce</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sestavovani-textovych-retezcu">15.5.2. Sestavování textových řetezců</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knihovny">2.6. Knihovny</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prace-se-seznamem-hodnot">2.7. Práce se seznamem hodnot</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prace-s-poli-np-array">2.8. Práce s poli <code class="docutils literal notranslate"><span class="pre">np.array</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ukol-3">2.8.1. Úkol 3</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hollingova-funkce">2.8.2. Hollingova funkce</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knihovny">15.6. Knihovny</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prace-se-seznamem-hodnot">15.7. Práce se seznamem hodnot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prace-s-poli-np-array">15.8. Práce s poli <code class="docutils literal notranslate"><span class="pre">np.array</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ukol-3">15.8.1. Úkol 3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hollingova-funkce">15.8.2. Hollingova funkce</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ukol-pro-samostatne-pracujici">2.9. Úkol pro samostatně pracující</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabulky-pandas">2.10. Tabulky, pandas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dva-obrazky-pod-sebou-data-z-tabulky">2.11. Dva obrázky pod sebou, data z tabulky</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-ochlazovani-kavy-volitelne">2.12. Model ochlazování kávy (volitelně)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ukol-pro-samostatne-pracujici">15.9. Úkol pro samostatně pracující</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabulky-pandas">15.10. Tabulky, pandas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dva-obrazky-pod-sebou-data-z-tabulky">15.11. Dva obrázky pod sebou, data z tabulky</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-ochlazovani-kavy-volitelne">15.12. Model ochlazování kávy (volitelně)</a></li>
 </ul>
   </nav></div>
 
@@ -1719,8 +1708,8 @@ Autor Robert Mařík
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

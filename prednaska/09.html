@@ -16,38 +16,41 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=8c6b312c" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a771f39c" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=4cdba38b"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -66,6 +69,7 @@
     <link rel="prev" title="8. Autonomní systémy" href="08.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="cs"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -81,19 +85,8 @@
     <i class="fa-solid fa-arrow-up"></i>Zpět na začátek</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -101,7 +94,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Hledat v knize..."
          aria-label="Hledat v knize..."
          autocomplete="off"
@@ -109,8 +101,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -126,7 +118,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -156,15 +149,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Vyhledávání</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Vyhledávání</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="nav bd-sidenav">
@@ -184,37 +173,38 @@
 <li class="toctree-l1"><a class="reference internal" href="10.html">10. Modely dravce a kořisti</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11.html">11. Diskrétní populační modely</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12.html">12. Difuzní rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13.html">13. Agentní modely</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Cvičení</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">1. První kroky</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_01.html">2. Úvod do jazyka Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_02.html">3. Práce s funkcemi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_03.html">4. Diferenciální rovnice 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_04.html">5. Diferenciální rovnice 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_05.html">6. Diferenciální rovnice 3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_06.html">7. LaTeX</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_07.html">8. Maticové modely</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_08.html">9. Levinsův model metapopulací</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_09.html">10. Modely konkurence populací</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_10.html">11. Modely dravce a kořisti</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_11.html">12. Samostatná práce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">14. První kroky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_01.html">15. Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_02.html">16. Práce s funkcemi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_03.html">17. Diferenciální rovnice 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_04.html">18. Diferenciální rovnice 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_05.html">19. Diferenciální rovnice 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_06.html">20. LaTeX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_07.html">21. Maticové modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_08.html">22. Levinsův model metapopulací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_09.html">23. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_10.html">24. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_11.html">25. Samostatná práce</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Různá zadání</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">1. Enzymy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../allee.html">2. Silný Alleeho efekt</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../chovani.html">3. Model soupeření jestřábí a holubičí povahy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">4. Model populace ryb</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">26. Enzymy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../allee.html">27. Silný Alleeho efekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chovani.html">28. Model soupeření jestřábí a holubičí povahy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">29. Model populace ryb</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Kombinovaní</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">1. Data a grafy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">2. Diferenciální rovnice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">3. Lov v populaci - fázový portrét</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">4. Lov v populaci - časový vývoj</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">5. Model dravce a kořisti</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">6. Model konkurence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">30. Data a grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">31. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">32. Lov v populaci - fázový portrét</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">33. Lov v populaci - časový vývoj</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">34. Model dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">35. Model konkurence</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python konstrukce a ukázky</span></p>
 <ul class="nav bd-sidenav">
@@ -248,9 +238,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -396,7 +391,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Režim celé obrazovky"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -410,25 +405,17 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="světlý/tmavý" aria-label="světlý/tmavý" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Světlý"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Tmavý"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -479,10 +466,10 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="modely-konkurence-populaci">
 <h1><span class="section-number">9. </span>Modely konkurence populací<a class="headerlink" href="#modely-konkurence-populaci" title="Link to this heading">#</a></h1>
 <div class="cell tag_hide-input docutils container" id="index-0">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -548,10 +535,10 @@ populace <span class="math notranslate nohighlight">\(x\)</span>. Nosná kapacit
 pro růst populace <span class="math notranslate nohighlight">\(y\)</span> s nosnou kapacitou prostředí <span class="math notranslate nohighlight">\(\frac \alpha\beta\)</span>.</p>
 <p>Řešení pro konkrétní sadu parametrů a konkrétní sadu počátečních podmínek najdeme stejně snadno, jako řešení jedné diferenciální rovnice. Vykreslíme si pro srovnání čárkovaně do stejného grafu i dynamiku samostatných jednodruhových populací.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">konkurence</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">beta</span><span class="o">=</span><span class="mf">.2</span><span class="p">,</span><span class="n">gamma</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -563,9 +550,9 @@ pro růst populace <span class="math notranslate nohighlight">\(y\)</span> s nos
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">meze</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span><span class="s2">&quot;čas&quot;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span><span class="s2">"čas"</span>
 
-<span class="k">for</span> <span class="n">c</span><span class="p">,</span><span class="n">beta</span><span class="p">,</span><span class="n">sloupce</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="p">,</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="p">,</span> <span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="s2">&quot;y&quot;</span><span class="p">],[</span><span class="s2">&quot;x0&quot;</span><span class="p">,</span><span class="s2">&quot;y0&quot;</span><span class="p">]]):</span>
+<span class="k">for</span> <span class="n">c</span><span class="p">,</span><span class="n">beta</span><span class="p">,</span><span class="n">sloupce</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="p">,</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="p">,</span> <span class="p">[[</span><span class="s2">"x"</span><span class="p">,</span><span class="s2">"y"</span><span class="p">],[</span><span class="s2">"x0"</span><span class="p">,</span><span class="s2">"y0"</span><span class="p">]]):</span>
     <span class="n">df</span><span class="p">[</span><span class="n">sloupce</span><span class="p">]</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span>
                        <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span><span class="n">X</span><span class="p">:</span><span class="n">konkurence</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">,</span><span class="n">beta</span><span class="o">=</span><span class="n">beta</span><span class="p">),</span>
                        <span class="n">meze</span><span class="p">,</span>
@@ -650,49 +637,49 @@ pro růst populace <span class="math notranslate nohighlight">\(y\)</span> s nos
 </div></div></div>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">subplots</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="s2">&quot;x0&quot;</span><span class="p">),(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span><span class="s2">&quot;y0&quot;</span><span class="p">)],</span>
+    <span class="n">subplots</span><span class="o">=</span><span class="p">[(</span><span class="s2">"x"</span><span class="p">,</span><span class="s2">"x0"</span><span class="p">),(</span><span class="s2">"y"</span><span class="p">,</span><span class="s2">"y0"</span><span class="p">)],</span>
     <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">style</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;-&quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">,</span><span class="s2">&quot;--&quot;</span><span class="p">,</span><span class="s2">&quot;--&quot;</span><span class="p">]</span>
+    <span class="n">style</span><span class="o">=</span><span class="p">[</span><span class="s2">"-"</span><span class="p">,</span><span class="s2">"-"</span><span class="p">,</span><span class="s2">"--"</span><span class="p">,</span><span class="s2">"--"</span><span class="p">]</span>
 <span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
-    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Druh $x$&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"Druh $x$"</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
-    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Čas&quot;</span><span class="p">,</span>
-    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Druh $y$&quot;</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"Čas"</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"Druh $y$"</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;S konkurencí&quot;</span><span class="p">,</span> <span class="s2">&quot;Samostatně&quot;</span><span class="p">])</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;S konkurencí&quot;</span><span class="p">,</span> <span class="s2">&quot;Samostatně&quot;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Model dvou populací s konkurencí a bez konkurence&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">"S konkurencí"</span><span class="p">,</span> <span class="s2">"Samostatně"</span><span class="p">])</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">"S konkurencí"</span><span class="p">,</span> <span class="s2">"Samostatně"</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Model dvou populací s konkurencí a bez konkurence"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/4112e1cdec9f92f44a39a6a381d33dbbb5525e4d2cae77a14e0a180b97a51fd1.png" src="../_images/4112e1cdec9f92f44a39a6a381d33dbbb5525e4d2cae77a14e0a180b97a51fd1.png" />
+<img alt="../_images/eb76c93e428a782016e9a49d30b6c94cf47b8cc57cc2c614eee78e494489cb40.png" src="../_images/eb76c93e428a782016e9a49d30b6c94cf47b8cc57cc2c614eee78e494489cb40.png" />
 </div>
 </div>
 <p>Pro prezentaci tabulky nebo export do Excelu je výhodnější použít hierarchické názvy sloupců.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sloupce</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_arrays</span><span class="p">(</span>
 <span class="p">[</span>
-    <span class="mi">2</span><span class="o">*</span><span class="p">[</span><span class="s2">&quot;s konkurencí&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="p">[</span><span class="s2">&quot;bez konkurence&quot;</span><span class="p">],</span>
-    <span class="mi">2</span><span class="o">*</span><span class="p">[</span><span class="s2">&quot;druh x&quot;</span><span class="p">,</span><span class="s2">&quot;druh y&quot;</span><span class="p">]</span>
+    <span class="mi">2</span><span class="o">*</span><span class="p">[</span><span class="s2">"s konkurencí"</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="p">[</span><span class="s2">"bez konkurence"</span><span class="p">],</span>
+    <span class="mi">2</span><span class="o">*</span><span class="p">[</span><span class="s2">"druh x"</span><span class="p">,</span><span class="s2">"druh y"</span><span class="p">]</span>
 <span class="p">])</span>
 <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">sloupce</span>
 <span class="n">df</span>
@@ -864,10 +851,10 @@ vzájemné polohy těchto bodů ma osách <span class="math notranslate nohighli
 odlišné případy znázorněné na obrázcích. Zeleně jsou znázorněny <span class="math notranslate nohighlight">\(x\)</span>-nulkliny a
 červeně <span class="math notranslate nohighlight">\(y\)</span>-nulkliny. Stacionární body jsou v průsečíku nulklin různých barev.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="mf">1.1</span><span class="p">,</span><span class="mf">1.1</span>
@@ -895,15 +882,15 @@ odlišné případy znázorněné na obrázcích. Zeleně jsou znázorněny <spa
     <span class="n">u</span><span class="p">,</span><span class="n">v</span> <span class="o">=</span> <span class="n">konkurence</span><span class="p">(</span><span class="mi">0</span><span class="p">,[</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">])</span>
     <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">u</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># velikost vektoru</span>
 
-    <span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">u</span><span class="o">/</span><span class="n">M</span><span class="p">,</span><span class="n">v</span><span class="o">/</span><span class="n">M</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> <span class="n">angles</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">)</span> <span class="c1"># vykresleni s jednotkovou delkou</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">u</span><span class="o">/</span><span class="n">M</span><span class="p">,</span><span class="n">v</span><span class="o">/</span><span class="n">M</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">'gray'</span><span class="p">,</span><span class="n">units</span><span class="o">=</span><span class="s1">'xy'</span><span class="p">,</span> <span class="n">angles</span><span class="o">=</span><span class="s1">'xy'</span><span class="p">)</span> <span class="c1"># vykresleni s jednotkovou delkou</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">streamplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
     <span class="c1">#ax.set_aspect(.5) # stejne meritko na obou osach</span>
 
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">xmax</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">alpha</span><span class="o">/</span><span class="n">beta</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="n">alpha</span><span class="o">/</span><span class="n">gamma</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">xmax</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">"r"</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">alpha</span><span class="o">/</span><span class="n">beta</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="n">alpha</span><span class="o">/</span><span class="n">gamma</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">"r"</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="n">ymax</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;g&quot;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="p">],[</span><span class="n">a</span><span class="o">/</span><span class="n">c</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;g&quot;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="n">ymax</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">"g"</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="p">],[</span><span class="n">a</span><span class="o">/</span><span class="n">c</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s2">"g"</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
         <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span><span class="n">xmax</span><span class="p">),</span>
@@ -912,16 +899,16 @@ odlišné případy znázorněné na obrázcích. Zeleně jsou znázorněny <spa
     <span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">([])</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">([])</span>
 
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Slabá konkurence&quot;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Dominance druhu $y$&quot;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Silná konkurence&quot;</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Dominance druhu $x$&quot;</span><span class="p">);</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Slabá konkurence"</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">"Dominance druhu $y$"</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Silná konkurence"</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">"Dominance druhu $x$"</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/89e57631a8f04179e6d3ad8245b62f1a559346cfa67ad467150dba04ac84e3b4.png" src="../_images/89e57631a8f04179e6d3ad8245b62f1a559346cfa67ad467150dba04ac84e3b4.png" />
+<img alt="../_images/8842b61e385e4d32e0dff8c20cdb0853472b553f1691199adeee8577d51844b3.png" src="../_images/8842b61e385e4d32e0dff8c20cdb0853472b553f1691199adeee8577d51844b3.png" />
 </div>
 </div>
 </section>
@@ -1165,10 +1152,10 @@ pokud jeden z druhů náhodnými vlivy nebo neopatrným zásahem člověka vymř
 nemusí toto vymření vést k posílení populací jeho konkurentů, ale někteří z
 konkurentů mohou vyhynout, zatímco jiní dominují.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">meze</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">200</span><span class="p">]</span>
@@ -1199,10 +1186,10 @@ konkurentů mohou vyhynout, zatímco jiní dominují.</p>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">meze</span><span class="p">,</span><span class="mi">400</span><span class="p">)</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">t</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;čas&quot;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">"čas"</span>
 
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">pocatecni_podminka</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pocatecni_podminky</span><span class="p">):</span>
-    <span class="n">df</span><span class="p">[[</span><span class="sa">f</span><span class="s2">&quot;x</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span><span class="sa">f</span><span class="s2">&quot;y</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span><span class="sa">f</span><span class="s2">&quot;z</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">[[</span><span class="sa">f</span><span class="s2">"x</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span><span class="sa">f</span><span class="s2">"y</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span><span class="sa">f</span><span class="s2">"z</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">"</span><span class="p">]]</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span>
         <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span><span class="n">X</span><span class="p">:</span><span class="n">konkurence_tri</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="o">*</span><span class="n">parametry</span><span class="p">),</span>
         <span class="n">meze</span><span class="p">,</span>
         <span class="n">pocatecni_podminka</span><span class="p">,</span>
@@ -1300,46 +1287,46 @@ konkurentů mohou vyhynout, zatímco jiní dominují.</p>
 </div></div></div>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">subplots</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;x0&quot;</span><span class="p">,</span><span class="s2">&quot;x1&quot;</span><span class="p">),(</span><span class="s2">&quot;y0&quot;</span><span class="p">,</span><span class="s2">&quot;y1&quot;</span><span class="p">),(</span><span class="s2">&quot;z0&quot;</span><span class="p">,</span><span class="s2">&quot;z1&quot;</span><span class="p">)],</span>
-    <span class="c1">#style=[&quot;-&quot;]*3 + [&quot;--&quot;]*3,</span>
-    <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;C0&quot;</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="p">[</span><span class="s2">&quot;C1&quot;</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">subplots</span><span class="o">=</span><span class="p">[(</span><span class="s2">"x0"</span><span class="p">,</span><span class="s2">"x1"</span><span class="p">),(</span><span class="s2">"y0"</span><span class="p">,</span><span class="s2">"y1"</span><span class="p">),(</span><span class="s2">"z0"</span><span class="p">,</span><span class="s2">"z1"</span><span class="p">)],</span>
+    <span class="c1">#style=["-"]*3 + ["--"]*3,</span>
+    <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s2">"C0"</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="p">[</span><span class="s2">"C1"</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span>
     <span class="n">legend</span><span class="o">=</span><span class="kc">False</span>
     <span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;Všechny tři populace&quot;</span><span class="p">,</span><span class="s2">&quot;Bez populace $x$&quot;</span><span class="p">])</span>   
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Populace $x$&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Populace $y$&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Populace $z$&quot;</span><span class="p">,</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Čas&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">"Všechny tři populace"</span><span class="p">,</span><span class="s2">"Bez populace $x$"</span><span class="p">])</span>   
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">"Populace $x$"</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">"Populace $y$"</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">"Populace $z$"</span><span class="p">,</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">"Čas"</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">ax</span><span class="p">:</span>
     <span class="n">a</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="kc">None</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Konkurence tří populací pro dvě různé počáteční podmínky&quot;</span><span class="p">);</span>     
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Konkurence tří populací pro dvě různé počáteční podmínky"</span><span class="p">);</span>     
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">();</span>     
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/a71a2c0dbb05924a3a4d102e2dad58c14ba5f132e9cc84d038ac4b0d2ff2112f.png" src="../_images/a71a2c0dbb05924a3a4d102e2dad58c14ba5f132e9cc84d038ac4b0d2ff2112f.png" />
+<img alt="../_images/fba67e0eb6d77c200605647b267ebaf144be1df0fa8bcbaf6e1c2ef77376264b.png" src="../_images/fba67e0eb6d77c200605647b267ebaf144be1df0fa8bcbaf6e1c2ef77376264b.png" />
 </div>
 </div>
 <p>Pro export dat může být výhodnější použít popisnější názvy pro sloupce a hierarchický index.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sloupce</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_arrays</span><span class="p">(</span>
     <span class="p">[</span>
-        <span class="p">[</span><span class="s2">&quot;Počáteční podmínka 0&quot;</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="p">[</span><span class="s2">&quot;Počáteční podmínka 1&quot;</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span>
-        <span class="p">[</span><span class="s2">&quot;Druh x&quot;</span><span class="p">,</span><span class="s2">&quot;Druh y&quot;</span><span class="p">,</span><span class="s2">&quot;Druh z&quot;</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span>
+        <span class="p">[</span><span class="s2">"Počáteční podmínka 0"</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="p">[</span><span class="s2">"Počáteční podmínka 1"</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span>
+        <span class="p">[</span><span class="s2">"Druh x"</span><span class="p">,</span><span class="s2">"Druh y"</span><span class="p">,</span><span class="s2">"Druh z"</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span>
     <span class="p">])</span>  
 <span class="n">tabulka</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">tabulka</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">sloupce</span>
@@ -1508,16 +1495,16 @@ přímek s osou <span class="math notranslate nohighlight">\(x\)</span> jsou (v 
 <span class="math notranslate nohighlight">\(\frac mn\)</span>, s osou <span class="math notranslate nohighlight">\(y\)</span> <span class="math notranslate nohighlight">\(\frac mo\)</span>, <span class="math notranslate nohighlight">\(\frac \alpha\gamma\)</span> a <span class="math notranslate nohighlight">\(\frac ac\)</span> a s osou
 <span class="math notranslate nohighlight">\(z\)</span> body <span class="math notranslate nohighlight">\(\frac ad\)</span>, <span class="math notranslate nohighlight">\(\frac mp\)</span> a <span class="math notranslate nohighlight">\(\frac \alpha\delta\)</span>.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">beta</span><span class="p">,</span><span class="n">gamma</span><span class="p">,</span><span class="n">delta</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">o</span><span class="p">,</span><span class="n">p</span> <span class="o">=</span> <span class="n">parametry</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span> <span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span> <span class="o">=</span><span class="s1">'3d'</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">view_init</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="mi">51</span><span class="p">)</span>
 
 <span class="n">body</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
@@ -1528,15 +1515,15 @@ přímek s osou <span class="math notranslate nohighlight">\(x\)</span> jsou (v 
     <span class="p">[</span><span class="n">b</span><span class="o">/</span><span class="n">a</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,(</span><span class="n">a</span><span class="o">-</span><span class="n">c</span><span class="p">)</span><span class="o">/</span><span class="n">b</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
     <span class="p">[</span><span class="n">alpha</span><span class="o">/</span><span class="n">beta</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">alpha</span><span class="o">/</span><span class="n">gamma</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
 <span class="p">])</span>
-<span class="n">barvy</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;red&quot;</span><span class="p">,</span><span class="s2">&quot;red&quot;</span><span class="p">,</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span><span class="s2">&quot;black&quot;</span><span class="p">,</span><span class="s2">&quot;black&quot;</span><span class="p">]</span>
+<span class="n">barvy</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"red"</span><span class="p">,</span><span class="s2">"red"</span><span class="p">,</span><span class="s2">"blue"</span><span class="p">,</span><span class="s2">"blue"</span><span class="p">,</span><span class="s2">"black"</span><span class="p">,</span><span class="s2">"black"</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">bod</span><span class="p">,</span><span class="n">barva</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">barvy</span><span class="p">):</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot3D</span><span class="p">([</span><span class="n">bod</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">bod</span><span class="p">[</span><span class="mi">3</span><span class="p">]],</span> <span class="p">[</span><span class="n">bod</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">bod</span><span class="p">[</span><span class="mi">4</span><span class="p">]],</span> <span class="p">[</span><span class="n">bod</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">bod</span><span class="p">[</span><span class="mi">5</span><span class="p">]],</span> <span class="n">color</span><span class="o">=</span><span class="n">barva</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Konkurence tří populací&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Konkurence tří populací'</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
-    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span>
-    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span>
-    <span class="n">zlabel</span><span class="o">=</span><span class="s2">&quot;z&quot;</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"x"</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"y"</span><span class="p">,</span>
+    <span class="n">zlabel</span><span class="o">=</span><span class="s2">"z"</span><span class="p">,</span>
     <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
     <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
     <span class="n">zlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span>
@@ -1547,29 +1534,29 @@ přímek s osou <span class="math notranslate nohighlight">\(x\)</span> jsou (v 
                       <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
                       <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]))</span>
 <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">y</span><span class="o">-</span><span class="n">d</span><span class="o">*</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">alpha</span><span class="o">-</span><span class="n">beta</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">gamma</span><span class="o">*</span><span class="n">y</span><span class="o">-</span><span class="n">delta</span><span class="o">*</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">,(</span><span class="n">m</span><span class="o">-</span><span class="n">n</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">o</span><span class="o">*</span><span class="n">y</span><span class="o">-</span><span class="n">p</span><span class="o">*</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">z</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"black"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
 
 <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
 <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">y</span><span class="o">-</span><span class="n">d</span><span class="o">*</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">alpha</span><span class="o">-</span><span class="n">beta</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">gamma</span><span class="o">*</span><span class="n">y</span><span class="o">-</span><span class="n">delta</span><span class="o">*</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">,(</span><span class="n">m</span><span class="o">-</span><span class="n">n</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">o</span><span class="o">*</span><span class="n">y</span><span class="o">-</span><span class="n">p</span><span class="o">*</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">z</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
 
 <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
 <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">y</span><span class="o">-</span><span class="n">d</span><span class="o">*</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">alpha</span><span class="o">-</span><span class="n">beta</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">gamma</span><span class="o">*</span><span class="n">y</span><span class="o">-</span><span class="n">delta</span><span class="o">*</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">,(</span><span class="n">m</span><span class="o">-</span><span class="n">n</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">o</span><span class="o">*</span><span class="n">y</span><span class="o">-</span><span class="n">p</span><span class="o">*</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">z</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
 
-<span class="n">k</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;x0&quot;</span><span class="p">,</span><span class="s2">&quot;y0&quot;</span><span class="p">,</span><span class="s2">&quot;z0&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">"x0"</span><span class="p">,</span><span class="s2">"y0"</span><span class="p">,</span><span class="s2">"z0"</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot3D</span><span class="p">(</span><span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> 
-<span class="n">k</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span><span class="s2">&quot;y1&quot;</span><span class="p">,</span><span class="s2">&quot;z1&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">"x1"</span><span class="p">,</span><span class="s2">"y1"</span><span class="p">,</span><span class="s2">"z1"</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot3D</span><span class="p">(</span><span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> 
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;mpl_toolkits.mplot3d.art3d.Line3D at 0x7f26f910a0d0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;mpl_toolkits.mplot3d.art3d.Line3D at 0x75c96c8827b0&gt;]
 </pre></div>
 </div>
-<img alt="../_images/14e3614a3139f986d810861c379792ee7cb1d57a5e6552923ba757a211ab48b7.png" src="../_images/14e3614a3139f986d810861c379792ee7cb1d57a5e6552923ba757a211ab48b7.png" />
+<img alt="../_images/be85f57a21c0876f426b36ce9b25ada488d53738b8d8d8491b1f351eb5be7e2d.png" src="../_images/be85f57a21c0876f426b36ce9b25ada488d53738b8d8d8491b1f351eb5be7e2d.png" />
 </div>
 </div>
 <p>Teto příklad ukazuje, že v lokalitě obsazené větším počtem druhů, je
@@ -1627,8 +1614,8 @@ obou populací bude převyšovat úživnou hodnotu prostředí každé
 z populací, populace tedy bude mít větší velikost, než jakou by
 měla, kdyby se v prostředí nacházela osamocena.</p></li>
 </ul>
-<p>Další pojednání o modelech konkurence je možno nalézt například v <span id="id1">[<a class="reference internal" href="../literatura.html#id3" title="M. Begon, C.R. Townsend, and J.L. Harper. Ekologie: jedinci, populace a společenstva. Vydavatelství Univerzity Palackého, 1997. ISBN 9788070676950.">3</a>]</span>
-kapitola 7.4 a <span id="id2">[<a class="reference internal" href="../literatura.html#id5" title="E. Tkadlec. Populační ekologie: Struktura a růst populací. Univerzita Palckého v Olomouci, 2013.">16</a>]</span> str. 220.</p>
+<p>Další pojednání o modelech konkurence je možno nalézt například v <span class="bibtex-citation" id="id1">[<a class="reference internal" href="../literatura.html#id3" title="M. Begon, C.R. Townsend, and J.L. Harper. Ekologie: jedinci, populace a společenstva. Vydavatelství Univerzity Palackého, 1997. ISBN 9788070676950.">3</a>]</span>
+kapitola 7.4 a <span class="bibtex-citation" id="id2">[<a class="reference internal" href="../literatura.html#id5" title="E. Tkadlec. Populační ekologie: Struktura a růst populací. Univerzita Palckého v Olomouci, 2013.">18</a>]</span> str. 220.</p>
 </section>
 </section>
 
@@ -1668,14 +1655,16 @@ kapitola 7.4 a <span id="id2">[<a class="reference internal" href="../literatura
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Obsah
   </div>
-  <nav class="bd-toc-nav page-toc">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konkurence-dvou-populaci">9.1. Konkurence dvou populací</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matematicky-model">9.1.1. Matematický model</a></li>
@@ -1738,8 +1727,8 @@ Autor Robert Mařík
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>
