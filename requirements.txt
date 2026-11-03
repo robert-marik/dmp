@@ -6,3 +6,4 @@ jupytext
 sphinx-proof
 pandas
 openpyxl
+mesa
