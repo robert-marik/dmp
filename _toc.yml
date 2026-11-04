@@ -21,9 +21,9 @@ parts:
     - file: "prednaska/08"
     - file: "prednaska/09"
     - file: "prednaska/10"
+    - file: "prednaska/13"
     - file: "prednaska/11"
     - file: "prednaska/12"
-    - file: "prednaska/13"
   - caption: Cvičení
     numbered: true
     chapters:
