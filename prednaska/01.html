@@ -16,41 +16,38 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=8c6b312c" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a771f39c" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=4cdba38b"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -69,7 +66,6 @@
     <link rel="prev" title="Úvodní slovo" href="../uvod.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="cs"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -85,8 +81,19 @@
     <i class="fa-solid fa-arrow-up"></i>Zpět na začátek</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -94,6 +101,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Hledat v knize..."
          aria-label="Hledat v knize..."
          autocomplete="off"
@@ -101,8 +109,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -118,8 +126,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -149,11 +156,15 @@
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Vyhledávání</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Vyhledávání</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="nav bd-sidenav">
@@ -171,40 +182,40 @@
 <li class="toctree-l1"><a class="reference internal" href="08.html">8. Autonomní systémy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09.html">9. Modely konkurence populací</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10.html">10. Modely dravce a kořisti</a></li>
-<li class="toctree-l1"><a class="reference internal" href="11.html">11. Diskrétní populační modely</a></li>
-<li class="toctree-l1"><a class="reference internal" href="12.html">12. Difuzní rovnice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="13.html">13. Agentní modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13.html">11. Agentní modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11.html">12. Diskrétní populační modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12.html">13. Difuzní rovnice</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Cvičení</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">14. První kroky</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_01.html">15. Úvod do jazyka Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_02.html">16. Práce s funkcemi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_03.html">17. Diferenciální rovnice 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_04.html">18. Diferenciální rovnice 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_05.html">19. Diferenciální rovnice 3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_06.html">20. LaTeX</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_07.html">21. Maticové modely</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_08.html">22. Levinsův model metapopulací</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_09.html">23. Modely konkurence populací</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_10.html">24. Modely dravce a kořisti</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_11.html">25. Samostatná práce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">1. První kroky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_01.html">2. Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_02.html">3. Práce s funkcemi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_03.html">4. Diferenciální rovnice 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_04.html">5. Diferenciální rovnice 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_05.html">6. Diferenciální rovnice 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_06.html">7. LaTeX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_07.html">8. Maticové modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_08.html">9. Levinsův model metapopulací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_09.html">10. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_10.html">11. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_11.html">12. Samostatná práce</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Různá zadání</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">26. Enzymy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../allee.html">27. Silný Alleeho efekt</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../chovani.html">28. Model soupeření jestřábí a holubičí povahy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">29. Model populace ryb</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">1. Enzymy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../allee.html">2. Silný Alleeho efekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chovani.html">3. Model soupeření jestřábí a holubičí povahy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">4. Model populace ryb</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Kombinovaní</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">30. Data a grafy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">31. Diferenciální rovnice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">32. Lov v populaci - fázový portrét</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">33. Lov v populaci - časový vývoj</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">34. Model dravce a kořisti</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">35. Model konkurence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">1. Data a grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">2. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">3. Lov v populaci - fázový portrét</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">4. Lov v populaci - časový vývoj</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">5. Model dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">6. Model konkurence</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python konstrukce a ukázky</span></p>
 <ul class="nav bd-sidenav">
@@ -238,14 +249,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -391,7 +397,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  class="btn btn-sm btn-fullscreen-button"
   title="Režim celé obrazovky"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -405,17 +411,25 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Světlý"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Tmavý"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="světlý/tmavý" aria-label="světlý/tmavý" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
-<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -495,7 +509,7 @@ kterého dosadíme čas a vzorec nám ukáže velikost populace.</p>
 pochopení práce s funkcemi nutná a postačí intuitivní chápání tohoto pojmu jako
 vztahu mezi dvěma veličinami nebo mezi dvěma proměnnými.</p>
 <div class="proof definition admonition" id="definition-0">
-<p class="admonition-title" id="definition-0"><span class="caption-number">Definice </span> (Funkce)</p>
+<p class="admonition-title"><span>Definice </span> (Funkce)</p>
 <section class="definition-content" id="proof-content">
 <p>Buďte <span class="math notranslate nohighlight">\(A\)</span> a <span class="math notranslate nohighlight">\(B\)</span> neprázdné podmnožiny množiny reálných čísel.
 Pravidlo <span class="math notranslate nohighlight">\(f\)</span>, které každému prvku množiny <span class="math notranslate nohighlight">\(A\)</span> přiřadí jediný prvek
@@ -512,10 +526,10 @@ je <em>vzorem prvku</em> <span class="math notranslate nohighlight">\(b\)</span>
 osu vynášíme vzory, na svislou obrazy. V prakticky zajímavých a využívaných
 případech zpravidla body grafu vyplní křivku v rovině.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>  <span class="c1"># knihovna pro numerické výpočty</span>
@@ -527,10 +541,10 @@ případech zpravidla body grafu vyplní křivku v rovině.</p>
 </details>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>  <span class="c1"># interval a počet bodů použitých pro kreslení grafu</span>
@@ -542,7 +556,7 @@ případech zpravidla body grafu vyplní křivku v rovině.</p>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/5e9300e3b5d47efa7bb37fda6dc11eac263a148615f5f5d658e2f0e8418459b9.png" src="../_images/5e9300e3b5d47efa7bb37fda6dc11eac263a148615f5f5d658e2f0e8418459b9.png" />
+<img alt="../_images/46c6f46b9a8fd95a134a77e8aeea2883ff94bad6b27fb413363a2e749c25b7b0.png" src="../_images/46c6f46b9a8fd95a134a77e8aeea2883ff94bad6b27fb413363a2e749c25b7b0.png" />
 </div>
 </div>
 </section>
@@ -561,7 +575,7 @@ stejným způsobem (rostoucí funkce) nebo naopak (klesající funkce),</p></li>
 <p>To bylo neformální představení základních vlastností, kterých si všímáme u
 funkcí. Taková představa většinou stačí. Přesné definice jsou následující.</p>
 <div class="proof definition admonition" id="definition-1">
-<p class="admonition-title" id="definition-1"><span class="caption-number">Definice </span> (Monotonie funkce)</p>
+<p class="admonition-title"><span>Definice </span> (Monotonie funkce)</p>
 <section class="definition-content" id="proof-content">
 <p>Nechť <span class="math notranslate nohighlight">\(f\)</span> je funkce a <span class="math notranslate nohighlight">\(M\subseteq \mathrm{Dom}(f)\)</span> podmnožina definičního oboru   funkce
 <span class="math notranslate nohighlight">\(f\)</span></p>
@@ -580,7 +594,7 @@ je-li buď rostoucí, nebo klesající na <span class="math notranslate nohighli
 </div><p>Následující definice zavádí třídu funkcí, u kterých se z výsledku dají
 zrekonstruovat vstupní data.</p>
 <div class="proof definition admonition" id="definition-2">
-<p class="admonition-title" id="definition-2"><span class="caption-number">Definice </span> (Prostá funkce)</p>
+<p class="admonition-title"><span>Definice </span> (Prostá funkce)</p>
 <section class="definition-content" id="proof-content">
 <p>Nechť <span class="math notranslate nohighlight">\(f\)</span> je funkce a <span class="math notranslate nohighlight">\(M\subseteq \mathrm{Dom}(f)\)</span> podmnožina definičního oboru funkce <span class="math notranslate nohighlight">\(f\)</span>.   Řekneme, že funkce <span class="math notranslate nohighlight">\(f\)</span> je <em>prostá</em>,
 jestliže každý obraz má jen jediný vzor, tj. pro každé <span class="math notranslate nohighlight">\(y_0\in f(M)\)</span>
@@ -591,7 +605,7 @@ platí na celém definičním oboru funkce <span class="math notranslate nohighl
 </div><p>Následující věta vyjadřuje, že pokud je funkce prostá, je možno ji odebrat z
 obou stran rovnice a výsledkem je rovnice ekvivalentní.</p>
 <div class="proof theorem admonition" id="theorem-3">
-<p class="admonition-title" id="theorem-3"><span class="caption-number">Věta </span> (Rovnice s prostou funkcí)</p>
+<p class="admonition-title"><span>Věta </span> (Rovnice s prostou funkcí)</p>
 <section class="theorem-content" id="proof-content">
 <p>Pokud je <span class="math notranslate nohighlight">\(f\)</span> prostá funkce a platí <div class="math notranslate nohighlight">
 \[f(x)=f(a),\]</div>
@@ -599,14 +613,14 @@ obou stran rovnice a výsledkem je rovnice ekvivalentní.</p>
 </section>
 </div><p>Pokud je funkce prostá, je možné z výsledku zrekonstruovat vstupní data. Následující definice dává název funkci, která toto přiřazení vstupních dat k výsledkům realizuje.</p>
 <div class="proof definition admonition" id="definition-4">
-<p class="admonition-title" id="definition-4"><span class="caption-number">Definice </span> (Inverzní funkce)</p>
+<p class="admonition-title"><span>Definice </span> (Inverzní funkce)</p>
 <section class="definition-content" id="proof-content">
 <p>Nechť funkce <span class="math notranslate nohighlight">\(f: A\to B\)</span> je prostá. Pravidlo, které každému <span class="math notranslate nohighlight">\(x\)</span>   z množiny <span class="math notranslate nohighlight">\(f(A)\)</span> přiřadí to (jediné) <span class="math notranslate nohighlight">\(y\)</span>, pro které platí <span class="math notranslate nohighlight">\(f(y)=x\)</span> se nazývá <em>inverzní funkce</em> k funkci <span class="math notranslate nohighlight">\(f\)</span>, označujeme   <span class="math notranslate nohighlight">\(f^{-1}\)</span>.</p>
 </section>
 </div><p>Například k druhé odmocnině je inverzní funkcí druhá mocnina. K násobení dvojkou
 je inverzní funkcí dělení dvojkou.</p>
 <div class="proof definition admonition" id="definition-5">
-<p class="admonition-title" id="definition-5"><span class="caption-number">Definice </span> (Ohraničená funkce)</p>
+<p class="admonition-title"><span>Definice </span> (Ohraničená funkce)</p>
 <section class="definition-content" id="proof-content">
 <p>Funkce se nazývá <em>shora ohraničená na množině <span class="math notranslate nohighlight">\(M\)</span></em>, pokud existuje reálné číslo <span class="math notranslate nohighlight">\(K\)</span> takové,
 že platí <div class="math notranslate nohighlight">
@@ -622,7 +636,7 @@ je inverzní funkcí dělení dvojkou.</p>
 <p>Sinus a kosinus jsou ohraničené funkce. Exponenciální funkce je zdola ohraničená a není shora ohraničená. Na intervalu konečné délky je ohraničená i exponenciální funkce.</p>
 </section>
 </div><div class="proof definition admonition" id="definition-7">
-<p class="admonition-title" id="definition-7"><span class="caption-number">Definice </span> (Landauova notace)</p>
+<p class="admonition-title"><span>Definice </span> (Landauova notace)</p>
 <section class="definition-content" id="proof-content">
 <p>Nechť <span class="math notranslate nohighlight">\(g\)</span> je funkce kladná pro velká <span class="math notranslate nohighlight">\(x\)</span>. Řekneme, že funkce <span class="math notranslate nohighlight">\(f\)</span> je třídy
 <span class="math notranslate nohighlight">\(\mathcal O(g)\)</span>, píšeme <div class="math notranslate nohighlight">
@@ -657,7 +671,7 @@ zprostředkována násobením konstantou (přímá úměrnost), nebo kdy je nás
 konstantou zprostředkována souvislost mezi jednou veličinou a převrácenou
 hodnotou druhé veličiny (nepřímá úměrnost).</p>
 <div class="proof definition admonition" id="definition-8">
-<p class="admonition-title" id="definition-8"><span class="caption-number">Definice </span> (Přímá a nepřímá úměrnost)</p>
+<p class="admonition-title"><span>Definice </span> (Přímá a nepřímá úměrnost)</p>
 <section class="definition-content" id="proof-content">
 <p>Veličina <span class="math notranslate nohighlight">\(y\)</span> je <em>přímo úměrná</em> veličině <span class="math notranslate nohighlight">\(x\)</span> jestliže existuje konstanta <span class="math notranslate nohighlight">\(k\)</span> taková, že platí
 <div class="math notranslate nohighlight">
@@ -690,10 +704,10 @@ exponent znamená rychlejší růst pro velké hodnoty argumentu a rychlejší p
 nule v okolí počátku.</p>
 <p>Nakreslíme grafy mocninných funkcí. Pro názornost je vykreslíme dvakrát vedle sebe a jednou omezíme grafy na okolí počátku. Níže si můžete rozkliknout skript pto výpočet funkčních hodnot a vykreslení obrázku.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>
@@ -710,23 +724,23 @@ nule v okolí počátku.</p>
 <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># pravý graf</span>
 
 <span class="c1"># Popisky a rozsahy os nalevo</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">"Hodnota $n$"</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Hodnota $n$&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
     <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> 
     <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> 
-    <span class="n">title</span><span class="o">=</span><span class="s2">"Chování v okolí počátku"</span><span class="p">)</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Chování v okolí počátku&quot;</span><span class="p">)</span>
 <span class="c1"># Popisky a rozsahy os napravo</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
     <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span> 
-    <span class="n">title</span><span class="o">=</span><span class="s2">"Chování v nekonečnu"</span><span class="p">)</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Chování v nekonečnu&quot;</span><span class="p">)</span>
 <span class="c1"># Společný nadpis  </span>
-<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">r</span><span class="s2">"Grafy funkcí $y=x^n$."</span><span class="p">);</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Grafy funkcí $y=x^n$.&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/1a6d478fafbb143a58584d49cb7fcb3a4b1768c99154639aa48fca137f6779d1.png" src="../_images/1a6d478fafbb143a58584d49cb7fcb3a4b1768c99154639aa48fca137f6779d1.png" />
+<img alt="../_images/30525dce91d187fb39ffa6c407c1377ab2cbccac129394822573f3bbe3134e0c.png" src="../_images/30525dce91d187fb39ffa6c407c1377ab2cbccac129394822573f3bbe3134e0c.png" />
 </div>
 </div>
 </section>
@@ -802,10 +816,10 @@ s parametry <span class="math notranslate nohighlight">\(r\)</span> a <span clas
 <p>Pro rostoucí <span class="math notranslate nohighlight">\(r\)</span> a pevné <span class="math notranslate nohighlight">\(K\)</span> se nemění poloha nulových bodů funkce, ale rostou
 její funkční hodnoty.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K</span> <span class="o">=</span> <span class="mi">1</span>
@@ -919,31 +933,31 @@ její funkční hodnoty.</p>
 </div></div></div>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span> <span class="c1"># vykresleni dat z tabulky</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span> <span class="c1"># vylepseni obrazku</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">"Graf funkce $y=rx(1-\frac </span><span class="si">{x}{K}</span><span class="s2">)$"</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">"Hodnota $r$"</span><span class="p">);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Graf funkce $y=rx(1-\frac </span><span class="si">{x}{K}</span><span class="s2">)$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Hodnota $r$&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/fa026d86c0c961b80e5a5faa489a6ad0b85e2815e536879e6fff12bf4dacef93.png" src="../_images/fa026d86c0c961b80e5a5faa489a6ad0b85e2815e536879e6fff12bf4dacef93.png" />
+<img alt="../_images/9acc3e73b59f5ab7c018d12b4029a58355644e75119984b785e8840be915f842.png" src="../_images/9acc3e73b59f5ab7c018d12b4029a58355644e75119984b785e8840be915f842.png" />
 </div>
 </div>
 <p>Pro rostoucí <span class="math notranslate nohighlight">\(K\)</span> a pevné <span class="math notranslate nohighlight">\(r\)</span> se nemění směr růstu paraboly v okolí počátku, ale
 roste se kladný kořen a rostou i funkční hodnoty.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="mi">1</span>
@@ -956,15 +970,15 @@ roste se kladný kořen a rostou i funkční hodnoty.</p>
     
 <span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span> <span class="c1"># vykresleni dat z tabulky</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span> <span class="c1"># vylepseni obrazku</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">"Graf funkce $y=rx(1-\frac </span><span class="si">{x}{K}</span><span class="s2">)$"</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">"Hodnota $K$"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Graf funkce $y=rx(1-\frac </span><span class="si">{x}{K}</span><span class="s2">)$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Hodnota $K$&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="kc">None</span><span class="p">));</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/8c493394116480eace373175ed0591a0e667bd26d111493523dd698c8a89a6e1.png" src="../_images/8c493394116480eace373175ed0591a0e667bd26d111493523dd698c8a89a6e1.png" />
+<img alt="../_images/6f11fba621fcf7113838de085d0671c7c138d0cf6edc8c7f6458eb50547361d9.png" src="../_images/6f11fba621fcf7113838de085d0671c7c138d0cf6edc8c7f6458eb50547361d9.png" />
 </div>
 </div>
 </section>
@@ -980,8 +994,8 @@ funkce se v nekonečnu blíží k nule.</p></li>
 vodorovnou asymptotu různou od nuly.</p></li>
 </ul>
 <p>V ekologii se často používají funkce, modelující specifickou funckionální
-odezvu. Setkáme se s nimi pozěji v modelech dravce a kořisti <span class="bibtex-citation" id="id1">[<a class="reference internal" href="../literatura.html#id2" title="D. Dykyjová. Metody studia ekosystémů. Academia, 1989.">7</a>]</span>,
-<span class="bibtex-citation" id="id2">[<a class="reference internal" href="../literatura.html#id3" title="M. Begon, C.R. Townsend, and J.L. Harper. Ekologie: jedinci, populace a společenstva. Vydavatelství Univerzity Palackého, 1997. ISBN 9788070676950.">3</a>]</span>. Významnými funkcemi jsou takzvané funkce Hollingova typu, z nichž
+odezvu. Setkáme se s nimi pozěji v modelech dravce a kořisti <span id="id1">[<a class="reference internal" href="../literatura.html#id2" title="D. Dykyjová. Metody studia ekosystémů. Academia, 1989.">7</a>]</span>,
+<span id="id2">[<a class="reference internal" href="../literatura.html#id3" title="M. Begon, C.R. Townsend, and J.L. Harper. Ekologie: jedinci, populace a společenstva. Vydavatelství Univerzity Palackého, 1997. ISBN 9788070676950.">3</a>]</span>. Významnými funkcemi jsou takzvané funkce Hollingova typu, z nichž
 zmíníme typ Holling II a Holling III.  V obou případech se jedná o kladné
 rostoucí funkce vycházející z počátku souřadné soustavy a konvergující k
 vodorovné asymptotě, přičemž Holling II vychází z počátku souřadnic pod ostrým
@@ -996,18 +1010,18 @@ pro Holling II a
 
 pro Holling III. (V případě vzorce pro typ Holling III číslo <span class="math notranslate nohighlight">\(k\)</span> nemusí být celé a formálně se tedy nebude jednat o podíl dvou polynomů.)</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
 
-<span class="n">df</span><span class="p">[</span><span class="s2">"Holling II"</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">a</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">"Holling III"</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">a</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Holling II&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">a</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Holling III&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">a</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
@@ -1016,7 +1030,7 @@ pro Holling III. (V případě vzorce pro typ Holling III číslo <span class="m
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/29435cdb5b2cd9eb122dc7325e8756649e47162cc3f046cb4247856bc1f9cc2d.png" src="../_images/29435cdb5b2cd9eb122dc7325e8756649e47162cc3f046cb4247856bc1f9cc2d.png" />
+<img alt="../_images/af12ae0b99b709720ef732b7fda9d61f6f369886ed9c2eab21b9850af8e047c4.png" src="../_images/af12ae0b99b709720ef732b7fda9d61f6f369886ed9c2eab21b9850af8e047c4.png" />
 </div>
 </div>
 </section>
@@ -1036,10 +1050,10 @@ polynom libovolného stupně) a klesající v mínus nekonečnu (klesá k nule r
 než libovolná racionální funkce). Hodnota <span class="math notranslate nohighlight">\(k\)</span> reguluje rychlost růstu do
 nekonečna a poklesu k vodorovné asymptotě.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
@@ -1051,25 +1065,25 @@ nekonečna a poklesu k vodorovné asymptotě.</p>
 
 <span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span>
-       <span class="n">title</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"Graf funkce $y=e^</span><span class="si">{kx}</span><span class="s2">$"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">"Hodnota $k$"</span><span class="p">)</span>       
+       <span class="n">title</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;Graf funkce $y=e^</span><span class="si">{kx}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Hodnota $k$&quot;</span><span class="p">)</span>       
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/ea4433b949e8548299b8cd7f398a3ae2e1dfdde9c6e57d4a5fc894111d633cea.png" src="../_images/ea4433b949e8548299b8cd7f398a3ae2e1dfdde9c6e57d4a5fc894111d633cea.png" />
+<img alt="../_images/6cf8bee547051dea6a0ece111a29b863b502b6ccc8b1b0c1210d44f4c415d01f.png" src="../_images/6cf8bee547051dea6a0ece111a29b863b502b6ccc8b1b0c1210d44f4c415d01f.png" />
 </div>
 </div>
 <p>Funkce <span class="math notranslate nohighlight">\(y=a+e^{-kx}\)</span> (kde <span class="math notranslate nohighlight">\(k\)</span> je kladné) klesá shora k vodorovné asymptotě <span class="math notranslate nohighlight">\(y=a\)</span>
 tím rychleji, čím je vyšší hodnota <span class="math notranslate nohighlight">\(k\)</span>. Funkce <span class="math notranslate nohighlight">\(y=a-e^{-kx}\)</span> se chová
 analogicky, ale k asymptotě roste.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
@@ -1081,15 +1095,15 @@ analogicky, ale k asymptotě roste.</p>
 
 <span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylim</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.2</span><span class="p">),</span>
-       <span class="n">title</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"Graf funkce $y=1-e^{-kx}$"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">"Hodnota $k$"</span><span class="p">)</span>       
+       <span class="n">title</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;Graf funkce $y=1-e^{-kx}$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Hodnota $k$&quot;</span><span class="p">)</span>       
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/6316d8ea28c60c5dc06e96d2448ab9ff1acfda2b67ed06a67e502a2f324a7de6.png" src="../_images/6316d8ea28c60c5dc06e96d2448ab9ff1acfda2b67ed06a67e502a2f324a7de6.png" />
+<img alt="../_images/230b305b94b2b79f562599cef1c40b631649f23bf4cb304b437c2011dc9b7278.png" src="../_images/230b305b94b2b79f562599cef1c40b631649f23bf4cb304b437c2011dc9b7278.png" />
 </div>
 </div>
 <p>Pomocí exponenciálních funkcí je možno modelovat funkce Hollingova typu II a III
@@ -1100,16 +1114,16 @@ například vztahy <div class="math notranslate nohighlight">
  pro typ
 Holling III.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">"Holling II"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">"Holling III"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Holling II&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Holling III&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
@@ -1118,7 +1132,7 @@ Holling III.</p>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/c5d551d55c565b871577c23feb045ea27f5e24849d4e46bbf94f3a244132a2a1.png" src="../_images/c5d551d55c565b871577c23feb045ea27f5e24849d4e46bbf94f3a244132a2a1.png" />
+<img alt="../_images/31f220fae5649b50a579af1f4bbd2ffeaed2a652b77e7f86311eeadc6e688b53.png" src="../_images/31f220fae5649b50a579af1f4bbd2ffeaed2a652b77e7f86311eeadc6e688b53.png" />
 </div>
 </div>
 <p>Tyto funkce mají podobný tvar jako analogické funkce uvedené v kapitole o
@@ -1142,37 +1156,37 @@ namísto s funkcí <span class="math notranslate nohighlight">\(y=f(x)\)</span> 
 dostaneme z grafu funkce <span class="math notranslate nohighlight">\(y=f(x)\)</span> natažením <span class="math notranslate nohighlight">\(k_1\)</span>-krát ve svislém směru a
 zúžením <span class="math notranslate nohighlight">\(k_2\)</span>-krát ve vodorovném směru. Viz následující obrázek.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">"1"</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">"2"</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">"3"</span><span class="p">]</span><span class="o">=</span><span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">"4"</span><span class="p">]</span><span class="o">=</span><span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;2&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;3&quot;</span><span class="p">]</span><span class="o">=</span><span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;4&quot;</span><span class="p">]</span><span class="o">=</span><span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
     <span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
     <span class="n">layout</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
     <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">title</span><span class="o">=</span><span class="s2">"Efekt lineární transformace na graf"</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Efekt lineární transformace na graf&quot;</span><span class="p">,</span>
     <span class="n">grid</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">"$e^{-x^2}$"</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">"$e^{-(3x)^2}$"</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">"$3e^{-x^2}$"</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">"$3e^{-(3x)^2}$"</span><span class="p">);</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$e^{-x^2}$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$e^{-(3x)^2}$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$3e^{-x^2}$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$3e^{-(3x)^2}$&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/eb685764119a5d3f9da70ae7aba23b2c854994d6bdf18e1039bb05b07b8871e5.png" src="../_images/eb685764119a5d3f9da70ae7aba23b2c854994d6bdf18e1039bb05b07b8871e5.png" />
+<img alt="../_images/67c15fa898e8e599237d7d8837754ec0d157e39c5f6d3c6c688d76be1d50ee65.png" src="../_images/67c15fa898e8e599237d7d8837754ec0d157e39c5f6d3c6c688d76be1d50ee65.png" />
 </div>
 </div>
 <p>Podobně je možno sledovat vliv posunutí. Přičtení konstantní hodnoty k funkci
@@ -1180,39 +1194,39 @@ značí posun grafu ve vertikálním směru, přičtení konstantní hodnoty k a
 posun ve vodorovném směru. Přičtení kladné hodnoty způsobí posun grafu nahoru
 resp. doleva, přičtení záporné hodnoty posun na opačnou stranu.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">"x"</span><span class="p">]</span><span class="o">=</span><span class="n">x</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">"1"</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">"2"</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">"3"</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">"4"</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">x</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;2&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;3&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;4&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="s2">"x"</span><span class="p">,</span> 
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> 
     <span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
     <span class="n">layout</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
     <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">title</span><span class="o">=</span><span class="s2">"Efekt posunutí na graf"</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Efekt posunutí na graf&quot;</span><span class="p">,</span>
     <span class="n">grid</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">"$e^{-x^2}$"</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">"$e^{-(x-1)^2}$"</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">"$e^{-x^2}+1$"</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">"$e^{-(x-1)^2}+1$"</span><span class="p">);</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$e^{-x^2}$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$e^{-(x-1)^2}$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$e^{-x^2}+1$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$e^{-(x-1)^2}+1$&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/dfc9f414d21f4132f1dc031980e97f0a39bbf346b64bafda0312116b85aad0cb.png" src="../_images/dfc9f414d21f4132f1dc031980e97f0a39bbf346b64bafda0312116b85aad0cb.png" />
+<img alt="../_images/8c59078a9f74f81644bb1f4b69e61e2a94b1e21cb6b077edc602cbde6a78b688.png" src="../_images/8c59078a9f74f81644bb1f4b69e61e2a94b1e21cb6b077edc602cbde6a78b688.png" />
 </div>
 </div>
 </section>
@@ -1265,25 +1279,21 @@ Hudsonova zálivu. V matematické biologii je to jeden z nejznámějších model
 vzájemného působení populací. Data stáhneme ve formě csv souboru do tabulky a
 pro kontrolu vytiskneme začátek tabulky.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zdroj</span> <span class="o">=</span> <span class="s2">"https://raw.githubusercontent.com/robert-marik/dmp/main/data/hudson_bay_lynx_hare.csv"</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">zdroj</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/robert-marik/dmp/main/data/hudson_bay_lynx_hare.csv&quot;</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">zdroj</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">Year</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Year</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">'%Y'</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">Year</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Year</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y&#39;</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_54524/4281307307.py:3: Pandas4Warning: Parsing integer or float values with a format in to_datetime is deprecated. In a future version these will be interpreted as epochs via the 'unit' keyword instead. Cast them to strings first to retain the current behavior.
-  df.Year = pd.to_datetime(df.Year, format='%Y')
-</pre></div>
-</div>
 <div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1344,38 +1354,38 @@ pro kontrolu vytiskneme začátek tabulky.</p>
 </div>
 <p>Vykreslení dat pro jednotlivé druhy je snadné, stačí zadat, jaká veličina má být na vodorovné ose.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"Year"</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;Year&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/1ab7d55c21af58baf6768da24d9df8b3552258690319f84a3cd6ebeb510bd4e1.png" src="../_images/1ab7d55c21af58baf6768da24d9df8b3552258690319f84a3cd6ebeb510bd4e1.png" />
+<img alt="../_images/10a8021e8f3a4f6f715cae3db0ed24797dda4c7156c3c52d148fbbea09ad8a6a.png" src="../_images/10a8021e8f3a4f6f715cae3db0ed24797dda4c7156c3c52d148fbbea09ad8a6a.png" />
 </div>
 </div>
 <p>Znázornění v rovině zajíc–rys je také snadné, zadáme veličiny pro vodorovnou a svislou osu a malinko graf vylepšíme přidáním teček, letopočtů a popisku.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">"Hare"</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">"Lynx"</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">"Lynx"</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">"o-"</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;Hare&quot;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s2">&quot;Lynx&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Lynx&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;o-&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">'Hare'</span><span class="p">],</span><span class="n">row</span><span class="p">[</span><span class="s1">'Lynx'</span><span class="p">],</span><span class="n">row</span><span class="p">[</span><span class="s1">'Year'</span><span class="p">]</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Hare&#39;</span><span class="p">],</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Lynx&#39;</span><span class="p">],</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/b822b6ef06671c69867ac65be60706b639c0b0cadeece3278f60550295681cb5.png" src="../_images/b822b6ef06671c69867ac65be60706b639c0b0cadeece3278f60550295681cb5.png" />
+<img alt="../_images/e2a22a7f716e4019134a4afbdf2e30dd837744130b0a5972b3613d5e79061073.png" src="../_images/e2a22a7f716e4019134a4afbdf2e30dd837744130b0a5972b3613d5e79061073.png" />
 </div>
 </div>
 <p>V tomto případě v rovině zajíc–rys vektorová funkce představuje parametricky
@@ -1396,10 +1406,10 @@ při vizualizaci obdržíme systém orientovaných úseček v rovině. Protože 
 zpravidla byl výsledný obrázek nepřehledný, délku vektorů můžeme v obrázku
 sjednotit a informaci o původní délce vyjádřit barevně.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Body pro kresleni</span>
@@ -1411,7 +1421,7 @@ sjednotit a informaci o původní délce vyjádřit barevně.</p>
 <span class="n">v</span> <span class="o">=</span> <span class="n">x</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">u</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># velikost vektoru</span>
-<span class="n">qq</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">u</span><span class="o">/</span><span class="n">M</span><span class="p">,</span><span class="n">v</span><span class="o">/</span><span class="n">M</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">jet</span><span class="p">,</span> <span class="n">angles</span><span class="o">=</span><span class="s2">"xy"</span><span class="p">)</span> <span class="c1"># vykresleni s jednotkovou delkou</span>
+<span class="n">qq</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">u</span><span class="o">/</span><span class="n">M</span><span class="p">,</span><span class="n">v</span><span class="o">/</span><span class="n">M</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">jet</span><span class="p">,</span> <span class="n">angles</span><span class="o">=</span><span class="s2">&quot;xy&quot;</span><span class="p">)</span> <span class="c1"># vykresleni s jednotkovou delkou</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">qq</span><span class="p">)</span> <span class="c1"># barevna skala pro delku vektoru</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># stejne meritko na obou osach</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
@@ -1420,16 +1430,16 @@ sjednotit a informaci o původní délce vyjádřit barevně.</p>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/46b51e19b84a7754f14c7ca1d388354d134e2b43412292453278d710812553fc.png" src="../_images/46b51e19b84a7754f14c7ca1d388354d134e2b43412292453278d710812553fc.png" />
+<img alt="../_images/0355fb8f68281dd3073265d882bca0eb3e60bc51e4bb7b62c5a3b28547c77729.png" src="../_images/0355fb8f68281dd3073265d882bca0eb3e60bc51e4bb7b62c5a3b28547c77729.png" />
 </div>
 </div>
 <p>Někdy může být ilustrativnější chápat vektorové pole jako rychlostní pole a
 vykreslit si příslušný tok.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">streamplot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="c1"># vykresleni toku</span>
@@ -1440,7 +1450,7 @@ vykreslit si příslušný tok.</p>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/af20d19be4aa85e18095372f12d5ba68ef18706eeb6a981cba59c5463d2bc0a7.png" src="../_images/af20d19be4aa85e18095372f12d5ba68ef18706eeb6a981cba59c5463d2bc0a7.png" />
+<img alt="../_images/673005024ff30b001e9c07e0262b34ecac7e33712c9952a44b9a672139bf004c.png" src="../_images/673005024ff30b001e9c07e0262b34ecac7e33712c9952a44b9a672139bf004c.png" />
 </div>
 </div>
 <p>Tento způsob vizualizace budeme používat při modelování vývoje dvoudruhových
@@ -1487,16 +1497,14 @@ budou parametrické křivky, podobné výše uvedenému příkladu s rysem a zaj
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item"><div
-    id="pst-page-navigation-heading-2"
-    class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Obsah
   </div>
-  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+  <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funkce-jedne-promenne">1.1. Funkce jedné proměnné</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vlastnosti-funkci">1.2. Vlastnosti funkcí</a></li>
@@ -1568,8 +1576,8 @@ Autor Robert Mařík
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

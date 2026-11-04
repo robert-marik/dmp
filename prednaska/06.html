@@ -16,41 +16,38 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=8c6b312c" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a771f39c" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=4cdba38b"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -69,7 +66,6 @@
     <link rel="prev" title="5. Bifurkace" href="05.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="cs"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -85,8 +81,19 @@
     <i class="fa-solid fa-arrow-up"></i>Zpět na začátek</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -94,6 +101,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Hledat v knize..."
          aria-label="Hledat v knize..."
          autocomplete="off"
@@ -101,8 +109,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -118,8 +126,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -149,11 +156,15 @@
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Vyhledávání</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Vyhledávání</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="nav bd-sidenav">
@@ -171,40 +182,40 @@
 <li class="toctree-l1"><a class="reference internal" href="08.html">8. Autonomní systémy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09.html">9. Modely konkurence populací</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10.html">10. Modely dravce a kořisti</a></li>
-<li class="toctree-l1"><a class="reference internal" href="11.html">11. Diskrétní populační modely</a></li>
-<li class="toctree-l1"><a class="reference internal" href="12.html">12. Difuzní rovnice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="13.html">13. Agentní modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13.html">11. Agentní modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11.html">12. Diskrétní populační modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12.html">13. Difuzní rovnice</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Cvičení</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">14. První kroky</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_01.html">15. Úvod do jazyka Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_02.html">16. Práce s funkcemi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_03.html">17. Diferenciální rovnice 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_04.html">18. Diferenciální rovnice 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_05.html">19. Diferenciální rovnice 3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_06.html">20. LaTeX</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_07.html">21. Maticové modely</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_08.html">22. Levinsův model metapopulací</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_09.html">23. Modely konkurence populací</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_10.html">24. Modely dravce a kořisti</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_11.html">25. Samostatná práce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">1. První kroky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_01.html">2. Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_02.html">3. Práce s funkcemi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_03.html">4. Diferenciální rovnice 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_04.html">5. Diferenciální rovnice 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_05.html">6. Diferenciální rovnice 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_06.html">7. LaTeX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_07.html">8. Maticové modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_08.html">9. Levinsův model metapopulací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_09.html">10. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_10.html">11. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_11.html">12. Samostatná práce</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Různá zadání</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">26. Enzymy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../allee.html">27. Silný Alleeho efekt</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../chovani.html">28. Model soupeření jestřábí a holubičí povahy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">29. Model populace ryb</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">1. Enzymy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../allee.html">2. Silný Alleeho efekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chovani.html">3. Model soupeření jestřábí a holubičí povahy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">4. Model populace ryb</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Kombinovaní</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">30. Data a grafy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">31. Diferenciální rovnice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">32. Lov v populaci - fázový portrét</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">33. Lov v populaci - časový vývoj</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">34. Model dravce a kořisti</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">35. Model konkurence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">1. Data a grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">2. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">3. Lov v populaci - fázový portrét</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">4. Lov v populaci - časový vývoj</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">5. Model dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">6. Model konkurence</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python konstrukce a ukázky</span></p>
 <ul class="nav bd-sidenav">
@@ -238,14 +249,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -391,7 +397,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  class="btn btn-sm btn-fullscreen-button"
   title="Režim celé obrazovky"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -405,17 +411,25 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Světlý"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Tmavý"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="světlý/tmavý" aria-label="světlý/tmavý" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
-<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -480,10 +494,10 @@
 <p>Lineární algebra je odvětví matematiky, zabývající se vektory a obecně
 mnohorozměrnými veličinami.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -504,7 +518,7 @@ vektory dalo rozumně pracovat, musí na nich být definovány matematické oper
 které tvoří vhodnou matematickou strukturu. Například operace musí mít neutrální
 prvek a každý vektor musí mít opačný prvek.</p>
 <div class="proof definition admonition" id="definition-0">
-<p class="admonition-title" id="definition-0"><span class="caption-number">Definice </span> (Vektory, vektorový prostor)</p>
+<p class="admonition-title"><span>Definice </span> (Vektory, vektorový prostor)</p>
 <section class="definition-content" id="proof-content">
 <p>Množinu <span class="math notranslate nohighlight">\(V\)</span> uspořádaných <span class="math notranslate nohighlight">\(n\)</span>-tic  <span class="math notranslate nohighlight">\((a_1,
 a_2,\dots, a_n)\)</span> s operacemi sčítání a násobení reálným číslem
@@ -530,7 +544,7 @@ a_n\)</span> nazýváme <em>složky vektoru</em> <span class="math notranslate n
 <section id="linearni-kombinace">
 <h2><span class="section-number">6.2. </span>Lineární kombinace<a class="headerlink" href="#linearni-kombinace" title="Link to this heading">#</a></h2>
 <div class="proof definition admonition" id="definition-1">
-<p class="admonition-title" id="definition-1"><span class="caption-number">Definice </span> (Lineární kombinace)</p>
+<p class="admonition-title"><span>Definice </span> (Lineární kombinace)</p>
 <section class="definition-content" id="proof-content">
 <p>Nechť <span class="math notranslate nohighlight">\(\vec u_1\)</span>, <span class="math notranslate nohighlight">\(\vec u_2\)</span>, <span class="math notranslate nohighlight">\(\dots\)</span> <span class="math notranslate nohighlight">\(\vec u_k\)</span> je
 konečná posloupnost vektorů z vektorového prostoru <span class="math notranslate nohighlight">\(V\)</span>. Vektor
@@ -545,7 +559,7 @@ kde <span class="math notranslate nohighlight">\(t_1\)</span>, <span class="math
 Čísla <span class="math notranslate nohighlight">\(t_1\)</span>, <span class="math notranslate nohighlight">\(t_2\)</span>, <span class="math notranslate nohighlight">\(\dots\)</span>, <span class="math notranslate nohighlight">\(t_k\)</span> nazýváme <em>koeficienty lineární kombinace</em>.</p>
 </section>
 </div><div class="proof definition admonition" id="definition-2">
-<p class="admonition-title" id="definition-2"><span class="caption-number">Definice </span> (Lineární závislost a nezávislost)</p>
+<p class="admonition-title"><span>Definice </span> (Lineární závislost a nezávislost)</p>
 <section class="definition-content" id="proof-content">
 <p>Řekneme, že vektory <span class="math notranslate nohighlight">\(\vec u_1\)</span>, <span class="math notranslate nohighlight">\(\vec u_2\)</span>, <span class="math notranslate nohighlight">\(\dots\)</span>, <span class="math notranslate nohighlight">\(\vec u_k\)</span> jsou
 <em>lineárně závislé</em>, jestliže existuje alespoň jedna
@@ -566,7 +580,7 @@ písmenem označujícím jméno proměnné vynechávat.</p>
 <section id="matice">
 <h2><span class="section-number">6.3. </span>Matice<a class="headerlink" href="#matice" title="Link to this heading">#</a></h2>
 <div class="proof definition admonition" id="definition-3">
-<p class="admonition-title" id="definition-3"><span class="caption-number">Definice </span> (Matice)</p>
+<p class="admonition-title"><span>Definice </span> (Matice)</p>
 <section class="definition-content" id="proof-content">
 <p><em>Maticí řádu <span class="math notranslate nohighlight">\(m\times n\)</span></em>  rozumíme schema
 <div class="math notranslate nohighlight">
@@ -591,7 +605,7 @@ prvku nebo existence opačného prvku.</p>
 řádkový nebo sloupcový vektor nebo jako matice. Odlišení matic a
 vektorů provedeme zavedením maticového součinu.</p>
 <div class="proof definition admonition" id="definition-4">
-<p class="admonition-title" id="definition-4"><span class="caption-number">Definice </span> (Součin matic)</p>
+<p class="admonition-title"><span>Definice </span> (Součin matic)</p>
 <section class="definition-content" id="proof-content">
 <p>Buďte <span class="math notranslate nohighlight">\(A=(a_{ij})\)</span> matice řádu <span class="math notranslate nohighlight">\(m\times n\)</span> a <span class="math notranslate nohighlight">\(B=(b_{ij})\)</span> matice
 řádu <span class="math notranslate nohighlight">\(n\times p\)</span>. <em>Součinem matic</em> <span class="math notranslate nohighlight">\(A\)</span> a <span class="math notranslate nohighlight">\(B\)</span>
@@ -642,18 +656,18 @@ pořadí matic při násobení.</p>
 <h2><span class="section-number">6.4. </span>Jednotková matice a matice inverzní<a class="headerlink" href="#jednotkova-matice-a-matice-inverzni" title="Link to this heading">#</a></h2>
 <p>V tomto pododdíle si představíme maticovou obdobu jedničky jako neutrálního prvku vzhledem k násobení a převrácené hodnoty.</p>
 <div class="proof definition admonition" id="definition-5">
-<p class="admonition-title" id="definition-5"><span class="caption-number">Definice </span> (Jednotková matice)</p>
+<p class="admonition-title"><span>Definice </span> (Jednotková matice)</p>
 <section class="definition-content" id="proof-content">
 <p><em>Jednotková matice</em> je čtvercová matice mající v hlavní diagonále jedničky a mimo hlavní diagonálu nuly. Značí se <span class="math notranslate nohighlight">\(I\)</span>.</p>
 </section>
 </div><div class="proof theorem admonition" id="theorem-6">
-<p class="admonition-title" id="theorem-6"><span class="caption-number">Věta </span> (Jednotková matice je neutrálním prvkem vzhledem k násobení)</p>
+<p class="admonition-title"><span>Věta </span> (Jednotková matice je neutrálním prvkem vzhledem k násobení)</p>
 <section class="theorem-content" id="proof-content">
 <p>Jednotková matice splňuje <span class="math notranslate nohighlight">\(AI=A\)</span> a <span class="math notranslate nohighlight">\(IB=B\)</span> pro libovolné matice <span class="math notranslate nohighlight">\(A\)</span> a <span class="math notranslate nohighlight">\(B\)</span>, pro které je součin definován.</p>
 </section>
 </div><p>Převrácená hodnota je definována tak, že součin čísla a jeho převrácené hodnoty je roven jedné. Maticová obdoba tohoto vztahu je v následující definici.</p>
 <div class="proof definition admonition" id="definition-7">
-<p class="admonition-title" id="definition-7"><span class="caption-number">Definice </span> (Inverzní matice)</p>
+<p class="admonition-title"><span>Definice </span> (Inverzní matice)</p>
 <section class="definition-content" id="proof-content">
 <p><em>Inverzní matice</em> ke čtvercové matici <span class="math notranslate nohighlight">\(A\)</span> je matice <span class="math notranslate nohighlight">\(A^{-1}\)</span> splňující <div class="math notranslate nohighlight">
 \[A A^{-1}=A^{-1}A=I.\]</div>
@@ -672,7 +686,7 @@ proto se v tomto kontextu matice použitá v součinu nazývá matice projekce.<
 <h2><span class="section-number">6.6. </span>Vlastní čísla a směry<a class="headerlink" href="#vlastni-cisla-a-smery" title="Link to this heading">#</a></h2>
 <p>U zobrazování vektorů pomocí maticového násobení nás velice zajímá, které směry se zachovávají, tj. kdy bude obrazem vektoru jeho násobek.</p>
 <div class="proof definition admonition" id="definition-8">
-<p class="admonition-title" id="definition-8"><span class="caption-number">Definice </span> (Vlastní vektor a vlastní hodnota matice)</p>
+<p class="admonition-title"><span>Definice </span> (Vlastní vektor a vlastní hodnota matice)</p>
 <section class="definition-content" id="proof-content">
 <p>Řekneme, že nenulový vektor <span class="math notranslate nohighlight">\(\vec u\)</span> je (pravým) <em>vlastním vektorem</em> matice <span class="math notranslate nohighlight">\(A\)</span> příslušným <em>vlastní hodnotě</em> <span class="math notranslate nohighlight">\(\lambda\)</span>, jestliže platí <div class="math notranslate nohighlight">
 \[A \vec u=\lambda \vec u.\]</div>
@@ -697,7 +711,7 @@ lineárních rovnic, při hledání řešení autonomních systémů.</p>
 může nacházet v různých stavech a mezi těmito stavy se náhodně přepíná podle
 předem daných pravděpodobností. Pro jeho popis je vhodný matematický aparát
 založený na teorii matic. Následující ukázka aplikace při studiu populací je z
-<span class="bibtex-citation" id="id1">[<a class="reference internal" href="../literatura.html#id3" title="M. Begon, C.R. Townsend, and J.L. Harper. Ekologie: jedinci, populace a společenstva. Vydavatelství Univerzity Palackého, 1997. ISBN 9788070676950.">3</a>]</span>.</p>
+<span id="id1">[<a class="reference internal" href="../literatura.html#id3" title="M. Begon, C.R. Townsend, and J.L. Harper. Ekologie: jedinci, populace a společenstva. Vydavatelství Univerzity Palackého, 1997. ISBN 9788070676950.">3</a>]</span>.</p>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
 <p><img alt="" src="https://raw.githubusercontent.com/robert-marik/dmp-images/refs/heads/main/markov_chain.png" /></p>
@@ -787,10 +801,10 @@ je zastoupení dřevin v následujícím období dáno vzorcem
 \[v(k+1)=Mv(k).\]</div>
 </p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.36</span><span class="p">,</span> <span class="mf">0.50</span><span class="p">,</span> <span class="mf">0.09</span><span class="p">,</span>
@@ -815,10 +829,10 @@ je zastoupení dřevin v následujícím období dáno vzorcem
 pole do kterého budeme ukládat data. Výchozím stavem bude rovnoměrné zastoupení
 všech druhů. Vývoj jednotlivých dřevin zachytíme graficky.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">20</span>
@@ -832,21 +846,21 @@ všech druhů. Vývoj jednotlivých dřevin zachytíme graficky.</p>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">))</span><span class="o">*</span><span class="mi">50</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> 
-    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Bříza topololistá"</span><span class="p">,</span> <span class="s2">"Tupela lesní"</span><span class="p">,</span> <span class="s2">"Javor červený"</span><span class="p">,</span> <span class="s2">"Buk"</span><span class="p">],</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Bříza topololistá&quot;</span><span class="p">,</span> <span class="s2">&quot;Tupela lesní&quot;</span><span class="p">,</span> <span class="s2">&quot;Javor červený&quot;</span><span class="p">,</span> <span class="s2">&quot;Buk&quot;</span><span class="p">],</span>
     <span class="n">index</span> <span class="o">=</span> <span class="n">t</span><span class="p">,</span> 
 <span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">"čas/rok"</span>
-<span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">"Dominantní dřevina"</span>
-<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Vývoj procentuálního zastoupení jednotlivých druhů"</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;čas/rok&quot;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Dominantní dřevina&quot;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Vývoj procentuálního zastoupení jednotlivých druhů&quot;</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: title={'center': 'Vývoj procentuálního zastoupení jednotlivých druhů'}, xlabel='čas/rok'&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: title={&#39;center&#39;: &#39;Vývoj procentuálního zastoupení jednotlivých druhů&#39;}, xlabel=&#39;čas/rok&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/08b673870bc49433ee218ce459592c110ad306f4e93e2e084c12938a817488c4.png" src="../_images/08b673870bc49433ee218ce459592c110ad306f4e93e2e084c12938a817488c4.png" />
+<img alt="../_images/4054b9aea3acb12b1fb7706f966d2f3e5802f8d72dbc3170a15c8863eaf7a91e.png" src="../_images/4054b9aea3acb12b1fb7706f966d2f3e5802f8d72dbc3170a15c8863eaf7a91e.png" />
 </div>
 </div>
 <p>Ze simulace se zdá, že poměr dřevin se postupně stabilizuje.
@@ -854,10 +868,10 @@ Z matematického hlediska se procentuální zastoupení dřevin nemění, pokud 
 vektor zastoupení dřevin vlastním vektorem matice příslušným vlastní hodnotě
 <span class="math notranslate nohighlight">\(1\)</span>. Ověříme, že to tak opravdu je.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_final</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
@@ -881,10 +895,10 @@ Následující výpočet ukazuje, že pro dostatečně velkou mocninu vychází 
 sloupce matice stejné a jsou rovny výslednému poměru mezi jednotlivými
 dřevinami.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span><span class="o">**</span><span class="mi">50</span>
@@ -983,7 +997,7 @@ nejstarší kategorii. V Leslieho matici se toto projeví tak, že prvek v prav�
 dolním rohu matice je nenulový.</p>
 <section id="model-populace-tulenu">
 <span id="id2"></span><h4><span class="section-number">6.9.1.1. </span>Model populace tuleňů<a class="headerlink" href="#model-populace-tulenu" title="Link to this heading">#</a></h4>
-<p>Následující příklad je z <span class="bibtex-citation" id="id3">[<a class="reference internal" href="../literatura.html#id17" title="M. Monagan. Using Leslie matrices as the application of eigenvalues and eigenvectors in a first course in linear algebra. In Jürgen Gerhard and Ilias Kotsireas, editors, Maple in Mathematics Education and Research, 279–291. Cham, 2020. Springer International Publishing. URL: https://link.springer.com/chapter/10.1007/978-3-030-41258-6_21.">14</a>]</span>.</p>
+<p>Následující příklad je z <span id="id3">[<a class="reference internal" href="../literatura.html#id17" title="M. Monagan. Using Leslie matrices as the application of eigenvalues and eigenvectors in a first course in linear algebra. In Jürgen Gerhard and Ilias Kotsireas, editors, Maple in Mathematics Education and Research, 279–291. Cham, 2020. Springer International Publishing. URL: https://link.springer.com/chapter/10.1007/978-3-030-41258-6_21.">14</a>]</span>.</p>
 <p>Populace samiček tuleňů je rozdělena na tři třídy: mláďata (0 až 4 roky), mladé
 tuleně (4 až 8 let) a dospělé tuleně (nad 8 let). Jednotka času budou 4 roky.
 Mláďata do čtyř let nemají potomky. Mladí tuleni mají průměrně <span class="math notranslate nohighlight">\(1.26\)</span> a dospělí
@@ -994,10 +1008,10 @@ průměrně  <span class="math notranslate nohighlight">\(2.0\)</span> samičíc
 </p>
 <p>Matice <span class="math notranslate nohighlight">\(L=\begin {pmatrix}   0  &amp;1.26&amp;2.0\cr 0.614&amp;0&amp;0&amp;\cr 0&amp;0.808&amp;0.808 \end{pmatrix}\)</span> má jediné reálné kladné vlastní číslo a toto vlastní číslo je větší než 1.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span>
@@ -1005,16 +1019,16 @@ průměrně  <span class="math notranslate nohighlight">\(2.0\)</span> samičíc
     <span class="mf">0.614</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
     <span class="mi">0</span><span class="p">,</span> <span class="mf">0.808</span><span class="p">,</span> <span class="mf">0.808</span>
 <span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">v</span><span class="p">,</span><span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Vlastní hodnoty: "</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Vlastní vektory jsou sloupce matice</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Vlastní hodnoty: &quot;</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Vlastní vektory jsou sloupce matice</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="n">vh</span><span class="p">,</span><span class="n">vs</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">real</span><span class="p">,</span><span class="n">j</span><span class="o">.</span><span class="n">real</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">P</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">imag</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">1e-2</span> <span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">vs</span> <span class="o">=</span> <span class="n">vs</span><span class="o">.</span><span class="n">A1</span> <span class="c1"># převod matice na vektor</span>
 <span class="n">vs</span> <span class="o">=</span> <span class="n">vs</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">vs</span><span class="p">)</span> <span class="c1"># normování aby součet komponent byl jedna</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Reálná vlastní hodnota je "</span><span class="p">,</span> <span class="n">vh</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Příslušný vlastní směr je"</span><span class="p">,</span> <span class="n">vs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reálná vlastní hodnota je &quot;</span><span class="p">,</span> <span class="n">vh</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Příslušný vlastní směr je&quot;</span><span class="p">,</span> <span class="n">vs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1038,10 +1052,10 @@ Příslušný vlastní směr je [0.52683575 0.2168591  0.25630515]
 </div>
 <p>Časový vývoj modelu z počátečního stavu <span class="math notranslate nohighlight">\([10,5,12]\)</span> po dobu deseti jednotek času (tj. 40 let) je zachycen na následujícím obrázku.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
@@ -1051,18 +1065,18 @@ Příslušný vlastní směr je [0.52683575 0.2168591  0.25630515]
     <span class="n">X</span><span class="p">[:,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="nd">@X</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> 
-                  <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"mláďata"</span><span class="p">,</span><span class="s2">"mladí tuleni"</span><span class="p">,</span><span class="s2">"staří tuleni"</span><span class="p">],</span> 
+                  <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;mláďata&quot;</span><span class="p">,</span><span class="s2">&quot;mladí tuleni&quot;</span><span class="p">,</span><span class="s2">&quot;staří tuleni&quot;</span><span class="p">],</span> 
                   <span class="n">index</span><span class="o">=</span><span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
                  <span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">"čas/rok"</span>
-<span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">"věková kategorie"</span>    
-<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"Vývoj počtu tuleňů"</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">"počet jedinců"</span><span class="p">);</span>
+<span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;čas/rok&quot;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;věková kategorie&quot;</span>    
+<span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Vývoj počtu tuleňů&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;počet jedinců&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/cc6dda5b8e8764b625193e3955bb80fbc6a04f08bf7bf268d64cf36ec341b8e6.png" src="../_images/cc6dda5b8e8764b625193e3955bb80fbc6a04f08bf7bf268d64cf36ec341b8e6.png" />
+<img alt="../_images/c7ae93b3b2919e687edc7db47607be80b51bae5659d5f1d3f40bfe335d95df82.png" src="../_images/c7ae93b3b2919e687edc7db47607be80b51bae5659d5f1d3f40bfe335d95df82.png" />
 </div>
 </div>
 <div class="admonition tip">
@@ -1071,31 +1085,31 @@ Příslušný vlastní směr je [0.52683575 0.2168591  0.25630515]
 </div>
 <p>Pokud převedeme absolutní čísla na podíly z celku, získáme vývoj věkové skladby populace.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">podil</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">mul</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">podil</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-        <span class="n">title</span><span class="o">=</span><span class="s2">"Procentuální zastoupení kategorií"</span><span class="p">,</span> 
-        <span class="n">ylabel</span><span class="o">=</span><span class="s2">"procento z celkového počtu"</span><span class="p">,</span> 
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Procentuální zastoupení kategorií&quot;</span><span class="p">,</span> 
+        <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;procento z celkového počtu&quot;</span><span class="p">,</span> 
         <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/2e612b451209bf006bd408345a85c6d61c738307617c56ed3600eb38bb55bc55.png" src="../_images/2e612b451209bf006bd408345a85c6d61c738307617c56ed3600eb38bb55bc55.png" />
+<img alt="../_images/a7acc04de341dd09c18acc1a1a5d2238ace62bc26f5aa465e31ad603dc425e35.png" src="../_images/a7acc04de341dd09c18acc1a1a5d2238ace62bc26f5aa465e31ad603dc425e35.png" />
 </div>
 </div>
 <p>Procentuální skladba populace, ke které vývoj konverguje, je přibližně dána poslední položkou.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">podil</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span>
@@ -1230,16 +1244,14 @@ model a nakonec informace o řešení přeneseme na model nelineární.</p>
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item"><div
-    id="pst-page-navigation-heading-2"
-    class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Obsah
   </div>
-  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+  <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vektory">6.1. Vektory</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linearni-kombinace">6.2. Lineární kombinace</a></li>
@@ -1307,8 +1319,8 @@ Autor Robert Mařík
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

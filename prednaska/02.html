@@ -16,41 +16,38 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=8c6b312c" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=ca93fcec" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=a771f39c" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=4cdba38b"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -69,7 +66,6 @@
     <link rel="prev" title="1. Funkce a vlastnosti funkcí" href="01.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="cs"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -85,8 +81,19 @@
     <i class="fa-solid fa-arrow-up"></i>Zpět na začátek</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -94,6 +101,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Hledat v knize..."
          aria-label="Hledat v knize..."
          autocomplete="off"
@@ -101,8 +109,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -118,8 +126,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -149,11 +156,15 @@
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Vyhledávání</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Vyhledávání</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="nav bd-sidenav">
@@ -171,40 +182,40 @@
 <li class="toctree-l1"><a class="reference internal" href="08.html">8. Autonomní systémy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09.html">9. Modely konkurence populací</a></li>
 <li class="toctree-l1"><a class="reference internal" href="10.html">10. Modely dravce a kořisti</a></li>
-<li class="toctree-l1"><a class="reference internal" href="11.html">11. Diskrétní populační modely</a></li>
-<li class="toctree-l1"><a class="reference internal" href="12.html">12. Difuzní rovnice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="13.html">13. Agentní modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13.html">11. Agentní modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11.html">12. Diskrétní populační modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12.html">13. Difuzní rovnice</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Cvičení</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">14. První kroky</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_01.html">15. Úvod do jazyka Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_02.html">16. Práce s funkcemi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_03.html">17. Diferenciální rovnice 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_04.html">18. Diferenciální rovnice 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_05.html">19. Diferenciální rovnice 3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_06.html">20. LaTeX</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_07.html">21. Maticové modely</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_08.html">22. Levinsův model metapopulací</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_09.html">23. Modely konkurence populací</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_10.html">24. Modely dravce a kořisti</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_11.html">25. Samostatná práce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">1. První kroky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_01.html">2. Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_02.html">3. Práce s funkcemi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_03.html">4. Diferenciální rovnice 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_04.html">5. Diferenciální rovnice 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_05.html">6. Diferenciální rovnice 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_06.html">7. LaTeX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_07.html">8. Maticové modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_08.html">9. Levinsův model metapopulací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_09.html">10. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_10.html">11. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cviceni/cviceni_11.html">12. Samostatná práce</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Různá zadání</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">26. Enzymy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../allee.html">27. Silný Alleeho efekt</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../chovani.html">28. Model soupeření jestřábí a holubičí povahy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">29. Model populace ryb</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">1. Enzymy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../allee.html">2. Silný Alleeho efekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chovani.html">3. Model soupeření jestřábí a holubičí povahy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">4. Model populace ryb</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Kombinovaní</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">30. Data a grafy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">31. Diferenciální rovnice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">32. Lov v populaci - fázový portrét</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">33. Lov v populaci - časový vývoj</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">34. Model dravce a kořisti</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">35. Model konkurence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">1. Data a grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">2. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">3. Lov v populaci - fázový portrét</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">4. Lov v populaci - časový vývoj</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">5. Model dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">6. Model konkurence</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python konstrukce a ukázky</span></p>
 <ul class="nav bd-sidenav">
@@ -238,14 +249,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -391,7 +397,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  class="btn btn-sm btn-fullscreen-button"
   title="Režim celé obrazovky"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -405,17 +411,25 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Světlý"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Tmavý"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="světlý/tmavý" aria-label="světlý/tmavý" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
-<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -470,10 +484,10 @@
 <p><em>Foto: Derivace jsou základním nástrojem pro modelování systémů s deterministickým chováním. Jeden z nejjednodušeji modelovatelných procesů je model tepelné výměny. Pochopením tohoto procesu je možné odhalit, jak se živočichové žijící na sněhu a ledu brání teplotním ztrátám při kontaktu končetin se zemí. Zdroj: <a class="reference external" href="https://pxhere.com/en/photo/954181">https://pxhere.com/en/photo/954181</a></em></p>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>  <span class="c1"># knihovna pro numerické výpočty</span>
@@ -538,12 +552,12 @@ pěkné a můžeme pro ně použít postupy, které pro obecné funkce nefunguj�
 zde funkce, jejichž funkční hodnoty se mění plynule a nemůžou se změnit skokově.
 Malá změna ve vstupních datech vyvolá malou změnu ve funkčních hodnotách.</p>
 <div class="proof definition admonition" id="definition-0">
-<p class="admonition-title" id="definition-0"><span class="caption-number">Definice </span> (Okolí)</p>
+<p class="admonition-title"><span>Definice </span> (Okolí)</p>
 <section class="definition-content" id="proof-content">
 <p><em>Okolím</em> bodu <span class="math notranslate nohighlight">\(x_0\)</span> rozumíme libovolný otevřený interval obsahující bod <span class="math notranslate nohighlight">\(x_0\)</span>.</p>
 </section>
 </div><div class="proof definition admonition" id="definition-1">
-<p class="admonition-title" id="definition-1"><span class="caption-number">Definice </span> (Spojitost)</p>
+<p class="admonition-title"><span>Definice </span> (Spojitost)</p>
 <section class="definition-content" id="proof-content">
 <p>Buď <span class="math notranslate nohighlight">\(f\colon \mathbb R\to\mathbb R\)</span> funkce jedné proměnné. Řekneme, že funkce <span class="math notranslate nohighlight">\(f\)</span> je <em>spojitá v bodě</em> <span class="math notranslate nohighlight">\(x_0\)</span> jestliže je v tomto bodě definovaná a pro libovolnou předem zadanou toleranci (i extrémně malou) existuje okolí bodu <span class="math notranslate nohighlight">\(x_0\)</span> takové, že všechny body z okolí bodu <span class="math notranslate nohighlight">\(x_0\)</span> mají funkční hodnotu v rámci uvažované tolerance nerozlišitelnou od <span class="math notranslate nohighlight">\(f(x_0)\)</span>. Řekneme, že funkce <span class="math notranslate nohighlight">\(f\)</span> je <em>spojitá</em> na otevřeném intervalu, je-li spojitá v každém jeho bodě.</p>
 </section>
@@ -552,7 +566,7 @@ velmi pomůže. Zhruba řečeno vysvětlují, proč si v naprosté většině pr
 využitelných případů můžeme spojitost ověřit jenom tím, že zjistíme, zda je
 funkce definována.</p>
 <div class="proof definition admonition" id="definition-2">
-<p class="admonition-title" id="definition-2"><span class="caption-number">Definice </span> (Elementární funkce)</p>
+<p class="admonition-title"><span>Definice </span> (Elementární funkce)</p>
 <section class="definition-content" id="proof-content">
 <p>Všechny mnohočleny, goniometrické, cyklometrické,
 exponenciální a logaritmické funkce a obecná mocnina se nazývají
@@ -562,7 +576,7 @@ odečítání, násobení, dělení a skládání těchto funkcí navzájem se
 nazývají <em>elementární funkce</em>.</p>
 </section>
 </div><div class="proof theorem admonition" id="theorem-3">
-<p class="admonition-title" id="theorem-3"><span class="caption-number">Věta </span> (Spojitost elementárních funkcí)</p>
+<p class="admonition-title"><span>Věta </span> (Spojitost elementárních funkcí)</p>
 <section class="theorem-content" id="proof-content">
 <p>Všechny elementární funkce jsou spojité v každém vnitřním bodě svého definičního oboru.</p>
 </section>
@@ -573,7 +587,7 @@ a proto jsou funkce, se kterými pracujeme, zpravidla automaticky spojité.
 Opatrnost je nutná pouze tam, kde bychom se od elementárních funkcí odchýlili,
 například při použití nekonečných řad.</p>
 <div class="proof remark admonition" id="remark-4">
-<p class="admonition-title" id="remark-4"><span class="caption-number">Poznámka </span> (Body nespojitosti)</p>
+<p class="admonition-title"><span>Poznámka </span> (Body nespojitosti)</p>
 <section class="remark-content" id="proof-content">
 <p>Body, v jejichž okolí je funkce ohraničená, ale je zde porušena spojitost, se nazývají body nespojitosti. Typickými příklady jsou skok a odstranitelná nespojitost. (Opět se vyhneme přesné definici, ale název a vzhled grafu situaci dostatečně ozřejmí.)</p>
 <p><strong>skok</strong>
@@ -586,18 +600,18 @@ například při použití nekonečných řad.</p>
 </div><p>Grafy funkcí z předchozí poznámky jsou níže. Jsou vykresleny z jednotlivých bodů
 a tyto body nejsou spojeny obvyklou čarou. Tím vyniknou případné nespojitosti.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10000</span><span class="p">)</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">funkce</span> <span class="o">=</span> <span class="p">[(</span><span class="n">x</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
-<span class="n">popisky</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Skok, podstatná nespojitost"</span><span class="p">,</span> <span class="s2">"Odstranitelná nespojitost"</span><span class="p">]</span>
+<span class="n">popisky</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Skok, podstatná nespojitost&quot;</span><span class="p">,</span> <span class="s2">&quot;Odstranitelná nespojitost&quot;</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">funkce</span><span class="p">,</span><span class="n">popisky</span><span class="p">):</span>
-    <span class="n">a</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="s2">"."</span><span class="p">)</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
     <span class="n">a</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
     <span class="n">a</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 
@@ -605,14 +619,14 @@ a tyto body nejsou spojeny obvyklou čarou. Tím vyniknou případné nespojitos
 
 <span class="c1">## Minimalisticka varianta:</span>
 <span class="c1"># x = np.linspace(-10,10,100)</span>
-<span class="c1"># plt.plot(x,np.sin(x)/x,".")</span>
-<span class="c1"># plt.plot(x,(x+np.abs(x))/x,".")</span>
+<span class="c1"># plt.plot(x,np.sin(x)/x,&quot;.&quot;)</span>
+<span class="c1"># plt.plot(x,(x+np.abs(x))/x,&quot;.&quot;)</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/749545f75d9d37467b709b433a5a3dc8f8b4006667844e83a4c90510e3637880.png" src="../_images/749545f75d9d37467b709b433a5a3dc8f8b4006667844e83a4c90510e3637880.png" />
+<img alt="../_images/7679807ed686f7bb4f16c959fd52db92e17201d19e401590d591161863a54283.png" src="../_images/7679807ed686f7bb4f16c959fd52db92e17201d19e401590d591161863a54283.png" />
 </div>
 </div>
 </section>
@@ -628,7 +642,7 @@ se funkce stane spojitou, tj. relativně pěknou.</p>
 <p>Oproti obecné definici v literatuře je naše definice limity méně obsáhlá  (například nejsme schopni pracovat s limitou v nekonečnu) a hůře se používá (protože se opírá o pojem spojitost), pro konečné limity v konečném bodě a pro spojitost definovanou nezávisle na pojmu limita je to však ekvivalentní a pro naše potřeby názornější.</p>
 </aside>
 <div class="proof definition admonition" id="definition-5">
-<p class="admonition-title" id="definition-5"><span class="caption-number">Definice </span> (Limita)</p>
+<p class="admonition-title"><span>Definice </span> (Limita)</p>
 <section class="definition-content" id="proof-content">
 <p>Nechť <span class="math notranslate nohighlight">\(f\)</span> je funkce definovaná v okolí bodu <span class="math notranslate nohighlight">\(x_0\)</span>, s případnou výjimkou bodu <span class="math notranslate nohighlight">\(x_0\)</span>. Řekneme, že funkce <span class="math notranslate nohighlight">\(f\)</span> má v bodě <span class="math notranslate nohighlight">\(x_0\)</span> <em>limitu</em> rovnu číslu <span class="math notranslate nohighlight">\(L\)</span>, jestliže funkce <span class="math notranslate nohighlight">\(g(x)\)</span> definovaná vztahem <div class="math notranslate nohighlight">
 \[g(x)= \begin{cases}   L&amp; x=x_0\\ f(x)&amp; \text {jinak,}\end{cases}\]</div>
@@ -656,7 +670,7 @@ udávat okamžitou rychlost. Protože bychom však přímým dosazením dostali
 nedefinovaný výraz s nulou ve jmenovateli, uděláme toto dosazení v limitním
 smyslu.</p>
 <div class="proof definition admonition" id="definition-6">
-<p class="admonition-title" id="definition-6"><span class="caption-number">Definice </span> (Derivace)</p>
+<p class="admonition-title"><span>Definice </span> (Derivace)</p>
 <section class="definition-content" id="proof-content">
 <p><em>Derivací</em> funkce <span class="math notranslate nohighlight">\(f\)</span> v bodě <span class="math notranslate nohighlight">\(x\)</span> rozumíme
 limitu
@@ -668,7 +682,7 @@ pokud tato limita existuje.</p>
 </div><p>Derivaci funkce <span class="math notranslate nohighlight">\(f\)</span> v bodě <span class="math notranslate nohighlight">\(x_0\)</span> označujeme <span class="math notranslate nohighlight">\(f'(x_0)\)</span> nebo
 <span class="math notranslate nohighlight">\(\frac{\mathrm df(x_0)}{\mathrm dx}\)</span> nebo <span class="math notranslate nohighlight">\(\frac{\mathrm df}{\mathrm dx}(x_0)\)</span>. Derivaci v libovolném bodě potom <span class="math notranslate nohighlight">\(f'\)</span>, <span class="math notranslate nohighlight">\(f'(x)\)</span> nebo <span class="math notranslate nohighlight">\(\frac{\mathrm df}{\mathrm dx}\)</span>. Zápis <span class="math notranslate nohighlight">\(\frac{\mathrm df}{\mathrm dx}\)</span> je Leibnizova notace, zápis <span class="math notranslate nohighlight">\(f'\)</span> je Lagrangeova notace. Derivace podle času se označuje tečkou, například <span class="math notranslate nohighlight">\(\dot x\)</span> (Newtonova notace). V některých oborech se používá Eulerova notace <span class="math notranslate nohighlight">\(Df\)</span>, <span class="math notranslate nohighlight">\(D_x f\)</span> nebo <span class="math notranslate nohighlight">\((Df)(x)\)</span>.</p>
 <div class="proof remark admonition" id="remark-7">
-<p class="admonition-title" id="remark-7"><span class="caption-number">Poznámka </span> (Slovní interpretace definice derivace)</p>
+<p class="admonition-title"><span>Poznámka </span> (Slovní interpretace definice derivace)</p>
 <section class="remark-content" id="proof-content">
 <p>Ještě jednou rozšifrujeme jednotlivé komponenty definice derivace.</p>
 <ul class="simple">
@@ -707,7 +721,7 @@ pokud tato limita existuje.</p>
 </div>
 <p>Pro interpretaci derivace v praktických úlohách je vodítkem i fyzikální jednotka derivace. Ta je dána následující poznámkou.</p>
 <div class="proof remark admonition" id="remark-8">
-<p class="admonition-title" id="remark-8"><span class="caption-number">Poznámka </span> (Jednotka derivace)</p>
+<p class="admonition-title"><span>Poznámka </span> (Jednotka derivace)</p>
 <section class="remark-content" id="proof-content">
 <p>Jednotka derivace <span class="math notranslate nohighlight">\(\frac{\mathrm df}{\mathrm dx}\)</span> funkce <span class="math notranslate nohighlight">\(f(x)\)</span> je stejná, jako jednotka podílu <span class="math notranslate nohighlight">\(\frac {f(x)}x\)</span>.</p>
 </section>
@@ -731,12 +745,12 @@ Stejně tak pohlížejme na derivaci.</p>
 funkce. Přesněji, existence derivace impĺikuje spojitost a znaménko derivace
 určuje druh monotonie funkce. Přesněji viz následující dvě věty.</p>
 <div class="proof theorem admonition" id="theorem-9">
-<p class="admonition-title" id="theorem-9"><span class="caption-number">Věta </span> (Existence derivace implikuje spojitost)</p>
+<p class="admonition-title"><span>Věta </span> (Existence derivace implikuje spojitost)</p>
 <section class="theorem-content" id="proof-content">
 <p>Má-li funkce <span class="math notranslate nohighlight">\(f\)</span> derivaci na intervalu <span class="math notranslate nohighlight">\(I\)</span>, je na tomto intervalu spojitá.</p>
 </section>
 </div><div class="proof theorem admonition" id="theorem-10">
-<p class="admonition-title" id="theorem-10"><span class="caption-number">Věta </span> (Znaménko derivace implikuje monotonii)</p>
+<p class="admonition-title"><span>Věta </span> (Znaménko derivace implikuje monotonii)</p>
 <section class="theorem-content" id="proof-content">
 <ul class="simple">
 <li><p>Má-li funkce <span class="math notranslate nohighlight">\(f\)</span> kladnou derivaci na intervalu <span class="math notranslate nohighlight">\(I\)</span>, je na tomto intervalu rostoucí.</p></li>
@@ -892,10 +906,10 @@ například tak, že na krátký časový krok budeme předpokládat konstantní
 Tuto rychlost použijeme pro odhad nové teploty, tato nová teplota změní teplotní
 rozdíl, tím se změní i rychlost a postup opakujeme.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Nastavení parametrů</span>
@@ -918,9 +932,9 @@ rozdíl, tím se změní i rychlost a postup opakujeme.</p>
 <span class="c1">### Dekorace grafu</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
-    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"čas"</span><span class="p">,</span>
-    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"teplota"</span><span class="p">,</span>
-    <span class="n">title</span><span class="o">=</span><span class="s2">"Ochlazování rychlostí úměrnou teplotnímu rozdílu"</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;čas&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;teplota&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Ochlazování rychlostí úměrnou teplotnímu rozdílu&quot;</span><span class="p">,</span>
     <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
 <span class="p">);</span>
 </pre></div>
@@ -928,14 +942,14 @@ rozdíl, tím se změní i rychlost a postup opakujeme.</p>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/adcd6e40802f7325d70b5f207ef06122d33b9d643dd285fa56c696d8a37b0dad.png" src="../_images/adcd6e40802f7325d70b5f207ef06122d33b9d643dd285fa56c696d8a37b0dad.png" />
+<img alt="../_images/232e2d523c8f9f34d757a8a999fde6bb0d0f2425352e5b33e7e18fd610320b38.png" src="../_images/232e2d523c8f9f34d757a8a999fde6bb0d0f2425352e5b33e7e18fd610320b38.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Minimalizovana verze (odpoznamkujte)</span>
@@ -945,17 +959,17 @@ rozdíl, tím se změní i rychlost a postup opakujeme.</p>
 <span class="c1"># for i in range(100):</span>
 <span class="c1">#     t = t+dt</span>
 <span class="c1">#     T = T - 0.5 * (T-20) * dt</span>
-<span class="c1">#     plt.plot([t],[T],"b.")</span>
+<span class="c1">#     plt.plot([t],[T],&quot;b.&quot;)</span>
 </pre></div>
 </div>
 </div>
 </details>
 </div>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Úplně minimalistická verze</span>
@@ -1042,10 +1056,10 @@ derivace je záporná. V minimu se pokles obrátí v růst a derivace se změní
 záporné na kladnou. V minimu je tedy derivace rovna nule. Poté funkce roste a
 roste stále rychleji. To znamená, že derivace také roste.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>  <span class="c1"># body na vodorovné ose</span>
@@ -1054,22 +1068,22 @@ roste stále rychleji. To znamená, že derivace také roste.</p>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>          <span class="c1"># každý graf má svou svislou osu</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">"Funkce"</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">dydx</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">"Derivace"</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">"C1"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Funkce&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">dydx</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Derivace&quot;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">"Graf funkce $y=x^3-10x$ a její derivace"</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">"Funkce"</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">"Derivace"</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">get_label</span><span class="p">()</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s2">"C0"</span><span class="p">)</span> 
-<span class="n">ax2</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">get_label</span><span class="p">()</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s2">"C1"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Graf funkce $y=x^3-10x$ a její derivace&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Funkce&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Derivace&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">get_label</span><span class="p">()</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s2">&quot;C0&quot;</span><span class="p">)</span> 
+<span class="n">ax2</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">get_label</span><span class="p">()</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/6579642d7d306dcf3158eb614dad4262f880490c60467af6460b8d5ada11f322.png" src="../_images/6579642d7d306dcf3158eb614dad4262f880490c60467af6460b8d5ada11f322.png" />
+<img alt="../_images/552f0b897f3fc13b7798fa522380a6a23e5732d8662419b85d4f7b6fbe42cea8.png" src="../_images/552f0b897f3fc13b7798fa522380a6a23e5732d8662419b85d4f7b6fbe42cea8.png" />
 </div>
 </div>
 </section>
@@ -1085,7 +1099,7 @@ funkcí. Derivováním totiž můžeme ztratit aditivní konstanty, které v
 derivaci dávají nulu a zpětně není možné rekonstruovat, derivováním
 jaké konstanty jsme tuto nulu dostali.</p>
 <div class="proof definition admonition" id="definition-11">
-<p class="admonition-title" id="definition-11"><span class="caption-number">Definice </span> (Neurčitý integrál)</p>
+<p class="admonition-title"><span>Definice </span> (Neurčitý integrál)</p>
 <section class="definition-content" id="proof-content">
 <p>Řekneme, že funkce <span class="math notranslate nohighlight">\(F\)</span> je <em>primitivní funkcí</em> k funkci <span class="math notranslate nohighlight">\(f\)</span> na intervalu <span class="math notranslate nohighlight">\(I\)</span>, jestliže platí <div class="math notranslate nohighlight">
 \[F'(x)=f(x)\]</div>
@@ -1109,7 +1123,7 @@ jaké konstanty jsme tuto nulu dostali.</p>
 změnu měnící se veličiny, tj. určovat rozdíl na konci a na začátku intervalu. To
 vede na poněkud odlišné pojetí integrálu.</p>
 <div class="proof definition admonition" id="definition-13">
-<p class="admonition-title" id="definition-13"><span class="caption-number">Definice </span> (Newtonův určitý integrál)</p>
+<p class="admonition-title"><span>Definice </span> (Newtonův určitý integrál)</p>
 <section class="definition-content" id="proof-content">
 <p>Buď <span class="math notranslate nohighlight">\(f\)</span> funkce a <span class="math notranslate nohighlight">\(F\)</span> její
 primitivní funkce na intervalu <span class="math notranslate nohighlight">\(I\)</span>. Buď <span class="math notranslate nohighlight">\([a,b]\subset I\)</span> podinterval v
@@ -1144,10 +1158,10 @@ Výpočet zajišťuje funkce <code class="docutils literal notranslate"><span cl
 možné počítat integrály i analyticky použitím knihovny <code class="docutils literal notranslate"><span class="pre">sympy</span></code>, to však v našich
 výpočtech potřebovat nebudeme.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
+<details class="hide above-input">
 <summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
@@ -1161,14 +1175,14 @@ výpočtech potřebovat nebudeme.</p>
 <span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">integral</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Funkce"</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Primitivní funkce"</span><span class="p">);</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Funkce&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Primitivní funkce&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="../_images/abada33cf38b0a50e64dfd68197fc78be4393df0edb63600198f174cd8c4951a.png" src="../_images/abada33cf38b0a50e64dfd68197fc78be4393df0edb63600198f174cd8c4951a.png" />
+<img alt="../_images/255e76a8500caaf00847796c398c68f2ccf2cbb354c5ec1d056ffc645137a033.png" src="../_images/255e76a8500caaf00847796c398c68f2ccf2cbb354c5ec1d056ffc645137a033.png" />
 </div>
 </div>
 <p>Integrál je tedy možno použít k nalezení funkce, pokud víme, jak rychle se tato
@@ -1219,16 +1233,14 @@ diferenciální rovnice, který si představíme v další přednášce.</p>
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item"><div
-    id="pst-page-navigation-heading-2"
-    class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Obsah
   </div>
-  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+  <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prumerna-rychlost-a-okamzita-rychlost">2.1. Průměrná rychlost a okamžitá rychlost</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spojitost">2.2. Spojitost</a></li>
@@ -1287,8 +1299,8 @@ Autor Robert Mařík
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

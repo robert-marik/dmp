@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>21. Maticové modely &#8212; Dynamické modely populací</title>
+    <title>8. Maticové modely &#8212; Dynamické modely populací</title>
   
   
   
@@ -16,41 +16,38 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=4cdba38b"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -65,11 +62,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.jscustom.js"></script>
     <link rel="index" title="Rejstřík" href="../genindex.html" />
     <link rel="search" title="Vyhledávání" href="../search.html" />
-    <link rel="next" title="22. Levinsův model metapopulací" href="cviceni_08.html" />
-    <link rel="prev" title="20. LaTeX" href="cviceni_06.html" />
+    <link rel="next" title="9. Levinsův model metapopulací" href="cviceni_08.html" />
+    <link rel="prev" title="7. LaTeX" href="cviceni_06.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="cs"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -85,8 +81,19 @@
     <i class="fa-solid fa-arrow-up"></i>Zpět na začátek</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -94,6 +101,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Hledat v knize..."
          aria-label="Hledat v knize..."
          autocomplete="off"
@@ -101,8 +109,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -118,8 +126,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -149,11 +156,15 @@
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Vyhledávání</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Vyhledávání</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="nav bd-sidenav">
@@ -173,38 +184,37 @@
 <li class="toctree-l1"><a class="reference internal" href="../prednaska/10.html">10. Modely dravce a kořisti</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../prednaska/11.html">11. Diskrétní populační modely</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../prednaska/12.html">12. Difuzní rovnice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../prednaska/13.html">13. Agentní modely</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Cvičení</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">14. První kroky</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_01.html">15. Úvod do jazyka Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_02.html">16. Práce s funkcemi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_03.html">17. Diferenciální rovnice 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_04.html">18. Diferenciální rovnice 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_05.html">19. Diferenciální rovnice 3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_06.html">20. LaTeX</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">21. Maticové modely</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_08.html">22. Levinsův model metapopulací</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_09.html">23. Modely konkurence populací</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_10.html">24. Modely dravce a kořisti</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cviceni_11.html">25. Samostatná práce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Prvni_kroky.html">1. První kroky</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_01.html">2. Úvod do jazyka Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_02.html">3. Práce s funkcemi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_03.html">4. Diferenciální rovnice 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_04.html">5. Diferenciální rovnice 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_05.html">6. Diferenciální rovnice 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_06.html">7. LaTeX</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Maticové modely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_08.html">9. Levinsův model metapopulací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_09.html">10. Modely konkurence populací</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_10.html">11. Modely dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cviceni_11.html">12. Samostatná práce</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Různá zadání</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">26. Enzymy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../allee.html">27. Silný Alleeho efekt</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../chovani.html">28. Model soupeření jestřábí a holubičí povahy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">29. Model populace ryb</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../enzymy.html">1. Enzymy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../allee.html">2. Silný Alleeho efekt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chovani.html">3. Model soupeření jestřábí a holubičí povahy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Beverton-Holt.html">4. Model populace ryb</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Kombinovaní</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">30. Data a grafy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">31. Diferenciální rovnice</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">32. Lov v populaci - fázový portrét</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">33. Lov v populaci - časový vývoj</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">34. Model dravce a kořisti</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">35. Model konkurence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/01.html">1. Data a grafy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/02.html">2. Diferenciální rovnice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_01.html">3. Lov v populaci - fázový portrét</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_02.html">4. Lov v populaci - časový vývoj</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_03_Lotka_Volterra.html">5. Model dravce a kořisti</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kombi/III_04_konkurence.html">6. Model konkurence</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python konstrukce a ukázky</span></p>
 <ul class="nav bd-sidenav">
@@ -238,14 +248,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -374,7 +379,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  class="btn btn-sm btn-fullscreen-button"
   title="Režim celé obrazovky"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -388,17 +393,25 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Světlý"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Tmavý"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="světlý/tmavý" aria-label="světlý/tmavý" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Vyhledávání" aria-label="Vyhledávání" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
-<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -421,15 +434,15 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rozcvicka-s-maticemi-a-dvourozmernymi-poli">21.1. Rozcvička s maticemi a dvourozměrnými poli</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leslieho-model">21.2. Leslieho model</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parametr-pro-zastaveni-rustu">21.2.1. Parametr pro zastavení růstu</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matice-sensitivity-a-elasticity">21.2.2. Matice sensitivity a elasticity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rozcvicka-s-maticemi-a-dvourozmernymi-poli">8.1. Rozcvička s maticemi a dvourozměrnými poli</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leslieho-model">8.2. Leslieho model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parametr-pro-zastaveni-rustu">8.2.1. Parametr pro zastavení růstu</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matice-sensitivity-a-elasticity">8.2.2. Matice sensitivity a elasticity</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-jelena-evropskeho-red-deer-cervus-elaphus">21.3. Model jelena evropského (red deer, <em>Cervus elaphus</em>)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tropicky-strom">21.4. Tropický strom</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kareta-obecna-loggerhead-sea-turtle">21.5. Kareta obecná (Loggerhead sea turtle)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-jelena-evropskeho-red-deer-cervus-elaphus">8.3. Model jelena evropského (red deer, <em>Cervus elaphus</em>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tropicky-strom">8.4. Tropický strom</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kareta-obecna-loggerhead-sea-turtle">8.5. Kareta obecná (Loggerhead sea turtle)</a></li>
 </ul>
             </nav>
         </div>
@@ -442,7 +455,7 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="maticove-modely">
-<h1><span class="section-number">21. </span>Maticové modely<a class="headerlink" href="#maticove-modely" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">8. </span>Maticové modely<a class="headerlink" href="#maticove-modely" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -456,7 +469,7 @@
 </div>
 </div>
 <section id="rozcvicka-s-maticemi-a-dvourozmernymi-poli">
-<h2><span class="section-number">21.1. </span>Rozcvička s maticemi a dvourozměrnými poli<a class="headerlink" href="#rozcvicka-s-maticemi-a-dvourozmernymi-poli" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">8.1. </span>Rozcvička s maticemi a dvourozměrnými poli<a class="headerlink" href="#rozcvicka-s-maticemi-a-dvourozmernymi-poli" title="Link to this heading">#</a></h2>
 <p>Matice jsou dvourozměrná pole s některými dodatečnými vlastnostmi, jako například to, že je na nich definován maticový součin. Na prvky dvourozměrného pole se odkazujeme pomocí dvou indexů, první index je řádkový a druhý je sloupcový. Pokud je místo některého z indexů dvojtečka, je tím označen celý řádek nebo celý sloupec.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -516,7 +529,7 @@ proto, že nevzniká nová matice, ale jenom nový odkaz na matici původní.</p
 </div>
 </section>
 <section id="leslieho-model">
-<h2><span class="section-number">21.2. </span>Leslieho model<a class="headerlink" href="#leslieho-model" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">8.2. </span>Leslieho model<a class="headerlink" href="#leslieho-model" title="Link to this heading">#</a></h2>
 <p>Nejprve prozkoumáme Lesliseho model populace tuleňů z přednášky.
 Prvotní informace se týká vývoje populace. Rychlou představu si uděláme z grafu sledujícího vývoj jednotlivých věkových skupin v čase. Řešením jsou křivky rostoucí geometrickou řadou. Kvocient této řady je maximální vlastní číslo Leslieho matice.</p>
 <div class="cell docutils container">
@@ -552,15 +565,15 @@ Prvotní informace se týká vývoje populace. Rychlou představu si uděláme z
 <span class="n">cas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span> <span class="c1"># Data pro vodorovnou osu (časový krok jsou čtyři roky)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cas</span><span class="p">,</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>  <span class="c1"># Vykreslení vývoje. Data z řádků převedeme na sloupce transponováním</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span> <span class="c1"># Legenda do obrázku</span>
-    <span class="p">[</span><span class="s2">"mláďata"</span><span class="p">,</span><span class="s2">"mladí tuleni"</span><span class="p">,</span><span class="s2">"staří tuleni"</span><span class="p">],</span>
-    <span class="n">title</span><span class="o">=</span><span class="s2">"Věková kategorie"</span>
+    <span class="p">[</span><span class="s2">&quot;mláďata&quot;</span><span class="p">,</span><span class="s2">&quot;mladí tuleni&quot;</span><span class="p">,</span><span class="s2">&quot;staří tuleni&quot;</span><span class="p">],</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Věková kategorie&quot;</span>
     <span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span> <span class="c1"># Kosmetika grafu</span>
     <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="kc">None</span><span class="p">),</span>  <span class="c1"># Zapoznámkovat, pokud použijeme logaritmickou osu</span>
-    <span class="c1">#yscale="log",  # Pro důkaz toho, že růst je geometrickou řadou</span>
-    <span class="n">title</span><span class="o">=</span><span class="s2">"Počet jedinců podle věkových kategorií"</span><span class="p">,</span>
-    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"Počet jedinců"</span><span class="p">,</span>
-    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"Čas/rok"</span><span class="p">,</span>
+    <span class="c1">#yscale=&quot;log&quot;,  # Pro důkaz toho, že růst je geometrickou řadou</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Počet jedinců podle věkových kategorií&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Počet jedinců&quot;</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Čas/rok&quot;</span><span class="p">,</span>
     <span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span> <span class="c1"># Mřížka do obrázku</span>
@@ -568,7 +581,7 @@ Prvotní informace se týká vývoje populace. Rychlou představu si uděláme z
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/976c4c4ff71d64b9c96401d136e3d3ab51d405a41e78e95a9ad4a991e0c6282f.png" src="../_images/976c4c4ff71d64b9c96401d136e3d3ab51d405a41e78e95a9ad4a991e0c6282f.png" />
+<img alt="../_images/2a3568a8dd88844b0c0a312d2609585d451b14137ec5029e3c50cf219077978e.png" src="../_images/2a3568a8dd88844b0c0a312d2609585d451b14137ec5029e3c50cf219077978e.png" />
 </div>
 </div>
 <p>Ověříme, že věková struktura konverguje ke stálému složení populace.</p>
@@ -581,19 +594,19 @@ Prvotní informace se týká vývoje populace. Rychlou představu si uděláme z
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
     <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="kc">None</span><span class="p">),</span>
-    <span class="n">title</span><span class="o">=</span><span class="s2">"Procentuální zastoupení jedinců podle věkových kategorií"</span><span class="p">,</span>
-    <span class="n">ylabel</span><span class="o">=</span><span class="s2">"Procento jedinců"</span><span class="p">,</span>
-    <span class="n">xlabel</span><span class="o">=</span><span class="s2">"Čas/rok"</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Procentuální zastoupení jedinců podle věkových kategorií&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Procento jedinců&quot;</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Čas/rok&quot;</span>
     <span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
-    <span class="p">[</span><span class="s2">"nejmladší"</span><span class="p">,</span><span class="s2">"prostřední"</span><span class="p">,</span><span class="s2">"nejstarší"</span><span class="p">],</span>
-    <span class="n">title</span><span class="o">=</span><span class="s2">"Věková kategorie"</span>
+    <span class="p">[</span><span class="s2">&quot;nejmladší&quot;</span><span class="p">,</span><span class="s2">&quot;prostřední&quot;</span><span class="p">,</span><span class="s2">&quot;nejstarší&quot;</span><span class="p">],</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Věková kategorie&quot;</span>
     <span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/59fd3e1ff40ecc58a6cf8d1e4f2c753a1bf3985ca63389ae9019b72a529bebfa.png" src="../_images/59fd3e1ff40ecc58a6cf8d1e4f2c753a1bf3985ca63389ae9019b72a529bebfa.png" />
+<img alt="../_images/28762c5be27b48c8d52b0a84943d5db39ac64d5559d8cc82378327eaa2e510ca.png" src="../_images/28762c5be27b48c8d52b0a84943d5db39ac64d5559d8cc82378327eaa2e510ca.png" />
 </div>
 </div>
 <p>Numerické hodnoty určující procentuální zastoupení jednotlivých věkových skupin získáme z konce simulace.</p>
@@ -613,8 +626,8 @@ Prvotní informace se týká vývoje populace. Rychlou představu si uděláme z
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span><span class="p">,</span><span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Vlastní čísla: "</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Vlastní vektory jsou sloupce matice</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span><span class="n">P</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Vlastní čísla: &quot;</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Vlastní vektory jsou sloupce matice</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">P</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -634,8 +647,8 @@ Vlastní vektory jsou sloupce matice
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vh</span><span class="p">,</span><span class="n">vs</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">real</span><span class="p">,</span><span class="n">j</span><span class="o">.</span><span class="n">real</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">P</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">imag</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">1e-2</span> <span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">vs</span> <span class="o">=</span> <span class="n">vs</span><span class="o">.</span><span class="n">A1</span> <span class="c1"># převod na vektor</span>
 <span class="n">vs</span> <span class="o">=</span> <span class="n">vs</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">vs</span><span class="p">)</span> <span class="c1"># normování aby součet komponent byl jedna</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Reálná vlastní hodnota/hodnoty je/jsou "</span><span class="p">,</span><span class="n">vh</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Příslušný vlastní směr/směry je/jsou "</span><span class="p">,</span> <span class="n">vs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reálná vlastní hodnota/hodnoty je/jsou &quot;</span><span class="p">,</span><span class="n">vh</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Příslušný vlastní směr/směry je/jsou &quot;</span><span class="p">,</span> <span class="n">vs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -676,7 +689,7 @@ Příslušný vlastní směr/směry je/jsou  [0.52683575 0.2168591  0.25630515]
 </div>
 </div>
 <section id="parametr-pro-zastaveni-rustu">
-<h3><span class="section-number">21.2.1. </span>Parametr pro zastavení růstu<a class="headerlink" href="#parametr-pro-zastaveni-rustu" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">8.2.1. </span>Parametr pro zastavení růstu<a class="headerlink" href="#parametr-pro-zastaveni-rustu" title="Link to this heading">#</a></h3>
 <p>Budeme hledat, jak je potřeba změnit parametry populace tak, aby se růst populace zastavil. K zastavení vybereme vhodný parametr.  Například parametr ve druhém řádku a prvním sloupci. Tento parametr udává, jaká je pravděpodobnost, že se nejmladší věková kategorie dožije přestupu do starší kategorie. Budeme se tedy snažit lovit nejmladší jedince v populaci. Otázkou je, jak intenzivně musíme lovit, aby se růst populace zastavil.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -726,23 +739,23 @@ Příslušný vlastní směr/směry je/jsou  [0.52683575 0.2168591  0.25630515]
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">model</span><span class="p">[:,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">L_fix</span> <span class="o">@</span> <span class="n">model</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Časový krok"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Velikost populace"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Časový krok&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Velikost populace&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
-    <span class="p">[</span><span class="s2">"nejmladší"</span><span class="p">,</span><span class="s2">"prostřední"</span><span class="p">,</span><span class="s2">"nejstarší"</span><span class="p">],</span>
-    <span class="n">title</span><span class="o">=</span><span class="s2">"Věková kategorie"</span>
+    <span class="p">[</span><span class="s2">&quot;nejmladší&quot;</span><span class="p">,</span><span class="s2">&quot;prostřední&quot;</span><span class="p">,</span><span class="s2">&quot;nejstarší&quot;</span><span class="p">],</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Věková kategorie&quot;</span>
     <span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Test stacionárnosti populace"</span><span class="p">);</span>   
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Test stacionárnosti populace&quot;</span><span class="p">);</span>   
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7c0d28dea1eca45fee81e9a269a7aad7a57ac23464883173989d2f789b8072cc.png" src="../_images/7c0d28dea1eca45fee81e9a269a7aad7a57ac23464883173989d2f789b8072cc.png" />
+<img alt="../_images/3c4a21d20846b9614785df9f4ffe32add7c6e12b99c379af92936eb97c73f0e8.png" src="../_images/3c4a21d20846b9614785df9f4ffe32add7c6e12b99c379af92936eb97c73f0e8.png" />
 </div>
 </div>
 </section>
 <section id="matice-sensitivity-a-elasticity">
-<h3><span class="section-number">21.2.2. </span>Matice sensitivity a elasticity<a class="headerlink" href="#matice-sensitivity-a-elasticity" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">8.2.2. </span>Matice sensitivity a elasticity<a class="headerlink" href="#matice-sensitivity-a-elasticity" title="Link to this heading">#</a></h3>
 <p>Výpočet matice elasticity pomocí levých a pravých vlastních vektorů. Pro násobení matic po složkách (Hadamardův součin) převedeme matice na dvourozměrná pole.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -847,7 +860,7 @@ Příslušný vlastní směr/směry je/jsou  [0.52683575 0.2168591  0.25630515]
 </section>
 </section>
 <section id="model-jelena-evropskeho-red-deer-cervus-elaphus">
-<h2><span class="section-number">21.3. </span>Model jelena evropského (red deer, <em>Cervus elaphus</em>)<a class="headerlink" href="#model-jelena-evropskeho-red-deer-cervus-elaphus" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">8.3. </span>Model jelena evropského (red deer, <em>Cervus elaphus</em>)<a class="headerlink" href="#model-jelena-evropskeho-red-deer-cervus-elaphus" title="Link to this heading">#</a></h2>
 <p>Model je představen a studován ve výukovém materiálu
 <a class="reference external" href="https://www.youtube.com/watch?v=cMQd-okvS_M">https://www.youtube.com/watch?v=cMQd-okvS_M</a>
 Populace laní jelena evropského je rozdělena na rok staré laně, dva roky staré
@@ -1008,7 +1021,7 @@ parciální derivaci nahradíme centrální diferencí.</p>
 </div>
 </section>
 <section id="tropicky-strom">
-<h2><span class="section-number">21.4. </span>Tropický strom<a class="headerlink" href="#tropicky-strom" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">8.4. </span>Tropický strom<a class="headerlink" href="#tropicky-strom" title="Link to this heading">#</a></h2>
 <p>Model je studován ve výukovém materiálu <a class="reference external" href="https://www.youtube.com/watch?v=cMQd-okvS_M">https://www.youtube.com/watch?v=cMQd-okvS_M</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1113,7 +1126,7 @@ parciální derivaci nahradíme centrální diferencí.</p>
 </div>
 </section>
 <section id="kareta-obecna-loggerhead-sea-turtle">
-<h2><span class="section-number">21.5. </span>Kareta obecná (Loggerhead sea turtle)<a class="headerlink" href="#kareta-obecna-loggerhead-sea-turtle" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">8.5. </span>Kareta obecná (Loggerhead sea turtle)<a class="headerlink" href="#kareta-obecna-loggerhead-sea-turtle" title="Link to this heading">#</a></h2>
 <p>Model života Karety obecné je podle <a class="reference external" href="https://www.jstor.org/stable/1939225">publikace</a>  Deborah T. Crouse, Larry B.
 Crowder, Hal Caswell: A Stage-Based Population Model for Loggerhead Sea Turtles
 and Implications for Conservation, Ecology, Vol. 68, No. 5 (Oct., 1987), pp.
@@ -1122,7 +1135,7 @@ and Implications for Conservation, Ecology, Vol. 68, No. 5 (Oct., 1987), pp.
 velikosti <span class="math notranslate nohighlight">\(54\times54\)</span> (Frazer) a místo stáří dělí populaci do vývojových
 stadií. Tím dosáhnou při zachování přesnosti modelu výrazného snížení řádu
 matice, což umožňuje detailnější analýzu.</p>
-<p>Jendotlivé třídy jsou (podle <span class="bibtex-citation" id="id1">[<a class="reference internal" href="../literatura.html#id5" title="E. Tkadlec. Populační ekologie: Struktura a růst populací. Univerzita Palckého v Olomouci, 2013.">18</a>]</span>) (1) vajíčka a vylíhlá mláďata,
+<p>Jendotlivé třídy jsou (podle <span id="id1">[<a class="reference internal" href="../literatura.html#id5" title="E. Tkadlec. Populační ekologie: Struktura a růst populací. Univerzita Palckého v Olomouci, 2013.">16</a>]</span>) (1) vajíčka a vylíhlá mláďata,
 (2) mladší juvenilní jedinci, (3) starší juvenilní jedinci, (4) subadultní jedinci,
 (5) poprvé se množící, (6) jednoletí migranti a
 (7) dospělí. Třídy 5, 6 a 7 jsou uvažovány samostatně kvůli velkým rozdílům ve
@@ -1266,17 +1279,17 @@ matice vyjádřen i graficky. Pokusíme se tento obrázek zreprodukovat.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stav</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">stav</span><span class="p">,</span> <span class="n">matice_elasticity</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span><span class="s2">"o-"</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s2">"plodnost"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">stav</span><span class="p">,</span> <span class="n">matice_elasticity</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)],</span> <span class="s2">"^-"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"přežívání v současném stadiu"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">stav</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">matice_elasticity</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)],</span> <span class="s2">"s-"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"růst do dalšího stadia"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">stav</span><span class="p">,</span> <span class="n">matice_elasticity</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span><span class="s2">&quot;o-&quot;</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;plodnost&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">stav</span><span class="p">,</span> <span class="n">matice_elasticity</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)],</span> <span class="s2">&quot;^-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;přežívání v současném stadiu&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">stav</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">matice_elasticity</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)],</span> <span class="s2">&quot;s-&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;růst do dalšího stadia&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Relativní vliv komponent matice na celkový růst populace"</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Relativní vliv komponent matice na celkový růst populace&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6d03c79241050248c15831cde2acafef58ef8fa71a5f3f80ffc08cf9fbbf0b8c.png" src="../_images/6d03c79241050248c15831cde2acafef58ef8fa71a5f3f80ffc08cf9fbbf0b8c.png" />
+<img alt="../_images/e16fd3d2368eddc53b877cc83cfe2c4d9426963e807e886fed53b00a4c4b3798.png" src="../_images/e16fd3d2368eddc53b877cc83cfe2c4d9426963e807e886fed53b00a4c4b3798.png" />
 </div>
 </div>
 <p>Výstupem z modelu je skutečnost, že při snaze zachránit populaci karety má
@@ -1317,7 +1330,7 @@ dospělých želv. Toho je možné dosáhnout úpravou rybářských sítí tak,
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">předchozí</p>
-        <p class="prev-next-title"><span class="section-number">20. </span>LaTeX</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>LaTeX</p>
       </div>
     </a>
     <a class="right-next"
@@ -1325,7 +1338,7 @@ dospělých želv. Toho je možné dosáhnout úpravou rybářských sítí tak,
        title="další stránka">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">další</p>
-        <p class="prev-next-title"><span class="section-number">22. </span>Levinsův model metapopulací</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Levinsův model metapopulací</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1336,26 +1349,24 @@ dospělých želv. Toho je možné dosáhnout úpravou rybářských sítí tak,
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item"><div
-    id="pst-page-navigation-heading-2"
-    class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Obsah
   </div>
-  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+  <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rozcvicka-s-maticemi-a-dvourozmernymi-poli">21.1. Rozcvička s maticemi a dvourozměrnými poli</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leslieho-model">21.2. Leslieho model</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parametr-pro-zastaveni-rustu">21.2.1. Parametr pro zastavení růstu</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matice-sensitivity-a-elasticity">21.2.2. Matice sensitivity a elasticity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rozcvicka-s-maticemi-a-dvourozmernymi-poli">8.1. Rozcvička s maticemi a dvourozměrnými poli</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leslieho-model">8.2. Leslieho model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parametr-pro-zastaveni-rustu">8.2.1. Parametr pro zastavení růstu</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matice-sensitivity-a-elasticity">8.2.2. Matice sensitivity a elasticity</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-jelena-evropskeho-red-deer-cervus-elaphus">21.3. Model jelena evropského (red deer, <em>Cervus elaphus</em>)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tropicky-strom">21.4. Tropický strom</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kareta-obecna-loggerhead-sea-turtle">21.5. Kareta obecná (Loggerhead sea turtle)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-jelena-evropskeho-red-deer-cervus-elaphus">8.3. Model jelena evropského (red deer, <em>Cervus elaphus</em>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tropicky-strom">8.4. Tropický strom</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kareta-obecna-loggerhead-sea-turtle">8.5. Kareta obecná (Loggerhead sea turtle)</a></li>
 </ul>
   </nav></div>
 
@@ -1403,8 +1414,8 @@ Autor Robert Mařík
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
